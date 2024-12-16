@@ -1,7 +1,7 @@
 fetch('output.json')
   .then(response => response.json())
   .then(data => {
-    let search = new JsSearch.Search('url');
+    const search = new JsSearch.Search('url'); // A referencia mező megadása
     search.addField('title');
     search.addField('content');
     search.addDocuments(data);
@@ -18,7 +18,7 @@ fetch('output.json')
       results.forEach(result => {
         let item = document.createElement("div");
         let doc = data.find(d => d.url === result.id);
-        item.innerHTML = `<a href="${doc.url}" target="_blank">${doc.title}</a> - ${getSnippet(doc.content)}`;
+        item.innerHTML = `<a href="${doc.url}" target="_blank">${doc.title}</a> - Snippet: ${getSnippet(doc.content)}`;
         resultsDiv.appendChild(item);
       });
     }
