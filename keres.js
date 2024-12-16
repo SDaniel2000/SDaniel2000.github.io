@@ -1,7 +1,7 @@
 fetch('output.json')
   .then(response => response.json())
   .then(data => {
-    const search = new JsSearch.Search('url'); // A referencia mező megadása
+    let search = new JsSearch.Search('url'); // A referencia mező megadása
     search.addField('title');
     search.addField('content');
     search.addDocuments(data);
