@@ -1,5 +1,3 @@
-
-
 fetch('output.json')
   .then(response => response.json())
   .then(data => {
@@ -18,18 +16,14 @@ fetch('output.json')
     });
 
     function displayResults(results) {
-        
       let resultsDiv = document.getElementById("results");
       resultsDiv.innerHTML = "";
       results.forEach(result => {
         let item = document.createElement("div");
-        item.innerHTML = `Title: ${result.ref} - Snippet: ${getSnippet(result.ref)}`;
+        let doc = data.find(d => d.url === result.ref);
+        item.innerHTML = `<a href="${result.ref}">Go to: ${doc.title}</a>`;
         resultsDiv.appendChild(item);
       });
     }
 
-    function getSnippet(url) {
-      let doc = data.find(d => d.url === url);
-      return doc.content.slice(0, 1000);  // Kivonat
-    }
   });
