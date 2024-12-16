@@ -20,10 +20,14 @@ fetch('output.json')
       resultsDiv.innerHTML = "";
       results.forEach(result => {
         let item = document.createElement("div");
-        let doc = data.find(d => d.url === result.ref);
-        item.innerHTML = `<a href="${result.ref}">Go to: ${doc.title}</a>`;
+        let url = result.ref;
+        item.innerHTML = `Title: <a href="${url}" target="_blank">${url}</a> - Snippet: ${getSnippet(url)}`;
         resultsDiv.appendChild(item);
       });
     }
 
+    function getSnippet(url) {
+      let doc = data.find(d => d.url === url);
+      return doc.content.slice(0, 100);  // Kivonat
+    }
   });
