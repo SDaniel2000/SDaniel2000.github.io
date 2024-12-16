@@ -1,4 +1,4 @@
-fetch('https://github.com/SDaniel2000/SDaniel2000.github.io/blob/2d392109198e33140fb23f048ef8b47a6744d07c/output.json')
+fetch('https://raw.githubusercontent.com/SDaniel2000/SDaniel2000.github.io/2d392109198e33140fb23f048ef8b47a6744d07c/output.json')
   .then(response => response.json())
   .then(data => {
     let search = new JsSearch.Search('url'); // A referencia mező megadása
