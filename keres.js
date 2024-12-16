@@ -27,6 +27,6 @@ fetch('output.json')
 
     function getSnippet(url) {
       let doc = data.find(d => d.url === url);
-      return doc.content.slice(0, 100);  // Kivonat
+      return doc.content.slice(0, 1000);  // Kivonat
     }
   });
