@@ -20,11 +20,13 @@ fetch('output.json')
       resultsDiv.innerHTML = "";
       results.forEach(result => {
         let item = document.createElement("div");
-        let url = result.ref;
-        item.innerHTML = `Title: <a href="${url}" target="_blank">${url}</a> - Snippet: ${getSnippet(url)}`;
+        let baseURL = 'https://example.com/';  // Az alap URL, ahonnan a fájlok elérhetők
+        let fullURL = baseURL + result.ref;    // Teljes URL létrehozása
+        item.innerHTML = `Title: <a href="${fullURL}" target="_blank">${result.ref}</a> - Snippet: ${getSnippet(result.ref)}`;
         resultsDiv.appendChild(item);
       });
     }
+    
 
     function getSnippet(url) {
       let doc = data.find(d => d.url === url);
