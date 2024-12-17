@@ -1,20 +1,20 @@
-// Feltételezzük, hogy a JSON fájl neve output.json
-let searchIndex = new JsSearch.Search('id'); // Az 'id' a dokumentum egyedi azonosítója
+let searchIndex = [];
+let query = "";  // Globálisan elérhető query változó
 
 // Az JSON fájl betöltése
 fetch('output.json')
   .then(response => response.json())
   .then(data => {
-    searchIndex.addIndex('title');
-    searchIndex.addIndex('content');
-    searchIndex.addDocuments(data);
+    searchIndex = data;
   })
   .catch(error => console.error("Hiba történt a JSON fájl betöltésekor:", error));
 
 // Keresés a megadott kifejezés alapján
 function searchContent() {
-    const query = document.getElementById("searchQuery").value;
-    const results = searchIndex.search(query);
+    query = document.getElementById("searchQuery").value.toLowerCase();
+    const results = searchIndex.filter(page => {
+        return page.content.toLowerCase().includes(query) || page.title.toLowerCase().includes(query);
+    });
 
     displayResults(results);
 }
@@ -34,15 +34,15 @@ function displayResults(results) {
 
         // Link létrehozása
         const link = document.createElement("a");
-        link.href = result.url;  // Hivatkozás hozzáadása
-        link.textContent = result.title;  // A cím szövege
-        link.target = "_blank";  // Új ablakban nyitás (opcionális)
+        link.href = result.url;
+        link.textContent = result.title;
+        link.target = "_blank";  // Új ablakban nyitás
 
         // Cím kiemelése a keresett szóra
         const regex = new RegExp(query, 'gi');
         const highlightedTitle = result.title.replace(regex, match => `<span class="highlight">${match}</span>`);
-
         resultElement.innerHTML = `<a href="${result.url}" target="_blank">${highlightedTitle}</a>`;
+        
         resultContainer.appendChild(resultElement);
     });
 }
