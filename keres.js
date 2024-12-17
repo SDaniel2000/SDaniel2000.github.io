@@ -1,13 +1,22 @@
-// Példa tartalmak indexálásra
-const pages = [
-  { title: "Oldal 1", content: "Ez egy példa szöveg, amely az Oldal 1-en található." },
-  { title: "Oldal 2", content: "Ez a második oldal szövege, amely más információkat tartalmaz." }
-];
+let pages = [];
 
-// js-search beállítása
-const Searcher = new JsSearch.Search('title'); // Azonosító kulcs
-Searcher.addIndex('content'); // Tartalmi mező indexelése
-pages.forEach(page => Searcher.addDocument(page));
+// JSON adatok betöltése
+fetch('output.json')
+  .then(response => response.json())
+  .then(data => {
+    pages = data;
+    initializeSearch();
+  })
+  .catch(error => console.error('Hiba a JSON betöltésekor:', error));
+
+// Keresőmotor beállítása
+let Searcher;
+
+function initializeSearch() {
+  Searcher = new JsSearch.Search('title'); // Azonosító kulcs
+  Searcher.addIndex('content'); // Tartalom indexelése
+  pages.forEach(page => Searcher.addDocument(page));
+}
 
 // Keresési funkció
 function search() {
