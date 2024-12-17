@@ -1,12 +1,12 @@
-// Itt tároljuk az indexált adatokat
+// Példa tartalmak indexálásra
 const pages = [
   { title: "Oldal 1", content: "Ez egy példa szöveg, amely az Oldal 1-en található." },
   { title: "Oldal 2", content: "Ez a második oldal szövege, amely más információkat tartalmaz." }
 ];
 
 // js-search beállítása
-const Searcher = new JsSearch.Search('title');
-Searcher.addIndex('content');
+const Searcher = new JsSearch.Search('title'); // Azonosító kulcs
+Searcher.addIndex('content'); // Tartalmi mező indexelése
 pages.forEach(page => Searcher.addDocument(page));
 
 // Keresési funkció
