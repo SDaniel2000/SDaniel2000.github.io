@@ -1,25 +1,29 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statikus Kereső</title>
+    <title>Web Archive Search</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        input[type="text"] { width: 300px; padding: 5px; }
-        .results { margin-top: 20px; }
-        .result-item { margin-bottom: 10px; }
+        /* Alapvető stílusok a kereséshez */
+        #results {
+            margin-top: 20px;
+        }
+        li {
+            list-style-type: none;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
     </style>
 </head>
 <body>
 
-    <h1>Statikus Weboldal Kereső</h1>
-    <input type="text" id="searchInput" placeholder="Keresés..." oninput="searchContent()">
-    
-    <div id="searchResults" class="results"></div>
+    <h1>Search the Archive</h1>
+    <input type="text" id="search-input" placeholder="Search for pages...">
+    <ul id="results"></ul>
 
-    <script src="keres.js"></script>
-    <script src="jssearch.index.js"></script>
-
+    <script src="keres.js"></script> <!-- A keres.js fájl, amely a fenti JavaScript kódot tartalmazza -->
 </body>
 </html>

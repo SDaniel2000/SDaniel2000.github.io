@@ -1,66 +1,47 @@
-$.jssearch = {
-  search: function(query) {
-      var words = $.jssearch.tokenizeString(query);
-      var result = [];
+const index = {}; // Az index.json fájl tartalmát ide töltöd be
 
-      if (words.length == 0) {
-          return result;
-      }
+// Beolvassuk az indexet
+fetch('index.json')
+    .then(response => response.json())
+    .then(data => {
+        index.files = data;
+    });
 
-      result = $.jssearch.searchForWords(words);
+function searchContent(query) {
+    let queryWords = query.split(/\s+/).map(word => word.toLowerCase());
+    let results = [];
 
-      var res = [];
-      for (var i in result) {
-          res.push(result[i].file);
-      }
+    index.files.forEach(file => {
+        queryWords.forEach(word => {
+            if (file.title.toLowerCase().includes(word)) {
+                results.push({
+                    file: file,
+                    title: file.title,
+                    url: file.url
+                });
+            }
+        });
+    });
 
-      return res;
-  },
-
-  searchForWords: function(words) {
-      var result = [];
-      words.forEach(function(word) {
-          if ($.jssearch.index[word.t]) {
-              $.jssearch.index[word.t].forEach(function(file) {
-                  if (!result.includes($.jssearch.files[file.f])) {
-                      result.push({
-                          file: $.jssearch.files[file.f]
-                      });
-                  }
-              });
-          }
-      });
-      return result;
-  },
-
-  tokenizeString: function(string) {
-      var regex = /[a-zA-Z0-9]+/g;
-      var matches = string.match(regex);
-      var result = [];
-      if (matches) {
-          matches.forEach(function(match) {
-              result.push({t: match.toLowerCase()});
-          });
-      }
-      return result;
-  }
-};
-
-function searchContent() {
-  var query = document.getElementById("searchInput").value;
-  var results = $.jssearch.search(query);
-
-  var resultContainer = document.getElementById("searchResults");
-  resultContainer.innerHTML = '';
-
-  if (results.length > 0) {
-      results.forEach(function(file) {
-          var div = document.createElement('div');
-          div.classList.add('result-item');
-          div.innerHTML = `<a href="${file}">${file}</a>`;
-          resultContainer.appendChild(div);
-      });
-  } else {
-      resultContainer.innerHTML = 'Nincs találat!';
-  }
+    displayResults(results);
 }
+
+function displayResults(results) {
+    let resultList = document.getElementById('results');
+    resultList.innerHTML = ''; // Clear previous results
+
+    results.forEach(result => {
+        let li = document.createElement('li');
+        let link = document.createElement('a');
+        link.href = result.url;  // Link to the page
+        link.textContent = result.title;  // Text for the link
+        li.appendChild(link);
+        resultList.appendChild(li);
+    });
+}
+
+// Keresési esemény kezelés
+document.getElementById('search-input').addEventListener('input', function() {
+    let query = this.value;
+    searchContent(query);
+});
