@@ -1,39 +1,40 @@
-let pages = [];
+// Feltételezzük, hogy a JSON fájl neve output.json
+let searchIndex = [];
 
-// JSON adatok betöltése
+// Az JSON fájl betöltése
 fetch('output.json')
   .then(response => response.json())
   .then(data => {
-    pages = data;
-    initializeSearch();
+    searchIndex = data;
   })
-  .catch(error => console.error('Hiba a JSON betöltésekor:', error));
+  .catch(error => console.error("Hiba történt a JSON fájl betöltésekor:", error));
 
-// Keresőmotor beállítása
-let Searcher;
+// Keresés a megadott kifejezés alapján
+function searchContent() {
+    const query = document.getElementById("searchQuery").value.toLowerCase();
+    const results = searchIndex.filter(page => {
+        return page.content.toLowerCase().includes(query) || page.title.toLowerCase().includes(query);
+    });
 
-function initializeSearch() {
-  Searcher = new JsSearch.Search('title'); // Cím keresése
-  Searcher.addIndex('content'); // Tartalom indexelése
-  pages.forEach(page => Searcher.addDocument(page));
+    displayResults(results);
 }
 
-// Keresési funkció
-function search() {
-  const query = document.getElementById('searchQuery').value;
-  const results = Searcher.search(query);
+// Eredmények megjelenítése a keresés alapján
+function displayResults(results) {
+    const resultContainer = document.getElementById("searchResults");
+    resultContainer.innerHTML = ''; // Eredmények törlése a régi keresés előtt
 
-  const resultsContainer = document.getElementById('results');
-  resultsContainer.innerHTML = ''; // Korábbi találatok törlése
-  results.forEach(result => {
-    const li = document.createElement('li');
-    li.innerHTML = `<strong>${result.title}</strong><br><span>${highlightMatch(result.content, query)}</span>`;
-    resultsContainer.appendChild(li);
-  });
-}
+    if (results.length === 0) {
+        resultContainer.innerHTML = "Nincs találat!";
+        return;
+    }
 
-// A keresett szöveg kiemelése
-function highlightMatch(text, query) {
-  const regex = new RegExp(`(${query})`, 'gi');
-  return text.replace(regex, '<span style="background-color: yellow;">$1</span>');
+    results.forEach(result => {
+        const resultElement = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = result.url;
+        link.textContent = result.title;
+        resultElement.appendChild(link);
+        resultContainer.appendChild(resultElement);
+    });
 }
