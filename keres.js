@@ -13,7 +13,7 @@ fetch('output.json')
 let Searcher;
 
 function initializeSearch() {
-  Searcher = new JsSearch.Search('title'); // Azonosító kulcs (további mezők keresése)
+  Searcher = new JsSearch.Search('title'); // Cím keresése
   Searcher.addIndex('content'); // Tartalom indexelése
   pages.forEach(page => Searcher.addDocument(page));
 }
@@ -27,7 +27,7 @@ function search() {
   resultsContainer.innerHTML = ''; // Korábbi találatok törlése
   results.forEach(result => {
     const li = document.createElement('li');
-    li.innerHTML = `<strong>${result.title}</strong><br>${highlightMatch(result.content, query)}`;
+    li.innerHTML = `<strong>${result.title}</strong><br><span>${highlightMatch(result.content, query)}</span>`;
     resultsContainer.appendChild(li);
   });
 }
