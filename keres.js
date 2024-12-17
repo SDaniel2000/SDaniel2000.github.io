@@ -1,41 +1,66 @@
-function searchContent() {
-  // Ellenőrizzük, hogy az input mező létezik-e
-  var query = document.getElementById("search-box");
-  if (query) {
-    var searchQuery = query.value; // Az input mező értéke
+$.jssearch = {
+  search: function(query) {
+      var words = $.jssearch.tokenizeString(query);
+      var result = [];
 
-    // Keresési logika itt:
-    console.log(searchQuery); // Debug: A keresett kifejezés kiíratása
+      if (words.length == 0) {
+          return result;
+      }
 
-    // Például a keresés eredményei
-    var results = performSearch(searchQuery);
-    displayResults(results);
-  } else {
-    console.error("Input mező nem található.");
+      result = $.jssearch.searchForWords(words);
+
+      var res = [];
+      for (var i in result) {
+          res.push(result[i].file);
+      }
+
+      return res;
+  },
+
+  searchForWords: function(words) {
+      var result = [];
+      words.forEach(function(word) {
+          if ($.jssearch.index[word.t]) {
+              $.jssearch.index[word.t].forEach(function(file) {
+                  if (!result.includes($.jssearch.files[file.f])) {
+                      result.push({
+                          file: $.jssearch.files[file.f]
+                      });
+                  }
+              });
+          }
+      });
+      return result;
+  },
+
+  tokenizeString: function(string) {
+      var regex = /[a-zA-Z0-9]+/g;
+      var matches = string.match(regex);
+      var result = [];
+      if (matches) {
+          matches.forEach(function(match) {
+              result.push({t: match.toLowerCase()});
+          });
+      }
+      return result;
   }
-}
+};
 
-function performSearch(query) {
-  // Képzeld el, hogy ez egy keresési logika, ami a megfelelő adatokat adja vissza
-  var sampleData = [
-    "HTML Tutorial",
-    "CSS Basics",
-    "JavaScript Guide",
-    "React and Vue",
-    "Web Development"
-  ];
+function searchContent() {
+  var query = document.getElementById("searchInput").value;
+  var results = $.jssearch.search(query);
 
-  return sampleData.filter(item => item.toLowerCase().includes(query.toLowerCase()));
-}
+  var resultContainer = document.getElementById("searchResults");
+  resultContainer.innerHTML = '';
 
-function displayResults(results) {
-  // A keresési eredmények megjelenítése
-  var resultContainer = document.getElementById("search-results");
-  resultContainer.innerHTML = ""; // Töröljük a korábbi eredményeket
-
-  results.forEach(result => {
-    var li = document.createElement("li");
-    li.textContent = result;
-    resultContainer.appendChild(li);
-  });
+  if (results.length > 0) {
+      results.forEach(function(file) {
+          var div = document.createElement('div');
+          div.classList.add('result-item');
+          div.innerHTML = `<a href="${file}">${file}</a>`;
+          resultContainer.appendChild(div);
+      });
+  } else {
+      resultContainer.innerHTML = 'Nincs találat!';
+  }
 }

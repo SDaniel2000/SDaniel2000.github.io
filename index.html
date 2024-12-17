@@ -1,14 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Search Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statikus Kereső</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        input[type="text"] { width: 300px; padding: 5px; }
+        .results { margin-top: 20px; }
+        .result-item { margin-bottom: 10px; }
+    </style>
 </head>
 <body>
-  <input type="text" id="search-box" oninput="searchContent()" placeholder="Search here...">
-  <ul id="search-results"></ul>
 
-  <script src="keres.js"></script>
+    <h1>Statikus Weboldal Kereső</h1>
+    <input type="text" id="searchInput" placeholder="Keresés..." oninput="searchContent()">
+    
+    <div id="searchResults" class="results"></div>
+
+    <script src="keres.js"></script>
+    <script src="jssearch.index.js"></script>
+
 </body>
 </html>
