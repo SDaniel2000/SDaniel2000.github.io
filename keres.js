@@ -31,10 +31,19 @@ function displayResults(results) {
 
     results.forEach(result => {
         const resultElement = document.createElement("li");
+
+        // Link létrehozása
         const link = document.createElement("a");
-        link.href = result.url;
-        link.textContent = result.title;
-        resultElement.appendChild(link);
+        link.href = result.url;  // Hivatkozás hozzáadása
+        link.textContent = result.title;  // A cím szövege
+        link.target = "_blank";  // Új ablakban nyitás (opcionális)
+
+        // Cím kiemelése a keresett szóra
+        const regex = new RegExp(query, 'gi');
+        const highlightedTitle = result.title.replace(regex, match => `<span class="highlight">${match}</span>`);
+        const highlightedContent = result.content.replace(regex, match => `<span class="highlight">${match}</span>`);
+
+        resultElement.innerHTML = `<a href="${result.url}" target="_blank">${highlightedTitle}</a>`;
         resultContainer.appendChild(resultElement);
     });
 }
