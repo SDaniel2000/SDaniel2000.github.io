@@ -3,30 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web Search</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-    input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      font-size: 16px;
-    }
-    .results {
-      list-style-type: none;
-      padding: 0;
-    }
-    .result-item {
-      margin: 10px 0;
-    }
-  </style>
+  <title>Search Example</title>
 </head>
 <body>
-  <h1>Web Search</h1>
-  <input type="text" id="searchInput" placeholder="Search for pages..." oninput="searchContent()">
-  <ul id="results" class="results"></ul>
+  <input type="text" id="search-box" oninput="searchContent()" placeholder="Search here...">
+  <ul id="search-results"></ul>
 
   <script src="keres.js"></script>
 </body>

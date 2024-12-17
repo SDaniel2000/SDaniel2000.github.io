@@ -1,33 +1,41 @@
-let searchIndex = [];
-
-fetch('output_data.json')  // A Python program által generált JSON fájl
-  .then(response => response.json())
-  .then(data => {
-    searchIndex = data.pages;  // Az adatok a JSON fájlból
-  });
-
 function searchContent() {
-  const query = document.getElementById('searchInput').value.toLowerCase();
-  const results = searchIndex.filter(page => 
-    page.content.toLowerCase().includes(query) || page.title.toLowerCase().includes(query)
-  );
+  // Ellenőrizzük, hogy az input mező létezik-e
+  var query = document.getElementById("search-box");
+  if (query) {
+    var searchQuery = query.value; // Az input mező értéke
 
-  displayResults(results);
+    // Keresési logika itt:
+    console.log(searchQuery); // Debug: A keresett kifejezés kiíratása
+
+    // Például a keresés eredményei
+    var results = performSearch(searchQuery);
+    displayResults(results);
+  } else {
+    console.error("Input mező nem található.");
+  }
+}
+
+function performSearch(query) {
+  // Képzeld el, hogy ez egy keresési logika, ami a megfelelő adatokat adja vissza
+  var sampleData = [
+    "HTML Tutorial",
+    "CSS Basics",
+    "JavaScript Guide",
+    "React and Vue",
+    "Web Development"
+  ];
+
+  return sampleData.filter(item => item.toLowerCase().includes(query.toLowerCase()));
 }
 
 function displayResults(results) {
-  const resultList = document.getElementById('results');
-  resultList.innerHTML = ''; // Az előző találatok törlése
-
-  if (results.length === 0) {
-    resultList.innerHTML = '<li>No results found</li>';
-    return;
-  }
+  // A keresési eredmények megjelenítése
+  var resultContainer = document.getElementById("search-results");
+  resultContainer.innerHTML = ""; // Töröljük a korábbi eredményeket
 
   results.forEach(result => {
-    const listItem = document.createElement('li');
-    listItem.classList.add('result-item');
-    listItem.innerHTML = `<strong>${result.title}</strong><br>${result.content.slice(0, 150)}...<br><a href="${result.url}" target="_blank">Read more</a>`;
-    resultList.appendChild(listItem);
+    var li = document.createElement("li");
+    li.textContent = result;
+    resultContainer.appendChild(li);
   });
 }
