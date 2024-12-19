@@ -1,47 +1,43 @@
-const index = {}; // Az index.json fájl tartalmát ide töltöd be
+// JSON adat, amit a Python kód generált (például letöltött fájlban)
+const jsonData = [
+    {
+        "file_name": "home.html",
+        "url": "https://www.alsacreations.com/home.html",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+    },
+    {
+        "file_name": "about.html",
+        "url": "https://www.alsacreations.com/about.html",
+        "content": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+    }
+];
 
-// Beolvassuk az indexet
-fetch('index.json')
-    .then(response => response.json())
-    .then(data => {
-        index.files = data;
-    });
+// js-search inicializálása
+const search = new JsSearch.Search('file_name');
+search.addIndex('content');  // Keresési indexek
+search.addDocuments(jsonData);
 
-function searchContent(query) {
-    let queryWords = query.split(/\s+/).map(word => word.toLowerCase());
-    let results = [];
+// Keresés kezelése
+const searchInput = document.getElementById('searchInput');
+const resultsContainer = document.getElementById('results');
 
-    index.files.forEach(file => {
-        queryWords.forEach(word => {
-            if (file.title.toLowerCase().includes(word)) {
-                results.push({
-                    file: file,
-                    title: file.title,
-                    url: file.url
-                });
-            }
-        });
-    });
-
-    displayResults(results);
-}
-
-function displayResults(results) {
-    let resultList = document.getElementById('results');
-    resultList.innerHTML = ''; // Clear previous results
-
-    results.forEach(result => {
-        let li = document.createElement('li');
-        let link = document.createElement('a');
-        link.href = result.url;  // Link to the page
-        link.textContent = result.title;  // Text for the link
-        li.appendChild(link);
-        resultList.appendChild(li);
-    });
-}
-
-// Keresési esemény kezelés
-document.getElementById('search-input').addEventListener('input', function() {
-    let query = this.value;
-    searchContent(query);
+searchInput.addEventListener('input', () => {
+    const query = searchInput.value;
+    if (query.length > 0) {
+        const results = search.search(query); // A keresési eredményeket tartalmazza
+        displayResults(results);
+    } else {
+        resultsContainer.innerHTML = '';
+    }
 });
+
+// Eredmények megjelenítése
+function displayResults(results) {
+    resultsContainer.innerHTML = '';
+    results.forEach(result => {
+        const resultElement = document.createElement('div');
+        resultElement.classList.add('result');
+        resultElement.innerHTML = `<a href="${result.url}" target="_blank">${result.file_name}</a>`;
+        resultsContainer.appendChild(resultElement);
+    });
+}

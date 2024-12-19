@@ -1,29 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Archive Search</title>
+    <title>Keresés a weboldalon</title>
+    <script src="https://cdn.jsdelivr.net/npm/js-search@2.0.1/dist/js-search.min.js"></script>
+    <script src="keres.js" defer></script> <!-- Betöltjük a keres.js fájlt -->
     <style>
-        /* Alapvető stílusok a kereséshez */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
         #results {
             margin-top: 20px;
         }
-        li {
-            list-style-type: none;
-        }
-        a {
-            text-decoration: none;
-            color: blue;
+        .result {
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
-
-    <h1>Search the Archive</h1>
-    <input type="text" id="search-input" placeholder="Search for pages...">
-    <ul id="results"></ul>
-
-    <script src="keres.js"></script> <!-- A keres.js fájl, amely a fenti JavaScript kódot tartalmazza -->
+    <h1>Weboldal kereső</h1>
+    <input type="text" id="searchInput" placeholder="Keresés..." />
+    <div id="results"></div>
 </body>
 </html>
