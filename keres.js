@@ -1,13 +1,13 @@
 // JSON betöltés fetch használatával
-fetch('https://sdaniel2000.github.io/output.json')  // Itt a JSON fájl helyét add meg
+fetch('output.json')  // Itt a JSON fájl helyét add meg
     .then(response => response.json())
     .then(jsonData => {
         // js-search inicializálása
         const search = new JsSearch.Search('file_name');
         search.addIndex('content');  // Keresési indexek
-        search.addDocuments(jsonData);  // Dokumentumok hozzáadása
+        search.addDocuments(jsonData);
 
-        // Keresési esemény kezelése
+        // Keresés kezelése
         const searchInput = document.getElementById('searchInput');
         const resultsContainer = document.getElementById('results');
 
@@ -15,19 +15,19 @@ fetch('https://sdaniel2000.github.io/output.json')  // Itt a JSON fájl helyét 
             const query = searchInput.value;
             if (query.length > 0) {
                 const results = search.search(query); // A keresési eredményeket tartalmazza
-                displayResults(results);  // Eredmények megjelenítése
+                displayResults(results);
             } else {
-                resultsContainer.innerHTML = '';  // Ha üres a keresőmező, törölje az eredményeket
+                resultsContainer.innerHTML = '';
             }
         });
 
-        // Eredmények megjelenítése
+        // Eredmények megjelenítése (csak a keresett szöveg)
         function displayResults(results) {
-            resultsContainer.innerHTML = '';  // Eredmények törlése
+            resultsContainer.innerHTML = '';
             results.forEach(result => {
                 const resultElement = document.createElement('div');
                 resultElement.classList.add('result');
-                resultElement.innerHTML = `<a href="${result.url}" target="_blank">${result.file_name}</a>`;  // Az URL és a fájl neve
+                resultElement.innerHTML = `<p>${result.content}</p>`;  // Csak a tartalom megjelenítése
                 resultsContainer.appendChild(resultElement);
             });
         }
