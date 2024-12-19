@@ -3,25 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keresés a weboldalon</title>
-    <script src="https://cdn.jsdelivr.net/npm/js-search@2.0.1/dist/js-search.min.js"></script>
-    <script src="keres.js" defer></script> <!-- Betöltjük a keres.js fájlt -->
+    <title>Keresés a letöltött oldalon</title>
     <style>
-        body {
+        /* Stílusok a keresési mezőhöz és az eredményekhez */
+        #search-container {
+            margin: 20px;
             font-family: Arial, sans-serif;
-            padding: 20px;
         }
+
+        #searchInput {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
         #results {
-            margin-top: 21px;
+            list-style-type: none;
+            padding: 0;
         }
-        .result {
-            margin-bottom: 10px;
+
+        #results .result {
+            margin: 10px 0;
+        }
+
+        #results a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        #results a:hover {
+            color: #0066cc;
         }
     </style>
 </head>
 <body>
-    <h1>Weboldal kereső</h1>
-    <input type="text" id="searchInput" placeholder="Keresés..." />
-    <div id="results"></div>
+
+    <div id="search-container">
+        <h2>Keresés a weboldalon</h2>
+        <input type="text" id="searchInput" placeholder="Keresés...">
+        <div id="results"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-search/2.1.0/search.min.js"></script> <!-- JsSearch könyvtár -->
+    <script src="keres.js"></script> <!-- Az általad használt keres.js fájl -->
 </body>
 </html>
