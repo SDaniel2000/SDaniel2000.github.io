@@ -3,51 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keresés a letöltött oldalon</title>
+    <title>Szövegkeresés</title>
+    <script src="https://cdn.jsdelivr.net/gh/Phyks/BloomySearch/bloomysearch.min.js"></script>
+    <script src="keres.js" defer></script>
     <style>
-        #search-container {
-            margin: 20px;
+        body {
             font-family: Arial, sans-serif;
+            padding: 20px;
         }
-
-        #searchInput {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
         #results {
-            list-style-type: none;
-            padding: 0;
+            margin-top: 20px;
         }
-
-        .result {
-            margin: 10px 0;
-        }
-
-        .result a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .result a:hover {
-            color: #0066cc;
+        .result-item {
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
+    <h1>Szövegkeresés a letöltött oldalon</h1>
+    <input type="text" id="searchInput" placeholder="Írd be a keresett szót..." />
 
-    <div id="search-container">
-        <h2>Keresés a weboldalon</h2>
-        <input type="text" id="searchInput" placeholder="Keresés...">
-        <div id="results"></div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-search/2.1.0/search.min.js"></script> <!-- JsSearch könyvtár -->
-    <script src="keres.js"></script> <!-- Az általad használt keres.js fájl -->
+    <div id="results"></div>
 </body>
 </html>

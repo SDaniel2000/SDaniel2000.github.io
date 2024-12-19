@@ -1,40 +1,39 @@
-// JSON betöltés fetch használatával
-fetch('output.json')  // Itt a JSON fájl helyét add meg
-    .then(response => response.json())
-    .then(jsonData => {
-        // js-search inicializálása
-        const search = new JsSearch.Search('file_name');
-        search.addIndex('content');  // Keresési indexek
-        search.addDocuments(jsonData);
-
-        // Keresés kezelése
-        const searchInput = document.getElementById('searchInput');
-        const resultsContainer = document.getElementById('results');
-
-        searchInput.addEventListener('input', () => {
-            const query = searchInput.value;
-            if (query.length > 0) {
-                const results = search.search(query); // A keresési eredményeket tartalmazza
-                displayResults(results, query);
-            } else {
-                resultsContainer.innerHTML = '';
-            }
-        });
-
-        // Eredmények megjelenítése (csak a keresett szövegrészek)
-        function displayResults(results, query) {
-            resultsContainer.innerHTML = '';
-            results.forEach(result => {
-                const content = result.content;
-                const regex = new RegExp(`(${query})`, 'gi');
-                const highlightedContent = content.replace(regex, '<mark>$1</mark>');  // Kiemelés a keresett szövegrészletre
-
-                const resultElement = document.createElement('div');
-                resultElement.classList.add('result');
-                resultElement.innerHTML = `<p>${highlightedContent}</p>`;  // A szöveg kiemelt része
-
-                resultsContainer.appendChild(resultElement);
-            });
+document.addEventListener('DOMContentLoaded', function() {
+    // JSON adat, amit keresni fogunk
+    const jsonData = [
+        {
+            "file_name": "index.html",
+            "url": "https://SDaniel2000.github.io/index.html",
+            "content": "Local index - HTTrack Website Copier HTTrack Website Copier - Open Source offline browser Local index - HTTrack Index of locally available sites: · Alsacréations : Actualités et tutoriels web, HTML, CSS, JavaScript Mirror and index made by HTTrack Website Copier [XR&CO'2008] © 2008 Xavier Roche & other contributors - Web Design: Leto Kauler."
+        },
+        {
+            "file_name": "index.html",
+            "url": "https://SDaniel2000.github.io/www.alsacreations.com/index.html",
+            "content": "Alsacréations : Actualités et tutoriels web, HTML, CSS, JavaScript 🥝 Un projet pro dans les cartons ? Faites appel à notre agence web ! L’agence alsacreations.fr Dernières actualités Revue de la définition du support des navigateurs Article web Il a toujours été complexe de définir avec précision un niveau de support navigateur dans les projets web, d'autant plus avec la variété des plateformes…"
         }
-    })
-    .catch(error => console.error('Hiba a JSON betöltésénél:', error));
+    ];
+
+    // BloomySearch kereső inicializálása
+    const search = new BloomySearch(jsonData.map(item => item.content));
+
+    // Keresési input esemény
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', function(e) {
+        const query = e.target.value;
+        const resultsContainer = document.getElementById('results');
+        resultsContainer.innerHTML = '';
+
+        // Keresés végrehajtása
+        const results = search.query(query);
+
+        // Eredmények megjelenítése
+        results.forEach(result => {
+            const li = document.createElement('div');
+            li.classList.add('result-item');
+            const fileName = jsonData.find(item => item.content === result).file_name;
+            const resultText = result.substring(0, 100) + "...";  // Eredmény rövidítése
+            li.innerHTML = `<strong>${fileName}</strong>: ${resultText}`;
+            resultsContainer.appendChild(li);
+        });
+    });
+});
