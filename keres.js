@@ -17,7 +17,7 @@ fetch('output.json')  // Itt a JSON fájl helyét add meg
                 const results = search.search(query); // A keresési eredményeket tartalmazza
                 displayResults(results, query);
             } else {
-                resultsContainer.innerHTML = '';
+                 resultsContainer.innerHTML = '';
             }
         });
 
