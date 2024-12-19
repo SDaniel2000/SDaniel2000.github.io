@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rss version="2.0"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+
+<title>Alsacreations.com - Commentaires</title>
+<description>Les derniers commentaires sur Alsacreations.com</description>
+<language>fr</language>
+
+<link>https://www.alsacreations.com/</link>
+<atom:link href="https://www.alsacreations.com/rss/commentaires.xml" rel="self" type="application/rss+xml" />
+
+  
+	<item>
+  	<title>Laurisylva : CSS :has() le sélecteur de parent, mais bien plus encore !</title>
+  	<link>https://www.alsacreations.com/article/lire/1924-css-has-selecteur-parent.html#com40347</link>
+  	<guid>https://www.alsacreations.com/article/lire/1924-css-has-selecteur-parent.html#com40347</guid>
+  	<content:encoded><![CDATA[<p>Ce qui me choque le plus avec :has(), c'est qu'on peut cibler ce qu'on veut dans le DOM tant qu'on a un parent assez élevé !<br />
+<br />
+body:has(.btnMenu1:hover) .panneau-infos { background-color:green; }<br />
+<br />
+body:has(.btnMenu2:hover) .panneau-infos { background-color:red; }<br />
+<br />
+&lt;body&gt;<br />
+<br />
+&lt;menu&gt;<br />
+<br />
+&lt;div class=&quot;btnMenu1&quot;&gt;Oui&lt;/div&gt;<br />
+<br />
+&lt;div class=&quot;btnMenu2&quot;&gt;Non&lt;/div&gt;<br />
+<br />
+&lt;/menu&gt;<br />
+<br />
+&lt;section&gt;<br />
+<br />
+&lt;div class=&quot;panneau-infos&quot;&gt;Bienvenue&lt;/div&gt;<br />
+<br />
+&lt;/section&gt;<br />
+<br />
+&lt;/body&gt;</p>]]></content:encoded>
+  	<category>CSS</category>
+  	<dc:date>2024-12-10T17:30:02+01:00</dc:date>
+  	<dc:creator>Laurisylva</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>iMaman : Mermaid : diagrammes, schémas et graphiques dans markdown</title>
+  	<link>https://www.alsacreations.com/astuce/lire/1932-Mermaid--diagrammes-schemas-et-graphiques-dans-markdown.html#com40346</link>
+  	<guid>https://www.alsacreations.com/astuce/lire/1932-Mermaid--diagrammes-schemas-et-graphiques-dans-markdown.html#com40346</guid>
+  	<content:encoded><![CDATA[<p>Merci pour cet article, je ne connaissais pas du tout et c'est très intéressant.</p>]]></content:encoded>
+  	<category>Formats, encodage, XML</category>
+  	<dc:date>2024-11-15T14:27:16+01:00</dc:date>
+  	<dc:creator>iMaman</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>iMaman : Les import maps en JavaScript</title>
+  	<link>https://www.alsacreations.com/article/lire/1933-Les-import-maps-en-JavaScript.html#com40345</link>
+  	<guid>https://www.alsacreations.com/article/lire/1933-Les-import-maps-en-JavaScript.html#com40345</guid>
+  	<content:encoded><![CDATA[<p>Très bon article pour débuter avec les cartes d'import.<br />
+<br />
+J'ajoute deux remarques :<br />
+<br />
+1. Perso, je n'utilise pas la possibilité de mettre la carte dans un fichier car cela suppose de gérer le cache HTTP pour les cas de mises à jour de son contenu, c'est faisable mais finalement un peu lourd.<br />
+<br />
+2. Pour la compatibilité, c'est à la traine pour certain navigateur, notamment Safari (version 16.4 seulement), mais il y a une solution simple : ES Module Shims, une bonne explication sur son utilisation est sur ce blog :  <a href="https://greenersoft.fr/articles/les-modules-javascript-et-l-eco-conception-web" rel="nofollow noopener">https://greenersoft.fr/articles/les-modules-javascript-et-l-eco-conception-web</a> </p>]]></content:encoded>
+  	<category>Javascript</category>
+  	<dc:date>2024-11-15T10:39:50+01:00</dc:date>
+  	<dc:creator>iMaman</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>Yordi : Mermaid : diagrammes, schémas et graphiques dans markdown</title>
+  	<link>https://www.alsacreations.com/astuce/lire/1932-Mermaid--diagrammes-schemas-et-graphiques-dans-markdown.html#com40344</link>
+  	<guid>https://www.alsacreations.com/astuce/lire/1932-Mermaid--diagrammes-schemas-et-graphiques-dans-markdown.html#com40344</guid>
+  	<content:encoded><![CDATA[<p>Intéressant, merci !</p>]]></content:encoded>
+  	<category>Formats, encodage, XML</category>
+  	<dc:date>2024-11-07T06:58:01+01:00</dc:date>
+  	<dc:creator>Yordi</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>Olivier C : Les import maps en JavaScript</title>
+  	<link>https://www.alsacreations.com/article/lire/1933-Les-import-maps-en-JavaScript.html#com40343</link>
+  	<guid>https://www.alsacreations.com/article/lire/1933-Les-import-maps-en-JavaScript.html#com40343</guid>
+  	<content:encoded><![CDATA[<p>Un grand merci, je n'avais pas vu passer cette fonctionnalité.</p>]]></content:encoded>
+  	<category>Javascript</category>
+  	<dc:date>2024-11-06T19:38:47+01:00</dc:date>
+  	<dc:creator>Olivier C</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>Ivanus : Les modes d&apos;apparence Light mode et Dark mode</title>
+  	<link>https://www.alsacreations.com/article/lire/1927-Les-modes-d-apparence-Light-mode-et-Dark-mode.html#com40342</link>
+  	<guid>https://www.alsacreations.com/article/lire/1927-Les-modes-d-apparence-Light-mode-et-Dark-mode.html#com40342</guid>
+  	<content:encoded><![CDATA[<p>Sur mobile, Samsung Internet (V26 actuellement) ne supporte pas la fonction CSS light-dark() et, en plus, n'en fait qu'à sa tête avec un système de mode sombre propre à leur navigateur. Ce système recalcule les couleurs, y compris de certaines images SVG, et a visiblement priorité sur les pistes évoquées dans cet article.</p>]]></content:encoded>
+  	<category>CSS</category>
+  	<dc:date>2024-11-06T07:59:21+01:00</dc:date>
+  	<dc:creator>Ivanus</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>Nico3333fr : Mermaid : diagrammes, schémas et graphiques dans markdown</title>
+  	<link>https://www.alsacreations.com/astuce/lire/1932-Mermaid--diagrammes-schemas-et-graphiques-dans-markdown.html#com40341</link>
+  	<guid>https://www.alsacreations.com/astuce/lire/1932-Mermaid--diagrammes-schemas-et-graphiques-dans-markdown.html#com40341</guid>
+  	<content:encoded><![CDATA[<p>Merci pour la découverte également, je ne connaissais pas non plus !</p>]]></content:encoded>
+  	<category>Formats, encodage, XML</category>
+  	<dc:date>2024-10-31T10:43:38+01:00</dc:date>
+  	<dc:creator>Nico3333fr</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>Olivier C : Mermaid : diagrammes, schémas et graphiques dans markdown</title>
+  	<link>https://www.alsacreations.com/astuce/lire/1932-Mermaid--diagrammes-schemas-et-graphiques-dans-markdown.html#com40340</link>
+  	<guid>https://www.alsacreations.com/astuce/lire/1932-Mermaid--diagrammes-schemas-et-graphiques-dans-markdown.html#com40340</guid>
+  	<content:encoded><![CDATA[<p>C'est assez étonnant.<br />
+<br />
+Merci pour la découverte.</p>]]></content:encoded>
+  	<category>Formats, encodage, XML</category>
+  	<dc:date>2024-10-26T00:09:55+01:00</dc:date>
+  	<dc:creator>Olivier C</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>Olivier C : Tout savoir sur les variables CSS (custom properties)</title>
+  	<link>https://www.alsacreations.com/tuto/lire/1929-Tout-savoir-sur-les-variables-CSS-custom-properties.html#com40339</link>
+  	<guid>https://www.alsacreations.com/tuto/lire/1929-Tout-savoir-sur-les-variables-CSS-custom-properties.html#com40339</guid>
+  	<content:encoded><![CDATA[<p>Un des points d'application le plus intéressant pour moi - et qui est pratiquement toujours omis par les articles qui parlent du sujet - est le fait qu'une custom properties sera pris en compte si elle est déclarée inline ; ce que ne pourront jamais faire les variables les pré/post processeurs.</p>]]></content:encoded>
+  	<category>CSS</category>
+  	<dc:date>2024-10-11T08:30:31+01:00</dc:date>
+  	<dc:creator>Olivier C</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>Nico3333fr : Tout savoir sur les variables CSS (custom properties)</title>
+  	<link>https://www.alsacreations.com/tuto/lire/1929-Tout-savoir-sur-les-variables-CSS-custom-properties.html#com40338</link>
+  	<guid>https://www.alsacreations.com/tuto/lire/1929-Tout-savoir-sur-les-variables-CSS-custom-properties.html#com40338</guid>
+  	<content:encoded><![CDATA[<p>Sur le sujet, y a une chouette conférence de Matthieu Bué à Paris-Web :  <a href="https://www.paris-web.fr/2022/conference/themiser-un-design-system" rel="nofollow noopener">https://www.paris-web.fr/2022/conference/themiser-un-design-system</a> </p>]]></content:encoded>
+  	<category>CSS</category>
+  	<dc:date>2024-09-27T17:29:45+01:00</dc:date>
+  	<dc:creator>Nico3333fr</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>Olivier C : Les gestionnaires de paquets pour Node : npm, yarn, pnpm</title>
+  	<link>https://www.alsacreations.com/article/lire/1907-Les-gestionnaires-de-paquets-pour-Node--npm-yarn-pnpm.html#com40337</link>
+  	<guid>https://www.alsacreations.com/article/lire/1907-Les-gestionnaires-de-paquets-pour-Node--npm-yarn-pnpm.html#com40337</guid>
+  	<content:encoded><![CDATA[<p>Pour pnpm, non seulement une seule copie est partagée, mais encore, pour un même package le système prend aussi en compte les changements de versions : s'il y a une ligne de code seulement de changée pnpm fera un lien symbolique ne prenant en compte que cette ligne de code.</p>]]></content:encoded>
+  	<category>Javascript</category>
+  	<dc:date>2024-09-16T08:11:07+01:00</dc:date>
+  	<dc:creator>Olivier C</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>bricz : WordPress : associer les taxonomies catégories et étiquettes aux Pages</title>
+  	<link>https://www.alsacreations.com/astuce/lire/1919-WordPress--associer-les-taxonomies-categories-et-etiquettes-aux-Pages.html#com40336</link>
+  	<guid>https://www.alsacreations.com/astuce/lire/1919-WordPress--associer-les-taxonomies-categories-et-etiquettes-aux-Pages.html#com40336</guid>
+  	<content:encoded><![CDATA[<p>Bonjour,<br />
+<br />
+Cela ne fonctionne pas, les catégories ne s'affiche pas.</p>]]></content:encoded>
+  	<category>Développement</category>
+  	<dc:date>2024-09-05T10:58:54+01:00</dc:date>
+  	<dc:creator>bricz</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>NicolasSutter : Les carrousels (slider) sont&#45;ils vraiment utiles ?</title>
+  	<link>https://www.alsacreations.com/article/lire/1928-Les-carrousels-slider-sont-ils-vraiment-utiles.html#com40335</link>
+  	<guid>https://www.alsacreations.com/article/lire/1928-Les-carrousels-slider-sont-ils-vraiment-utiles.html#com40335</guid>
+  	<content:encoded><![CDATA[<p>Merci d'avoir évoqué l'accessibilité, surtout dans le cadre de ce composant où il est généralement assez complexe de le rendre conforme !
+
+PS: les cookies sont un très bon choix pour illustrer</p>]]></content:encoded>
+  	<category>Design</category>
+  	<dc:date>2024-08-30T16:13:26+01:00</dc:date>
+  	<dc:creator>NicolasSutter</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>WebPGK : Copier du texte dans le presse&#45;papier système</title>
+  	<link>https://www.alsacreations.com/astuce/lire/1789-Copier-du-texte-dans-le-presse-papier-systeme.html#com40334</link>
+  	<guid>https://www.alsacreations.com/astuce/lire/1789-Copier-du-texte-dans-le-presse-papier-systeme.html#com40334</guid>
+  	<content:encoded><![CDATA[<p>Bonjour,<br />
+<br />
+J'ai &quot;récupéré&quot; cette astuce pour mon site. Elle marche, mais pas comme espéré.<br />
+<br />
+J'ai plusieurs boutons identiques sur une page pour copier des champs différents, mais seul le premier fonctionne, rien ne se passe sur les autres.<br />
+<br />
+Comment faire pour que tous fonctionnent ?<br />
+<br />
+Je précise ne pas connaître le javascript.<br />
+<br />
+Merci par avance pour votre réponse.<br />
+<br />
+Salutations.</p>]]></content:encoded>
+  	<category>Javascript</category>
+  	<dc:date>2024-08-22T17:31:56+01:00</dc:date>
+  	<dc:creator>WebPGK</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>WebPGK : Copier du texte dans le presse&#45;papier système</title>
+  	<link>https://www.alsacreations.com/astuce/lire/1789-Copier-du-texte-dans-le-presse-papier-systeme.html#com40333</link>
+  	<guid>https://www.alsacreations.com/astuce/lire/1789-Copier-du-texte-dans-le-presse-papier-systeme.html#com40333</guid>
+  	<content:encoded><![CDATA[<p>Bonjour,<br />
+<br />
+Pour compléter la question ci-dessus, j'ai pris le code source de cette page où l'on est actuellement et j'ai doublé la partie démo :<br />
+<br />
+&lt;h3&gt;Démo&lt;/h3&gt;<br />
+<br />
+&lt;p class=&quot;codepen&quot; data-height=&quot;265&quot; data-theme-id=&quot;light&quot; data-default-tab=&quot;js,result&quot; data-user=&quot;alsacreations&quot; data-slug-hash=&quot;rbEpqM&quot; style=&quot;height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;&quot; data-pen-title=&quot;Copier&quot;&gt;<br />
+<br />
+  &lt;span&gt;See the Pen &lt;a href=&quot;https://codepen.io/alsacreations/pen/rbEpqM/&quot;&gt;<br />
+<br />
+  Copier&lt;/a&gt; by Alsacreations (&lt;a href=&quot;https://codepen.io/alsacreations&quot;&gt;@alsacreations&lt;/a&gt;)<br />
+<br />
+  on &lt;a href=&quot;https://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/span&gt;<br />
+<br />
+&lt;/p&gt;<br />
+<br />
+&lt;script async src=&quot;https://static.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;<br />
+<br />
+À l'exécution, le même phénomène que dans ma page se produit : seul le premier clic sur &quot;Copier&quot; fonctionne !<br />
+<br />
+Salutations.</p>]]></content:encoded>
+  	<category>Javascript</category>
+  	<dc:date>2024-08-22T12:01:47+01:00</dc:date>
+  	<dc:creator>WebPGK</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>WebPGK : Copier du texte dans le presse&#45;papier système</title>
+  	<link>https://www.alsacreations.com/astuce/lire/1789-Copier-du-texte-dans-le-presse-papier-systeme.html#com40332</link>
+  	<guid>https://www.alsacreations.com/astuce/lire/1789-Copier-du-texte-dans-le-presse-papier-systeme.html#com40332</guid>
+  	<content:encoded><![CDATA[<p>Bonjour,<br />
+<br />
+J'ai &quot;récupéré&quot; cette astuce pour mon site. Elle marche, mais pas comme espéré.<br />
+<br />
+J'ai plusieurs boutons identiques sur une page pour copier des champs différents, mais seul le premier fonctionne, rien ne se passe sur les autres.<br />
+<br />
+Comment faire pour que tous fonctionnent ?<br />
+<br />
+Je précise ne pas connaître le javascript.<br />
+<br />
+Merci par avance pour votre réponse.<br />
+<br />
+Salutations.</p>]]></content:encoded>
+  	<category>Javascript</category>
+  	<dc:date>2024-08-22T09:19:50+01:00</dc:date>
+  	<dc:creator>WebPGK</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>WebPGK : Copier du texte dans le presse&#45;papier système</title>
+  	<link>https://www.alsacreations.com/astuce/lire/1789-Copier-du-texte-dans-le-presse-papier-systeme.html#com40331</link>
+  	<guid>https://www.alsacreations.com/astuce/lire/1789-Copier-du-texte-dans-le-presse-papier-systeme.html#com40331</guid>
+  	<content:encoded><![CDATA[<p>Bonjour,<br />
+<br />
+J'ai &quot;récupéré&quot; cette astuce pour mon site. Elle marche, mais pas comme espéré.<br />
+<br />
+J'ai plusieurs boutons identiques sur une page pour copier des champs différents, mais seul le premier fonctionne, rien ne se passe sur les autres.<br />
+<br />
+Comment faire pour que tous fonctionnent ?<br />
+<br />
+Je précise ne pas connaître le javascript.<br />
+<br />
+Merci par avance pour votre réponse.<br />
+<br />
+Salutations.</p>]]></content:encoded>
+  	<category>Javascript</category>
+  	<dc:date>2024-08-21T12:28:04+01:00</dc:date>
+  	<dc:creator>WebPGK</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>C@scou : Les modes d&apos;apparence Light mode et Dark mode</title>
+  	<link>https://www.alsacreations.com/article/lire/1927-Les-modes-d-apparence-Light-mode-et-Dark-mode.html#com40330</link>
+  	<guid>https://www.alsacreations.com/article/lire/1927-Les-modes-d-apparence-Light-mode-et-Dark-mode.html#com40330</guid>
+  	<content:encoded><![CDATA[<p>Après, pour ma part la découverte de Dark Reader sur Firefox fut une révélation il y a quelques années. Sur le téléphone, il est activé par défaut, ce qui ne manque pas de faire déconner parfois quelques sites. Sur l'ordre je l'active au besoin site par site. Notamment sur Wikipédia, dont la prise en charge native du mode sombre ne change au final que peu de choses pour moi du coup.<br />
+<br />
+A mon opinion, le problème n'est pas le mode clair en soi, mais plutôt les sites avec fond blanc, surtout les sites qui contiennent beaucoup de texte. Combiné à un moniteur dont le réglage est contraint par un mode normé d'affichage (pour le print, souvent) et dont on ne peut faire varier la luminosité (en tout cas pas le miens), ca devient insupportable de nuit.<br />
+<br />
+Avec des dalles moins lumineuses ou en mode configurable avec une luminosité baissée, le problème ne se pose pas beaucoup. C'est d'ailleurs un grand défaut de Windows 10 de ne pas proposer de réglage de luminosité sur PC de bureau.<br />
+<br />
+Si possible il faudrait opter pour des moniteurs avec capteur de luminosité qui adaptent le rétro-éclairage selon la luminosité ambiante, comme un téléphone. Et pour en revenir à ces derniers (ou à tout périphérique nomade), vu la consommation de l'écran (en % de l'usage batterie), les thèmes sombres sont un vrai plus, à n'en point douter.</p>]]></content:encoded>
+  	<category>CSS</category>
+  	<dc:date>2024-08-03T10:29:51+01:00</dc:date>
+  	<dc:creator>C@scou</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>Olivier C : Les modes d&apos;apparence Light mode et Dark mode</title>
+  	<link>https://www.alsacreations.com/article/lire/1927-Les-modes-d-apparence-Light-mode-et-Dark-mode.html#com40329</link>
+  	<guid>https://www.alsacreations.com/article/lire/1927-Les-modes-d-apparence-Light-mode-et-Dark-mode.html#com40329</guid>
+  	<content:encoded><![CDATA[<p>Ce qui est rigolo c'est que maintenant que le dark mode est enfin démocratisé les développeurs écrivent des billets pour vanter tous les mérites des thèmes clairs. Un petit effet de mode prônant le retour au light mode...</p>]]></content:encoded>
+  	<category>CSS</category>
+  	<dc:date>2024-07-30T07:54:47+01:00</dc:date>
+  	<dc:creator>Olivier C</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>drphilgood : Les modes d&apos;apparence Light mode et Dark mode</title>
+  	<link>https://www.alsacreations.com/article/lire/1927-Les-modes-d-apparence-Light-mode-et-Dark-mode.html#com40328</link>
+  	<guid>https://www.alsacreations.com/article/lire/1927-Les-modes-d-apparence-Light-mode-et-Dark-mode.html#com40328</guid>
+  	<content:encoded><![CDATA[<p>bonjour,<br />
+<br />
+&quot;@media (prefers-color-scheme: dark)&quot; <br />
+<br />
+est exactement ce que je cherchais, adopté, merci.</p>]]></content:encoded>
+  	<category>CSS</category>
+  	<dc:date>2024-07-26T19:30:27+01:00</dc:date>
+  	<dc:creator>drphilgood</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>yhugo : Menu accessible sur WordPress : les bases d&apos;un menu simple</title>
+  	<link>https://www.alsacreations.com/tuto/lire/1872-Menu-accessible-sur-WordPress--les-bases-d-un-menu-simple.html#com40327</link>
+  	<guid>https://www.alsacreations.com/tuto/lire/1872-Menu-accessible-sur-WordPress--les-bases-d-un-menu-simple.html#com40327</guid>
+  	<content:encoded><![CDATA[<p>Merci @Alyssa!<br />
+<br />
+Ton tuto m'est très utile. Je reviens sur Wordpress après presqu'une décennie d'absence.<br />
+<br />
+Je dois me remettre un peu à jour, il y a eu quelques changements, et surtout, j'ai oublié beaucoup de choses.<br />
+<br />
+^^</p>]]></content:encoded>
+  	<category>Développement</category>
+  	<dc:date>2024-07-04T17:42:40+01:00</dc:date>
+  	<dc:creator>yhugo</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>Yordi : Mettre en surbrillance ligne et colonne au survol d&apos;une table</title>
+  	<link>https://www.alsacreations.com/astuce/lire/1923-Mettre-en-surbrillance-ligne-et-colonne-au-survol-d-une-table.html#com40325</link>
+  	<guid>https://www.alsacreations.com/astuce/lire/1923-Mettre-en-surbrillance-ligne-et-colonne-au-survol-d-une-table.html#com40325</guid>
+  	<content:encoded><![CDATA[<p>Bonjour,<br />
+<br />
+Il suffit de recréer un &quot;stacking context&quot; sur la table (position: relative; z-index: 0;)<br />
+<br />
+Doc:  <a href="https://web.dev/learn/css/z-index" rel="nofollow noopener">https://web.dev/learn/css/z-index</a><br />
+ <br />
+:)</p>]]></content:encoded>
+  	<category>CSS</category>
+  	<dc:date>2024-06-20T14:51:07+01:00</dc:date>
+  	<dc:creator>Yordi</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>boteha_2 : CSS :has() le sélecteur de parent, mais bien plus encore !</title>
+  	<link>https://www.alsacreations.com/article/lire/1924-css-has-selecteur-parent.html#com40324</link>
+  	<guid>https://www.alsacreations.com/article/lire/1924-css-has-selecteur-parent.html#com40324</guid>
+  	<content:encoded><![CDATA[<p>Bonjour,<br />
+<br />
+Merci pour cet article clair avec exemples excellents.<br />
+<br />
+div;has (p.ro, p.cu) = div contenant p.ro OU p.cu.<br />
+<br />
+L'opérateur ET existe-t-il pour cibler div contenant p.ro ET p.cu ?</p>]]></content:encoded>
+  	<category>CSS</category>
+  	<dc:date>2024-06-15T22:23:40+01:00</dc:date>
+  	<dc:creator>boteha_2</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>myself : Le coup de pouce accessibilité de CSS :focus&#45;visible</title>
+  	<link>https://www.alsacreations.com/astuce/lire/1834-le-coup-de-pouce-accessibilite-de-focus-visible.html#com40323</link>
+  	<guid>https://www.alsacreations.com/astuce/lire/1834-le-coup-de-pouce-accessibilite-de-focus-visible.html#com40323</guid>
+  	<content:encoded><![CDATA[<p>Merci pour l’article et m’avoir pointé sur celui-ci ;)</p>]]></content:encoded>
+  	<category>Accessibilité</category>
+  	<dc:date>2024-05-30T12:34:31+01:00</dc:date>
+  	<dc:creator>myself</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>CedricCedricCedric : Docker : découverte et environnement LAMP pour WordPress</title>
+  	<link>https://www.alsacreations.com/tuto/lire/1836-Docker--decouverte-et-environnement-LAMP-pour-WordPress.html#com40322</link>
+  	<guid>https://www.alsacreations.com/tuto/lire/1836-Docker--decouverte-et-environnement-LAMP-pour-WordPress.html#com40322</guid>
+  	<content:encoded><![CDATA[<p>Chouette tuto, par contre quand je veux tester la connexion à phpMyAdmin j'ai un message d'erreur : &quot;mysqli::real_connect(): (HY000/1130): Host '***.**.*.*' is not allowed to connect to this MySQL server&quot;.<br />
+<br />
+Dans Docker Desktop je ne vois rien dans Volumes. <br />
+<br />
+Et quand je regarde dans la doc officielle, je vois que &quot;The --link flag is a legacy feature of Docker&quot; (https://docs.docker.com/network/links/).<br />
+<br />
+Je ne sais pas si tout ça est lié mais en tout cas une mise à jour du tuto serait bienvenue :)</p>]]></content:encoded>
+  	<category>Développement</category>
+  	<dc:date>2024-05-29T15:47:50+01:00</dc:date>
+  	<dc:creator>CedricCedricCedric</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>iGunther : Mettre en surbrillance ligne et colonne au survol d&apos;une table</title>
+  	<link>https://www.alsacreations.com/astuce/lire/1923-Mettre-en-surbrillance-ligne-et-colonne-au-survol-d-une-table.html#com40321</link>
+  	<guid>https://www.alsacreations.com/astuce/lire/1923-Mettre-en-surbrillance-ligne-et-colonne-au-survol-d-une-table.html#com40321</guid>
+  	<content:encoded><![CDATA[<p>Bonjour, le before n'est plus visible verticalement quand le parent à un background color. Auriez-vous une solution svp ?<br />
+<br />
+Exemple :  <a href="https://codepen.io/Pixelize/pen/abxeYJo" rel="nofollow noopener">https://codepen.io/Pixelize/pen/abxeYJo</a> </p>]]></content:encoded>
+  	<category>CSS</category>
+  	<dc:date>2024-05-06T10:25:37+01:00</dc:date>
+  	<dc:creator>iGunther</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>ricozor : Bonnes pratiques en CSS : BEM et OOCSS</title>
+  	<link>https://www.alsacreations.com/article/lire/1641-Bonnes-pratiques-en-CSS--BEM-et-OOCSS.html#com40320</link>
+  	<guid>https://www.alsacreations.com/article/lire/1641-Bonnes-pratiques-en-CSS--BEM-et-OOCSS.html#com40320</guid>
+  	<content:encoded><![CDATA[<p>Bonjour @paleo, je suis tombé sur ton article par hasard alors que je cherchais une approche CSS pour utiliser les attributs html comme modifier (je cherche toujours un article qui en parle)<br />
+<br />
+Ce qui est fou en lisant ton article et qui me conforte dans le choix de mon approche existante, c'est que je suis arrivé à la même conclusion que toi avec une légère différence :<br />
+<br />
+.BlockName-elementName.-modifierName<br />
+<br />
+Je préfix la class du modifier par un tiret car ça me permet tout de suite de voir que c'est une class modifier dans mon html et que ce n'est pas une autre classe quelconque qui ne respecterait pas la convention nommage ou qui serait utilisée par le CMS ou des lib externes.<br />
+<br />
+j'utilise cette approche depuis plusieurs années maintenant et elle est bien éprouvée et j'ai beaucoup de mal lorsque je repasse en TMA sur des projets qui utilisent du BEM ou du OOCSS pure.<br />
+<br />
+Tu lui avais trouvé un nom à cette approche ? moi je pensais à BEUM (Block Element Utility Modifier) mais c'est pas très jolie</p>]]></content:encoded>
+  	<category>CSS</category>
+  	<dc:date>2024-04-25T17:48:48+01:00</dc:date>
+  	<dc:creator>ricozor</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>Laurentfrom47 : Dialog, Modal, Popover : la synthèse</title>
+  	<link>https://www.alsacreations.com/article/lire/1922-dialog-modal-popover-la-synthese.html#com40319</link>
+  	<guid>https://www.alsacreations.com/article/lire/1922-dialog-modal-popover-la-synthese.html#com40319</guid>
+  	<content:encoded><![CDATA[<p>Salut, intéressant pour comprendre un peu mieux, merci.<br />
+<br />
+Pour par exemple afficher une div qui contient du texte juste au-dessus de son bouton déclencheur, tu utilises quoi ?<br />
+<br />
+Merci.</p>]]></content:encoded>
+  	<category>CSS</category>
+  	<dc:date>2024-03-21T09:36:47+01:00</dc:date>
+  	<dc:creator>Laurentfrom47</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>C@scou : Les easter eggs sur le web</title>
+  	<link>https://www.alsacreations.com/actu/lire/1917-Les-easter-eggs-sur-le-web.html#com40318</link>
+  	<guid>https://www.alsacreations.com/actu/lire/1917-Les-easter-eggs-sur-le-web.html#com40318</guid>
+  	<content:encoded><![CDATA[<p>J'en met un depuis longtemps sur mes projets, mais je songe à l'enlever depuis quelques temps car dans l'inspecteur de code de Firefox ca ne s'affiche pas correctement (comparé à la lecture du code source). Certainement une histoire de caractères monospace (ou pas).</p>]]></content:encoded>
+  	<category>HTML</category>
+  	<dc:date>2024-02-18T14:35:20+01:00</dc:date>
+  	<dc:creator>C@scou</dc:creator>
+	</item>
+
+  
+	<item>
+  	<title>C@scou : Adapter et migrer votre ancien site PHP vers PHP8</title>
+  	<link>https://www.alsacreations.com/article/lire/1916-Adapter-et-migrer-votre-ancien-site-PHP-vers-PHP8.html#com40317</link>
+  	<guid>https://www.alsacreations.com/article/lire/1916-Adapter-et-migrer-votre-ancien-site-PHP-vers-PHP8.html#com40317</guid>
+  	<content:encoded><![CDATA[<p>Je suis à peine en train de laborieusement migrer vers 7.4. xD<br />
+<br />
+Et à peine en 7.x depuis un an, j'avais tous mes projets en 5.5 (bon, plus par erreur, j'avais bien passé le serveur en 7.x mais pas le .ovhconfig qui outrepassait la config serveur en forçant du 5.5 (fichier évidement plus ouvert depuis une éternité)).<br />
+<br />
+Quand on fait pas beaucoup de backend, ou même de web en général, ca devient un peu chiant ces MAJs importantes et régulières.</p>]]></content:encoded>
+  	<category>Développement</category>
+  	<dc:date>2024-02-18T14:25:03+01:00</dc:date>
+  	<dc:creator>C@scou</dc:creator>
+	</item>
+
+  
+</channel>
+</rss>
+
+<!--
+CPU : 0.0004
+MEM : 0.49MB
+-->
