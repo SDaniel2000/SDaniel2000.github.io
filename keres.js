@@ -5,9 +5,9 @@ fetch('output.json')  // Itt a JSON fájl helyét add meg
         // js-search inicializálása
         const search = new JsSearch.Search('file_name');
         search.addIndex('content');  // Keresési indexek
-        search.addDocuments(jsonData);
+        search.addDocuments(jsonData);  // Dokumentumok hozzáadása
 
-        // Keresés kezelése
+        // Keresési esemény kezelése
         const searchInput = document.getElementById('searchInput');
         const resultsContainer = document.getElementById('results');
 
@@ -15,19 +15,19 @@ fetch('output.json')  // Itt a JSON fájl helyét add meg
             const query = searchInput.value;
             if (query.length > 0) {
                 const results = search.search(query); // A keresési eredményeket tartalmazza
-                displayResults(results);
+                displayResults(results);  // Eredmények megjelenítése
             } else {
-                resultsContainer.innerHTML = '';
+                resultsContainer.innerHTML = '';  // Ha üres a keresőmező, törölje az eredményeket
             }
         });
 
         // Eredmények megjelenítése
         function displayResults(results) {
-            resultsContainer.innerHTML = '';
+            resultsContainer.innerHTML = '';  // Eredmények törlése
             results.forEach(result => {
                 const resultElement = document.createElement('div');
                 resultElement.classList.add('result');
-                resultElement.innerHTML = `<a href="${result.url}" target="_blank">${result.file_name}</a>`;
+                resultElement.innerHTML = `<a href="${result.url}" target="_blank">${result.file_name}</a>`;  // Az URL és a fájl neve
                 resultsContainer.appendChild(resultElement);
             });
         }
