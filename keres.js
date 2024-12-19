@@ -1,5 +1,5 @@
 // JSON betöltés fetch használatával
-fetch('output.json')  // Itt a JSON fájl helyét add meg
+fetch('https://sdaniel2000.github.io/output.json')  // Itt a JSON fájl helyét add meg
     .then(response => response.json())
     .then(jsonData => {
         // js-search inicializálása
