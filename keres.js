@@ -6,12 +6,28 @@ document.addEventListener('DOMContentLoaded', function() {
             // BloomySearch kereső inicializálása
             const search = new BloomySearch(jsonData.map(item => item.content));
 
+<<<<<<< HEAD
             // Keresési input esemény
             const searchInput = document.getElementById('searchInput');
             searchInput.addEventListener('input', function(e) {
                 const query = e.target.value;
                 const resultsContainer = document.getElementById('results');
                 resultsContainer.innerHTML = '';
+=======
+        // Keresés kezelése
+        const searchInput = document.getElementById('searchInput');
+        const resultsContainer = document.getElementById('results');
+
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value;
+            if (query.length > 0) {
+                const results = search.search(query); // A keresési eredményeket tartalmazza
+                displayResults(results, query);
+            } else {
+                 resultsContainer.innerHTML = '';
+            }
+        });
+>>>>>>> c23022077b28dedb853ad7e23cef42a1ff210e26
 
                 // Keresés végrehajtása
                 const results = search.query(query);
