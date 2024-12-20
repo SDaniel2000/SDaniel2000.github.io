@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+
+<!-- Mirrored from www.alsacreations.com/astuce/lire/1932-Mermaid--diagrammes-schemas-et-graphiques-dans-markdown.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Dec 2024 16:34:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head prefix="og: https://ogp.me/ns#">
+    <meta charset="UTF-8">
+    <title>Mermaid : diagrammes, schémas et graphiques dans markdown - Alsacreations</title>
+
+    <link rel="dns-prefetch" href="http://cdn.alsacreations.net/"><link rel="dns-prefetch" href="http://cdnf.alsacreations.net/">
+    <link rel="apple-touch-icon" href="../../../cdn.alsacreations.net/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="../../../cdn.alsacreations.net/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../../../cdn.alsacreations.net/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../../../cdn.alsacreations.net/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../../../cdn.alsacreations.net/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../../../cdn.alsacreations.net/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../../../cdn.alsacreations.net/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="../../../cdn.alsacreations.net/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../../../cdn.alsacreations.net/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../cdn.alsacreations.net/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="../../../cdn.alsacreations.net/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../../cdn.alsacreations.net/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="../../../cdn.alsacreations.net/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="../../../cdn.alsacreations.net/favicon-16x16.png" sizes="16x16">
+
+    <link rel="manifest" href="../../manifest.json">
+
+            <meta name="keywords" content="schema, diagramme, markdown, mermaid">    
+    <meta name="geo.placename" content="Strasbourg, Alsace, France">
+    <meta name="msapplication-TileColor" content="#abc737">
+    <meta name="msapplication-TileImage" content="../../../cdn.alsacreations.net/mstile-144x144.png">
+    <meta name="theme-color" content="#abc737">
+
+    <link rel="stylesheet" type="text/css" href="../../../cdn.alsacreations.net/css/dist/styles.1727690106.min.css">
+    <link rel="search" type="application/opensearchdescription+xml" title="Alsacreations" href="../../opensearch.xml">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <meta name="twitter:site" content="@alsacreations">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="og:locale" content="fr_FR">
+    <meta name="og:site_name" content="Alsacréations">
+
+    <meta property="twitter:creator" content="@diou"><meta property="og:title" content="Mermaid : diagrammes, schémas et graphiques dans markdown"><meta property="og:url" content="1932-Mermaid--diagrammes-schemas-et-graphiques-dans-markdown.html"><meta property="og:image" content="../../../cdn.alsacreations.net/xmedia/doc/full/1729061754-mermaid-kiwi.jpg"><meta property="og:type" content="article"><link href="../../../cdn.alsacreations.net/css/fonts/fontello/css/ac.1726406507.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdn.alsacreations.net/css/prism.min.css">
+<link rel="alternate" type="application/rss+xml" href="../../rss/actualites.xml" title="Actualités">
+<link rel="alternate" type="application/rss+xml" href="../../rss/commentaires.xml" title="Commentaires">
+<link rel="alternate" type="application/rss+xml" href="../../rss/apprendre.xml" title="Tutoriels, articles, astuces (dernières publications)">
+
+</head>
+
+<body class="">
+
+    <div id="hrtop" class="hrtop">
+        <div class="arf"></div>
+    </div>
+
+    <header>
+        <div class="site-header" id="header">
+
+            
+                <ul class="skip-links" id="evitement">
+                    <li><a href="#menu">Aller au menu</a></li>
+                    <li><a href="#global">Aller au contenu</a></li>
+                    <li><a href="#search-q" rel="search">Aller à la recherche</a></li>
+                </ul> <!-- /evitement -->
+
+                <div class="inside" role="banner">
+                    <button class="burger noprint js-burger js-hidden" type="button" aria-label="Afficher ou masquer la navigation" aria-controls="menu" aria-expanded="false" aria-pressed="false"><span class="visuallyhidden">Afficher ou masquer la navigation</span></button>
+
+                    <div class="site-logo"><a href="../../index.html" title="Alsacréations, apprentissage des standards web, accueil"><img id="logo" alt="Accueil - Alsacreations.com" src="https://cdn.alsacreations.net/css/img/logo-alsacreations.svg" width="157" height="36"></a></div>
+
+                    <nav role="navigation" class="megamenu">
+                        <ul id="menu" class="nav-menu">
+                                                        <li class="nav-item menu-apprendre active"><a href="../../tutoriels/index.html" title="Apprendre les langages du web : HTML, CSS, JavaScript"><i aria-hidden="true" class="icon-code"></i> tutoriels</a>
+                                <div class="sub-nav">
+                                    <ul class="sub-nav-group">
+                                        <li class="sub-nav-h">Catégories</li>
+                                        <li><a href="../../actu/index.html"><i aria-hidden="true" class="icon-flash"></i>actualités</a></li>
+                                        <li><a href="../../tuto/liste/1-html.html" class="invert cat-html"><i aria-hidden="true" class="icon-code"></i>html</a></li>
+                                        <li><a href="../../tuto/liste/2-css.html" class="invert cat-css"><i aria-hidden="true" class="icon-code"></i>css</a></li>
+                                        <li><a href="../../tuto/liste/5-javascript.html" class="invert cat-javascript"><i aria-hidden="true" class="icon-code"></i>javascript</a></li>
+                                        <li><a href="../../tuto/liste/11-responsive-web-design.html" class="invert cat-responsive"><i aria-hidden="true" class="icon-code"></i>responsive</a></li>
+                                        <li><a href="../../tuto/liste/10-design.html" class="invert cat-design"><i aria-hidden="true" class="icon-code"></i>design</a></li>
+                                        <li><a href="../../tuto/liste/3-accessibilite.html" class="invert cat-accessibilité"><i aria-hidden="true" class="icon-code"></i>accessibilité</a></li>
+                                        <li><a href="../../tuto/liste/4-developpement.html" class="invert cat-développement"><i aria-hidden="true" class="icon-code"></i>développement</a></li>
+                                        <li><a href="../../tuto/liste/12-vue-nuxt.html" class="invert cat-vue-nuxt"><i aria-hidden="true" class="icon-code"></i>vue et nuxt</a></li>
+                                        <li><a href="../../tuto/liste/9-formats-encodage-xml.html" class="invert cat-formats"><i aria-hidden="true" class="icon-code"></i>formats</a></li>
+                                        <li><a href="../../tuto/liste/8-web.html" class="invert cat-web"><i aria-hidden="true" class="icon-code"></i>web</a></li>
+                                    </ul>
+                                    <ul class="sub-nav-group">
+                                        <li class="sub-nav-h">Ressources</li>
+                                        <li><a href="../../tuto/top/index.html"><i aria-hidden="true" class="icon-star-filled"></i>Les plus lues</a></li>
+                                        <li><a href="../../outils/index.html"><i aria-hidden="true" class="icon-wrench"></i>Outils</a></li>
+                                        <li><a href="../../outils/kiwipedia/index.html"><i aria-hidden="true" class="icon-wrench"></i>Guidelines</a></li>
+                                        <li><a href="../../livres/index.html"><i aria-hidden="true" class="icon-book-open"></i>Livres</a></li>
+                                        <li><a href="../../quiz/index.html"><i aria-hidden="true" class="icon-beer"></i>Quiz&nbsp;!</a></li>
+                                        <li><a href="../../concours/index.html"><i aria-hidden="true" class="icon-gift"></i>Concours</a></li>
+                                        <li class="sub-nav-h">Par niveau</li>
+                                        <li><a href="../../tuto/niveau/1/index.html"><i aria-hidden="true" class="icon-bat1"></i>Débutant</a></li>
+                                        <li><a href="../../tuto/niveau/2/index.html"><i aria-hidden="true" class="icon-bat2"></i>Confirmé</a></li>
+                                        <li><a href="../../tuto/niveau/3/index.html"><i aria-hidden="true" class="icon-bat3"></i>Expert</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item menu-forum "><a href="https://forum.alsacreations.com/" title="Forum de la communauté Alsacreations"><i aria-hidden="true" class="icon-chat-alt"></i> forum</a>
+                                <div class="sub-nav">
+                                    <ul class="sub-nav-group">
+                                        <li><a href="https://forum.alsacreations.com/posting.php?action=newt"><i aria-hidden="true" class="icon-plus"></i>Nouveau sujet/question</a></li>
+                                        <li><a href="https://forum.alsacreations.com/forum.php?filter=forums"><i aria-hidden="true" class="icon icon-tag"></i>Catégories</a></li>
+                                        <li><a href="https://forum.alsacreations.com/forum.php?filter=newreplies"><i aria-hidden="true" class="icon icon-comment-alt2"></i>Dernières réponses</a></li>
+                                                                                <li><a href="https://forum.alsacreations.com/search.php"><i aria-hidden="true" class="icon-search"></i>Recherche</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item menu-emploi  "><a href="https://emploi.alsacreations.com/" title="Offres et demandes d'emploi web"><i aria-hidden="true" class="icon-vcard"></i> emploi</a>
+                                <div class="sub-nav">
+                                    <ul class="sub-nav-group">
+                                        <li><a href="https://emploi.alsacreations.com/offres.html"><i aria-hidden="true" class="icon-search"></i>Offres d&apos;emploi</a></li>
+                                        <li><a href="https://emploi.alsacreations.com/demandes.html"><i aria-hidden="true" class="icon-search"></i>Demandes d&apos;emploi</a></li>
+                                        <li><a href="https://emploi.alsacreations.com/favoris.html"><i aria-hidden="true" class="icon-star"></i>Favoris</a></li>
+                                    </ul>
+                                    <ul class="sub-nav-group">
+                                        <li><a href="https://emploi.alsacreations.com/offre.html"><i aria-hidden="true" class="icon-plus"></i>Poster une offre</a></li>
+                                        <li><a href="https://emploi.alsacreations.com/demande.html"><i aria-hidden="true" class="icon-plus"></i>Poster une demande</a></li>
+                                                                            </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item menu-formations"><a href="https://formations.alsacreations.fr/" title="Formations web"><i aria-hidden="true" class="icon-graduation-cap"></i> formations</a>
+                                <div class="sub-nav">
+                                    <ul class="sub-nav-group">
+                                        <!-- <li class="sub-nav-h">Catégories</li> -->
+                                        <li><a href="https://formations.alsacreations.fr/formation-initiation-html-css.html" class="invert cat-html"><i aria-hidden="true" class="icon-star-filled"></i>Initiation HTML5 et CSS3</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-html5.html" class="invert cat-html"><i aria-hidden="true" class="icon-star-filled"></i>HTML5</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-css3-bonnes-pratiques.html" class="invert cat-responsive"><i aria-hidden="true" class="icon-star-filled"></i>Bonnes pratiques CSS3</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-gridlayout.html" class="invert cat-responsive"><i aria-hidden="true" class="icon-star-filled"></i>Flexbox et Grid Layout</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-vuejs.html" class="invert cat-css"><i aria-hidden="true" class="icon-star-filled"></i>Vue.js</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-nuxt.html" class="invert cat-css"><i aria-hidden="true" class="icon-star-filled"></i>Nuxt</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-jquery-ajax.html" class="invert cat-javascript"><i aria-hidden="true" class="icon-star-filled"></i>jQuery &amp; Ajax</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-typescript.html" class="invert cat-javascript"><i aria-hidden="true" class="icon-star-filled"></i>TypeScript</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-accessibilite.html" class="invert cat-accessibilité"><i aria-hidden="true" class="icon-star-filled"></i>Accessibilité</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-performances-web.html" class="invert cat-développement"><i aria-hidden="true" class="icon-star-filled"></i>Performances web</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-integration-emails-mobiles.html" class="invert cat-formats"><i aria-hidden="true" class="icon-star-filled"></i>Intégration d'e-mails mobiles</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-sur-mesure.html" class="invert cat-web"><i aria-hidden="true" class="icon-star-filled"></i>Formation sur-mesure</a></li>
+                                                                            </ul>
+                                </div>
+                            </li>
+                                                    </ul>
+                        <ul id="ident" class="member-ident">
+                            <li class="member member-register"><a class="awesome greenghost" href="../../ident/register/index.html">S'inscrire</a></li>
+                            <li class="member member-login"><a class="awesome green" href="../../ident/index.html">Connexion</a></li>
+                        </ul>
+
+                    
+                    </nav>
+
+                                        </div> <!-- .inside -->
+        </div> <!-- #header -->
+
+        <!-- Sous-menu -->
+
+        
+            <div id="submenu" class="submenu  ">
+
+                <ul class="submenu-list"><li class="item " id="submenu-tutoriels"><span><a href="../../tutoriels/index.html">Tutoriels et astuces</a></span></li><li class="item " id="submenu-outils"><span><a href="../../outils/index.html">Outils</a></span></li><li class="item " id="submenu-livres"><span><a href="../../livres/index.html">Livres</a></span></li><li class="item " id="submenu-quiz"><span><a href="../../quiz/index.html">Quiz</a></span></li></ul>                    <form id="search" class="site-search" role="search" action="https://www.alsacreations.com/search/" method="post">
+                        <div class="search-rb">
+                            <label for="search-q" class="visuallyhidden">Rechercher</label>
+                            <i aria-hidden="true" class="icon-search"></i>
+                            <input id="search-q" class="search-q" name="q" placeholder="Tutoriel, propriété css..." value="" type="text">
+                        </div>
+                        <input class="search-submit awesome" value="OK" name="recherche-submit" type="submit">
+                                            </form>
+                
+            </div>
+            <!-- /submenu -->
+
+        
+    </header>
+
+    <!-- /navigation et sous-navigation -->
+
+    
+    <div id="global" class="site-global">
+
+        <div id="page" class="site-page">
+<div class="content" role="main" itemscope itemtype="https://schema.org/Article">
+
+  <article class="article astuce lecture hero doc-markdown ">
+
+    <header class="article-header cat-formats">
+
+      <h1 class="h-article" itemprop="name headline">Mermaid : diagrammes, schémas et graphiques dans markdown</h1>
+
+      
+        <div class="auteur">
+        <a class="auteur-avatar" aria-hidden="true" href="https://www.alsacreations.com/profil/lire/2-Rodolphe.html"><span class="avatar " data-hovertype="member" data-hoverid="2" style="background-image:url(../../../cdnf.alsacreations.net/avatars/2-riskav.jpg)"></span></a>
+        <p class="auteur-cat"><span class="doctype doctype-astuce cat-formats ">Astuce</span><span class="tagtag cat-formats invert">formats</span>  </p>
+        <div class="auteur-meta"><p class="auteur-meta-details">
+        Publié 
+        <span class="visuallyhidden" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+            <meta content="https://cdn.alsacreations.net/xmedia/doc/medium/1729061754-mermaid-kiwi.jpg" itemprop="url">
+        </span>par <a href="https://www.alsacreations.com/profil/lire/2-Rodolphe.html"><span itemprop="author">Rodolphe</span></a> le <time datetime="2024-10-18" itemprop="datePublished">18 Octobre 2024</time> (2986 lectures)</p>
+        <p class="auteur-tag"><i aria-hidden="true" class="icon-tag" title="Étiquettes"></i> <span itemprop="keywords" class="keywords"><a href="https://www.alsacreations.com/search/tag/schema">schema</a> <a href="https://www.alsacreations.com/search/tag/diagramme">diagramme</a> <a href="https://www.alsacreations.com/search/tag/markdown">markdown</a> <a href="https://www.alsacreations.com/search/tag/mermaid">mermaid</a></p></div>
+        
+            <div itemprop="interactionStatistic" itemscope itemtype="https://schema.org/InteractionCounter">
+              <meta itemprop="interactionType" content="https://schema.org/ReadAction">
+              <meta itemprop="userInteractionCount" content="2986">
+            </div>
+        </div>
+    </header>
+
+    
+    <div class="doc-content" itemprop="articleBody">
+    <p>Mermaid est un langage qui permet de créer des diagrammes dynamiques directement dans des fichiers Markdown c'est à dire en mode texte.</p>
+
+<p>Il est très utile pour représenter visuellement des concepts complexes sous forme de <strong>graphiques, schémas, diagrammes</strong> (comme des diagrammes de flux, des organigrammes, des graphiques Gantt, etc.) dans un format simple et lisible.</p>
+
+<blockquote>
+  <p>Un beau schéma vaut mille mots de markdown.</p>
+</blockquote>
+
+<p>Mermaid s'intègre directement avec des plateformes et outils de documentation comme GitHub, GitLab, Docusaurus, MkDocs, ou Jekyll. Ainsi on peut inclure des diagrammes légers dans des fichiers README ou des wikis sans avoir besoin de les exporter en images.... images qui seront souvent non modifiables par les autres personnes participant à un projet car elles n'auront pas les sources tandis qu'avec Mermaid la source de l'image sera <em>dans</em> le document.</p>
+
+<p>Le résultat étant généré à la volée en SVG (vectoriel) il s'adaptera à la résolution sans difficulté ainsi qu'à la préférence de thème, clair ou sombre (<em>dark mode</em>).</p>
+
+<h2>Exemples</h2>
+
+<p>La syntaxe de mermaid est assez basique, mais efficace.</p>
+
+<pre><code class="language-mermaid">graph TD;
+    A--&gt;B;
+    A--&gt;C;
+    B--&gt;D;
+    C--&gt;D;
+</code></pre>
+
+<p>La première ligne définit le type de diagramme et les suivantes la logique que l'on souhaite écrire. Remarquez qu'il n'y a pas d'instruction de positionnement de bloc, on s'attache juste à décrire les relations, et la bibliothèque JavaScript se charge du reste en transformant ce texte en un beau schéma.</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/full/1729061899-mermaid-resultat.png" alt="Graphique en mermaid" title="" data-img_id="3497"></p>
+
+<p>On peut même générer des flux Git. 🤓</p>
+
+<pre><code class="language-mermaid">gitGraph
+    commit
+    commit
+    branch develop
+    checkout develop
+    commit
+    commit
+    checkout main
+    merge develop
+    commit
+    commit
+</code></pre>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1729063609-mermaid-git.png" alt="Mermaid git" title="" data-img_id="3503"></p>
+
+<p>Voici un diagramme de séquence bien complexe à dessiner, et pourtant simple à écrire en texte.</p>
+
+<pre><code class="language-mermaid">sequenceDiagram
+    Gitlab-&gt;&gt;Gitlab: reçoit un Push sur main
+    Gitlab-&gt;&gt;Runner: Lance un runner
+    Runner-&gt;&gt;Serveur: Connexion SSH
+    Runner-&gt;&gt;Serveur: Envoie les instructions shell du job
+    Serveur--&gt;&gt;Gitlab: Connexion SSH vers Gitlab
+    Serveur--&gt;&gt;Gitlab: git pull
+    Gitlab--&gt;&gt;Serveur: Fichiers
+    Runner-&gt;&gt;Gitlab: Retourne les logs
+    Note over Runner, Serveur: Fin
+</code></pre>
+
+<p>Voici le rendu sur GitHub avec en bonus quelques boutons pour zoomer, se déplacer, copier, etc.</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1729063834-mermaid-sequence-github-light.png" alt="Mermaid séquence sur GitHub" title="" data-img_id="3505"></p>
+
+<h2>Avantages</h2>
+
+<ul>
+<li>C'est du texte.</li>
+<li>C'est modifiable.</li>
+<li>C'est versionnable.</li>
+<li>C'est adapté aux wikis.</li>
+<li>C'est multi-plateforme.</li>
+<li>C'est compris par GitHub et GitLab.</li>
+</ul>
+
+<h2>Inconvénients</h2>
+
+<ul>
+<li>Il faut a priori connaître sa syntaxe (encore une autre...) (mais... des outils existent)</li>
+</ul>
+
+<h2>Support par GitHub et GitLab</h2>
+
+<p>Les deux plateformes les plus répandues de versionnement de code source supportent nativement Mermaid, ce qui est un grand avantage pour documenter vos projets, vos fichiers <code>README.md</code> de manière compréhensible et remplacer de longues explications de texte par des schémas limpides.</p>
+
+<p><a href="https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams">Documentation de GitHub</a></p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1729062167-mermaid-github.jpg" alt="Mermaid expliqué sur GitHub" title="" data-img_id="3498"></p>
+
+<p><a href="https://docs.gitlab.com/ee/user/markdown.html#mermaid​">Documentation de GitLab</a></p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1729062180-mermaid-gitlab.png" alt="Mermaid expliqué sur GitHub" title="" data-img_id="3499"></p>
+
+<h2>Documentation officielle</h2>
+
+<p>La <a href="https://mermaid.js.org/syntax/sequenceDiagram.html">documentation de Mermaid</a> est très bien conçue et vous permet rapidement de cerner tout ce que permet la bibliothèque</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1729062197-mermaid-doc.png" alt="Documentation de mermaid" title="" data-img_id="3500"></p>
+
+<h2>Éditeurs en ligne</h2>
+
+<p>Pour faciliter les opérations, des éditeurs en ligne très bien conçus vous permettent de partir de modèles et de vous adapter progressivement à la syntaxe avec un aperçu du résultat.</p>
+
+<ul>
+<li><a href="https://mermaid.live/edit">Mermaid Live Editor</a> - gratuit, très souple, affichage plein écran et quelques options de mise en forme.</li>
+</ul>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1729062856-mermaid-live-editor.png" alt="Mermaid Live Editor" title="" data-img_id="3501"></p>
+
+<p>Il permet aussi le partage par URL c'est-à-dire d'encoder le contenu dans l'adresse et de la diffuser pour retrouver le schéma d'origine, par exemple pour le résultat ci-dessus :</p>
+
+<pre><code class="language-text">https://mermaid.live/edit#pako:eNo1T8tOxDAM_BUr5-4P9IDUBwcQW0A9tnuwErON2CTFSYBV0w_iO_gxslvWkqXxaGZsL0I6RaIUbyf3JSfkMFrIVQ1d_A4H2O3ukpyIc8OJPChn7e9PBmThsX_uEtSboR6ql4erHpqNaYd5mvfnShlttyC8QO0DU7qJmmXZI2ts6wI88SdFhv71aV3_z7gGJibvXWSZ9_qAQX9E8gnuh6btDiAKYYgNapXfWC6-UYSJDI2izFAhv49itGvWYQyuP1spysCRCsEuHqfbEGeFgVqNR0azkesfwYJfFw
+</code></pre>
+
+<ul>
+<li><a href="https://www.mermaidchart.com/play">Mermaidchart</a> - freemium</li>
+</ul>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1729062884-mermaid-editor.png" alt="Mermaid Editor" title="" data-img_id="3502"></p>
+
+<ul>
+<li><a href="https://mermaid-ascii.art/">Mermaid ASCII</a> - projet open-source</li>
+</ul>
+
+<p>Génère des rendus en ASCII art (ou dans un Terminal).</p>
+
+<pre><code class="language-text">$ cat test.mermaid
+graph LR
+A --&gt; B &amp; C
+B --&gt; C &amp; D
+D --&gt; C
+
+$ mermaid-ascii --file test.mermaid
++---+     +---+     +---+
+|   |     |   |     |   |
+| A |----&gt;| B |----&gt;| D |
+|   |     |   |     |   |
++---+     +---+     +---+
+  |         |         |
+  |         |         |
+  |         |         |
+  |         |         |
+  |         v         |
+  |       +---+       |
+  |       |   |       |
+  -------&gt;| C |&lt;-------
+          |   |
+          +---+
+</code></pre>
+
+<h2>Pimp my mermaid</h2>
+
+<p>Mermaid est un projet open source, ce qui signifie qu'il est possible de l'étendre ou de le modifier pour des besoins spécifiques si nécessaire.</p>
+
+<p>Enfin, on peut avoir accès à des <a href="https://mermaid.js.org/config/theming.html">thèmes de couleur</a></p>
+
+<ul>
+<li>par défaut - pour tous les diagrammes.</li>
+<li>neutre - idéal pour les documents en noir et blanc qui seront imprimés.</li>
+<li>sombre - convient bien aux éléments de couleur sombre ou au mode sombre.</li>
+<li>forêt - avec des nuances de vert.</li>
+<li>base - le seul thème qui peut être modifié</li>
+</ul>
+
+<p>Bref, c'est rudement pratique, on le prend en main facilement et vous serez fiers de pouvoir documenter vos projets, wiki, issues avec de beaux schémas compréhensibles.</p>
+    </div><!-- .doc-content -->
+
+    
+  </article> <!-- .astuce -->
+
+   
+<section class="commentaires" id="commentaires">
+<h3>Commentaires</h3><article id="com40340" class="article post" itemscope itemtype="http://schema.org/Comment">
+
+          <div class="p_author">
+            <div class="p_avatar"><span class="avatar " data-hovertype="member" data-hoverid="35007" style="background-image:url(https://cdnf.alsacreations.net/avatars/1664515129-35007-ilnestpluslailestailleursw150.jpg)"></span></div>
+            <a href="https://www.alsacreations.com/profil/lire/35007-Olivier-C" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="m_name">Olivier C</span></a>
+          </div>
+          <div class="p_post">
+            <div class="p_date"><a href="#com40340" title="Permalien"><time pubdate datetime="2024-10-26" itemprop="datePublished">26 Octobre 2024 à 00h09</time></a></div>
+            <div class="p_text" itemprop="text"><p>C'est assez étonnant.<br />
+<br />
+Merci pour la découverte.</p></div>
+            <div class="p_edit_quote"></div>
+          </div></article><!-- com -->
+<article id="com40341" class="article post" itemscope itemtype="http://schema.org/Comment">
+
+          <div class="p_author">
+            <div class="p_avatar"><span class="avatar " data-hovertype="member" data-hoverid="212" style="background-image:url(https://cdnf.alsacreations.net/avatars/1551722191-212-apple-touch-icon.png)"></span></div>
+            <a href="https://www.alsacreations.com/profil/lire/212-Nico3333fr" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="m_name">Nico3333fr</span></a>
+          </div>
+          <div class="p_post">
+            <div class="p_date"><a href="#com40341" title="Permalien"><time pubdate datetime="2024-10-31" itemprop="datePublished">31 Octobre 2024 à 10h43</time></a></div>
+            <div class="p_text" itemprop="text"><p>Merci pour la découverte également, je ne connaissais pas non plus !</p></div>
+            <div class="p_edit_quote"></div>
+          </div></article><!-- com -->
+<article id="com40344" class="article post" itemscope itemtype="http://schema.org/Comment">
+
+          <div class="p_author">
+            <div class="p_avatar"><span class="avatar " data-hovertype="member" data-hoverid="15086" style="background-image:url(https://cdnf.alsacreations.net/avatars/1530617862-15086-yordi.jpg)"></span></div>
+            <a href="https://www.alsacreations.com/profil/lire/15086-Yordi" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="m_name">Yordi</span></a>
+          </div>
+          <div class="p_post">
+            <div class="p_date"><a href="#com40344" title="Permalien"><time pubdate datetime="2024-11-07" itemprop="datePublished">07 Novembre 2024 à 06h58</time></a></div>
+            <div class="p_text" itemprop="text"><p>Intéressant, merci !</p></div>
+            <div class="p_edit_quote"></div>
+          </div></article><!-- com -->
+<article id="com40346" class="article post" itemscope itemtype="http://schema.org/Comment">
+
+          <div class="p_author">
+            <div class="p_avatar"><span class="avatar " data-hovertype="member" data-hoverid="86859" style="background-image:url(https://cdnf.alsacreations.net/avatars/1731662459-86859-imaman.png)"></span></div>
+            <a href="https://www.alsacreations.com/profil/lire/86859-iMaman" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="m_name">iMaman</span></a>
+          </div>
+          <div class="p_post">
+            <div class="p_date"><a href="#com40346" title="Permalien"><time pubdate datetime="2024-11-15" itemprop="datePublished">15 Novembre 2024 à 14h27</time></a></div>
+            <div class="p_text" itemprop="text"><p>Merci pour cet article, je ne connaissais pas du tout et c'est très intéressant.</p></div>
+            <div class="p_edit_quote"></div>
+          </div></article><!-- com -->
+</section> <!-- commentaires -->
+<div class="commentaires-posting" id="commentaires-posting"><h2 class="posting">Commenter</h2>
+  <p class="warn">Vous devez être inscrit et identifié pour utiliser cette fonction.</p>
+
+  <h3>Connectez-vous (déjà inscrit)</h3>
+  <form class="form" method="post" action="https://www.alsacreations.com/ident/login/">
+
+    <p class="form-item">
+      <label for="identname">Identifiant (pseudo) ou e-mail&nbsp;:</label> <input class="form-text" id="identname" type="text" name="name" >
+    </p>
+
+    <p class="form-item">
+      <label for="identpassword">Mot de passe&nbsp;:</label> <input class="form-text" id="identpassword" type="password" name="password" />
+    </p>
+
+    <p><a href="https://www.alsacreations.com/ident/lost/" id="login-lost-link">Oubli de mot de passe&nbsp;? Pas de panique, on va le retrouver</a></p>
+    <p>
+      <input class="awesome green large" type="submit" value="Valider">
+      <input type="hidden" name="redirect" value="">
+    </p>
+
+  </form>
+
+  <h3><a href="https://www.alsacreations.com/ident/register">Pas encore inscrit ?</a> C'est très simple et gratuit.</h3>
+
+</div> <!-- commentaires-posting -->
+</div> <!-- .content -->
+
+  </div> <!-- #page -->
+
+  <p id="citation" class="citation">
+    <q>&nbsp;Les promesses n'engagent que ceux qui les résolvent.&nbsp;</q> <span>(Brendan Eich)</span>  </p>
+
+  </div><!-- #global -->
+
+  <footer id="footer-menu" class="site-footer-menu">
+    <ul>
+      <li><a rel="noopener external" href="https://github.com/alsacreations/" title="Alsacreations sur Github"><i aria-hidden="true" class="icon-github-circled"></i></a></li>
+      <li><a rel="noopener external" href="https://www.facebook.com/alsacreations" title="Alsacreations sur Facebook" class="f-fb"><i aria-hidden="true" class="icon-facebook"></i></a></li>
+      <li><a rel="noopener external" href="https://twitter.com/alsacreations" title="Alsacreations sur Twitter"><i aria-hidden="true" class="icon-twitter"></i></a></li>
+      <li><a rel="noopener external" href="https://www.instagram.com/agence_alsacreations/" title="Alsacreations sur Instagram"><i aria-hidden="true" class="icon-instagram"></i></a></li>
+      <li><a rel="noopener external" href="https://fr.linkedin.com/company/alsacreations" title="Alsacreations sur LinkedIn"><i aria-hidden="true" class="icon-linkedin"></i></a></li>
+      <li><a href="../../rss/index.html" title="Flux RSS" class="f-rss"><i aria-hidden="true" class="icon-rss"></i></a></li>
+      <li><a href="../../page/plan/index.html">plan du site</a></li>
+      <li><a href="../../contact/index.html" title="Contactez-nous">contact</a></li>
+      <li><a rel="noopener" href="https://formations.alsacreations.fr/" title="Formations web professionnelles">formations</a></li>
+      <li><a rel="noopener" href="https://www.alsacreations.fr/" title="Agence web de qualité">agence web</a></li>
+      <li class="gopagetop"><a href="#header" title="Haut de page"><span class="visuallyhidden">Retourner en haut de page</span><i aria-hidden="true" class="icon-up"></i></a></li>
+    </ul>
+  </footer>
+
+  <!-- Footer-end : logo, presentation -->
+  <div id="footer-end" class="site-footer-end">
+    <div class="presentation">
+      <p>Alsacréations est une communauté dédiée à la conception de sites et applications web de qualité, grâce aux standards W3C, aux feuilles de styles CSS, aux langages HTML et JavaScript, et à l'accessibilité. Réalisé par l'agence web <a href="https://www.alsacreations.fr/" title="Une agence web qu'elle est bien !">Alsacreations.fr</a> &middot; Hébergement <a href="https://syazen.com/" title="Notre hébergeur ultime" rel="noopener">Syazen</a> &middot; <a href="../../page/about/index.html" title="&Agrave; propos">&Agrave;&nbsp;propos et mentions légales</a> &middot; <a href="../../page/about/index.html#l_donnees">Données personnelles</a></p>
+    </div>
+    <div class="print"><p>https://www.alsacreations.com/</p></div>
+  </div> <!-- fin de footer-end -->
+
+<script src="../../../cdn.alsacreations.net/js/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="../../../cdn.alsacreations.net/js/www/dist/www.min-ca087cd9206b8997b4cf715561d78891.js" integrity="sha256-OA7DXyLwH7s1H7qA0Z+4agjfR1PALIraEK+OQ/luP+8=" crossorigin="anonymous" defer></script>
+<script src="../../../cdn.alsacreations.net/js/common/dist/common.min-aceff6d834c2060ff98f8e2b851b4e61.js" integrity="sha256-117OZrRjOLODYKQGOn589pK3+7mTs3VR0lZCgFbzADY=" crossorigin="anonymous" defer></script>
+<script src="https://cdn.alsacreations.net/js/prism.min.js" integrity="sha384-pkJlJn4+ZjIgcecg/wB7Uwq5A/h6cNVWmZX0u1x24GYOSxmWf/H0NsixnQgE6rG+" crossorigin="anonymous" defer></script>
+</body>
+
+<!-- Mirrored from www.alsacreations.com/astuce/lire/1932-Mermaid--diagrammes-schemas-et-graphiques-dans-markdown.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Dec 2024 16:34:49 GMT -->
+</html>
+
+<!--
+CPU : 0.0024s
+MEM : 0.74MB
+-->

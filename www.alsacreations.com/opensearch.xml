@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+<ShortName>Alsacreations</ShortName>
+<Description>Recherche dans les ressources</Description>
+<Image type="image/x-icon">favicon.ico</Image>
+<Image type="image/png">favicon.png</Image>
+<Developer>Alsacreations Development Team</Developer>
+<AdultContent>false</AdultContent>
+<Language>fr</Language>
+<InputEncoding>UTF-8</InputEncoding>
+<Url type="text/html" template="https://www.alsacreations.com/search/tag/{searchTerms}"/>
+</OpenSearchDescription>
