@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keresés</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Weboldal Kereső</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Ha van saját CSS -->
 </head>
 <body>
+    <header>
+        <h1>Keresés a Weboldalon</h1>
+        <input type="text" id="search-input" placeholder="Keresés...">
+    </header>
 
-    <h1>Weboldal kereső</h1>
-    
-    <!-- Kereső input mező -->
-    <input type="text" id="search-input" placeholder="Keresés...">
-    
-    <!-- Keresési eredmények -->
-    <div id="results-container"></div>
+    <section id="results-container">
+        <!-- A keresési eredmények itt fognak megjelenni -->
+    </section>
 
-    <!-- js-search könyvtár betöltése -->
-    <script src="https://cdn.jsdelivr.net/npm/js-search@2.4.0/dist/js-search.min.js"></script>
-    
-    <!-- Saját JavaScript fájl -->
-    <script src="keres.js"></script>
+    <footer>
+        <p>2024 © A weboldal neve</p>
+    </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/js-search"></script> <!-- js-search könyvtár -->
+    <script src="keres.js"></script> <!-- A keresési logikát tartalmazó JavaScript -->
 </body>
 </html>

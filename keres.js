@@ -53,11 +53,9 @@ function displayResults(results, query) {
         const highlightedText = extractRelevantSnippet(result.content, query);
 
         resultElement.innerHTML = `
-            <div class="result-header">
-                <a href="${result.url}" target="_blank">${result.file_name}</a>
-            </div>
+            <h3>${result.file_name}</h3>
             <p>${highlightedText}</p>
-            <a href="${result.url}" target="_blank" class="result-link">Kattints ide a részletekhez</a>
+            <a href="${result.url}" target="_blank">Megnyitás</a>
         `;
 
         resultsContainer.appendChild(resultElement);
