@@ -58,7 +58,7 @@ function displayResults(results, query) {
             <a href="${result.url}" target="_blank">Megnyitás</a>
         `;
 
-        resultsContainer.appendChild(resultElement);
+         resultsContainer.appendChild(resultElement);
     });
 }
 
