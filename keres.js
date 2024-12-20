@@ -55,7 +55,7 @@ function displayResults(results, query) {
         resultElement.innerHTML = `
             <h3>${result.file_name}</h3>
             <p>${highlightedText}</p>
-            <a href="${result.url}" target="_blank">Megnyitás</a>
+            <a href="${result.url}" target="_blank" class="open-link">Megnyitás</a> <!-- Megnyitás szöveg, kattintható link -->
         `;
 
         resultsContainer.appendChild(resultElement);
