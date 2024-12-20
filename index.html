@@ -6,8 +6,8 @@
     <title>Weboldal Kereső</title>
     <!-- js-search könyvtár CDN -->
     <script src="https://unpkg.com/js-search/dist/umd/js-search.min.js"></script>
-    <!-- keres.js fájl, defer eltávolítva -->
-    <script src="keres.js"></script>
+    <!-- keres.js fájl -->
+    <script defer src="keres.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -39,6 +39,7 @@
 <body>
     <h1>Weboldal Kereső</h1>
     <input type="text" id="search-input" placeholder="Írj be kulcsszavakat..." />
+    <button id="search-button">Keresés</button>
     <div id="results-container"></div>
 </body>
 </html>

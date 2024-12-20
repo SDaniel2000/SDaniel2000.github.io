@@ -22,8 +22,8 @@ async function initializeSearch() {
         search.addIndex('content'); // A "content" mezőben keresünk
         search.addDocuments(data); // Az adatokat a keresőhöz adjuk
 
-        // Keresés eseménykezelője (dinamikus keresés gépelés közben)
-        document.getElementById('search-input').addEventListener('input', () => {
+        // Keresés eseménykezelője
+        document.getElementById('search-button').addEventListener('click', () => {
             const query = document.getElementById('search-input').value.trim();
             const results = search.search(query);
 
@@ -68,8 +68,5 @@ function highlightText(text, query) {
     return text.replace(regex, '<mark>$1</mark>');
 }
 
-// Futtatás DOMContentLoaded esemény után
-document.addEventListener('DOMContentLoaded', () => {
-    initializeSearch(); 
-    
-});
+// Futtatás induláskor
+initializeSearch();
