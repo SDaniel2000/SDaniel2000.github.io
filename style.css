@@ -1,10 +1,13 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    background-color: #f4f4f4;
 }
 
 h1 {
     font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 #search-input {
@@ -12,6 +15,13 @@ h1 {
     padding: 10px;
     margin: 10px 0;
     font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#results-container {
+    margin-top: 20px;
 }
 
 .result-item {
@@ -25,6 +35,8 @@ h1 {
     font-weight: bold;
     text-decoration: none;
     color: #333;
+    display: block;
+    margin-bottom: 5px;
 }
 
 .result-header a:hover {
@@ -39,4 +51,13 @@ h1 {
 
 .result-link:hover {
     text-decoration: underline;
+}
+
+.result-item p {
+    font-size: 14px;
+    color: #555;
+}
+
+mark {
+    background-color: yellow;
 }
