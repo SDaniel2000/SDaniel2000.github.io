@@ -1,33 +1,35 @@
-// A keresés megvalósítása js-search segítségével
-import JsSearch from 'js-search';
-
 // A JSON-adatok betöltése
 async function loadJSON() {
-    const response = await fetch('output.json'); // A JSON fájl URL-je
-    if (!response.ok) {
-        throw new Error('Nem sikerült betölteni a JSON-t.');
+    try {
+        const response = await fetch('output.json'); // JSON fájl URL-je
+        if (!response.ok) {
+            throw new Error('Nem sikerült betölteni a JSON-t.');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Hiba történt a JSON betöltésekor:', error);
+        return [];
     }
-    return await response.json();
 }
 
-// Keresőmotor beállítása
+// Kereső inicializálása és működése
 async function initializeSearch() {
     try {
         const data = await loadJSON();
 
-        // Kereső inicializálása
-        const search = new JsSearch.Search('url'); // Az "url" mezőt egyedi azonosítóként használjuk
+        // js-search keresőmotor inicializálása
+        const search = new JsSearch.Search('url'); // Az "url" mezőt használjuk egyedi azonosítóként
         search.addIndex('content'); // A "content" mezőben keresünk
         search.addIndex('file_name'); // A "file_name" mezőt is indexeljük
         search.addDocuments(data); // Az adatokat a keresőhöz adjuk
 
-        // Kereső eseménykezelője
+        // Keresés eseménykezelője
         document.getElementById('search-button').addEventListener('click', () => {
-            const query = document.getElementById('search-input').value;
+            const query = document.getElementById('search-input').value.trim();
             const results = search.search(query);
 
             // Eredmények megjelenítése
-            displayResults(results);
+            displayResults(results, query);
         });
     } catch (error) {
         console.error('Hiba történt a kereső inicializálása közben:', error);
@@ -35,9 +37,9 @@ async function initializeSearch() {
 }
 
 // Eredmények megjelenítése
-function displayResults(results) {
+function displayResults(results, query) {
     const resultsContainer = document.getElementById('results-container');
-    resultsContainer.innerHTML = ''; // Töröljük a korábbi eredményeket
+    resultsContainer.innerHTML = ''; // Előző eredmények törlése
 
     if (results.length === 0) {
         resultsContainer.textContent = 'Nincs találat.';
@@ -58,7 +60,7 @@ function displayResults(results) {
     });
 }
 
-// Kiemeli a keresett szöveget az eredményben
+// Keresett szöveg kiemelése
 function highlightText(text, query) {
     const regex = new RegExp(`(${query})`, 'gi');
     return text.replace(regex, '<mark>$1</mark>');
