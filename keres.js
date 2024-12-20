@@ -68,5 +68,7 @@ function highlightText(text, query) {
     return text.replace(regex, '<mark>$1</mark>');
 }
 
-// Futtatás induláskor
-initializeSearch();
+// Futtatás DOMContentLoaded esemény után
+document.addEventListener('DOMContentLoaded', () => {
+    initializeSearch();
+});
