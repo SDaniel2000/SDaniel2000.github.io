@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+
+<!-- Mirrored from www.alsacreations.com/article/lire/1922-dialog-modal-popover-la-synthese.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Dec 2024 16:34:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head prefix="og: https://ogp.me/ns#">
+    <meta charset="UTF-8">
+    <title>Dialog, Modal, Popover : la synthèse - Alsacreations</title>
+
+    <link rel="dns-prefetch" href="http://cdn.alsacreations.net/"><link rel="dns-prefetch" href="http://cdnf.alsacreations.net/">
+    <link rel="apple-touch-icon" href="../../../cdn.alsacreations.net/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="../../../cdn.alsacreations.net/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../../../cdn.alsacreations.net/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../../../cdn.alsacreations.net/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../../../cdn.alsacreations.net/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../../../cdn.alsacreations.net/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../../../cdn.alsacreations.net/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="../../../cdn.alsacreations.net/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../../../cdn.alsacreations.net/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../cdn.alsacreations.net/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="../../../cdn.alsacreations.net/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../../cdn.alsacreations.net/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="../../../cdn.alsacreations.net/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="../../../cdn.alsacreations.net/favicon-16x16.png" sizes="16x16">
+
+    <link rel="manifest" href="../../manifest.json">
+
+            <meta name="keywords" content="layer, z-index, modale, popup, popin, dropdown">    
+    <meta name="geo.placename" content="Strasbourg, Alsace, France">
+    <meta name="msapplication-TileColor" content="#abc737">
+    <meta name="msapplication-TileImage" content="../../../cdn.alsacreations.net/mstile-144x144.png">
+    <meta name="theme-color" content="#abc737">
+
+    <link rel="stylesheet" type="text/css" href="../../../cdn.alsacreations.net/css/dist/styles.1727690106.min.css">
+    <link rel="search" type="application/opensearchdescription+xml" title="Alsacreations" href="../../opensearch.xml">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <meta name="twitter:site" content="@alsacreations">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="og:locale" content="fr_FR">
+    <meta name="og:site_name" content="Alsacréations">
+
+    <meta property="twitter:creator" content="@goetter"><meta property="og:title" content="Dialog, Modal, Popover : la synthèse"><meta property="og:url" content="1922-dialog-modal-popover-la-synthese.html"><meta property="og:image" content="../../../cdn.alsacreations.net/xmedia/doc/full/1704102798-modal.jpg"><meta property="og:type" content="article"><link href="../../../cdn.alsacreations.net/css/fonts/fontello/css/ac.1726406507.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdn.alsacreations.net/css/prism.min.css">
+<link rel="alternate" type="application/rss+xml" href="../../rss/actualites.xml" title="Actualités">
+<link rel="alternate" type="application/rss+xml" href="../../rss/commentaires.xml" title="Commentaires">
+<link rel="alternate" type="application/rss+xml" href="../../rss/apprendre.xml" title="Tutoriels, articles, astuces (dernières publications)">
+
+</head>
+
+<body class="">
+
+    <div id="hrtop" class="hrtop">
+        <div class="arf"></div>
+    </div>
+
+    <header>
+        <div class="site-header" id="header">
+
+            
+                <ul class="skip-links" id="evitement">
+                    <li><a href="#menu">Aller au menu</a></li>
+                    <li><a href="#global">Aller au contenu</a></li>
+                    <li><a href="#search-q" rel="search">Aller à la recherche</a></li>
+                </ul> <!-- /evitement -->
+
+                <div class="inside" role="banner">
+                    <button class="burger noprint js-burger js-hidden" type="button" aria-label="Afficher ou masquer la navigation" aria-controls="menu" aria-expanded="false" aria-pressed="false"><span class="visuallyhidden">Afficher ou masquer la navigation</span></button>
+
+                    <div class="site-logo"><a href="../../index.html" title="Alsacréations, apprentissage des standards web, accueil"><img id="logo" alt="Accueil - Alsacreations.com" src="https://cdn.alsacreations.net/css/img/logo-alsacreations.svg" width="157" height="36"></a></div>
+
+                    <nav role="navigation" class="megamenu">
+                        <ul id="menu" class="nav-menu">
+                                                        <li class="nav-item menu-apprendre active"><a href="../../tutoriels/index.html" title="Apprendre les langages du web : HTML, CSS, JavaScript"><i aria-hidden="true" class="icon-code"></i> tutoriels</a>
+                                <div class="sub-nav">
+                                    <ul class="sub-nav-group">
+                                        <li class="sub-nav-h">Catégories</li>
+                                        <li><a href="../../actu/index.html"><i aria-hidden="true" class="icon-flash"></i>actualités</a></li>
+                                        <li><a href="../../tuto/liste/1-html.html" class="invert cat-html"><i aria-hidden="true" class="icon-code"></i>html</a></li>
+                                        <li><a href="../../tuto/liste/2-css.html" class="invert cat-css"><i aria-hidden="true" class="icon-code"></i>css</a></li>
+                                        <li><a href="../../tuto/liste/5-javascript.html" class="invert cat-javascript"><i aria-hidden="true" class="icon-code"></i>javascript</a></li>
+                                        <li><a href="../../tuto/liste/11-responsive-web-design.html" class="invert cat-responsive"><i aria-hidden="true" class="icon-code"></i>responsive</a></li>
+                                        <li><a href="../../tuto/liste/10-design.html" class="invert cat-design"><i aria-hidden="true" class="icon-code"></i>design</a></li>
+                                        <li><a href="../../tuto/liste/3-accessibilite.html" class="invert cat-accessibilité"><i aria-hidden="true" class="icon-code"></i>accessibilité</a></li>
+                                        <li><a href="../../tuto/liste/4-developpement.html" class="invert cat-développement"><i aria-hidden="true" class="icon-code"></i>développement</a></li>
+                                        <li><a href="../../tuto/liste/12-vue-nuxt.html" class="invert cat-vue-nuxt"><i aria-hidden="true" class="icon-code"></i>vue et nuxt</a></li>
+                                        <li><a href="../../tuto/liste/9-formats-encodage-xml.html" class="invert cat-formats"><i aria-hidden="true" class="icon-code"></i>formats</a></li>
+                                        <li><a href="../../tuto/liste/8-web.html" class="invert cat-web"><i aria-hidden="true" class="icon-code"></i>web</a></li>
+                                    </ul>
+                                    <ul class="sub-nav-group">
+                                        <li class="sub-nav-h">Ressources</li>
+                                        <li><a href="../../tuto/top/index.html"><i aria-hidden="true" class="icon-star-filled"></i>Les plus lues</a></li>
+                                        <li><a href="../../outils/index.html"><i aria-hidden="true" class="icon-wrench"></i>Outils</a></li>
+                                        <li><a href="../../outils/kiwipedia/index.html"><i aria-hidden="true" class="icon-wrench"></i>Guidelines</a></li>
+                                        <li><a href="../../livres/index.html"><i aria-hidden="true" class="icon-book-open"></i>Livres</a></li>
+                                        <li><a href="../../quiz/index.html"><i aria-hidden="true" class="icon-beer"></i>Quiz&nbsp;!</a></li>
+                                        <li><a href="../../concours/index.html"><i aria-hidden="true" class="icon-gift"></i>Concours</a></li>
+                                        <li class="sub-nav-h">Par niveau</li>
+                                        <li><a href="../../tuto/niveau/1/index.html"><i aria-hidden="true" class="icon-bat1"></i>Débutant</a></li>
+                                        <li><a href="../../tuto/niveau/2/index.html"><i aria-hidden="true" class="icon-bat2"></i>Confirmé</a></li>
+                                        <li><a href="../../tuto/niveau/3/index.html"><i aria-hidden="true" class="icon-bat3"></i>Expert</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item menu-forum "><a href="https://forum.alsacreations.com/" title="Forum de la communauté Alsacreations"><i aria-hidden="true" class="icon-chat-alt"></i> forum</a>
+                                <div class="sub-nav">
+                                    <ul class="sub-nav-group">
+                                        <li><a href="https://forum.alsacreations.com/posting.php?action=newt"><i aria-hidden="true" class="icon-plus"></i>Nouveau sujet/question</a></li>
+                                        <li><a href="https://forum.alsacreations.com/forum.php?filter=forums"><i aria-hidden="true" class="icon icon-tag"></i>Catégories</a></li>
+                                        <li><a href="https://forum.alsacreations.com/forum.php?filter=newreplies"><i aria-hidden="true" class="icon icon-comment-alt2"></i>Dernières réponses</a></li>
+                                                                                <li><a href="https://forum.alsacreations.com/search.php"><i aria-hidden="true" class="icon-search"></i>Recherche</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item menu-emploi  "><a href="https://emploi.alsacreations.com/" title="Offres et demandes d'emploi web"><i aria-hidden="true" class="icon-vcard"></i> emploi</a>
+                                <div class="sub-nav">
+                                    <ul class="sub-nav-group">
+                                        <li><a href="https://emploi.alsacreations.com/offres.html"><i aria-hidden="true" class="icon-search"></i>Offres d&apos;emploi</a></li>
+                                        <li><a href="https://emploi.alsacreations.com/demandes.html"><i aria-hidden="true" class="icon-search"></i>Demandes d&apos;emploi</a></li>
+                                        <li><a href="https://emploi.alsacreations.com/favoris.html"><i aria-hidden="true" class="icon-star"></i>Favoris</a></li>
+                                    </ul>
+                                    <ul class="sub-nav-group">
+                                        <li><a href="https://emploi.alsacreations.com/offre.html"><i aria-hidden="true" class="icon-plus"></i>Poster une offre</a></li>
+                                        <li><a href="https://emploi.alsacreations.com/demande.html"><i aria-hidden="true" class="icon-plus"></i>Poster une demande</a></li>
+                                                                            </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item menu-formations"><a href="https://formations.alsacreations.fr/" title="Formations web"><i aria-hidden="true" class="icon-graduation-cap"></i> formations</a>
+                                <div class="sub-nav">
+                                    <ul class="sub-nav-group">
+                                        <!-- <li class="sub-nav-h">Catégories</li> -->
+                                        <li><a href="https://formations.alsacreations.fr/formation-initiation-html-css.html" class="invert cat-html"><i aria-hidden="true" class="icon-star-filled"></i>Initiation HTML5 et CSS3</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-html5.html" class="invert cat-html"><i aria-hidden="true" class="icon-star-filled"></i>HTML5</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-css3-bonnes-pratiques.html" class="invert cat-responsive"><i aria-hidden="true" class="icon-star-filled"></i>Bonnes pratiques CSS3</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-gridlayout.html" class="invert cat-responsive"><i aria-hidden="true" class="icon-star-filled"></i>Flexbox et Grid Layout</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-vuejs.html" class="invert cat-css"><i aria-hidden="true" class="icon-star-filled"></i>Vue.js</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-nuxt.html" class="invert cat-css"><i aria-hidden="true" class="icon-star-filled"></i>Nuxt</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-jquery-ajax.html" class="invert cat-javascript"><i aria-hidden="true" class="icon-star-filled"></i>jQuery &amp; Ajax</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-typescript.html" class="invert cat-javascript"><i aria-hidden="true" class="icon-star-filled"></i>TypeScript</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-accessibilite.html" class="invert cat-accessibilité"><i aria-hidden="true" class="icon-star-filled"></i>Accessibilité</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-performances-web.html" class="invert cat-développement"><i aria-hidden="true" class="icon-star-filled"></i>Performances web</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-integration-emails-mobiles.html" class="invert cat-formats"><i aria-hidden="true" class="icon-star-filled"></i>Intégration d'e-mails mobiles</a></li>
+                                        <li><a href="https://formations.alsacreations.fr/formation-sur-mesure.html" class="invert cat-web"><i aria-hidden="true" class="icon-star-filled"></i>Formation sur-mesure</a></li>
+                                                                            </ul>
+                                </div>
+                            </li>
+                                                    </ul>
+                        <ul id="ident" class="member-ident">
+                            <li class="member member-register"><a class="awesome greenghost" href="../../ident/register/index.html">S'inscrire</a></li>
+                            <li class="member member-login"><a class="awesome green" href="../../ident/index.html">Connexion</a></li>
+                        </ul>
+
+                    
+                    </nav>
+
+                                        </div> <!-- .inside -->
+        </div> <!-- #header -->
+
+        <!-- Sous-menu -->
+
+        
+            <div id="submenu" class="submenu  ">
+
+                <ul class="submenu-list"><li class="item " id="submenu-tutoriels"><span><a href="../../tutoriels/index.html">Tutoriels et astuces</a></span></li><li class="item " id="submenu-outils"><span><a href="../../outils/index.html">Outils</a></span></li><li class="item " id="submenu-livres"><span><a href="../../livres/index.html">Livres</a></span></li><li class="item " id="submenu-quiz"><span><a href="../../quiz/index.html">Quiz</a></span></li></ul>                    <form id="search" class="site-search" role="search" action="https://www.alsacreations.com/search/" method="post">
+                        <div class="search-rb">
+                            <label for="search-q" class="visuallyhidden">Rechercher</label>
+                            <i aria-hidden="true" class="icon-search"></i>
+                            <input id="search-q" class="search-q" name="q" placeholder="Tutoriel, propriété css..." value="" type="text">
+                        </div>
+                        <input class="search-submit awesome" value="OK" name="recherche-submit" type="submit">
+                                            </form>
+                
+            </div>
+            <!-- /submenu -->
+
+        
+    </header>
+
+    <!-- /navigation et sous-navigation -->
+
+    
+    <div id="global" class="site-global">
+
+        <div id="page" class="site-page"><div class="content" role="main" itemscope itemtype="https://schema.org/Article">
+
+  <article class="article lecture hero doc-markdown ">
+
+    <header class="article-header cat-css">
+
+      <p class="article-niveau">Niveau <i aria-hidden="true" class="icon icon-bat3"></i> <span class="visuallyhidden">Niveau expert</span></p>
+      <h1 class="h-article" itemprop="name headline">Dialog, Modal, Popover : la synthèse</h1>
+
+      
+        <div class="auteur">
+        <a class="auteur-avatar" aria-hidden="true" href="https://www.alsacreations.com/profil/lire/1-Raphael.html"><span class="avatar " data-hovertype="member" data-hoverid="1" style="background-image:url(../../../cdnf.alsacreations.net/avatars/1-20101129-rg390.jpg)"></span></a>
+        <p class="auteur-cat"><span class="doctype doctype-article cat-css ">Article</span><span class="tagtag cat-css invert">css</span>  </p>
+        <div class="auteur-meta"><p class="auteur-meta-details">
+        Publié 
+        <span class="visuallyhidden" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+            <meta content="https://cdn.alsacreations.net/xmedia/doc/medium/1704102798-modal.jpg" itemprop="url">
+        </span>par <a href="https://www.alsacreations.com/profil/lire/1-Raphael.html"><span itemprop="author">Raphael</span></a> le <time datetime="2024-02-09" itemprop="datePublished">09 Février 2024</time>, mis &agrave; jour le <time datetime="2024-10-21" itemprop="dateModified">21 Octobre 2024</time> (8123 lectures)</p>
+        <p class="auteur-tag"><i aria-hidden="true" class="icon-tag" title="Étiquettes"></i> <span itemprop="keywords" class="keywords"><a href="https://www.alsacreations.com/search/tag/layer">layer</a> <a href="https://www.alsacreations.com/search/tag/z-index">z-index</a> <a href="https://www.alsacreations.com/search/tag/modale">modale</a> <a href="https://www.alsacreations.com/search/tag/popup">popup</a> <a href="https://www.alsacreations.com/search/tag/popin">popin</a> <a href="https://www.alsacreations.com/search/tag/dropdown">dropdown</a></p></div>
+        
+            <div itemprop="interactionStatistic" itemscope itemtype="https://schema.org/InteractionCounter">
+              <meta itemprop="interactionType" content="https://schema.org/ReadAction">
+              <meta itemprop="userInteractionCount" content="8123">
+            </div>
+        </div>
+    </header>
+
+    
+    <div class="doc-content" itemprop="articleBody">
+    <p>L'arrivée de l'attribut et de l'API HTML <span lang="en"><a href="https://developer.mozilla.org/fr/docs/Web/API/Popover_API">popover</a></span> facilite la gestion de tous les éléments qui doivent s'afficher au-dessus du contenu d'une page Web (fenêtre modale, <span lang="en">tooltip</span>, menu déroulant, etc.).</p>
+
+<p>Cette nouvelle fonctionnalité vient s'ajouter à certaines déjà existantes, au point où l'on ne sait plus forcément où donner de la tête entre les éléments dits "Dialog", "Modal", <span lang="en">"Popover"</span> ou autres <span lang="en">"Overlay"</span>.</p>
+
+<p>Tentons de rassembler toutes les caractéristiques globales et techniques de l'ensemble de ces notions afin d'y voir plus clair.</p>
+
+<p class="info">
+Cet article a pour objectif de poser les bases et de définir les différents termes en jeu. Dans un deuxième temps un  article détaillé sera consacré à <code>&lt;dialog&gt;</code> et un autre à <code>popover</code>.
+</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1704102798-modal.jpg" alt="" title="" data-img_id="3446"></p>
+
+<h2>Tableau récapitulatif</h2>
+
+<p>Pour bien se rendre compte du nombre de fonctionnalités qui intéragissent, voici d'emblée un tableau récapitulatif des éléments que nous allons couvrir&hellip;</p>
+
+<table>
+<thead>
+<tr>
+  <th></th>
+  <th><code>popover</code></th>
+  <th><code>&lt;dialog&gt;</code> <br>(modal)</th>
+  <th><code>&lt;dialog&gt;</code> <br>(non modal)</th>
+  <th><code>&lt;div role=dialog&gt;</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Overlay</td>
+  <td>oui</td>
+  <td>oui</td>
+  <td>oui</td>
+  <td>oui</td>
+</tr>
+<tr>
+  <td>Modal</td>
+  <td>non</td>
+  <td>oui</td>
+  <td>non</td>
+  <td>non</td>
+</tr>
+<tr>
+  <td>Inert</td>
+  <td>non</td>
+  <td>oui</td>
+  <td>non</td>
+  <td>non</td>
+</tr>
+<tr>
+  <td>Top layer</td>
+  <td>oui</td>
+  <td>oui</td>
+  <td>non</td>
+  <td>non</td>
+</tr>
+<tr>
+  <td>Focus trap</td>
+  <td>non</td>
+  <td>oui</td>
+  <td>oui</td>
+  <td>non</td>
+</tr>
+<tr>
+  <td>Dismissible</td>
+  <td><code>echap</code> ou manuel</td>
+  <td><code>echap</code></td>
+  <td><code>echap</code></td>
+  <td>non</td>
+</tr>
+<tr>
+  <td>Commentaires</td>
+  <td>Exclusif : ouvrir un popover ferme le précédent</td>
+  <td>Masqué par défaut, visible avec l'attribut <code>open</code></td>
+  <td>Masqué par défaut, visible avec l'attribut <code>open</code></td>
+  <td></td>
+</tr>
+</tbody>
+</table>
+
+<p>Les différentes notions de ce tableau sont détaillées tout au long de cet article de synthèse&nbsp;: <code>popover</code>, <code>&lt;dialog&gt;</code>, <span lang="en">overlay</span>, <span lang="en">modal</span>, <span lang="en">inert</span>, <span lang="en">top layer</span>, <span lang="en">focus trap</span>, <span lang="en">dismissible</span>.</p>
+
+<h2>Overlay</h2>
+
+<p>Le terme <span lang="en" title="surcouche">"overlay"</span> ne représente pas véritablement un composant mais une caractéristique. Un élément "overlay" est simplement <strong>un élément qui se place au-dessus d'autres éléments dans la page.</strong></p>
+
+<p>Tous les éléments au sein de cette liste sont des overlays&nbsp;:</p>
+
+<ul>
+<li>une "fenêtre modale",</li>
+<li>un menu déroulant,</li>
+<li>une <span lang="en" title="bulle d'aide">Tooltip</span>,</li>
+<li>une boîte de dialogue,</li>
+<li>un <span lang="en" title="sélecteur de date">Datepicker</span>,</li>
+<li>un <span lang="en">Dropdown</span>,</li>
+<li>un <span lang="en">Toaster</span>,</li>
+<li>une notification,</li>
+<li>un <span lang="en">bandeau cookie</span>,</li>
+<li>etc.</li>
+</ul>
+
+<p>Dans cette même famille nous croiserons les termes de <i lang="en">"pop-up"</i> (nouvelle fenêtre au-dessus de la fenêtre actuelle du navigateur) et <i lang="en">"pop-in"</i> (élément au-dessus des autres éléments de la page, synonyme de "overlay", donc).</p>
+
+<h2>Modal et non-Modal</h2>
+
+<p>Selon les spécifications HTML, le terme <span lang="en">"modal"</span> ne désigne pas un composant en tant que tel, mais un ensemble de caractéristiques&nbsp;: un élément en <span lang="en">overlay</span> peut être <span lang="en">"modal"</span> ou <span lang="en">"non-modal"</span>.</p>
+
+<p><strong>Un élément Modal est le seul à être interactif dans un document,</strong> il requiert toute l'attention de l'usager, tout le reste de la page doit être rendu inerte (<code>inert</code>) car aucune autre action ne doit être possible mis à part réagir à cet élément (fermer, accepter, refuser, abandonner, etc.).</p>
+
+<p>Par exemple, un bandeau de recueil de données personnelles doit être consenti par l'utilisateur (obligation légale RGPD) sans quoi il ne devrait pas pouvoir accéder au site. C'est donc un élément de type Modal. Un autre exemple pourrait être celui d'une une modale "login/password" si l'accès au site nécessite une authentification.</p>
+
+<p><strong>Un élément non-Modal, à l'inverse, laisse la possibilité à l'utilisateur de continuer à interagir avec la page.</strong> C'est généralement le cas des éléments tooltip, menu déroulant, dropdown, datepicker, notification, alerte, bandeau cookie.</p>
+
+<h3><code>inert</code></h3>
+
+<p>Un contenu inerte est un contenu avec lequel les utilisatrices et utilisateurs ne peuvent pas interagir. Il n'existe que visuellement, mais ne peut être atteint, cliqué, défilé ni consulté au moyen de technologies d'assistance.</p>
+
+<p>Différentes techniques permettent de rendre une partie de page inerte&nbsp;:</p>
+
+<ul>
+<li>L'attribut HTML <code>inert</code>,</li>
+<li>L'ancienne technique via la combinaison de <code>aria-hidden=true</code> et de <code>tabindex="-1"</code>,</li>
+<li>Un polyfill JavaScript : <a href="https://github.com/WICG/inert">https://github.com/WICG/inert</a>,</li>
+<li>L'élément <code>&lt;dialog&gt;</code> (voir cette section pour les détails).</li>
+</ul>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1704879891-inert.png" alt="compatibilité de l'attribut inert" title="" data-img_id="3453"></p>
+
+<h2>Top layer</h2>
+
+<p>Top layer est une couche d'empilement au dessus de l'ensemble du document (existe depuis juin 2023). Cette couche n'est pas concernée par <code>z-index</code> ni par <code>overflow: hidden</code>. Les éléments s'empilent dans l'ordre d'apparition dans le Top layer.</p>
+
+<p>Certains éléments sont placés automatiquement par défaut dans le top layer :</p>
+
+<ul>
+<li>les éléments en fullscreen API</li>
+<li>les éléments <code>&lt;dialog&gt;</code> (sauf exceptions)</li>
+<li>les éléments avec l'attribut <code>popover</code> (sauf exceptions)</li>
+</ul>
+
+<h3><code>::backdrop</code></h3>
+
+<p>Ce pseudo-élement s'applique uniquement aux objets placés dans le top layer. Il permet d'apporter des styles visuels "sous" un overlay en obscurcissant la page par exemple.</p>
+
+<pre><code class="language-css">/* Cette ombre n'est affichée que si l'élément */
+/* est dans le Top layer */
+dialog::backdrop {
+  background: rgba(0,0,0,0.3);
+}
+</code></pre>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1704879979-backdrop.png" alt="compatibilité du sélecteur ::backdrop" title="" data-img_id="3454"></p>
+
+<h2>Focus trap</h2>
+
+<p>Certains élément nécessitent que la navigation au clavier (touches <code>Tab</code> ou <code>Shift + Tab</code>) <strong>ne quitte pas le périmètre du composant&nbsp;:</strong> en atteignant le dernier élément <em>focusable</em>, on retourne en boucle au premier élément <em>focusable</em> au sein du composant.</p>
+
+<p>C'est le comportement attendu et souhaité en accessibilité lorsque le composant est "modal" et que tout le reste du document est inerte.</p>
+
+<p>Le focus trap doit toutefois être temporaire et disparaître quand le composant est quitté ou rejeté (dismissed).</p>
+
+<h2>Dismissible (jetable)</h2>
+
+<p>Certains overlay nécessitent de <strong>pouvoir être fermés de manière automatique</strong> (via touche <code>echap</code> ou au focus à l'extérieur du composant) et/ou de façon manuelle (en validant un bouton de soumission par exemple). Ce comportement se nomme "Dismissible".</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1704103490-menu.jpg" alt="Le menu déroulant sur Alsacréations" title="" data-img_id="3447"></p>
+
+<h2>Dialog</h2>
+
+<p>Un Dialog est un composant de type overlay destiné à apporter une information à un usager et recueillir une interaction de sa part. Les spécifications proposent une API <code>HTMLDialogElement</code> ainsi qu'un élément natif <code>&lt;dialog&gt;</code> qui peut être "Modal" ou "non-Modal".</p>
+
+<p>Le déclenchement se fait via l'API JavaScript :</p>
+
+<ul>
+<li><code>show()</code>: Ouvre le dialog en non-Modal</li>
+<li><code>showModal()</code>: Ouvre le dialog en Modal</li>
+<li><code>close()</code>: Ferme le dialog et renvoie en option une valeur</li>
+</ul>
+
+<p>Voici un exemple concret :</p>
+
+<pre><code class="language-html">&lt;dialog id="modale"&gt;
+  &lt;p&gt;Une modale de type Modal&lt;/p&gt;
+&lt;/dialog&gt;
+</code></pre>
+
+<pre><code class="language-js">const modal = document.querySelector("#modale");
+modal.showModal();
+</code></pre>
+
+<p>Les particularités de l'élément <code>&lt;dialog&gt;</code> sont&nbsp;:</p>
+
+<ul>
+<li><code>role=dialog</code> par défaut</li>
+<li>Masqué par défaut, visible avec l'attribut <code>open</code></li>
+<li>Nécessite un nom accessible (<code>aria-label</code> ou <code>aria-labelledby</code>)</li>
+<li>Focus trap : activé par défaut</li>
+<li>Jetable (dismiss) via touche <code>echap</code></li>
+</ul>
+
+<p>Selon son état (Modal ou non-Modal), d'autres caractéristiques s'ajoutent à la liste précédente.</p>
+
+<ul>
+<li><p>Si le <code>&lt;dialog&gt;</code> est "Modal" :</p>
+
+<ul>
+<li>Il est placé dans le Top layer,</li>
+<li><code>::backdrop</code> est applicable,</li>
+<li>Tout le reste du document est rendu automatiquement <code>inert</code>.</li>
+</ul></li>
+<li><p>Si le <code>&lt;dialog&gt;</code> est "non-Modal" :</p>
+
+<ul>
+<li>Il n'est pas placé dans le Top layer (donc les règles de stacking context et de <code>z-index</code> s'appliquent),</li>
+<li><code>::backdrop</code> ne s'applique pas,</li>
+<li>Tout le reste du document est interactif.</li>
+</ul></li>
+</ul>
+
+<p>Les spécifications d'accessibilité <abbr lang="en" title="Accessible Rich Internet Applications">ARIA</abbr> proposent un attribut <code>role="dialog"</code> pouvant être appliqué sur n'importe quel élément HTML autre que <code>&lt;dialog&gt;</code>, mais sachez que cela implique par défaut&nbsp;:</p>
+
+<ul>
+<li>Que l'élement est "non-Modal" (peut le devenir avec <code>aria-modal="true"</code>),</li>
+<li>Qu'il n'est pas dans le Top layer,</li>
+<li>Qu'il ne rend pas le reste de page inerte,</li>
+<li>Qu'il ne crée pas de Focus trap,</li>
+<li>Qu'il n'est pas Jetable (dismiss) via touche <code>echap</code>.</li>
+</ul>
+
+<p>En outre, sans API JavaScript <code>showModal()</code>, l'élément <code>&lt;dialog&gt;</code> est non-Modal :</p>
+
+<pre><code class="language-html">&lt;dialog id="dialog" open&gt;
+  &lt;p&gt;je suis non-modal&lt;/p&gt;
+&lt;/dialog&gt;
+</code></pre>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1704880051-dialog.png" alt="compatibilité de l'élément dialog" title="" data-img_id="3455"></p>
+
+<h3><code>:modal</code></h3>
+
+<p>La pseudo-classe <code>:modal</code> s'applique à tous les éléments à l'état Modal (par exemple un <code>&lt;dialog&gt;</code> ouvert avec l'API <code>showModal()</code>).</p>
+
+<pre><code class="language-css">#modale:modal {
+  background: hotpink;
+}
+</code></pre>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1704880227-modal.png" alt="compatibilité du sélecteur :modal" title="" data-img_id="3457"></p>
+
+<h2>popover</h2>
+
+<p>Un <span lang="en">popover</span> est un <span lang="en">overlay</span> composé d'un attribut <code>popover</code> associé à un déclencheur :</p>
+
+<pre><code class="language-html">&lt;button popovertarget="tooltip"&gt;Ouvrir la tooltip&lt;/button&gt;
+&lt;div popover id="tooltip"&gt;Choucroute et Saucisses de Strasbourg&amp;nbsp;!&lt;/div&gt;
+</code></pre>
+
+<p>Les particularités d'un élément pourvu d'un attribut <code>popover</code> sont&nbsp;:</p>
+
+<ul>
+<li>L'élément est "non-Modal",</li>
+<li>Il est placé dans le Top layer,</li>
+<li><code>::backdrop</code> est applicable,</li>
+<li>Aucun <code>role</code> spécifique ne lui est affecté. Le choix dépend du type de composant (<code>role="alert"</code> par exemple),</li>
+<li>Jetable (dismiss) via touche <code>echap</code> par défaut,</li>
+<li>Exclusif : il peut y en avoir plusieurs dans la page mais un seul dans l'état déployé à la fois.</li>
+</ul>
+
+<p>Le comportement <em>dismissible</em> (jetable) dépend de la valeur associée à l'attribut <code>popover</code>&nbsp;:</p>
+
+<ul>
+<li><span lang="en">light dismiss</span> (<code>&lt;div popover=auto&gt;</code>, valeur par défaut si omise) : c'est le comportement idéal pour tooltip, menu déroulant, dropdown, datepicker,</li>
+<li><span lang="en">manual dismiss</span> (<code>&lt;div popover=manual&gt;</code>) : parfait pour des notifications ou des alertes.</li>
+</ul>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1704880099-popover.png" alt="compatibilité de l'attribut popover" title="" data-img_id="3456"></p>
+
+<h3><code>:popover-open</code></h3>
+
+<p>La pseudo-classe CSS <code>:popover-open</code> représente un élément popover (c'est-à-dire un élément avec un attribut <code>popover</code>) qui est dans l'état ouvert.</p>
+
+<pre><code class="language-css">:popover-open {
+  /*...*/
+}
+</code></pre>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1704880347-popover-open.png" alt="compatibilité du sélecteur :popover-open" title="" data-img_id="3458"></p>
+
+<h3>OK alors quand est-ce qu'on utilise quoi ?</h3>
+
+<p>Le nombre de possibilités offertes par les spécifications ne facilite pas le choix lorsqu'il s'agit d'intégrer un composant qui doit se placer au-dessus d'un contenu.</p>
+
+<p>Entre les modales, les menus déroulants, les boîtes de dialogues et autres bandeaux d'alerte, il n'est guère aisé de piocher parmi <code>&lt;dialog&gt;</code>, <code>popover</code> ou une simple <code>&lt;div&gt;</code> en position abolute dopée avec JavaScript.</p>
+
+<p>Les réponses aux deux questions suivantes sont déterminantes dans votre choix final :</p>
+
+<ul>
+<li><strong>L'utilisateur a-t-il le droit d'ignorer ce composant ?</strong><br> (si non, alors il s'agit sans aucun doute d'un élément "Modal" car tout le reste de la page doit devenir <code>inert</code>)</li>
+<li><strong>Le visuel attendu est-il une "modale" avec backdrop obscurci ?</strong><br> (si oui, là aussi nous aurons recours à un élément de type "Modal")</li>
+</ul>
+
+<p>J'espère avoir éclairci la plupart des points d'ombres (même s'il en demeure sans doute) de ce vaste sujet des différents overlays. Pour finir, voici quelques articles de référence absolument indispensables pour en savoir plus.</p>
+
+<h2>Ressources</h2>
+
+<ul>
+<li><a href="https://hidde.blog/dialog-modal-popover-differences/">https://hidde.blog/dialog-modal-popover-differences/</a></li>
+<li><a href="https://blog.logrocket.com/comparing-popover-api-dialog-element/">https://blog.logrocket.com/comparing-popover-api-dialog-element/</a></li>
+<li><a href="https://open-ui.org/components/popover.research.explainer/">https://open-ui.org/components/popover.research.explainer/</a></li>
+<li><a href="https://adrianroselli.com/2023/05/brief-note-on-popovers-with-dialogs.html">https://adrianroselli.com/2023/05/brief-note-on-popovers-with-dialogs.html</a></li>
+</ul>
+    </div><!-- .doc-content -->
+
+    
+</article>
+
+   
+<section class="commentaires" id="commentaires">
+<h3>Commentaires</h3><article id="com40319" class="article post" itemscope itemtype="http://schema.org/Comment">
+
+          <div class="p_author">
+            <div class="p_avatar"><span class="avatar " data-hovertype="member" data-hoverid="50824" style="background-image:url(https://www.alsacreations.com/css/img/avatar4.jpg)"></span></div>
+            <a href="https://www.alsacreations.com/profil/lire/50824-Laurentfrom47" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="m_name">Laurentfrom47</span></a>
+          </div>
+          <div class="p_post">
+            <div class="p_date"><a href="#com40319" title="Permalien"><time pubdate datetime="2024-03-21" itemprop="datePublished">21 Mars 2024 à 09h36</time></a></div>
+            <div class="p_text" itemprop="text"><p>Salut, intéressant pour comprendre un peu mieux, merci.<br />
+<br />
+Pour par exemple afficher une div qui contient du texte juste au-dessus de son bouton déclencheur, tu utilises quoi ?<br />
+<br />
+Merci.</p></div>
+            <div class="p_edit_quote"></div>
+          </div></article><!-- com -->
+</section> <!-- commentaires -->
+<div class="commentaires-posting" id="commentaires-posting"><h2 class="posting">Commenter</h2>
+  <p class="warn">Vous devez être inscrit et identifié pour utiliser cette fonction.</p>
+
+  <h3>Connectez-vous (déjà inscrit)</h3>
+  <form class="form" method="post" action="https://www.alsacreations.com/ident/login/">
+
+    <p class="form-item">
+      <label for="identname">Identifiant (pseudo) ou e-mail&nbsp;:</label> <input class="form-text" id="identname" type="text" name="name" >
+    </p>
+
+    <p class="form-item">
+      <label for="identpassword">Mot de passe&nbsp;:</label> <input class="form-text" id="identpassword" type="password" name="password" />
+    </p>
+
+    <p><a href="https://www.alsacreations.com/ident/lost/" id="login-lost-link">Oubli de mot de passe&nbsp;? Pas de panique, on va le retrouver</a></p>
+    <p>
+      <input class="awesome green large" type="submit" value="Valider">
+      <input type="hidden" name="redirect" value="">
+    </p>
+
+  </form>
+
+  <h3><a href="https://www.alsacreations.com/ident/register">Pas encore inscrit ?</a> C'est très simple et gratuit.</h3>
+
+</div> <!-- commentaires-posting -->
+</div><!-- .content -->
+
+  </div> <!-- #page -->
+
+  <p id="citation" class="citation">
+    <q>&nbsp;Les promesses n'engagent que ceux qui les résolvent.&nbsp;</q> <span>(Brendan Eich)</span>  </p>
+
+  </div><!-- #global -->
+
+  <footer id="footer-menu" class="site-footer-menu">
+    <ul>
+      <li><a rel="noopener external" href="https://github.com/alsacreations/" title="Alsacreations sur Github"><i aria-hidden="true" class="icon-github-circled"></i></a></li>
+      <li><a rel="noopener external" href="https://www.facebook.com/alsacreations" title="Alsacreations sur Facebook" class="f-fb"><i aria-hidden="true" class="icon-facebook"></i></a></li>
+      <li><a rel="noopener external" href="https://twitter.com/alsacreations" title="Alsacreations sur Twitter"><i aria-hidden="true" class="icon-twitter"></i></a></li>
+      <li><a rel="noopener external" href="https://www.instagram.com/agence_alsacreations/" title="Alsacreations sur Instagram"><i aria-hidden="true" class="icon-instagram"></i></a></li>
+      <li><a rel="noopener external" href="https://fr.linkedin.com/company/alsacreations" title="Alsacreations sur LinkedIn"><i aria-hidden="true" class="icon-linkedin"></i></a></li>
+      <li><a href="../../rss/index.html" title="Flux RSS" class="f-rss"><i aria-hidden="true" class="icon-rss"></i></a></li>
+      <li><a href="../../page/plan/index.html">plan du site</a></li>
+      <li><a href="../../contact/index.html" title="Contactez-nous">contact</a></li>
+      <li><a rel="noopener" href="https://formations.alsacreations.fr/" title="Formations web professionnelles">formations</a></li>
+      <li><a rel="noopener" href="https://www.alsacreations.fr/" title="Agence web de qualité">agence web</a></li>
+      <li class="gopagetop"><a href="#header" title="Haut de page"><span class="visuallyhidden">Retourner en haut de page</span><i aria-hidden="true" class="icon-up"></i></a></li>
+    </ul>
+  </footer>
+
+  <!-- Footer-end : logo, presentation -->
+  <div id="footer-end" class="site-footer-end">
+    <div class="presentation">
+      <p>Alsacréations est une communauté dédiée à la conception de sites et applications web de qualité, grâce aux standards W3C, aux feuilles de styles CSS, aux langages HTML et JavaScript, et à l'accessibilité. Réalisé par l'agence web <a href="https://www.alsacreations.fr/" title="Une agence web qu'elle est bien !">Alsacreations.fr</a> &middot; Hébergement <a href="https://syazen.com/" title="Notre hébergeur ultime" rel="noopener">Syazen</a> &middot; <a href="../../page/about/index.html" title="&Agrave; propos">&Agrave;&nbsp;propos et mentions légales</a> &middot; <a href="../../page/about/index.html#l_donnees">Données personnelles</a></p>
+    </div>
+    <div class="print"><p>https://www.alsacreations.com/</p></div>
+  </div> <!-- fin de footer-end -->
+
+<script src="../../../cdn.alsacreations.net/js/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="../../../cdn.alsacreations.net/js/www/dist/www.min-ca087cd9206b8997b4cf715561d78891.js" integrity="sha256-OA7DXyLwH7s1H7qA0Z+4agjfR1PALIraEK+OQ/luP+8=" crossorigin="anonymous" defer></script>
+<script src="../../../cdn.alsacreations.net/js/common/dist/common.min-aceff6d834c2060ff98f8e2b851b4e61.js" integrity="sha256-117OZrRjOLODYKQGOn589pK3+7mTs3VR0lZCgFbzADY=" crossorigin="anonymous" defer></script>
+<script src="https://cdn.alsacreations.net/js/prism.min.js" integrity="sha384-pkJlJn4+ZjIgcecg/wB7Uwq5A/h6cNVWmZX0u1x24GYOSxmWf/H0NsixnQgE6rG+" crossorigin="anonymous" defer></script>
+</body>
+
+<!-- Mirrored from www.alsacreations.com/article/lire/1922-dialog-modal-popover-la-synthese.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Dec 2024 16:34:49 GMT -->
+</html>
+
+<!--
+CPU : 0.0019s
+MEM : 0.73MB
+-->
