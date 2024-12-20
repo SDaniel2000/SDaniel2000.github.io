@@ -1,3 +1,0 @@
-date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
-15:01:03	648/648	---M-Z	404	error ('Not%20Found')	text/html	etag:%221088432560+gzip%22	https://example.com/robots.txt		(from )
-15:01:04	1256/1256	---M-Z	200	added ('OK')	text/html	etag:%223147526947%22	https://example.com/	C:/My%20Web%20Sites/Gyakorlat3/example.com/index.html	(from )
