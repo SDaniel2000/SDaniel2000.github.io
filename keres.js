@@ -23,7 +23,7 @@ async function initializeSearch() {
         search.addDocuments(data); // Az adatokat a keresőhöz adjuk
 
         // Keresés eseménykezelője
-        document.getElementById('search-button').addEventListener('click', () => {
+        document.getElementById('search-input').addEventListener('input', () => {
             const query = document.getElementById('search-input').value.trim();
             const results = search.search(query);
 
@@ -49,8 +49,8 @@ function displayResults(results, query) {
         const resultElement = document.createElement('div');
         resultElement.classList.add('result-item');
 
-        // Kiemelés csak a content mezőben található keresett szövegről
-        const highlightedText = highlightText(result.content, query);
+        // Kiemelés a content mezőben található keresett szövegről
+        const highlightedText = extractRelevantSnippet(result.content, query);
 
         resultElement.innerHTML = `
             <h3>${result.file_name}</h3>
@@ -62,10 +62,16 @@ function displayResults(results, query) {
     });
 }
 
-// Keresett szöveg kiemelése
-function highlightText(text, query) {
-    const regex = new RegExp(`(${query})`, 'gi');
-    return text.replace(regex, '<mark>$1</mark>');
+// A szövegből a keresett részlet kiemelése és megjelenítése
+function extractRelevantSnippet(text, query) {
+    const regex = new RegExp(`(.{0,30}${query}.{0,30})`, 'gi');
+    const match = text.match(regex);
+
+    if (match) {
+        return match[0].replace(query, `<mark>${query}</mark>`);
+    }
+
+    return 'A keresett kifejezés nem található.';
 }
 
 // Futtatás induláskor
