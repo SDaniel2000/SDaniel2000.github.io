@@ -12,7 +12,7 @@ fetch('output.json')
         data.forEach(item => {
             search.add(item.content, item.file_name, item.url);
         });
-
+ 
         // Keresés eseménykezelő
         document.getElementById('search-input').addEventListener('input', (event) => {
             const query = event.target.value;
