@@ -22,7 +22,7 @@ async function initializeSearch() {
         search.addIndex('content'); // A "content" mezőben keresünk
         search.addDocuments(data); // Az adatokat a keresőhöz adjuk
 
-        // Keresés eseménykezelője
+        // Keresés eseménykezelője (input esemény, ami a keresés dinamikus frissítését indítja)
         document.getElementById('search-input').addEventListener('input', () => {
             const query = document.getElementById('search-input').value.trim();
             const results = search.search(query);
