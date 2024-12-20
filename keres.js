@@ -70,5 +70,6 @@ function highlightText(text, query) {
 
 // Futtatás DOMContentLoaded esemény után
 document.addEventListener('DOMContentLoaded', () => {
-    initializeSearch();
+    initializeSearch(); 
+    
 });
