@@ -12,9 +12,16 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+<<<<<<< HEAD
     async function initializeSearch() {
         try {
             const data = await loadJSON();
+=======
+ // Kereső inicializálása és működése
+async function initializeSearch() {
+    try {
+        const data = await loadJSON();
+>>>>>>> 2320c65975ae9e7e3e9200ab192db61645c139a4
 
             // js-search keresőmotor inicializálása
             const search = new JsSearch.Search('url'); // Az "url" mezőt használjuk egyedi azonosítóként
