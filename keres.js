@@ -1,55 +1,68 @@
-// BloomySearch importálása
-import { BloomySearch } from 'https://cdn.jsdelivr.net/npm/bloomysearch@1.0.0/dist/bloomysearch.min.js';
+// A keresés megvalósítása js-search segítségével
+import JsSearch from 'js-search';
 
-// JSON fájl betöltése
-fetch('output.json')
-    .then(response => response.json())
-    .then(data => {
-        // Inicializálás a BloomySearch-kel
-        const search = new BloomySearch();
+// A JSON-adatok betöltése
+async function loadJSON() {
+    const response = await fetch('output.json'); // A JSON fájl URL-je
+    if (!response.ok) {
+        throw new Error('Nem sikerült betölteni a JSON-t.');
+    }
+    return await response.json();
+}
 
-        // Indexelés a JSON adatokból
-        data.forEach(item => {
-            search.add(item.content, item.file_name, item.url);
+// Keresőmotor beállítása
+async function initializeSearch() {
+    try {
+        const data = await loadJSON();
+
+        // Kereső inicializálása
+        const search = new JsSearch.Search('url'); // Az "url" mezőt egyedi azonosítóként használjuk
+        search.addIndex('content'); // A "content" mezőben keresünk
+        search.addIndex('file_name'); // A "file_name" mezőt is indexeljük
+        search.addDocuments(data); // Az adatokat a keresőhöz adjuk
+
+        // Kereső eseménykezelője
+        document.getElementById('search-button').addEventListener('click', () => {
+            const query = document.getElementById('search-input').value;
+            const results = search.search(query);
+
+            // Eredmények megjelenítése
+            displayResults(results);
         });
- 
-        // Keresés eseménykezelő
-        document.getElementById('search-input').addEventListener('input', (event) => {
-            const query = event.target.value;
-
-            if (query.length > 2) { // Minimum 3 karaktert kell beírni a kereséshez
-                // Keresés az indexelt adatokban
-                const results = search.search(query);
-                displayResults(results);
-            } else {
-                clearResults();
-            }
-        });
-    })
-    .catch(error => console.error('Hiba történt a JSON fájl betöltésekor:', error));
-
-// Eredmények megjelenítése
-function displayResults(results) {
-    const resultsContainer = document.getElementById('results');
-    resultsContainer.innerHTML = ''; // Töröljük a régi eredményeket
-
-    if (results.length > 0) {
-        results.forEach(result => {
-            const resultElement = document.createElement('div');
-            resultElement.classList.add('result-item');
-            resultElement.innerHTML = `
-                <h3><a href="${result.url}" target="_blank">${result.file_name}</a></h3>
-                <p>${result.text.substring(0, 300)}...</p> <!-- A szöveg elejét jelenítjük meg -->
-            `;
-            resultsContainer.appendChild(resultElement);
-        });
-    } else {
-        resultsContainer.innerHTML = '<p>Nincs találat.</p>';
+    } catch (error) {
+        console.error('Hiba történt a kereső inicializálása közben:', error);
     }
 }
 
-// Eredmények törlése
-function clearResults() {
-    const resultsContainer = document.getElementById('results');
-    resultsContainer.innerHTML = '';
+// Eredmények megjelenítése
+function displayResults(results) {
+    const resultsContainer = document.getElementById('results-container');
+    resultsContainer.innerHTML = ''; // Töröljük a korábbi eredményeket
+
+    if (results.length === 0) {
+        resultsContainer.textContent = 'Nincs találat.';
+        return;
+    }
+
+    results.forEach(result => {
+        const resultElement = document.createElement('div');
+        resultElement.classList.add('result-item');
+
+        resultElement.innerHTML = `
+            <h3>${result.file_name}</h3>
+            <p>${highlightText(result.content, query)}</p>
+            <a href="${result.url}" target="_blank">Megnyitás</a>
+        `;
+
+        resultsContainer.appendChild(resultElement);
+    });
 }
+
+// Kiemeli a keresett szöveget az eredményben
+function highlightText(text, query) {
+    const regex = new RegExp(`(${query})`, 'gi');
+    return text.replace(regex, '<mark>$1</mark>');
+}
+
+// Futtatás induláskor
+initializeSearch();

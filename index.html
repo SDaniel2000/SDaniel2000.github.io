@@ -3,42 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Szöveg Keresés</title>
+    <title>Keresés</title>
+    <script type="module" src="keres.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        #search-input {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-        #results {
-            margin-top: 20px;
-        }
         .result-item {
-            margin-bottom: 15px;
-            padding: 10px;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
         }
-        .result-item a {
-            text-decoration: none;
-            color: blue;
-        }
-        .result-item a:hover {
-            text-decoration: underline;
+        mark {
+            background-color: yellow;
         }
     </style>
 </head>
 <body>
-    <h1>Szöveg Keresés</h1>
-    <input type="text" id="search-input" placeholder="Keresés...">
-    <div id="results"></div>
-
-    <!-- keres.js betöltése modulként -->
-    <script type="module" src="keres.js"></script>
+    <h1>Weboldal Kereső</h1>
+    <input type="text" id="search-input" placeholder="Írj be kulcsszavakat..." />
+    <button id="search-button">Keresés</button>
+    <div id="results-container"></div>
 </body>
 </html>
