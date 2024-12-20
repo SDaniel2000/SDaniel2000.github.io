@@ -1,0 +1,2802 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rss version="2.0"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+
+<title>Alsacreations.com - Actualités</title>
+<description>Les dernières actualités d'Alsacreations.com</description>
+<language>fr</language>
+
+<link>https://www.alsacreations.com/</link>
+<atom:link href="https://www.alsacreations.com/rss/actualites.xml" rel="self" type="application/rss+xml" />
+
+  
+	<item>
+  	<title>Revue de la définition du support des navigateurs</title>
+  	<link>https://www.alsacreations.com/article/lire/1934-Revue-de-la-definition-du-support-des-navigateurs.html</link>
+  	<guid>https://www.alsacreations.com/article/lire/1934-Revue-de-la-definition-du-support-des-navigateurs.html</guid>
+    <description><![CDATA[<p>Il a toujours été complexe de définir avec précision un <strong>niveau de support navigateur</strong> dans les projets web, d'autant plus avec la variété des plateformes (mobile, desktop) et malgré la concentration du marché autour d'un nombre réduit de moteurs.</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1731252176-browsers.png" alt="Navigateurs web" title="" data-img_id="3509"></p>
+
+<p>D'un côté car de multiples langages entrent en jeu pour l'intégration (interprétation/reconnaissance des balises HTML et des propriétés CSS), développements (syntaxe JavaScript et API utilisables, version de HTTP, protocoles et en-têtes). D'un autre côté car avec les mises à jour constantes de toutes parts, cette grille de lecture est changeante, entre le début et la fin d'un projet, si tant est qu'il y ait une fin.</p>
+
+<p>L'approche par dégradation gracieuse qui a été définie comme une bonne pratique pour ne pas exclure un public non-technophile, bien que très appréciable sur le papier, n'est plus toujours applicable tant la dépendance à des frameworks tout-en-un impose déjà de reconnaître toute une panoplie de fonctionnalités et ne plus permettre de se reposer sur une version dégradée, voire brute d'un site ou d'une application web.</p>
+
+<p>Les plus gros acteurs du web qui ne manquent pourtant pas de moyens et d'un public très large, ont progressivement abandonné les alternatives statiques minimalistes qui pouvaient exister. Nous avons bien plus tendance à vouloir exploiter les derniers outils à la mode, quitte à laisser des personnes sur le bord des autoroutes de l'information, là où par le passé il fallait bien plus faire attention au support des anciens navigateurs.</p>
+
+<h2>Un peu de transpilation</h2>
+
+<p>Des solutions existent pour automatiser et faciliter l'interprétation de code récent sur d'anciennes plateformes.</p>
+
+<p>En <strong>CSS</strong>, si une propriété récente n'est pas reconnue, la mise en page ou l'apparence sera dégradée mais cela ne devrait pas empêcher la consultation et l'usage (en théorie) ; on utilise aussi <a href="https://github.com/postcss/autoprefixer">autoprefixer</a> pour éviter d'écrire des préfixes vendeurs, mais cela devrait disparaître à terme.</p>
+
+<p>En <strong>JavaScript</strong>, on a longtemps transpilé, par exemple avec l'aide de <a href="https://babeljs.io/">Babel</a> du code ECMAScript très récent vers des versions rétro-compatibles, utilisant des syntaxes plus communes, cela se passe en général bien ; par contre si une API ou fonctionnalité native du navigateur est absente c'est plus problématique et il faut passer par un <i lang="en">fallback</i>, un <i lang="en">shim</i>, un <i lang="en">polyfill</i>, c'est-à-dire un bout de code plus ou moins conséquent qui va tenter de reproduire plus ou moins fidèlement ce que le navigateur ne reconnaît pas tout seul.</p>
+
+<p>En <strong>HTML</strong> étant donné la <em>relative</em> stabilité des balises et les solutions de repli possibles jusqu'à l'interprétation du contenu en texte brut, la question se pose moins... en théorie : deux éléments largement reconnus comme <code>&lt;details&gt;</code> et <code>&lt;summary&gt;</code> ont provoqué des tourments pour les lecteurs d'écran, Voiceover iOS ne reconnaissant pas le rôle de <em>bouton</em> de summary. Désormais au tour de <code>&lt;dialog&gt;</code> et <code>popover</code> : il y a de nouveaux éléments censés simplifier et remplacer des implémentations ARIA imparfaites mais les navigateurs et/ou lecteurs d'écran ne suivent pas ce rythme (et/ou leur spécification d'ailleurs).</p>
+
+<h3>Browserslist</h3>
+
+<p>Dans le seul aspect technique, une bibliothèque a aidé jusqu'à présent : <a href="https://browsersl.ist/">Browserslist</a> permet dans un fichier de configuration ou directement dans <code>package.json</code> de définir par des mots simples quelle "quantité" du marché des navigateurs on souhaite cibler. Par exemple <code>&gt; 0.5%, last 5 versions, not dead</code> indiquera aux autres outils de compilation (Babel, Autoprefixer, Postcss...) sur quelles instructions se reposer pour satisfaire cette exigence de rétro-compatibilité.</p>
+
+<p>Le site va nous permettre d'obtenir un tableau très détaillé des versions et une estimation de la population globale qui répondra à cette condition.</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1731252599-browserslist.png" alt="Capture d'écran de Browserslist" title="" data-img_id="3510"></p>
+
+<h3>CanIUse</h3>
+
+<p>Vous connaissez <a href="https://caniuse.com/">Can I use</a> et ses nombreux tableaux, que l'on peut affiner par zone géographique, par usage et par date. Avant de lancer un nouveau développement on pourra consulter l'une ou l'autre fonctionnalité, mais malheureusement pas toutes, cela devient tentaculaire.</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1731253496-caniuse-webp.png" alt="Can i use webp" title="" data-img_id="3511"></p>
+
+<h2>Approche par version de navigateur (avant)</h2>
+
+<blockquote>
+  <p>Exemple de formule : "Support de Firefox 37, d'Internet Explorer 11, et Chrome 42".</p>
+</blockquote>
+
+<p>Durant de nombreuses années, les navigateurs ont connu des progrès moins fluides, moins granulaires et plus espacés dans le temps, car les mises à jour automatiques n'étaient pas la règle : il était humainement possible de suivre l'évolution des versions et d'avoir en tête les nouveautés apportées, par exemple entre Internet Explorer 5 et 6.</p>
+
+<p>Désormais, avec des numérotations de versions qui se comptent en dizaines et un rythme de sorties qui se compte en semaines imposé par les équipes de Chromium, puis Firefox, puis Safari (WebKit), il devient difficile de définir avec précision un tableau de support pour un projet d'autant plus que les API envisagées deviennent de plus en plus complexes pour transformer le web en plateforme complète de développement. Si certaines entreprises choisissent la "stabilité" de Firefox ESR (Extended Support Release) pour bloquer les fonctionnalités à une certaine version, cela reste marginal.</p>
+
+<ul>
+<li>Chrome publie une roadmap dense sur <a href="https://chromestatus.com/roadmap">https://chromestatus.com/roadmap</a></li>
+<li>WebKit n'entre plus dans les détails <a href="https://webkit.org/status/">https://webkit.org/status/</a> et renvoie à MDN (Mozilla Developer Network) + <em>Can I use</em> mais communique tout de même sur sa position vis-à-vis de l'intégration dans le moteur <a href="https://webkit.org/standards-positions/">https://webkit.org/standards-positions/</a> et plus spécifiquement sur les propriétés CSS reconnues <a href="https://webkit.org/css-status/">https://webkit.org/css-status/</a></li>
+<li>Mozilla fait de même <a href="https://mozilla.github.io/standards-positions/">https://mozilla.github.io/standards-positions/</a> après avoir abandonné sa page de <em>platform status</em></li>
+<li>Microsoft Edge a aussi jeté l'éponge <a href="https://developer.microsoft.com/fr-fr/microsoft-edge/platform/status/">https://developer.microsoft.com/fr-fr/microsoft-edge/platform/status/</a> mais cela peut se comprendre car reposant désormais sur Chromium</li>
+</ul>
+
+<p>Notons l'initiative de Simon Willison qui a codé un outil permettant d'obtenir un historique plus détaillé du support déjà affiché par la documentation MDN avec <a href="https://tools.simonwillison.net/mdn-timelines">MDN timelines</a>.</p>
+
+<h2>Approche par ancienneté relative</h2>
+
+<blockquote>
+  <p>Formule possible : "Support optimal des navigateurs desktop jusqu'à 2 ans et en mode dégradé jusqu'à 5 ans, support des navigateurs mobiles jusqu'à 3 ans".</p>
+</blockquote>
+
+<p>Avec notre écosystème mouvant, on peut s'orienter vers un support mesuré à l'ancienneté des navigateurs. On ne mesure plus le nombre de versions écoulées mais le temps. Cela a l'avantage d'être souple et cela peut sembler "toujours à jour" quoiqu'il arrive... mais concrètement on sera toujours dans une zone approximative au fur et à mesure de la durée de vie d'un projet : faut-il mesurer par rapport à la date de démarrage des développements, ou de mise en ligne définitive ? Quid du paysage technique dans 6 mois, 1 an et plus.</p>
+
+<h2>Approche par <em>baseline</em></h2>
+
+<p>Avec toutes ces difficultés et l'impossibilité de suivre exhaustivement les versions et leur immense tableau de support, la plus récente vision est le pragmatisme (et optimisme ?) : <a href="https://web.dev/baseline">Baseline</a> définit deux statuts :</p>
+
+<table>
+<thead>
+<tr>
+  <th>Intitulé</th>
+  <th>Logo</th>
+  <th>Définition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Nouveauté disponible</td>
+  <td><img src="https://www.alsacreations.com/xmedia/doc/original/1731252097-baseline-new.png" alt="Baseline new" title="" data-img_id="3507"></td>
+  <td>la fonctionnalité est compatible avec tous les principaux navigateurs : elle est interopérable.</td>
+</tr>
+<tr>
+  <td>Disponibilité générale</td>
+  <td><img src="https://www.alsacreations.com/xmedia/doc/original/1731252107-baseline-widely.png" alt="Baseline widely" title="" data-img_id="3508"></td>
+  <td>30 mois se sont écoulés depuis la nouvelle date d'interopérabilité. Cette fonctionnalité peut être utilisée par la plupart des sites</td>
+</tr>
+<tr>
+  <td>Disponibilité limitée</td>
+  <td><img src="https://www.alsacreations.com/xmedia/doc/original/1731347550-baseline-limited.png" alt="Baseline limited" title="" data-img_id="3515"></td>
+  <td>C'est trop récent, peu ou pas supporté.</td>
+</tr>
+</tbody>
+</table>
+
+<p>On retrouve un tableau aussi très fourni grâce à <a href="https://webstatus.dev">Web Platform Status</a>, à l'initiative de l'équipe de Chrome. Il faut les comprendre, les nouveautés s'enchaînent plus vite qu'il n'est possible à un humain de les suivre et à <a href="https://killedbygoogle.com/">Google d'abandonner des produits</a>.</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1731253942-baseline-table.png" alt="Tableau baseline" title="" data-img_id="3514"></p>
+
+<p>C'est probablement ce qui fait le plus sens à l'heure actuelle, avec un repère temporel par année (<a href="https://web.dev/blog/baseline2023">baseline 2023</a>, 2024, 2025...) et un niveau de confiance affiché pour les développeuses et développeurs bien plus compréhensible pour la question "est-ce que je peux utiliser ce truc, ou est-ce que ça va casser ?".</p>
+
+<p>On retrouve aussi <em>Baseline</em> sur <a href="https://developer.mozilla.org/en-US/blog/baseline-unified-view-stable-web-features/">MDN</a></p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1731253591-mdn-baseline.png" alt="MDN Baseline" title="" data-img_id="3513"></p>
+
+<p>...et sur <a href="https://caniuse.com/">CanIUse</a>.</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1731253538-caniuse-baseline.png" alt="Can I use baseline" title="" data-img_id="3512"></p>
+
+<p>Cet alignement entre équipes de développement de moteurs, documentations et toutes les personnes qui font du web en général a le mérite d'être plus abordable.</p>
+
+<h3>Mais alors on fait quoi de Baseline ?</h3>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1731252107-baseline-widely.png" alt="Baseline widely" title="" data-img_id="3508"></p>
+
+<p>Avec une fonctionnalité annoncée en "Disponibilité générale" : on peut assez bien prendre une décision, on sait qu'elle est intéropérable depuis un moment ayant permis à la majorité des internautes d'effectuer les mises à jour nécessaires... n'est-ce pas ? Mais rien ne le garantit, comme toujours un pourcentage non négligeable de personnes seront contraintes pour des raisons de moyens ou d'outils, et rien ne garantit non plus que l'on soit irréprochable du côté des outils d'accessibilité.</p>
+
+<p>👉 On peut décider d'utiliser la fonctionnalité pour un projet qui démarre, ou qui se met à jour dès à présent, avec toutefois un point d'attention à prévoir une solution de repli si son absence est bloquante pour un pourcentage significatif d'internautes.</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1731347550-baseline-limited.png" alt="Baseline limited" title="" data-img_id="3515"></p>
+
+<p>Avec une fonctionnalité annoncée en "Disponibilité limitée" : c'est assez évident, un ou plusieurs moteurs de navigateurs n'en sont pas équipés (ou les versions de Chromium sont trop fraîches), une majorité d'internautes n'y auront pas accès.</p>
+
+<p>👉 On évite d'y toucher.</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1731252097-baseline-new.png" alt="Baseline new" title="" data-img_id="3507"></p>
+
+<p>Avec une fonctionnalité annoncée en "Nouveauté disponible" : c'est plus délicat. Depuis quand est-elle disponible, pour qui, et quel est le délai qui court (pour les 30 mois), vient-il de démarrer ou est-on proches de passer en statut "Disponibilité générale" ? C'est pourquoi <a href="https://webstatus.dev/">https://webstatus.dev/</a> précise des dates (lorsqu'on coche les bonnes options) :</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1731348631-web-platform-status-dates.png" alt="Web Platform Status fonctionnalités avec dates" title="" data-img_id="3516"></p>
+
+<p>Par exemple <code>appearance</code> nouveau en 2022 est passé en "disponibilité générale" en septembre 2024. La media query <code>prefers-contrast</code> obtiendra le même sésame en décembre 2024, tandis que pour <code>forced-colors</code> ce sera en mars 2025.</p>
+
+<p>🤷 Au cas par cas ?</p>
+
+<p>Prenons quelques exemples (à la date de publication) :</p>
+
+<table>
+<thead>
+<tr>
+  <th>Fonctionnalité</th>
+  <th>Statut</th>
+  <th>Date d'annonce / disponibilité prévue</th>
+  <th>Part de la population en France/Europe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Attribut HTML inert</td>
+  <td><img src="https://www.alsacreations.com/xmedia/doc/original/1731252097-baseline-new.png" alt="Baseline new" title="" data-img_id="3507"></td>
+  <td>avril 2023 / octobre 2025</td>
+  <td>95%</td>
+</tr>
+<tr>
+  <td>backdrop-filter</td>
+  <td><img src="https://www.alsacreations.com/xmedia/doc/original/1731252097-baseline-new.png" alt="Baseline new" title="" data-img_id="3507"></td>
+  <td>septembre 2024 / mars 2027</td>
+  <td>98%</td>
+</tr>
+<tr>
+  <td>requestVideoFrameCallback</td>
+  <td><img src="https://www.alsacreations.com/xmedia/doc/original/1731252097-baseline-new.png" alt="Baseline new" title="" data-img_id="3507"></td>
+  <td>octobre 2024 / avril 2027</td>
+  <td>98%</td>
+</tr>
+<tr>
+  <td>WebUSB</td>
+  <td><img src="https://www.alsacreations.com/xmedia/doc/original/1731347550-baseline-limited.png" alt="Baseline limited" title="" data-img_id="3515"></td>
+  <td>aucune précision*</td>
+  <td>75%</td>
+</tr>
+</tbody>
+</table>
+
+<p>On notera donc des étrangetés dans le pragmatisme qui devrait faire sens : <code>accent-color</code> est reconnu partout mais encore noté "Limité" ; <code>requestVideoFrameCallback</code> ne devrait accéder à "Disponibilité générale" qu'en 2027 mais est déjà implémenté en réalité par tous les moteurs actuels ; le vénérable <code>zoom</code> n'a été listé qu'à partir de mai 2024, etc.</p>
+
+<h3>Alors, "ça dépend" ?</h3>
+
+<p>Oui. Des dates en question, de l'importance des technologies à supporter et de leur caractère bloquant ou non-bloquant. Les étiquettes proposées par l'approche <em>baseline</em> sont intéressantes et pratiques : d'un coup d'oeil on peut se faire une première idée et échanger dans des termes simples avec des collègues ou des clients. Mais dans la réalité, on ne sera pas épargnés par les tableaux de supports, les projections temporelles et les pourcentages divers. C'est notre métier, chacun saura prendre les bonnes décisions ;)</p>
+<p><b><a href="https://www.alsacreations.com/article/lire/1934-Revue-de-la-definition-du-support-des-navigateurs.html">Publié par Alsacreations.com</a></b></p>]]></description>
+  	<category>Web</category>
+  	<comments>https://www.alsacreations.com/article/lire/1934-Revue-de-la-definition-du-support-des-navigateurs.html#commentaires</comments>
+  	<dc:date>2024-11-15T08:40:07+01:00</dc:date>
+  	<dc:creator>Rodolphe</dc:creator>
+  		</item>
+
+  
+	<item>
+  	<title>Les import maps en JavaScript</title>
+  	<link>https://www.alsacreations.com/article/lire/1933-Les-import-maps-en-JavaScript.html</link>
+  	<guid>https://www.alsacreations.com/article/lire/1933-Les-import-maps-en-JavaScript.html</guid>
+    <description><![CDATA[<p>Les <i lang="en">import maps</i> sont une fonctionnalité moderne de JavaScript qui permet de contrôler comment le navigateur résout les <strong>imports de modules</strong>.</p>
+
+<p>Vous avez sûrement déjà rencontré dans vos projets des modules JavaScript, aussi appelés ESM (EcmaScript Modules) qui induisent un découpage des portions de code et de données. C'est très pratique, avec certains fichiers - en général fournis par une bibliothèque - qui exportent des fonctions, tableaux, objets, etc. pour les mettre à la disposition d'autres fichiers - en général les vôtres - qui les importent.</p>
+
+<p>On sait aussi que depuis quelques années de tels scripts peuvent être chargés dans le navigateur à l'aide de la balise script équipée de l'attribut <code>type="module"</code>.</p>
+
+<h2>Que sont les import maps ?</h2>
+
+<p>Une déclaration d'import map pourrait être la suivante à l'aide de la nouvelle valeur <code>type="importmap"</code>.</p>
+
+<pre><code class="language-html">&lt;script type="importmap"&gt;
+{
+    "imports": {
+        "logger": "/js/logger.js",
+        "tools/": "/js/tools/",
+        "lodash": "https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"
+    }
+}
+&lt;/script&gt;
+</code></pre>
+
+<p>On peut constater qu'il s'agit d'un objet, contenant une clé <code>"imports"</code>, elle même définissant une correspondance entre des noms courts et des chemins longs.</p>
+
+<p>On peut aussi faire appel à un beau fichier JSON contenant cette "carte", ce qui semblera plus propre que de les déclarer <em>inline</em> dans le corps de la page.</p>
+
+<pre><code class="language-html">&lt;script type="importmap" src="map.json"&gt;
+</code></pre>
+
+<h2>Avantages</h2>
+
+<p>Cela a pour but de :</p>
+
+<ul>
+<li>Simplifier la gestion des dépendances dans le navigateur.</li>
+<li>Permettre d'utiliser des noms simples plutôt que des chemins complets.</li>
+<li>Éviter d'avoir à spécifier les versions dans chaque import.</li>
+</ul>
+
+<p>Ainsi on pourra écrire ensuite</p>
+
+<pre><code class="language-javascript">import _ from 'lodash';
+
+// Import depuis un chemin local
+import { log } from 'logger';
+
+// Import via un préfixe
+import { maFonction } from 'tools/malib.js';
+</code></pre>
+
+<p>On améliore la lisibilité et on peut plus facilement changer les versions et les chemins réels vers les dépendances.</p>
+
+<p>Il y a quelques petites limitations : les projets d'envergure avec des frameworks et des outils de compilation tels que Vite, viennent déjà avec des solutions de résolution de modules. Certaines fonctionnalités qui optimisent le développement et le poids des ressources (hot reloading, tree shaking) ne sont pas disponibles. C'est pourquoi on s'en servira plutôt pour du prototypage rapide, des petites démonstrations techniques ou des projets qui ne passent pas par des frameworks évolués.</p>
+
+<p>L'attribut <code>type="importmap"</code> est <a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/script/type/importmap#compatibilit%C3%A9_des_navigateurs">supporté par tous les navigateurs actuels</a> et considéré comme faisant partie de la <em>baseline 2023</em>.</p>
+<p><b><a href="https://www.alsacreations.com/article/lire/1933-Les-import-maps-en-JavaScript.html">Publié par Alsacreations.com</a></b></p>]]></description>
+  	<category>Javascript</category>
+  	<comments>https://www.alsacreations.com/article/lire/1933-Les-import-maps-en-JavaScript.html#commentaires</comments>
+  	<dc:date>2024-10-29T09:15:21+01:00</dc:date>
+  	<dc:creator>Rodolphe</dc:creator>
+  		</item>
+
+  
+	<item>
+  	<title>Mermaid : diagrammes, schémas et graphiques dans markdown</title>
+  	<link>https://www.alsacreations.com/astuce/lire/1932-Mermaid--diagrammes-schemas-et-graphiques-dans-markdown.html</link>
+  	<guid>https://www.alsacreations.com/astuce/lire/1932-Mermaid--diagrammes-schemas-et-graphiques-dans-markdown.html</guid>
+    <description><![CDATA[<p>Mermaid est un langage qui permet de créer des diagrammes dynamiques directement dans des fichiers Markdown c'est à dire en mode texte.</p>
+
+<p>Il est très utile pour représenter visuellement des concepts complexes sous forme de <strong>graphiques, schémas, diagrammes</strong> (comme des diagrammes de flux, des organigrammes, des graphiques Gantt, etc.) dans un format simple et lisible.</p>
+
+<blockquote>
+  <p>Un beau schéma vaut mille mots de markdown.</p>
+</blockquote>
+
+<p>Mermaid s'intègre directement avec des plateformes et outils de documentation comme GitHub, GitLab, Docusaurus, MkDocs, ou Jekyll. Ainsi on peut inclure des diagrammes légers dans des fichiers README ou des wikis sans avoir besoin de les exporter en images.... images qui seront souvent non modifiables par les autres personnes participant à un projet car elles n'auront pas les sources tandis qu'avec Mermaid la source de l'image sera <em>dans</em> le document.</p>
+
+<p>Le résultat étant généré à la volée en SVG (vectoriel) il s'adaptera à la résolution sans difficulté ainsi qu'à la préférence de thème, clair ou sombre (<em>dark mode</em>).</p>
+
+<h2>Exemples</h2>
+
+<p>La syntaxe de mermaid est assez basique, mais efficace.</p>
+
+<pre><code class="language-mermaid">graph TD;
+    A--&gt;B;
+    A--&gt;C;
+    B--&gt;D;
+    C--&gt;D;
+</code></pre>
+
+<p>La première ligne définit le type de diagramme et les suivantes la logique que l'on souhaite écrire. Remarquez qu'il n'y a pas d'instruction de positionnement de bloc, on s'attache juste à décrire les relations, et la bibliothèque JavaScript se charge du reste en transformant ce texte en un beau schéma.</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/full/1729061899-mermaid-resultat.png" alt="Graphique en mermaid" title="" data-img_id="3497"></p>
+
+<p>On peut même générer des flux Git. 🤓</p>
+
+<pre><code class="language-mermaid">gitGraph
+    commit
+    commit
+    branch develop
+    checkout develop
+    commit
+    commit
+    checkout main
+    merge develop
+    commit
+    commit
+</code></pre>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1729063609-mermaid-git.png" alt="Mermaid git" title="" data-img_id="3503"></p>
+
+<p>Voici un diagramme de séquence bien complexe à dessiner, et pourtant simple à écrire en texte.</p>
+
+<pre><code class="language-mermaid">sequenceDiagram
+    Gitlab-&gt;&gt;Gitlab: reçoit un Push sur main
+    Gitlab-&gt;&gt;Runner: Lance un runner
+    Runner-&gt;&gt;Serveur: Connexion SSH
+    Runner-&gt;&gt;Serveur: Envoie les instructions shell du job
+    Serveur--&gt;&gt;Gitlab: Connexion SSH vers Gitlab
+    Serveur--&gt;&gt;Gitlab: git pull
+    Gitlab--&gt;&gt;Serveur: Fichiers
+    Runner-&gt;&gt;Gitlab: Retourne les logs
+    Note over Runner, Serveur: Fin
+</code></pre>
+
+<p>Voici le rendu sur GitHub avec en bonus quelques boutons pour zoomer, se déplacer, copier, etc.</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1729063834-mermaid-sequence-github-light.png" alt="Mermaid séquence sur GitHub" title="" data-img_id="3505"></p>
+
+<h2>Avantages</h2>
+
+<ul>
+<li>C'est du texte.</li>
+<li>C'est modifiable.</li>
+<li>C'est versionnable.</li>
+<li>C'est adapté aux wikis.</li>
+<li>C'est multi-plateforme.</li>
+<li>C'est compris par GitHub et GitLab.</li>
+</ul>
+
+<h2>Inconvénients</h2>
+
+<ul>
+<li>Il faut a priori connaître sa syntaxe (encore une autre...) (mais... des outils existent)</li>
+</ul>
+
+<h2>Support par GitHub et GitLab</h2>
+
+<p>Les deux plateformes les plus répandues de versionnement de code source supportent nativement Mermaid, ce qui est un grand avantage pour documenter vos projets, vos fichiers <code>README.md</code> de manière compréhensible et remplacer de longues explications de texte par des schémas limpides.</p>
+
+<p><a href="https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams">Documentation de GitHub</a></p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1729062167-mermaid-github.jpg" alt="Mermaid expliqué sur GitHub" title="" data-img_id="3498"></p>
+
+<p><a href="https://docs.gitlab.com/ee/user/markdown.html#mermaid​">Documentation de GitLab</a></p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1729062180-mermaid-gitlab.png" alt="Mermaid expliqué sur GitHub" title="" data-img_id="3499"></p>
+
+<h2>Documentation officielle</h2>
+
+<p>La <a href="https://mermaid.js.org/syntax/sequenceDiagram.html">documentation de Mermaid</a> est très bien conçue et vous permet rapidement de cerner tout ce que permet la bibliothèque</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1729062197-mermaid-doc.png" alt="Documentation de mermaid" title="" data-img_id="3500"></p>
+
+<h2>Éditeurs en ligne</h2>
+
+<p>Pour faciliter les opérations, des éditeurs en ligne très bien conçus vous permettent de partir de modèles et de vous adapter progressivement à la syntaxe avec un aperçu du résultat.</p>
+
+<ul>
+<li><a href="https://mermaid.live/edit">Mermaid Live Editor</a> - gratuit, très souple, affichage plein écran et quelques options de mise en forme.</li>
+</ul>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1729062856-mermaid-live-editor.png" alt="Mermaid Live Editor" title="" data-img_id="3501"></p>
+
+<p>Il permet aussi le partage par URL c'est-à-dire d'encoder le contenu dans l'adresse et de la diffuser pour retrouver le schéma d'origine, par exemple pour le résultat ci-dessus :</p>
+
+<pre><code class="language-text">https://mermaid.live/edit#pako:eNo1T8tOxDAM_BUr5-4P9IDUBwcQW0A9tnuwErON2CTFSYBV0w_iO_gxslvWkqXxaGZsL0I6RaIUbyf3JSfkMFrIVQ1d_A4H2O3ukpyIc8OJPChn7e9PBmThsX_uEtSboR6ql4erHpqNaYd5mvfnShlttyC8QO0DU7qJmmXZI2ts6wI88SdFhv71aV3_z7gGJibvXWSZ9_qAQX9E8gnuh6btDiAKYYgNapXfWC6-UYSJDI2izFAhv49itGvWYQyuP1spysCRCsEuHqfbEGeFgVqNR0azkesfwYJfFw
+</code></pre>
+
+<ul>
+<li><a href="https://www.mermaidchart.com/play">Mermaidchart</a> - freemium</li>
+</ul>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1729062884-mermaid-editor.png" alt="Mermaid Editor" title="" data-img_id="3502"></p>
+
+<ul>
+<li><a href="https://mermaid-ascii.art/">Mermaid ASCII</a> - projet open-source</li>
+</ul>
+
+<p>Génère des rendus en ASCII art (ou dans un Terminal).</p>
+
+<pre><code class="language-text">$ cat test.mermaid
+graph LR
+A --&gt; B &amp; C
+B --&gt; C &amp; D
+D --&gt; C
+
+$ mermaid-ascii --file test.mermaid
++---+     +---+     +---+
+|   |     |   |     |   |
+| A |----&gt;| B |----&gt;| D |
+|   |     |   |     |   |
++---+     +---+     +---+
+  |         |         |
+  |         |         |
+  |         |         |
+  |         |         |
+  |         v         |
+  |       +---+       |
+  |       |   |       |
+  -------&gt;| C |&lt;-------
+          |   |
+          +---+
+</code></pre>
+
+<h2>Pimp my mermaid</h2>
+
+<p>Mermaid est un projet open source, ce qui signifie qu'il est possible de l'étendre ou de le modifier pour des besoins spécifiques si nécessaire.</p>
+
+<p>Enfin, on peut avoir accès à des <a href="https://mermaid.js.org/config/theming.html">thèmes de couleur</a></p>
+
+<ul>
+<li>par défaut - pour tous les diagrammes.</li>
+<li>neutre - idéal pour les documents en noir et blanc qui seront imprimés.</li>
+<li>sombre - convient bien aux éléments de couleur sombre ou au mode sombre.</li>
+<li>forêt - avec des nuances de vert.</li>
+<li>base - le seul thème qui peut être modifié</li>
+</ul>
+
+<p>Bref, c'est rudement pratique, on le prend en main facilement et vous serez fiers de pouvoir documenter vos projets, wiki, issues avec de beaux schémas compréhensibles.</p>
+<p><b><a href="https://www.alsacreations.com/astuce/lire/1932-Mermaid--diagrammes-schemas-et-graphiques-dans-markdown.html">Publié par Alsacreations.com</a></b></p>]]></description>
+  	<category>Formats, encodage, XML</category>
+  	<comments>https://www.alsacreations.com/astuce/lire/1932-Mermaid--diagrammes-schemas-et-graphiques-dans-markdown.html#commentaires</comments>
+  	<dc:date>2024-10-18T10:00:00+01:00</dc:date>
+  	<dc:creator>Rodolphe</dc:creator>
+  		</item>
+
+  
+	<item>
+  	<title>URL, URI, URN, quelles différences ?</title>
+  	<link>https://www.alsacreations.com/article/lire/1930-URL-URI-URN-quelles-differences.html</link>
+  	<guid>https://www.alsacreations.com/article/lire/1930-URL-URI-URN-quelles-differences.html</guid>
+    <description><![CDATA[<p>Tout le monde connaît désormamis le terme "URL" pour désigner une adresse sur le web. Bien que certains navigateurs tentent de la simplifier au maximum dans la barre de navigation (et peut être un jour de l'invisibiliser), elle revêt une importance capitale pour savoir où on est, et où on va.</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1727560272-uri-urn-url.png" alt="URI URN URL" title="" data-img_id="3488"></p>
+
+<p>Première chose à savoir : URL et URN sont des sous-types d'URI.</p>
+
+<h2>URI</h2>
+
+<p>L'URI (<em>Uniform Resource Identifier</em>) est le terme le plus général qui englobe à la fois URL et URN : c'est une chaîne de caractères qui identifie de manière unique une ressource. Cela peut se faire par l'emplacement de la ressource, son nom, ou les deux.</p>
+
+<p>Un chemin de fichier local pourrait donner une bonne idée d'URI :</p>
+
+<pre><code class="language-text">file:///C:/Documents/Dossier/image.png
+</code></pre>
+
+<p>Dans cet exemple :</p>
+
+<ul>
+<li>Le schéma est <code>file</code> (on comprend donc que la ressource est locale).</li>
+<li>Le séparateur <code>://</code> (que l'on retrouve également dans les URLs) distingue le schéma de l'adresse, c'est une convention admise partout, mais ici nous sommes dans un cas particulier : en général les <code>//</code> précèdent un nom d'hôte, nom de domaine, adresse IP or ici nous sommes en local donc il n'y en a pas, c'est pourquoi on peut voir directement trois <em>slash</em> à la suite <code>///</code>.</li>
+<li>L'adresse (locale) vers la ressource est donc <code>/C:/Users/Utilisateur/Documents/monfichier.txt</code> c'est-à-dire à peu près un chemin que vous pouvez écrire de manière traditionnelle sur un système d'exploitation Windows.</li>
+</ul>
+
+<h2>URN</h2>
+
+<p>L'URN (<em>Uniform Resource Name</em>) est un type d'URI, identifiant une ressource par son nom dans un <em>espace de noms</em> particulier. Ici on ne spécifie pas comment accéder à la ressource (pas de protocole par exemple) mais seulement son identité, qui en théorie devrait être unique et persistante, indépendemment d'un endroit de stockage (contrairement à une URL).</p>
+
+<p>Par exemple un numéro d'ISBN (<em>International Standard Book Number</em>) qui identifie de manière unique un livre peut être écrite sous forme d'URN.</p>
+
+<pre><code class="language-text">urn:isbn:978-2-212-67683-9
+</code></pre>
+
+<p>On peut également écrire un numéro de téléphone.</p>
+
+<pre><code class="language-text">urn:tel:+33123456789
+</code></pre>
+
+<p>Ou encore un UUID (<em>Universally Unique IDentifier</em>) qui est très utilisé en développement, ou pour donner des identifiants à des ressources matérielles.</p>
+
+<pre><code class="language-text">urn:uuid:123e4567-e89b-12d3-a456-426614174000
+</code></pre>
+
+<p>Dans ces exemples</p>
+
+<ul>
+<li>Les séparateurs sont des <code>:</code></li>
+<li>On préfixe par <code>urn</code></li>
+<li>On ajoute le protocole/schéma.</li>
+<li>On termine par l'identifiant de la ressource.</li>
+</ul>
+
+<h2>URL</h2>
+
+<p>L'URL quant à elle sert évidemment d'adresse pour chaque page web, fichier quelconque sur Internet et plus particulièrement sur le web même si ce n'est pas le seul protocole qui l'exploite.</p>
+
+<p>Par exemple on peut écrire une URL pour une adresse FTP (<em>File Transfer Protocol</em>) - qui d'ailleurs à une époque pouvait être reconnue et exploitée par la plupart des navigateurs :</p>
+
+<pre><code class="language-text">ftp://login:password@ftp.schnapsgpt.com:21/dossier/image.png
+</code></pre>
+
+<p>On reconnaît les mêmes principes que précédemment avec le schéma (protocole), les sépararateurs divers <code>:</code>, <code>@</code>, <code>/</code> et l'ajout ici d'informations d'identifications pour accéder à la ressource <code>login:password</code> ainsi que le port <code>21</code>.</p>
+
+<p>Dans le cas d'une URL pour le web, nous retrouverons le protocole <code>http</code> ou <code>https</code> (sécurisé d'une certaine façon).</p>
+
+<pre><code class="language-text">https://www.alsacreations.com/article/lire/1930-URL-URI-URN-quelles-differences.html
+</code></pre>
+
+<p>Ces adresses apportent des avantages :</p>
+
+<ul>
+<li>Elles reflètent souvent la structure hiérarchique d'un site web pour comprendre l'organisation du contenu (si on a bien fait le travail de structuration).</li>
+<li>Elles permettent le partage par lien, universel entre des milliers d'applications, même sur mobile.</li>
+<li>Elles permettent d'identifier la source d'une information par le nom de domaine... sauf si des personnes fourbes réservent un nom avec des caractères internationaux/Unicode très similaires, soit une attaque homographe pour faire pointer vers un autre site non moins fourbe.</li>
+</ul>
+
+<p>En bonus, de belles URLs sont exploitées par les robots des moteurs de recherche (coucou Googlebot) pour mieux comprendre et indexer les pages web: bien pensées elles peuvent améliorer le référencement d'un site.</p>
+
+<h3>D'où vient l'URL ?</h3>
+
+<p>L'invention de l'URL est attribuée à Tim Berners-Lee (encore lui !) l'inventeur de bien des composants essentiels du web : HTML, le premier navigateur, le premier serveur (pour lui répondre), et le protocole HTTP. Rien que ça.</p>
+
+<p>Cet adressage date donc des années 1990 lorsque Tim développait ses projets au CERN à Genève. Il souhaitait pouvoir fournir un adressage des documents et autres ressources sur le réseau informatique qu'il était en train de créer. Au fur et à mesure, le concept a été amélioré par l'IETF (<em>Internet Engineering Task Force</em>).</p>
+
+<h2>En savoir bien plus</h2>
+
+<p>Écoutez l'épisode <a href="https://cpu.dascritch.net/post/2023/10/05/Ex0213-Diss%C3%A9quons-une-URL%2C-premi%C3%A8re-partie">Disséquons une URL, première partie</a> de l'excellent Carré, Petit, Utile : Le programme radio des gens du numérique.</p>
+
+<p>L'URL est un standard décrit par la <a href="https://www.rfc-editor.org/rfc/rfc1738">RFC 1738</a>, précisée dans le cas des liens <em>mailto</em> par la <a href="https://www.rfc-editor.org/rfc/rfc2368">RFC 2368</a>... complétée par la <a href="https://www.rfc-editor.org/rfc/rfc2396">RFC 2396</a> sur les URI, puis par la <a href="https://www.rfc-editor.org/rfc/rfc3986">RFC 3986</a> l'élargissant encore plus aux URI, ainsi que la <a href="https://www.rfc-editor.org/rfc/rfc8089">RFC 8089</a> sur les noms locaux de fichiers, et ainsi de suite.</p>
+<p><b><a href="https://www.alsacreations.com/article/lire/1930-URL-URI-URN-quelles-differences.html">Publié par Alsacreations.com</a></b></p>]]></description>
+  	<category>Web</category>
+  	<comments>https://www.alsacreations.com/article/lire/1930-URL-URI-URN-quelles-differences.html#commentaires</comments>
+  	<dc:date>2024-10-09T10:16:20+01:00</dc:date>
+  	<dc:creator>Rodolphe</dc:creator>
+  		</item>
+
+  
+	<item>
+  	<title>IA : Interroger un LLM en JavaScript avec Ollama</title>
+  	<link>https://www.alsacreations.com/tuto/lire/1931-IA--Interroger-un-LLM-en-JavaScript-avec-Ollama.html</link>
+  	<guid>https://www.alsacreations.com/tuto/lire/1931-IA--Interroger-un-LLM-en-JavaScript-avec-Ollama.html</guid>
+    <description><![CDATA[<p>Nous n'avons pas fini d'entendre parler de les LLM (grands modèles de langages) et de l'Intelligence Artificielle. Outre les sytèmes en ligne (souvent payants) il est possible d'interroger un modèle local (gratuitement) par l'intermédiaire d'un peu de JavaScript.</p>
+
+<p>Pour ceci nous utiliserons :</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1727733655-ollama-web.png" alt="Ollama" title="" data-img_id="3493"></p>
+
+<ul>
+<li><a href="https://ollama.com/">Ollama</a> qui permet de télécharger <a href="https://ollama.com/models">des modèles</a> au choix</li>
+<li>Un des modèles proposés, par exemple <em>llama</em> de Meta</li>
+<li>La <a href="https://www.npmjs.com/package/ollama">bibliothèque JavaScript Ollama</a> (package npm)</li>
+</ul>
+
+<h2>Ollama</h2>
+
+<p><a href="https://ollama.com/">Ollama</a> est une application disponible pour Linux, macOS, Windows qui sert d'interface de gestion de LLM. Voyons la comme une sorte de Docker qui ira piocher dans un catalogue d'images disponibles en ligne, faciles à télécharger et à exécuter en une seule instruction ou presque en précisant bien le nom du modèle souhaité.</p>
+
+<p>Les commandes essentielles après avoir téléchargé et installé Ollama :</p>
+
+<ul>
+<li><code>ollama list</code> liste les modèles déjà téléchargés</li>
+<li><code>ollama pull &lt;modèle&gt;</code> télécharge un nouveau LLM</li>
+<li><code>ollama run &lt;modèle&gt;</code> exécute</li>
+<li><code>ollama stop &lt;modèle&gt;</code> met fin à l'exécution</li>
+<li><code>ollama rm &lt;modèle&gt;</code> supprime</li>
+</ul>
+
+<p>Pour l'occasion, nous utiliserons llama 3.2</p>
+
+<pre><code class="language-sh">ollama pull llama3.2
+</code></pre>
+
+<p>Pour préciser une autre version du modèle avec nombre de paramètres (comprenez complexité et poids) différent, on pourra par exemple indiquer <code>ollama pull llama3.2:1b</code> pour <em>1B</em> soit un milliard de paramètres.</p>
+
+<p>Jusque-là si tout va bien, nous pouvons d'ores et déjà discuter en mode texte brut par un <code>ollama run llama3.2</code>.</p>
+
+<h2>Package JavaScript Ollama</h2>
+
+<p>Cette bibliothèque nous permet d'aller interroger Ollama installé localement en définissant le modèle, le message à lui envoyer et en traitant la réponse. De manière très basique on peut se servir de console.log mais ce n'est pas très intéressant car bloquant jusqu'à obtenir la totalité de la réponse ; la promptitude du modèle dépendra aussi de la puissance de votre machine et de votre mémoire vive disponible.</p>
+
+<p>À l'aide d'un environnement Node.js (déjà installé n'est-ce pas ?), nous pouvons poursuivre.</p>
+
+<ol>
+<li><p>Créer un dossier quelconque 📁 pour notre projet.</p></li>
+<li><p>Installer la dépendnace avec <code>npm install --save ollama</code> (ou avec <a href="/article/lire/1907-Les-gestionnaires-de-paquets-pour-Node--npm-yarn-pnpm.html">pnpm</a>)</p></li>
+</ol>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1727729563-npm-install-ollama.png" alt="npm install ollama" title="" data-img_id="3490"></p>
+
+<ol start="3">
+<li>Écrire un petit script <code>kiwi.mjs</code> pour importer <code>ollama</code> et appeler <code>chat()</code> afin de lancer la discussion</li>
+</ol>
+
+<pre><code class="language-js">import ollama from 'ollama'
+
+const response = await ollama.chat({
+  model: 'llama3.2',
+  messages: [{ role: 'user', content: 'Quelle est la recette du cake au kiwi ?' }],
+})
+// ⚠️ Ceci peut prendre beaucoup de temps car on attend la réponse complète
+console.log(response.message.content)
+</code></pre>
+
+<p>Il suffira de l'exécuter en ligne de commande avec <code>node kiwi.mjs</code>.</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1727729579-node-ollama.png" alt="Exécution d'ollama dans le terminal" title="" data-img_id="3491"></p>
+
+<p>Pour <em>streamer</em> la réponse, c'est-à-dire la restituer au fur et à mesure de l'ajout de mots par le LLM, on peut se servir de l'alternative en activant l'option <em>stream</em>.</p>
+
+<pre><code class="language-js">import ollama from 'ollama'
+
+const message = { role: 'user', content: 'Quelle est la recette du cake au kiwi ?' }
+const response = await ollama.chat({ model: 'llama3.2', messages: [message], stream: true })
+for await (const part of response) {
+  process.stdout.write(part.message.content)
+}
+</code></pre>
+
+<p>Un bon nombre d'autres paramètres et méthodes existent dans cette interface, il suffira de consulter la <a href="https://www.npmjs.com/package/ollama">documentation</a> pour les découvrir.</p>
+
+<h2>Et en application web ?</h2>
+
+<p>C'est possible ! Une page interrogera le modèle via ollama :</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1727733164-oolama-js.png" alt="Architecture d'application web utilisant l'IA" title="" data-img_id="3492"></p>
+
+<p>Pour transformer le tout en une petite application web utilisable dans le navigateur...</p>
+
+<ol>
+<li>Nous ajoutons <code>express</code></li>
+</ol>
+
+<pre><code class="language-sh">npm install --save express
+</code></pre>
+
+<p>Ce qui va permettre de construire un couple client/serveur minimaliste avec deux fichiers :</p>
+
+<ul>
+<li>server.mjs, qui sera à l'écoute des messages</li>
+<li>public/index.html, qui contiendra un formulaire et affichera le résultat</li>
+</ul>
+
+<p>Les explications sont fournies par des commentaires dans le code source suivant, à vous de jouer en vous l'appropriant.</p>
+
+<ol start="2">
+<li>Fichier <code>server.mjs</code></li>
+</ol>
+
+<pre><code class="language-js">import express from 'express';
+import ollama from 'ollama';
+
+const app = express(); // Instance d'Express
+const port = 3000; // Port à l'écoute
+
+app.use(express.json());
+
+// On sert le dossier public en statique, dans lequel on place notre page index.html
+app.use(express.static('public'));
+
+// On accepte les requêtes POST vers /chat
+app.post('/chat', async (req, res) =&gt; {
+  // Notre message sera envoyé dans le corps de la requête (body)
+  const message = { role: 'user', content: req.body.content };
+
+  // La réponse provenant du LLM est une promesse
+  const response = await ollama.chat({ model: 'llama3.2', messages: [message], stream: true });
+
+  // La réponse envoyée à la page web dispose d'en-têtes HTTP
+  // ... permettant de faire persister la connexion
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive'
+  });
+
+  // Pour toute portion de réponse reçue, on la stream
+  for await (const part of response) {
+    res.write(`data: ${JSON.stringify(part.message)}\n\n`);
+  }
+
+  res.end();
+});
+
+// On écoute sur le port configuré
+app.listen(port, () =&gt; {
+  console.log(`Serveur en écoute : http://localhost:${port}`);
+});
+</code></pre>
+
+<ol start="3">
+<li>Page <code>public/index.html</code> correspondante :</li>
+</ol>
+
+<pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html lang="fr"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;KiwIA&lt;/title&gt;
+    &lt;style&gt;
+    /* à personnaliser selon vos envies */
+    body { font-family: system-ui; background: #222; color: #fff; padding: 2rem; }
+    #chat, [type=submit] { padding: 1rem; border-radius: 0.5rem; border: 1px solid #ccc; margin: 1rem 0; background: inherit; color: inherit; }
+    #chat { min-width: 20rem; font-size: inherit; }
+    #reponse { text-align: left; line-height: 2; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Chat KiwIA 🥝&lt;/h1&gt;
+
+&lt;form&gt;
+    &lt;input type="text" id="chat" placeholder="Votre message..."&gt;
+    &lt;button type="submit"&gt;Envoyer&lt;/button&gt;
+&lt;/form&gt;
+&lt;div id="reponse"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+    const form = document.querySelector('form');
+    const input = document.querySelector('#chat');
+    const resultat = document.querySelector('#reponse');
+
+    // À la validation du formulaire
+    form.addEventListener('submit', async (e) =&gt; {
+        e.preventDefault();
+
+        // On récupère le contenu du message
+        const content = input.value.trim();
+        if (!content) return; // Si c'est vide on arrête là
+
+        // Petit message d'attente
+        resultat.textContent = 'Un instant et je suis à vous...';
+        // On vide le champ d'entrée
+        input.value = '';
+
+        try {
+            // Requête asynchrone en POST vers /chat
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                // Corps de la requête en JSON
+                body: JSON.stringify({ content }),
+            });
+
+            resultat.textContent = '';
+
+            // On instancie une interface ReadableStream
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+
+            // Tant qu'on a du contenu...
+            while (true) {
+                const { done, value } = await reader.read(); // On lit
+                if (done) break;
+
+                const lines = decoder.decode(value).split('\n');
+
+                // On itère sur la réponse reçue pour alimenter le résultat
+                for (const line of lines) {
+                    if (line.startsWith('data: ')) {
+                        const data = JSON.parse(line.slice(6));
+                        resultat.textContent += data.content;
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            resultat.textContent = 'Une erreur est survenue.';
+        }
+    });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<ol start="4">
+<li>On lance le tout grâce à <code>node server.mjs</code> et on consulte l'adresse indiquée dans le navigateur pour atteindre la page HTML qui affiche le formulaire.</li>
+</ol>
+
+<p style="text-align: center"><video src="https://www.alsacreations.com/xmedia/tuto/movies/ollama-kiwia.mp4" loop autoplay controls muted></p>
+
+<p>On peut perfectionner le rendu en mettant en page le message renvoyé sous forme de markdown (mais cela dépend du modèle interrogé) plutôt que de l'afficher en texte brut.</p>
+
+<h2>Perspectives</h2>
+
+<p>On peut voir que construire une application web sollicitant un LLM est tout à fait envisageable avec les technologies d'aujourd'hui et les standards déjà en place (HTML/CSS, JavaScript, fetch, <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream">Streams API</a>, etc). À partir de là tout est possible pour imaginer élaborer des interfaces qui vont dialoguer en texte clair ou par d'autres moyens plus subtiles, et réagir en conséquence. Vous pouvez aussi <em>briefer</em> votre LLM en amont et lui donner des instructions ou un contexte de réponse, voire en construire un nouveau (avec l'instruction <a href="https://github.com/ollama/ollama/blob/main/docs/modelfile.md">FROM de Ollama</a>).</p>
+
+<p>Pour pousser l'horizon encore plus loin, faire tourner des LLM dans le navigateur lui-même est possible grâce à WebGPU (voir une démo ici : <a href="https://huggingface.co/spaces/cfahlgren1/Qwen-2.5-WebLLM">Qwen-2.5 on WebGPU sur Huggingface</a>) avec une performance tout à fait honorable.</p>
+
+<p>Les concepteurs de navigateurs préparent des interfaces aisées d'accès en JavaScript pour interroger un modèle local, tels que Google avec <a href="https://developer.chrome.com/docs/ai/built-in?hl=fr">l'IA Gemini intégrée dans Chrome</a>. Nous n'avons pas fini d'en entendre parler.</p>
+<p><b><a href="https://www.alsacreations.com/tuto/lire/1931-IA--Interroger-un-LLM-en-JavaScript-avec-Ollama.html">Retrouvez l'intégralité de ce tutoriel en ligne sur Alsacreations.com</a></b></p>]]></description>
+  	<category>Javascript</category>
+  	<comments>https://www.alsacreations.com/tuto/lire/1931-IA--Interroger-un-LLM-en-JavaScript-avec-Ollama.html#commentaires</comments>
+  	<dc:date>2024-10-02T09:30:35+01:00</dc:date>
+  	<dc:creator>Rodolphe</dc:creator>
+  		</item>
+
+  
+	<item>
+  	<title>Tout savoir sur les variables CSS (custom properties)</title>
+  	<link>https://www.alsacreations.com/tuto/lire/1929-Tout-savoir-sur-les-variables-CSS-custom-properties.html</link>
+  	<guid>https://www.alsacreations.com/tuto/lire/1929-Tout-savoir-sur-les-variables-CSS-custom-properties.html</guid>
+    <description><![CDATA[<p>Les <strong>variables CSS</strong> ont révolutionné la manière de gérer les styles dans le développement web.</p>
+
+<p>Si vous en avez assez de répéter les mêmes valeurs CSS partout dans votre code, alors cet article est fait pour vous !</p>
+
+<p>Vous allez découvrir ici comment les utiliser efficacement, pourquoi elles sont si pratiques et comment elles se comparent aux solutions comme Sass et LESS.</p>
+
+<p>Allons-y !</p>
+
+<h2>Qu'est-ce qu'une variable CSS ?</h2>
+
+<p>Une <strong>variable CSS</strong> (aussi appelée "propriété personnalisée") est un moyen de stocker des valeurs réutilisables dans votre feuille de style.</p>
+
+<p>Imaginez-la comme une boîte où vous pouvez ranger une couleur, une taille de police ou n'importe quelle autre valeur CSS, puis la réutiliser où vous le souhaitez.</p>
+
+<h2>Comment déclarer et utiliser des variables CSS ?</h2>
+
+<h3>Déclarer une variable CSS</h3>
+
+<p>Les <strong>variables CSS</strong> sont généralement définies au sein du sélecteur <code>:root</code>.</p>
+
+<p>Ce sélecteur représente le niveau le plus élevé de votre document et les variables ainsi définies seront accessibles partout dans votre fichier CSS.</p>
+
+<pre><code class="language-css">:root { 
+  --main-color: #3498db;
+  --font-size: 16px;
+}
+</code></pre>
+
+<p>Dans cet exemple, deux variables sont créées : <code>--main-color</code> et <code>--font-size</code>.</p>
+
+<p>Elles sont définies respectivement avec une couleur et une taille de police.</p>
+
+<h3>Utiliser une variable CSS</h3>
+
+<p>Pour utiliser une variable, vous devez appeler la fonction <code>var()</code>.</p>
+
+<p>Celle-ci prend le nom de la variable en argument et l'injecte dans les propriétés CSS que vous souhaitez modifier.</p>
+
+<pre><code class="language-css">body {
+  background-color: var(--main-color);
+  font-size: var(--font-size);
+}
+</code></pre>
+
+<p>Ici, <code>var(--main-color)</code> applique la couleur principale définie à l'arrière-plan du body, tandis que <code>var(--font-size)</code> ajuste la taille du texte.</p>
+
+<h3>Variables CSS avec des valeurs de secours</h3>
+
+<p>Vous pouvez également fournir une valeur de secours (fallback) à une variable CSS.</p>
+
+<p>C'est utile au cas où la variable ne serait pas définie ou si le navigateur ne la supportait pas.</p>
+
+<pre><code class="language-css">body {
+  color: var(--text-color, #333);
+}
+</code></pre>
+
+<p>Dans cet exemple, si la variable <code>--text-color</code> n'est pas définie, la couleur par défaut <code>#333</code> sera appliquée.</p>
+
+<h3>Réutilisation dans différents éléments</h3>
+
+<p>Les <strong>variables CSS</strong> peuvent être réutilisées sur plusieurs éléments.</p>
+
+<pre><code class="language-css">h1 {
+  color: var(--main-color);
+}
+
+p {
+  border-color: var(--main-color);
+}
+</code></pre>
+
+<p>En utilisant la même variable sur différents éléments (comme <code>h1</code> et <code>p</code>), vous assurez une cohérence visuelle tout en simplifiant les modifications futures.</p>
+
+<p>Nous reviendrons justement sur les raisons d'utiliser les variables CSS dans la section suivante.</p>
+
+<h3>Modifier une variable CSS pour des sections précises</h3>
+
+<p>L'un des aspects les plus puissants des <strong>variables CSS</strong> est qu'elles peuvent être redéfinies localement pour des sections spécifiques de votre page.</p>
+
+<p>Vous n'êtes pas limité à une seule valeur globale.</p>
+
+<p>Par exemple, si vous souhaitez changer la couleur principale dans une certaine section de votre site, vous pouvez le faire en redéfinissant la variable uniquement pour cette partie.</p>
+
+<pre><code class="language-css">.section-1 { 
+  --main-color: #d32f2c;
+}
+
+.section-2 { 
+  --main-color: #3fcef2; 
+}
+</code></pre>
+
+<p>Ensuite, dans vos styles, vous utilisez toujours <code>var(--main-color)</code> comme d'habitude, mais la valeur s'adaptera en fonction de la section où elle est utilisée :</p>
+
+<pre><code class="language-css">.section-1 h1 { 
+  color: var(--main-color); /* Couleur rouge */
+}
+
+.section-2 h1 {
+  color: var(--main-color); /* Couleur cyan */ 
+}
+</code></pre>
+
+<p>Grâce à cette flexibilité, vous pouvez facilement adapter le design de différentes sections de votre page sans devoir réécrire tout votre code CSS.</p>
+
+<h2>Pourquoi utiliser les variables CSS ?</h2>
+
+<p>Maintenant que vous savez comment <strong>créer et utiliser les variables CSS</strong>, vous en voyez tout le potentiel et la puissance.</p>
+
+<p>Je tiens toutefois à souligner pourquoi, selon moi, elles sont indispensables dans la création de styles CSS.</p>
+
+<h3>Centralisation des styles</h3>
+
+<p>Plutôt que de répéter les mêmes valeurs partout dans votre code, les <strong>variables CSS</strong> vous permettent de centraliser des éléments récurrents comme les couleurs, les polices ou les espacements.</p>
+
+<p>Ainsi, si vous devez modifier une valeur, vous n'avez qu'à la changer à un seul endroit, et l'ensemble de votre site sera mis à jour.</p>
+
+<p>Un vrai gain de temps, surtout pour les projets de grande envergure.</p>
+
+<h3>Faciliter la maintenance</h3>
+
+<p>Les variables CSS améliorent considérablement la lisibilité et la maintenance de votre code.</p>
+
+<p>Par exemple, au lieu de chercher chaque occurrence d'une couleur pour la changer, vous modifiez simplement la valeur de la variable.</p>
+
+<p>C'est également très pratique si vous travaillez en équipe : chacun peut rapidement comprendre et ajuster les styles sans risquer d'oublier une valeur cachée quelque part dans le CSS.</p>
+
+<h3>Thématisation simplifiée</h3>
+
+<p>Si vous souhaitez proposer plusieurs thèmes de couleur ou de design pour un site, les <strong>variables CSS</strong> sont parfaites pour cela.</p>
+
+<p>Vous pouvez déclarer différentes valeurs pour vos variables en fonction du thème sélectionné, et tout bascule automatiquement sans effort supplémentaire, ouvrant ainsi la porte à des interfaces utilisateur facilement personnalisables.</p>
+
+<p>J'aborderai ce sujet plus en profondeur un peu plus loin dans l'article.</p>
+
+<h3>Compatibilité et flexibilité</h3>
+
+<p>Les variables CSS sont compatibles avec la plupart des navigateurs modernes, ce qui signifie que vous pouvez les utiliser dès maintenant dans vos projets sans vous soucier des problèmes de compatibilité.</p>
+
+<p>Les <strong>variables CSS</strong> sont un atout majeur pour tout développeur souhaitant optimiser son flux de travail, réduire les erreurs et créer des designs évolutifs.</p>
+
+<p>Elles apportent une réponse simple et élégante à la complexité croissante des feuilles de style dans les projets modernes.</p>
+
+<h2>Variables CSS et préprocesseurs (Sass, LESS) (Comparaison)</h2>
+
+<p>Les <strong>variables CSS</strong> et les préprocesseurs comme <strong>Sass</strong> et <strong>LESS</strong> permettent tous deux de gérer des valeurs réutilisables dans vos styles, mais ils présentent des différences majeures.</p>
+
+<h3>Support natif vs compilation</h3>
+
+<p>Les <strong>variables CSS</strong> sont directement comprises par les navigateurs modernes.</p>
+
+<p>Pas besoin de compiler quoi que ce soit : vous les déclarez dans votre CSS et elles fonctionnent immédiatement.</p>
+
+<p>En revanche, avec <strong>Sass</strong> et <strong>LESS</strong>, il faut compiler le code pour obtenir un fichier CSS utilisable.</p>
+
+<h3>Flexibilité en temps réel</h3>
+
+<p>Les <strong>variables CSS</strong> peuvent également être modifiées en temps réel, par exemple via JavaScript, ce qui les rend parfaites pour des thèmes dynamiques ou des interactions utilisateur.</p>
+
+<pre><code class="language-javascript">document.documentElement.style.setProperty('--primary-color', '#e74c3c');
+</code></pre>
+
+<p>En comparaison, avec Sass et LESS, les variables sont statiques : une fois le code compilé, vous ne pouvez plus modifier ces valeurs sans recompiler les fichiers.</p>
+
+<h3>Quand utiliser les variables CSS ou un préprocesseur</h3>
+
+<p>Je vous conseille d'utiliser uniquement un <strong>fichier CSS avec des variables CSS pour des pages statiques ou de petite envergure</strong>, car elles suffisent amplement dans ces cas-là.</p>
+
+<p>Mais pour des <strong>projets plus vastes et structurés</strong>, l'utilisation d'un <strong>préprocesseur reste souvent plus intéressante</strong>.</p>
+
+<p>Heureusement, il est possible de <strong>combiner les deux approches</strong> en utilisant des <strong>variables CSS</strong> au sein même de vos fichiers <strong>Sass</strong> ou <strong>LESS</strong>, ce qui permet de profiter du meilleur des deux mondes : <strong>la flexibilité des variables CSS et la puissance des préprocesseurs</strong>.</p>
+
+<h2>Gestion des thèmes avec les variables CSS</h2>
+
+<p>Que vous souhaitiez implémenter un <strong>mode clair</strong> et un <strong>mode sombre</strong>, ou bien proposer plusieurs variations de couleurs, les <strong>variables CSS</strong> vous permettent de gérer cela efficacement sans réécrire l'intégralité de votre feuille de style.</p>
+
+<h3>Déclaration des variables globales</h3>
+
+<p>Tout commence par la déclaration de vos variables globales dans le sélecteur <code>:root</code>.</p>
+
+<pre><code class="language-css">:root {
+  --primary-color: #3498db;
+  --background-color: #ffffff;
+  --text-color: #333333;
+}
+</code></pre>
+
+<p>Ces variables peuvent ensuite être utilisées dans vos styles réguliers.</p>
+
+<pre><code class="language-css">body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+button {
+  background-color: var(--primary-color);
+}
+</code></pre>
+
+<h3>Changer de thème via la redéfinition des variables</h3>
+
+<p>Pour appliquer un thème alternatif, comme un mode sombre, il suffit de redéfinir les valeurs des variables CSS dans une classe spécifique, par exemple .dark-theme.</p>
+
+<pre><code class="language-css">.dark-theme {
+  --primary-color: #e74c3c;
+  --background-color: #2c3e50;
+  --text-color: #ecf0f1;
+}
+</code></pre>
+
+<p>Ensuite, vous pouvez appliquer cette classe au niveau du <code>body</code> ou d'une autre balise englobante dans votre HTML, et tous les styles qui utilisent ces variables seront mis à jour automatiquement, sans avoir à dupliquer votre code CSS.</p>
+
+<pre><code class="language-css">body.dark-theme {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+</code></pre>
+
+<h3>Gestion multi-thèmes facile</h3>
+
+<p>Vous pouvez créer autant de thèmes que nécessaire, en modifiant simplement les valeurs de ces <strong>variables CSS</strong> pour chaque classe de thème.</p>
+
+<p>Par exemple, si vous souhaitez ajouter un thème clair, vous définissez simplement une autre classe avec des valeurs différentes :</p>
+
+<pre><code class="language-css">.light-theme {
+  --primary-color: #3498db;
+  --background-color: #ffffff;
+  --text-color: #333333;
+}
+</code></pre>
+
+<p>Cela vous permet de basculer entre plusieurs thèmes très facilement, uniquement en changeant la classe appliquée sur l'élément racine.</p>
+
+<p>Pour aller plus loin dans la gestion des thèmes, vous pouvez consulter cet article sur <a href="https://www.alsacreations.com/article/lire/1927-Les-modes-d-apparence-Light-mode-et-Dark-mode.html">les modes d'apparence Light mode et Dark mode</a>.</p>
+
+<h2>Bonnes pratiques pour l'utilisation des variables CSS</h2>
+
+<p>L'utilisation des <strong>variables CSS</strong> est un excellent moyen de rendre votre code plus propre, maintenable et flexible.</p>
+
+<p>Toutefois, pour en tirer le meilleur parti, il est essentiel de suivre quelques bonnes pratiques.</p>
+
+<p>Voici quelques <strong>conseils pour utiliser les variables CSS</strong> de manière optimale.</p>
+
+<h3>Déclarez vos variables dans <code>:root</code></h3>
+
+<p>Comme mentionné précédemment, pour maximiser la portée de vos variables, il est conseillé de les déclarer dans le sélecteur <code>:root</code>.</p>
+
+<p>Ainsi, elles seront accessibles dans tout le document et pourront être réutilisées partout.</p>
+
+<pre><code class="language-css">:root {
+  --primary-color: #3498db;
+  --font-size-base: 16px;
+}
+</code></pre>
+
+<h3>Utilisez des noms de variables explicites</h3>
+
+<p>Choisir des noms de variables clairs et explicites est essentiel pour rendre votre code facile à comprendre et à maintenir.</p>
+
+<p>Par exemple, préférez <code>--primary-color</code> plutôt que <code>--color1</code>, ce qui permet à quiconque lit votre code de comprendre immédiatement à quoi correspond la variable.</p>
+
+<pre><code class="language-css">:root {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --font-size-large: 24px;
+}
+</code></pre>
+
+<p>Des noms explicites facilitent également les ajustements futurs.</p>
+
+<h3>Utilisez des variables pour les valeurs répétitives</h3>
+
+<p>Les <strong>variables CSS sont particulièrement utiles pour les valeurs que vous utilisez fréquemment</strong>, comme les couleurs, les tailles de police, ou les espacements.</p>
+
+<pre><code class="language-css">:root {
+  --spacing-unit: 16px;
+}
+
+.container {
+  padding: var(--spacing-unit);
+}
+
+.card {
+  margin-bottom: var(--spacing-unit);
+}
+</code></pre>
+
+<h3>Regroupez vos variables par type</h3>
+
+<p>Pour une meilleure organisation, regroupez vos variables par type, comme les couleurs, les tailles de police ou les espacements. Cela vous permettra de structurer votre fichier CSS de manière plus lisible et d'y revenir plus facilement pour faire des modifications.</p>
+
+<pre><code class="language-css">:root {
+  /* Couleurs */
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+
+  /* Tailles de police */
+  --font-size-base: 16px;
+  --font-size-large: 24px;
+
+  /* Espacements */
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 32px;
+}
+</code></pre>
+
+<h3>Préparez des valeurs de secours</h3>
+
+<p>Il est toujours recommandé de fournir une valeur de secours dans vos déclarations <code>var()</code>, surtout si vous travaillez avec des <strong>variables CSS qui pourraient ne pas être définies dans certains contextes</strong>.</p>
+
+<pre><code class="language-css">button {
+  background-color: var(--primary-color, #3498db);
+}
+</code></pre>
+
+<p>Dans cet exemple, si <code>--primary-color</code> n'est pas définie, la valeur <code>#3498db</code> sera utilisée à la place.</p>
+
+<h3>Limitez l'utilisation excessive de variables</h3>
+
+<p>Bien que les <strong>variables CSS</strong> soient très utiles, il est <strong>important de ne pas en abuser</strong>.</p>
+
+<p>Évitez de créer une variable pour chaque petite valeur.</p>
+
+<p>Concentrez-vous sur les éléments qui sont susceptibles de changer ou qui sont utilisés fréquemment à travers votre code.</p>
+
+<p>Trop de variables peuvent rendre votre <strong>fichier CSS difficile à gérer</strong>.</p>
+
+<h2>Conclusion</h2>
+
+<p>Les <strong>variables CSS</strong> ont véritablement transformé la manière de gérer les styles dans le développement web moderne.</p>
+
+<p>Elles apportent une flexibilité et une simplicité inégalées, permettant de centraliser et de modifier des valeurs globales sans dupliquer le code.</p>
+
+<p>Que ce soit pour la gestion des couleurs, des tailles de police, ou même pour des thèmes dynamiques, elles offrent un moyen puissant de rendre votre CSS plus maintenable.</p>
+<p><b><a href="https://www.alsacreations.com/tuto/lire/1929-Tout-savoir-sur-les-variables-CSS-custom-properties.html">Retrouvez l'intégralité de ce tutoriel en ligne sur Alsacreations.com</a></b></p>]]></description>
+  	<category>CSS</category>
+  	<comments>https://www.alsacreations.com/tuto/lire/1929-Tout-savoir-sur-les-variables-CSS-custom-properties.html#commentaires</comments>
+  	<dc:date>2024-09-27T13:37:51+01:00</dc:date>
+  	<dc:creator>ceddevwp</dc:creator>
+  		</item>
+
+  
+	<item>
+  	<title>Les carrousels (slider) sont&#45;ils vraiment utiles ?</title>
+  	<link>https://www.alsacreations.com/article/lire/1928-Les-carrousels-slider-sont-ils-vraiment-utiles.html</link>
+  	<guid>https://www.alsacreations.com/article/lire/1928-Les-carrousels-slider-sont-ils-vraiment-utiles.html</guid>
+    <description><![CDATA[<p>Ah les carrousels… Fonctionnalité souvent demandée par les clients, car c’est dynamique, ça bouge, c’est fun etc. Mais en avez-vous réellement besoin pour votre site ?</p>
+
+<figure>
+  <video controls src="https://www.alsacreations.com/xmedia/tuto/carrousel/carrousel-cookies.mp4">
+  <figcaption>Défilement d'un carrousel à 3 slides avec des images de cookies.</figcaption>
+</figure>
+
+<h2>Un carrousel, c’est quoi ?</h2>
+
+<p>De manière générale, la plupart des carrousels contiennent plusieurs diapositives (avec des images, vidéos ou autre) qui défilent lorsqu’on clique sur une flèche de navigation ou une pagination.</p>
+
+<p>Cela permet aux utilisateurs et utilisatrices de maximiser la densité de l'information sans avoir à faire défiler les pages. Pratique non ? Oui, mais… Des études ont montré que la plupart des personnes ont tendance à ignorer les carrousels. Nous allons voir pourquoi.</p>
+
+<h2>Les carrousels sont très peu utilisés</h2>
+
+<p>Selon les recherches d'<a href="https://erikrunyon.com/">Erik Runyon</a>, directeur technique des communications marketing à l'Université de Notre Dame, les carrousels affichent un taux de clic relativement faible. En ayant fait l’étude sur le site même de l’Université avec un carrousel statique (qui ne défile pas automatiquement), 84 % des clics ont été effectués sur les articles en position 1, le reste étant réparti assez équitablement entre les quatre autres (~4 % chacun).</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1722506854-graphiquecarrousels.png" alt="graphique sur le pourcentage de cliques sur un carrousel à 5 diapositives" title="" data-img_id="3482"></p>
+
+<p>En revanche, sur les carrousels automatiques, le taux de clic est plus élevé que sur les autres diapositives.</p>
+
+<p>Une autre étude a été réalisée par <a href="https://oda.oslomet.no/oda-xmlui/handle/11250/2980794">Rashika Tasnim Keya</a> en janvier 2022, étudiante à l’Université de Design de ICT, proposant aux internautes deux même sites e-commerce, mais qui affichent des produits différemments ; le premier site sans carousel, et le deuxième site avec carrousels pour faire défiler les nombreux produits.</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1722517124-graphiqueanalysecarrousel.png" alt="Analyse graphique sur les carrousels" title="" data-img_id="3485"></p>
+
+<p>Selon le graphique ci-dessus, une des questions posées aux internautes était de savoir s’ils trouvaient facilement les produits sur le site internet. Le site sans carrousel à remporté le plus de votes sur la réponse “Fortement d’accord”, alors que le site avec carrousels a remporté la réponse “Modéré”.</p>
+
+<p>L’analyse a montré que la plupart des utilisateurs ont déclaré que <strong>l'interface sans carrousel était plus compréhensible que l'interface avec les carrousels</strong>. En effet, l’interface était plus claire, et leur recherche d'articles ou de produits a été plus précise et plus rapide que sur le site avec les carrousels.</p>
+
+<p>On peut noter que l'expérience utilisateur est significativement différente selon l’interface avec ou sans carrousel, et que les personnes ont tendance à réaliser leur objectif plus facilement avec des composants simples d'utilisation.</p>
+
+<h2>Pourquoi éviter les Carrousels ?</h2>
+
+<ul>
+<li>Ils sont souvent plus difficiles à gérer et peuvent donner des résultats inattendus sur les appareils et les navigateurs plus anciens.</li>
+<li>En 2023, Google a également indiqué clairement que l'accent devait être mis sur la vitesse et l'amélioration de l'expérience utilisateur grâce à la facilité d'utilisation. Les carrousels ne s'inscrivent absolument pas dans ce plan.</li>
+<li>Les carrousels ne sont pas simples à utiliser. Selon le World Wide Web Consortium (W3C), le carrousel doit suivre ou mettre en œuvre certaines lignes directrices afin de le rendre accessible à toutes et tous.</li>
+<li>Pour les carrousels automatiques, chaque personne a besoin d'un temps différent pour lire l'ensemble du contenu du carrousel. Si c'est trop rapide, les personnes sont frustrées, et si c'est trop lent, elles le sont également, en particulier pour les personnes qui ont des problèmes de motricité et qui ont du mal à cliquer sur un élément avant qu'il ne soit enlevé.</li>
+</ul>
+
+<h2>Mais si vous insistez…</h2>
+
+<p>Si nous prenons l’exemple d’un site e-commerce, l'objectif de l'internaute est de trouver des informations sur les produits, de comparer différentes gammes de produits et de prendre une décision d'achat. <strong>Cela signifie que l'utilité du carrousel dépend du contexte de l'utilisateur</strong>. L'utilisateur est donc plus susceptible d’utiliser les carrousels.</p>
+
+<p>Mais étant donné que les utilisateurs sont moins enclins à cliquer sur les flèches pour afficher la diapositive suivante, il peut être plus efficace de changer automatiquement de diapositive après un certain temps ou de leur montrer des diapositives d'une page différente lorsqu'ils reviennent sur votre site. À noter cependant qu’au niveau de l’accessibilité, une diapositive automatique doit comporter obligatoirement un système de mise en pause et de relance du défilement.</p>
+
+<p>Selon les règles du cerveau de John Medina, la vision prime sur les autres sens. Toutefois, un grand nombre de diapositives ne constitue pas un bon carrousel, car une injection excessive d'images visuelles entraîne une charge cognitive. Par conséquent, cinq diapositives ou moins, adaptées à la mémoire à court terme, amélioreront l'expérience de l'utilisateur.
+Il faut également faire attention à placer les flèches de manière intuitive. Les utilisateurs préfèrent naviguer d'une manière qui leur est familière en raison de leur expérience passée.</p>
+
+<h2>Pour conclure</h2>
+
+<p>En conclusion, bien que les carrousels puissent sembler attrayants et dynamiques, leur efficacité est souvent remise en question. Les études montrent que ces éléments interactifs captent rarement l'attention des utilisateurs et peuvent même nuire à l'expérience utilisateur en compliquant la navigation et en augmentant la charge cognitive. De plus, les défis techniques liés à l'accessibilité et à la compatibilité multiplateforme rendent leur mise en œuvre complexe.</p>
+
+<p>Ainsi, il est essentiel de bien réfléchir à leur utilité réelle dans le contexte spécifique de votre site. Si vous décidez tout de même d'opter pour un carrousel, il est crucial de l'utiliser de manière réfléchie, en prenant en compte les meilleures pratiques pour garantir une expérience utilisateur fluide et accessible.</p>
+
+<h3>Liens et ressouces utiles pour intégrer des carrousels accessibles :</h3>
+
+<ul>
+<li><a href="https://www.accede-web.com/notices/interface-riche/carrousels/">Carrousels - AcceDe Web</a></li>
+<li><a href="https://www.magentaa11y.com/checklist-web/carousel/">How to test a carousel / slideshow</a></li>
+<li><a href="https://van11y.net/accessible-carrousel/">Accessible carrousel using ARIA</a></li>
+</ul>
+<p><b><a href="https://www.alsacreations.com/article/lire/1928-Les-carrousels-slider-sont-ils-vraiment-utiles.html">Publié par Alsacreations.com</a></b></p>]]></description>
+  	<category>Design</category>
+  	<comments>https://www.alsacreations.com/article/lire/1928-Les-carrousels-slider-sont-ils-vraiment-utiles.html#commentaires</comments>
+  	<dc:date>2024-08-19T12:00:56+01:00</dc:date>
+  	<dc:creator>Lisa</dc:creator>
+  		</item>
+
+  
+	<item>
+  	<title>Les modes d&apos;apparence Light mode et Dark mode</title>
+  	<link>https://www.alsacreations.com/article/lire/1927-Les-modes-d-apparence-Light-mode-et-Dark-mode.html</link>
+  	<guid>https://www.alsacreations.com/article/lire/1927-Les-modes-d-apparence-Light-mode-et-Dark-mode.html</guid>
+    <description><![CDATA[<p>Le <strong>mode sombre</strong> (<i lang="en">dark mode</i>) consiste à adopter des fonds de couleur sombre sur les interfaces utilisateur. <a href="https://fr.wikipedia.org/wiki/Mode_sombre">Selon Wikipedia</a>, ce mode serait utile pour réduire la fatigue visuelle et la consommation en énergie par rapport aux autres modes d'affichage.</p>
+
+<p>Un très grand nombre de personnes en sont adeptes sur leur smartphone, mais également sur leur ordinateur ou tablette. Proposer aux utilisateurs la possibilité d'activer cette fonctionnalité est donc conseillée.</p>
+
+<p>Le site de Wikipedia lui-même vient enfin d'annoncer <a href="https://diff.wikimedia.org/2024/07/17/dark-modes-bright-future-how-dark-mode-will-transform-wikipedias-accessibility/">le support du Dark mode</a> pour ses pages de contenus, après de nombreuses années d'attente de ses lecteurs et lectrices.</p>
+
+<h2>Préférences utilisateur</h2>
+
+<p>Il est possible d'adapter les thèmes de couleur de son environnement sur l'ensemble de son système d'exploitation, par exemple pour Windows et MacOS :</p>
+
+<ul>
+<li>Windows : Paramètres > Personnalisation > Couleurs > mode Windows par défaut.</li>
+<li>MacOS : Réglages Système > Apparence > Mode d'apparence.</li>
+</ul>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1721395534-mode-apparence.png" alt="modes d'apparence sur MacOS" title="" data-img_id="3473"></p>
+
+<p>Il est également possible de n'appliquer ce choix qu'au niveau du navigateur web, par exemple :</p>
+
+<ul>
+<li>Dans Firefox : "Réglages > Général > Apparence des sites web"</li>
+<li>Dans Chrome : "chrome://flags" et chercher "dark mode"</li>
+</ul>
+
+<p>Enfin, en tant que développeur, les <i lang="en">Devtools</i> (inspecteur d'élément) de Google Chrome permettent d'émuler le mode sombre / clair via la combinaison de touche "ctrl+shift+p" et chercher "rendering".</p>
+
+<p>Les <i lang="en">Devtools</i> de Firefox permettent aussi de tester via onglet Inspecteur, dans les boutons-icônes en haut des styles (cf. capture ci-dessous).</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1721399162-image-1.png" alt="devtools de Firefox" title="" data-img_id="3478"></p>
+
+<h2>Couleurs système</h2>
+
+<p>Les couleurs systèmes représentent une palette de couleurs web proposées par défaut pour les différentes éléments d'interface : couleur de texte, couleur de fond, couleur de lien, couleur de bordure d'un bouton, etc.</p>
+
+<p>Ces couleurs sont accessibles (si employées correctement), conformes aux modes de contraste élevé et <strong>prêtes à s'adapter automatiquement au mode d'apparence (light et dark mode).</strong></p>
+
+<p>Il est même parfaitement possible de les utiliser sous forme de mot-clés en CSS comme les autres couleurs nommées :</p>
+
+<pre><code class="language-css">html {
+  color: CanvasText;
+  background-color: Canvas;
+}
+</code></pre>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1721395649-system-colors.png" alt="Couleurs système usuelles" title="" data-img_id="3474"></p>
+
+<p>
+<a class="demo" href="https://codepen.io/raphaelgoetter/pen/LYMQbGN">Démo : couleurs système</a>
+</p>
+
+<h2><code>color-scheme</code></h2>
+
+<p>Cette propriété indique au navigateur quel mode d'affichage est souhaité pour un élément donné (light ou dark).</p>
+
+<p>Dans l'exemple ci-dessous, on indique que l'élément <code>.formulaire</code> doit obligatoirement s'afficher en mode sombre. <strong>Le navigateur ajuste en conséquence les couleurs système</strong>, mais aussi les contrôles de formulaires et les scrollbars éventuelles sur cet élément.</p>
+
+<pre><code class="language-css">.formulaire {
+  color-scheme: dark;
+}
+</code></pre>
+
+<h3>Valeurs de <code>color-scheme</code></h3>
+
+<ul>
+<li><code>color-scheme: normal;</code> : Le navigateur n'adapte pas les couleurs (valeur par défaut).</li>
+<li><code>color-scheme: light;</code> : Le navigateur doit afficher l'élément en mode light.</li>
+<li><code>color-scheme: dark;</code> : Le navigateur doit afficher l'élément en mode dark.</li>
+<li><code>color-scheme: light dark;</code> : Le  navigateur doit afficher l'élément selon les préférences utilisateur.</li>
+</ul>
+
+<h3>Exemple concret</h3>
+
+<pre><code class="language-html">&lt;h1&gt;Tiens, mais quelle est ma couleur ?&lt;/h1&gt;
+</code></pre>
+
+<pre><code class="language-css">:root {
+  color-scheme: light dark;
+}
+</code></pre>
+
+<p>Dans cet exemple, j'indique que l'ensemble du document (<code>:root</code>) doit se conformer aux préférences utilisateur. Sans indiquer de couleurs particulières, ce sont les couleurs système qui s'appliquent et sont autorisées à s'adapter à ces préférences : en mode clair, le document a un fond clair et le titre <code>&lt;h1&gt;</code> est de couleur sombre; et inversement en mode sombre.</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1721395807-color-scheme.png" alt="la propriété color-scheme" title="" data-img_id="3475"></p>
+
+<p>Compatibilité de <code>color-scheme</code> : <a href="https://caniuse.com/mdn-css_properties_color-scheme">https://caniuse.com/mdn-css_properties_color-scheme</a></p>
+
+<p>Conclusion : appliquer <code>color-scheme: light dark;</code> est un bon début pour toute page qui souhaite s'adapter au mode d'apparence, mais cette fonctionnalité n'agit que sur les couleurs système (et de l'interface du navigateur) donc c'est plutôt limité en terme de design.</p>
+
+<h2><code>@media (prefers-color-scheme: …)</code></h2>
+
+<p>La requête <code>prefers-color-scheme</code> est un critère des spécifications Media Query permettant de <strong>détecter le Mode d'apparence de l'utilisateur (celui défini via ses préférences système et/ou son navigateur)</strong>.</p>
+
+<p>Cette fonctionnalité permet d'aller un cran plus loin que <code>color-scheme</code> en appliquant des palettes de couleurs totalement personnalisées et adaptées au choix (au système, plus précisément) de nos visiteurs.</p>
+
+<p>Nous détectons si l'OS ou le navigateur est configuré en mode sombre de cette manière :</p>
+
+<pre><code class="language-css">@media (prefers-color-scheme: dark) {
+  /* ici des styles prévus pour Dark Mode */
+}
+</code></pre>
+
+<p>Concrètement, cela pourrait se traduire ainsi pour nos pages web :</p>
+
+<pre><code class="language-css">:root {
+  --color-primary: pink;
+  --color-primary--darkmode: hotpink;
+
+  @media (prefers-color-scheme: light) {
+    --color-base: var(--color-primary);
+  }
+  @media (prefers-color-scheme: dark) {
+    --color-base: var(--color-primary--darkmode);
+  }
+}
+</code></pre>
+
+<p>Dans l'extrait ci-dessus :</p>
+
+<ul>
+<li>Notre palette de couleurs est composée de <code>--color-primary</code> et <code>--color-primary--darkmode</code></li>
+<li>Si le mode d'apparence est clair alors <code>--color-base</code> vaut <code>--color-primary</code></li>
+<li>Si le mode d'apparence est sombre alors <code>--color-base</code> vaut <code>--color-primary--darkmode</code></li>
+</ul>
+
+<p>Nos différents composants bénéficieront par conséquent d'une couleur <code>--color-base</code> dont la valeur s'adaptera automatiquement à la configuration du système, par exemple :</p>
+
+<pre><code class="language-css">.card {
+  color: var(--color-base);
+}
+</code></pre>
+
+<p>La vidéo ci-dessous illustre la mise en oeuvre de la media query <code>prefers-color-scheme</code>:</p>
+
+<figure>
+<video src="https://www.alsacreations.com/xmedia/tuto/dark/dark.mp4" style="width:100%" controls loop autoplay />
+<figcaption>Mise en oeuvre de la media query <code>prefers-color-scheme</code></figcaption>
+</figure>
+
+<p>Compatibilité de <code>@media (prefers-color-scheme: …)</code> : <a href="https://caniuse.com/prefers-color-scheme">https://caniuse.com/prefers-color-scheme</a></p>
+
+<h2><code>light-dark()</code></h2>
+
+<p>Cette valeur-fonction accepte deux paramètres de couleurs et renvoie l'une ou l'autre <strong>selon les préférences utilisateur (OS ou navigateur).</strong></p>
+
+<pre><code class="language-css">.card {
+  color: light-dark(pink, hotpink);
+}
+</code></pre>
+
+<p>Autre exemple :</p>
+
+<pre><code class="language-css">:root {
+  color-scheme: light dark;
+  --primary-color: light-dark(#fff, hotpink);
+  --primary-background: light-dark(hotpink, #fff);
+}
+body {
+  color: var(--primary-color);
+  background-color: var(--primary-background);
+}
+</code></pre>
+
+<p>Compatibilité de <code>light-dark()</code> : <a href="https://caniuse.com/mdn-css_types_color_light-dark">https://caniuse.com/mdn-css_types_color_light-dark</a></p>
+
+<h2><i lang="en">Switch</i></h2>
+
+<p>Un <i lang="en">Switch</i> est un composant de type "interrupteur". Il va au-delà de ce que proposent les spécifications CSS évoquées jusqu'alors, puisqu'il permet à l'internaute de choisir le thème de couleur qu'il préfère lorsqu'il visite votre site en particulier, indépendamment de ses préférences utilisateur dans son système d'exploitation.</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1721657256-switch.gif" alt="un bouton switch en action" title="" data-img_id="3480"></p>
+
+<p>Un design totalement inclusif devrait proposer ce genre de fonctionnalités pour tenter d'atteindre la meilleure expérience possible pour tous les usagers de votre site.</p>
+
+<p>Les contraintes et le processus ne sont pas si simples :</p>
+
+<ul>
+<li>Le thème doit s'adapter par défaut aux préférences utilisateur (OS ou navigateur).</li>
+<li>L'utilisateur devrait aussi pouvoir choisir de changer de thème pour votre site, malgré ses préférences utilisateur.</li>
+<li>Ce choix spécifique pour ce site doit être mémorisé pour toutes les pages et pour une prochaine visite.</li>
+</ul>
+
+<p>Voici un exemple de Switch accessible sur Codepen : <a href="https://codepen.io/alsacreations/pen/ExBPExE">https://codepen.io/alsacreations/pen/ExBPExE</a></p>
+
+<p>Le déroulé des événements lors du clic/touch sur le bouton est celui-ci :</p>
+
+<ol>
+<li>On vérifie si le choix de thème était déjà mémorisé en localStorage.</li>
+<li>Sinon on vérifie les préférences utilisateur du système.</li>
+<li>Puis on crée ou modifie l'attribut <code>data-theme-preference</code> sur <code>&lt;html&gt;</code> (valeur <code>"light"</code> ou <code>"dark"</code>).</li>
+<li>Et on mémorise le choix en localStorage.</li>
+<li>Enfin, on passe l'attribut <code>aria-pressed</code> du bouton à <code>"pressed"</code>.</li>
+</ol>
+
+<p>Le test pour connaître le choix de l'utilisateur porte sur l'attribut <code>data-theme-preference</code>, on s'en servira ainsi côté CSS :</p>
+
+<pre><code class="language-css">.card {
+  color: pink;
+}
+[data-theme-preference="dark"] .card {
+  color: hotpink;
+}
+</code></pre>
+
+<p>Ou en syntaxe imbriquée :</p>
+
+<pre><code class="language-css">.card {
+  color: pink;
+
+  [data-theme-preference="dark"] &amp; {
+    color: hotpink;
+  }
+}
+</code></pre>
+
+<h2>Conclusion</h2>
+
+<p>Offrir une expérience d'environnement sombre et clair est de plus en plus courant et recommandé, rien que pour le confort de tous les usagers.</p>
+
+<p>Cependant, techniquement, rien n'est vraiment magique car les contraintes sont nombreuses et les solutions sont toutes partielles.</p>
+
+<p>Au final, le meilleur compromis semble être un <i lang="en">Switch</i> , assemblage de spécifications CSS et de JavaScript pour l'accessibilité et la mémorisation des choix utilisateur.</p>
+<p><b><a href="https://www.alsacreations.com/article/lire/1927-Les-modes-d-apparence-Light-mode-et-Dark-mode.html">Publié par Alsacreations.com</a></b></p>]]></description>
+  	<category>CSS</category>
+  	<comments>https://www.alsacreations.com/article/lire/1927-Les-modes-d-apparence-Light-mode-et-Dark-mode.html#commentaires</comments>
+  	<dc:date>2024-07-22T13:37:00+01:00</dc:date>
+  	<dc:creator>Raphael</dc:creator>
+  		</item>
+
+  
+	<item>
+  	<title>Pixels et Bretzels la 100e</title>
+  	<link>https://www.alsacreations.com/actu/lire/1926-pixels-bretzels-100e.html</link>
+  	<guid>https://www.alsacreations.com/actu/lire/1926-pixels-bretzels-100e.html</guid>
+    <description><![CDATA[<p>Les années passent, Pixels &amp; Bretzels 🥨 se renouvelle (qui d'entre vous utilise encore le nom « WdStr » ?), mais garde le même cap : continuer de vous proposer régulièrement des conférences et rencontres, que ce soit dans votre cœur de métier ou pour vous faire prendre conscience de nouvelles problématiques.</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1709723836-pixels-bretzels-100-banner.png" alt="Pixels bretzels 100e édition" title="" data-img_id="3471"></p>
+
+<p>Pour fêter cette 100e édition, Pixels &amp; Bretzels pose ses octets chez Alsacréations. Il y aura des quiz et des lots à vous faire gagner ! ✨</p>
+
+<p>Même si cela fait longtemps que vous n'êtes pas venu·e à l'un de nos événements, rejoignez-nous.</p>
+
+<h2>Comment s'inscrire ?</h2>
+
+<p>Via le site HelloAsso avec le lien suivant : <a href="https://www.helloasso.com/associations/pixels-bretzels/evenements/apero-100-le-100e">trop fort je m'inscris à Pixels &amp; Bretzels 100e édition</a></p>
+
+<p>3 bonnes raisons de nous rejoindre :</p>
+
+<ul>
+<li>Venez profiter d'une ambiance festive</li>
+<li>Sortez la tête de vos projets et retrouvez la communauté</li>
+<li>Tentez de gagner un lot !</li>
+</ul>
+
+<h2>Lieu et horaire</h2>
+
+<p>Le mardi 19 mars 2024 à 19h chez</p>
+
+<p>Alsacréations
+10 place du Temple Neuf
+67000 Strasbourg</p>
+
+<p>Nous avons hâte de vous y retrouver ✌️</p>
+
+<h2>Les sponsors</h2>
+
+<p>L'évènement est généreusement soutenu par de super sponsors :</p>
+
+<p><img src="https://cdn.helloasso.com/img/photos/sponsors-banner-bigger-32117b3d0a4049c49bfb4ed93f350310.png" alt="sponsors Pixels et Bretzels"></p>
+<p><b><a href="https://www.alsacreations.com/actu/lire/1926-pixels-bretzels-100e.html">Publié par Alsacreations.com</a></b></p>]]></description>
+  	<category>Alsacréations</category>
+  	<comments>https://www.alsacreations.com/actu/lire/1926-pixels-bretzels-100e.html#commentaires</comments>
+  	<dc:date>2024-03-06T12:16:32+01:00</dc:date>
+  	<dc:creator>Rodolphe</dc:creator>
+  		</item>
+
+  
+	<item>
+  	<title>Dialog, Modal, Popover : la synthèse</title>
+  	<link>https://www.alsacreations.com/article/lire/1922-dialog-modal-popover-la-synthese.html</link>
+  	<guid>https://www.alsacreations.com/article/lire/1922-dialog-modal-popover-la-synthese.html</guid>
+    <description><![CDATA[<p>L'arrivée de l'attribut et de l'API HTML <span lang="en"><a href="https://developer.mozilla.org/fr/docs/Web/API/Popover_API">popover</a></span> facilite la gestion de tous les éléments qui doivent s'afficher au-dessus du contenu d'une page Web (fenêtre modale, <span lang="en">tooltip</span>, menu déroulant, etc.).</p>
+
+<p>Cette nouvelle fonctionnalité vient s'ajouter à certaines déjà existantes, au point où l'on ne sait plus forcément où donner de la tête entre les éléments dits "Dialog", "Modal", <span lang="en">"Popover"</span> ou autres <span lang="en">"Overlay"</span>.</p>
+
+<p>Tentons de rassembler toutes les caractéristiques globales et techniques de l'ensemble de ces notions afin d'y voir plus clair.</p>
+
+<p class="info">
+Cet article a pour objectif de poser les bases et de définir les différents termes en jeu. Dans un deuxième temps un  article détaillé sera consacré à <code>&lt;dialog&gt;</code> et un autre à <code>popover</code>.
+</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1704102798-modal.jpg" alt="" title="" data-img_id="3446"></p>
+
+<h2>Tableau récapitulatif</h2>
+
+<p>Pour bien se rendre compte du nombre de fonctionnalités qui intéragissent, voici d'emblée un tableau récapitulatif des éléments que nous allons couvrir&hellip;</p>
+
+<table>
+<thead>
+<tr>
+  <th></th>
+  <th><code>popover</code></th>
+  <th><code>&lt;dialog&gt;</code> <br>(modal)</th>
+  <th><code>&lt;dialog&gt;</code> <br>(non modal)</th>
+  <th><code>&lt;div role=dialog&gt;</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Overlay</td>
+  <td>oui</td>
+  <td>oui</td>
+  <td>oui</td>
+  <td>oui</td>
+</tr>
+<tr>
+  <td>Modal</td>
+  <td>non</td>
+  <td>oui</td>
+  <td>non</td>
+  <td>non</td>
+</tr>
+<tr>
+  <td>Inert</td>
+  <td>non</td>
+  <td>oui</td>
+  <td>non</td>
+  <td>non</td>
+</tr>
+<tr>
+  <td>Top layer</td>
+  <td>oui</td>
+  <td>oui</td>
+  <td>non</td>
+  <td>non</td>
+</tr>
+<tr>
+  <td>Focus trap</td>
+  <td>non</td>
+  <td>oui</td>
+  <td>oui</td>
+  <td>non</td>
+</tr>
+<tr>
+  <td>Dismissible</td>
+  <td><code>echap</code> ou manuel</td>
+  <td><code>echap</code></td>
+  <td><code>echap</code></td>
+  <td>non</td>
+</tr>
+<tr>
+  <td>Commentaires</td>
+  <td>Exclusif : ouvrir un popover ferme le précédent</td>
+  <td>Masqué par défaut, visible avec l'attribut <code>open</code></td>
+  <td>Masqué par défaut, visible avec l'attribut <code>open</code></td>
+  <td></td>
+</tr>
+</tbody>
+</table>
+
+<p>Les différentes notions de ce tableau sont détaillées tout au long de cet article de synthèse&nbsp;: <code>popover</code>, <code>&lt;dialog&gt;</code>, <span lang="en">overlay</span>, <span lang="en">modal</span>, <span lang="en">inert</span>, <span lang="en">top layer</span>, <span lang="en">focus trap</span>, <span lang="en">dismissible</span>.</p>
+
+<h2>Overlay</h2>
+
+<p>Le terme <span lang="en" title="surcouche">"overlay"</span> ne représente pas véritablement un composant mais une caractéristique. Un élément "overlay" est simplement <strong>un élément qui se place au-dessus d'autres éléments dans la page.</strong></p>
+
+<p>Tous les éléments au sein de cette liste sont des overlays&nbsp;:</p>
+
+<ul>
+<li>une "fenêtre modale",</li>
+<li>un menu déroulant,</li>
+<li>une <span lang="en" title="bulle d'aide">Tooltip</span>,</li>
+<li>une boîte de dialogue,</li>
+<li>un <span lang="en" title="sélecteur de date">Datepicker</span>,</li>
+<li>un <span lang="en">Dropdown</span>,</li>
+<li>un <span lang="en">Toaster</span>,</li>
+<li>une notification,</li>
+<li>un <span lang="en">bandeau cookie</span>,</li>
+<li>etc.</li>
+</ul>
+
+<p>Dans cette même famille nous croiserons les termes de <i lang="en">"pop-up"</i> (nouvelle fenêtre au-dessus de la fenêtre actuelle du navigateur) et <i lang="en">"pop-in"</i> (élément au-dessus des autres éléments de la page, synonyme de "overlay", donc).</p>
+
+<h2>Modal et non-Modal</h2>
+
+<p>Selon les spécifications HTML, le terme <span lang="en">"modal"</span> ne désigne pas un composant en tant que tel, mais un ensemble de caractéristiques&nbsp;: un élément en <span lang="en">overlay</span> peut être <span lang="en">"modal"</span> ou <span lang="en">"non-modal"</span>.</p>
+
+<p><strong>Un élément Modal est le seul à être interactif dans un document,</strong> il requiert toute l'attention de l'usager, tout le reste de la page doit être rendu inerte (<code>inert</code>) car aucune autre action ne doit être possible mis à part réagir à cet élément (fermer, accepter, refuser, abandonner, etc.).</p>
+
+<p>Par exemple, un bandeau de recueil de données personnelles doit être consenti par l'utilisateur (obligation légale RGPD) sans quoi il ne devrait pas pouvoir accéder au site. C'est donc un élément de type Modal. Un autre exemple pourrait être celui d'une une modale "login/password" si l'accès au site nécessite une authentification.</p>
+
+<p><strong>Un élément non-Modal, à l'inverse, laisse la possibilité à l'utilisateur de continuer à interagir avec la page.</strong> C'est généralement le cas des éléments tooltip, menu déroulant, dropdown, datepicker, notification, alerte, bandeau cookie.</p>
+
+<h3><code>inert</code></h3>
+
+<p>Un contenu inerte est un contenu avec lequel les utilisatrices et utilisateurs ne peuvent pas interagir. Il n'existe que visuellement, mais ne peut être atteint, cliqué, défilé ni consulté au moyen de technologies d'assistance.</p>
+
+<p>Différentes techniques permettent de rendre une partie de page inerte&nbsp;:</p>
+
+<ul>
+<li>L'attribut HTML <code>inert</code>,</li>
+<li>L'ancienne technique via la combinaison de <code>aria-hidden=true</code> et de <code>tabindex="-1"</code>,</li>
+<li>Un polyfill JavaScript : <a href="https://github.com/WICG/inert">https://github.com/WICG/inert</a>,</li>
+<li>L'élément <code>&lt;dialog&gt;</code> (voir cette section pour les détails).</li>
+</ul>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1704879891-inert.png" alt="compatibilité de l'attribut inert" title="" data-img_id="3453"></p>
+
+<h2>Top layer</h2>
+
+<p>Top layer est une couche d'empilement au dessus de l'ensemble du document (existe depuis juin 2023). Cette couche n'est pas concernée par <code>z-index</code> ni par <code>overflow: hidden</code>. Les éléments s'empilent dans l'ordre d'apparition dans le Top layer.</p>
+
+<p>Certains éléments sont placés automatiquement par défaut dans le top layer :</p>
+
+<ul>
+<li>les éléments en fullscreen API</li>
+<li>les éléments <code>&lt;dialog&gt;</code> (sauf exceptions)</li>
+<li>les éléments avec l'attribut <code>popover</code> (sauf exceptions)</li>
+</ul>
+
+<h3><code>::backdrop</code></h3>
+
+<p>Ce pseudo-élement s'applique uniquement aux objets placés dans le top layer. Il permet d'apporter des styles visuels "sous" un overlay en obscurcissant la page par exemple.</p>
+
+<pre><code class="language-css">/* Cette ombre n'est affichée que si l'élément */
+/* est dans le Top layer */
+dialog::backdrop {
+  background: rgba(0,0,0,0.3);
+}
+</code></pre>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1704879979-backdrop.png" alt="compatibilité du sélecteur ::backdrop" title="" data-img_id="3454"></p>
+
+<h2>Focus trap</h2>
+
+<p>Certains élément nécessitent que la navigation au clavier (touches <code>Tab</code> ou <code>Shift + Tab</code>) <strong>ne quitte pas le périmètre du composant&nbsp;:</strong> en atteignant le dernier élément <em>focusable</em>, on retourne en boucle au premier élément <em>focusable</em> au sein du composant.</p>
+
+<p>C'est le comportement attendu et souhaité en accessibilité lorsque le composant est "modal" et que tout le reste du document est inerte.</p>
+
+<p>Le focus trap doit toutefois être temporaire et disparaître quand le composant est quitté ou rejeté (dismissed).</p>
+
+<h2>Dismissible (jetable)</h2>
+
+<p>Certains overlay nécessitent de <strong>pouvoir être fermés de manière automatique</strong> (via touche <code>echap</code> ou au focus à l'extérieur du composant) et/ou de façon manuelle (en validant un bouton de soumission par exemple). Ce comportement se nomme "Dismissible".</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1704103490-menu.jpg" alt="Le menu déroulant sur Alsacréations" title="" data-img_id="3447"></p>
+
+<h2>Dialog</h2>
+
+<p>Un Dialog est un composant de type overlay destiné à apporter une information à un usager et recueillir une interaction de sa part. Les spécifications proposent une API <code>HTMLDialogElement</code> ainsi qu'un élément natif <code>&lt;dialog&gt;</code> qui peut être "Modal" ou "non-Modal".</p>
+
+<p>Le déclenchement se fait via l'API JavaScript :</p>
+
+<ul>
+<li><code>show()</code>: Ouvre le dialog en non-Modal</li>
+<li><code>showModal()</code>: Ouvre le dialog en Modal</li>
+<li><code>close()</code>: Ferme le dialog et renvoie en option une valeur</li>
+</ul>
+
+<p>Voici un exemple concret :</p>
+
+<pre><code class="language-html">&lt;dialog id="modale"&gt;
+  &lt;p&gt;Une modale de type Modal&lt;/p&gt;
+&lt;/dialog&gt;
+</code></pre>
+
+<pre><code class="language-js">const modal = document.querySelector("#modale");
+modal.showModal();
+</code></pre>
+
+<p>Les particularités de l'élément <code>&lt;dialog&gt;</code> sont&nbsp;:</p>
+
+<ul>
+<li><code>role=dialog</code> par défaut</li>
+<li>Masqué par défaut, visible avec l'attribut <code>open</code></li>
+<li>Nécessite un nom accessible (<code>aria-label</code> ou <code>aria-labelledby</code>)</li>
+<li>Focus trap : activé par défaut</li>
+<li>Jetable (dismiss) via touche <code>echap</code></li>
+</ul>
+
+<p>Selon son état (Modal ou non-Modal), d'autres caractéristiques s'ajoutent à la liste précédente.</p>
+
+<ul>
+<li><p>Si le <code>&lt;dialog&gt;</code> est "Modal" :</p>
+
+<ul>
+<li>Il est placé dans le Top layer,</li>
+<li><code>::backdrop</code> est applicable,</li>
+<li>Tout le reste du document est rendu automatiquement <code>inert</code>.</li>
+</ul></li>
+<li><p>Si le <code>&lt;dialog&gt;</code> est "non-Modal" :</p>
+
+<ul>
+<li>Il n'est pas placé dans le Top layer (donc les règles de stacking context et de <code>z-index</code> s'appliquent),</li>
+<li><code>::backdrop</code> ne s'applique pas,</li>
+<li>Tout le reste du document est interactif.</li>
+</ul></li>
+</ul>
+
+<p>Les spécifications d'accessibilité <abbr lang="en" title="Accessible Rich Internet Applications">ARIA</abbr> proposent un attribut <code>role="dialog"</code> pouvant être appliqué sur n'importe quel élément HTML autre que <code>&lt;dialog&gt;</code>, mais sachez que cela implique par défaut&nbsp;:</p>
+
+<ul>
+<li>Que l'élement est "non-Modal" (peut le devenir avec <code>aria-modal="true"</code>),</li>
+<li>Qu'il n'est pas dans le Top layer,</li>
+<li>Qu'il ne rend pas le reste de page inerte,</li>
+<li>Qu'il ne crée pas de Focus trap,</li>
+<li>Qu'il n'est pas Jetable (dismiss) via touche <code>echap</code>.</li>
+</ul>
+
+<p>En outre, sans API JavaScript <code>showModal()</code>, l'élément <code>&lt;dialog&gt;</code> est non-Modal :</p>
+
+<pre><code class="language-html">&lt;dialog id="dialog" open&gt;
+  &lt;p&gt;je suis non-modal&lt;/p&gt;
+&lt;/dialog&gt;
+</code></pre>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1704880051-dialog.png" alt="compatibilité de l'élément dialog" title="" data-img_id="3455"></p>
+
+<h3><code>:modal</code></h3>
+
+<p>La pseudo-classe <code>:modal</code> s'applique à tous les éléments à l'état Modal (par exemple un <code>&lt;dialog&gt;</code> ouvert avec l'API <code>showModal()</code>).</p>
+
+<pre><code class="language-css">#modale:modal {
+  background: hotpink;
+}
+</code></pre>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1704880227-modal.png" alt="compatibilité du sélecteur :modal" title="" data-img_id="3457"></p>
+
+<h2>popover</h2>
+
+<p>Un <span lang="en">popover</span> est un <span lang="en">overlay</span> composé d'un attribut <code>popover</code> associé à un déclencheur :</p>
+
+<pre><code class="language-html">&lt;button popovertarget="tooltip"&gt;Ouvrir la tooltip&lt;/button&gt;
+&lt;div popover id="tooltip"&gt;Choucroute et Saucisses de Strasbourg&amp;nbsp;!&lt;/div&gt;
+</code></pre>
+
+<p>Les particularités d'un élément pourvu d'un attribut <code>popover</code> sont&nbsp;:</p>
+
+<ul>
+<li>L'élément est "non-Modal",</li>
+<li>Il est placé dans le Top layer,</li>
+<li><code>::backdrop</code> est applicable,</li>
+<li>Aucun <code>role</code> spécifique ne lui est affecté. Le choix dépend du type de composant (<code>role="alert"</code> par exemple),</li>
+<li>Jetable (dismiss) via touche <code>echap</code> par défaut,</li>
+<li>Exclusif : il peut y en avoir plusieurs dans la page mais un seul dans l'état déployé à la fois.</li>
+</ul>
+
+<p>Le comportement <em>dismissible</em> (jetable) dépend de la valeur associée à l'attribut <code>popover</code>&nbsp;:</p>
+
+<ul>
+<li><span lang="en">light dismiss</span> (<code>&lt;div popover=auto&gt;</code>, valeur par défaut si omise) : c'est le comportement idéal pour tooltip, menu déroulant, dropdown, datepicker,</li>
+<li><span lang="en">manual dismiss</span> (<code>&lt;div popover=manual&gt;</code>) : parfait pour des notifications ou des alertes.</li>
+</ul>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1704880099-popover.png" alt="compatibilité de l'attribut popover" title="" data-img_id="3456"></p>
+
+<h3><code>:popover-open</code></h3>
+
+<p>La pseudo-classe CSS <code>:popover-open</code> représente un élément popover (c'est-à-dire un élément avec un attribut <code>popover</code>) qui est dans l'état ouvert.</p>
+
+<pre><code class="language-css">:popover-open {
+  /*...*/
+}
+</code></pre>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1704880347-popover-open.png" alt="compatibilité du sélecteur :popover-open" title="" data-img_id="3458"></p>
+
+<h3>OK alors quand est-ce qu'on utilise quoi ?</h3>
+
+<p>Le nombre de possibilités offertes par les spécifications ne facilite pas le choix lorsqu'il s'agit d'intégrer un composant qui doit se placer au-dessus d'un contenu.</p>
+
+<p>Entre les modales, les menus déroulants, les boîtes de dialogues et autres bandeaux d'alerte, il n'est guère aisé de piocher parmi <code>&lt;dialog&gt;</code>, <code>popover</code> ou une simple <code>&lt;div&gt;</code> en position abolute dopée avec JavaScript.</p>
+
+<p>Les réponses aux deux questions suivantes sont déterminantes dans votre choix final :</p>
+
+<ul>
+<li><strong>L'utilisateur a-t-il le droit d'ignorer ce composant ?</strong><br> (si non, alors il s'agit sans aucun doute d'un élément "Modal" car tout le reste de la page doit devenir <code>inert</code>)</li>
+<li><strong>Le visuel attendu est-il une "modale" avec backdrop obscurci ?</strong><br> (si oui, là aussi nous aurons recours à un élément de type "Modal")</li>
+</ul>
+
+<p>J'espère avoir éclairci la plupart des points d'ombres (même s'il en demeure sans doute) de ce vaste sujet des différents overlays. Pour finir, voici quelques articles de référence absolument indispensables pour en savoir plus.</p>
+
+<h2>Ressources</h2>
+
+<ul>
+<li><a href="https://hidde.blog/dialog-modal-popover-differences/">https://hidde.blog/dialog-modal-popover-differences/</a></li>
+<li><a href="https://blog.logrocket.com/comparing-popover-api-dialog-element/">https://blog.logrocket.com/comparing-popover-api-dialog-element/</a></li>
+<li><a href="https://open-ui.org/components/popover.research.explainer/">https://open-ui.org/components/popover.research.explainer/</a></li>
+<li><a href="https://adrianroselli.com/2023/05/brief-note-on-popovers-with-dialogs.html">https://adrianroselli.com/2023/05/brief-note-on-popovers-with-dialogs.html</a></li>
+</ul>
+<p><b><a href="https://www.alsacreations.com/article/lire/1922-dialog-modal-popover-la-synthese.html">Publié par Alsacreations.com</a></b></p>]]></description>
+  	<category>CSS</category>
+  	<comments>https://www.alsacreations.com/article/lire/1922-dialog-modal-popover-la-synthese.html#commentaires</comments>
+  	<dc:date>2024-02-09T09:00:28+01:00</dc:date>
+  	<dc:creator>Raphael</dc:creator>
+  		</item>
+
+  
+	<item>
+  	<title>Optimiser le poids des images SVG</title>
+  	<link>https://www.alsacreations.com/astuce/lire/1925-Optimiser-le-poids-des-images-SVG.html</link>
+  	<guid>https://www.alsacreations.com/astuce/lire/1925-Optimiser-le-poids-des-images-SVG.html</guid>
+    <description><![CDATA[<p>Les images SVG sont désormais omniprésentes sur le web : illustrations, schémas, décoration, icônes, ce format vectoriel se prête bien à toutes sortes de formes simples car il est léger et étirable à l'infini produisant un beau résultat sur les écrans à forte densité de pixel (hdpi, retina...).</p>
+
+<p>Si l'on peut en produire "à la main" à l'aide d'un éditeur de code, car il s'agit avant tout de XML, les images SVG sont souvent générées par des programmes de dessin/webdesign tels que Figma, Illustrator, Inkscape et divers. Ces programmes ne vont pas nécessairement réduire au maximum le poids de l'image, même si cela tend à s'améliorer. Ils n'hésiteront pas à ajouter des métadonnées inutiles ou des instructions de code superflues, provenant de la façon dont a été élaborée l'image (calques, précision des formes et des tracés).</p>
+
+<p>Ainsi Figma proposera une petite fonctionnalité d'export bien pratique et rapide pour copier une forme ou un groupe en tant que code SVG. Celui-ci pourra être inclus de manière <em>inline</em> au code HTML.</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1706464258-figma-svg-copy.png" alt="Figma : copier en tant que SVG" title="" data-img_id="3467"></p>
+
+<p>La performance étant cruciale, et scrutée par les outils d'analyse, les robots d'indexation, il est courant de devoir faire attention non seulement au poids des images bitmap (jpeg, png, webp, avif) mais aussi à SVG, avec d'autres techniques compte tenu de sa spécificité vectorielle.</p>
+
+<h2>Optimisons</h2>
+
+<p>S'il y a quelques années, il fallait se pencher manuellement sur l'optimisation du code SVG, désormais bon nombre d'outils remplissent 99% des objectifs. La plupart étant listés par <a href="https://css-tricks.com/tools-for-optimizing-svg/">CSS Tricks : Tools for Optimizing SVG</a>.</p>
+
+<p>🤖 Pour un traitement automatisé, on pourra prévoir dans un <i lang="en">workflow</i> de pojet web d'intégrer <a href="https://github.com/svg/svgo">svgo</a> durant un processus de compilation ou simplement en ligne de commande. En voici un exemple via Nodejs mais cette bibliothèque se retrouve dans d'autres situations (extension Sketch, Visual Studio Code, SublimeText, Atom... plugin postCSS, Gulp, Webpack, etc.).</p>
+
+<pre><code class="language-sh">pnpm add -g svgo
+# Des images sélectionnées
+svgo image1.svg image2.svg -o image1.min.svg image2.min.svg
+# Tout un dossier (récursif)
+svgo -f images/svg/icons/src -o images/svg/icons/dist
+</code></pre>
+
+<p>🎨 Pour un export depuis Figma, on passe par une extension de la communauté <a href="https://www.figma.com/community/plugin/782713260363070260">Advanced SVG Export</a> qui embarque l'algorithme de SVGO et dont les paramètres sont configurables.</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1706537039-figma-svgo.png" alt="Extension export SVG pour Figma" title="" data-img_id="3470"></p>
+
+<p>👉 Pour un traitement image par image quelle que soit la source, utilisons le fameux <a href="https://svgomg.net/">SVGOMG</a>, version humainement graphique de SVGO, qui acceptera soit un fichier soit un copier-coller direct (encore plus pratique), puis affichera l'aperçu et la possibilité de ré-exporter ou re-copier le code source amélioré.</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1706464938-svgomg-en-action.png" alt="SVGOMG en action" title="" data-img_id="3468"></p>
+
+<p>Si la plupart des options par défaut conviennent, détaillons celles qui rejoignent les principales techniques à retenir lorsqu'on intervient manuellement sur du SVG :</p>
+
+<ul>
+<li><strong>Baisser la précision</strong> : les coordonnées sont stockées dans un espace à 2 dimensions, vectoriel, et souvent avec une précision excessive. Inutile de manipuler et stocker des chiffres à 5 décimales si finalement à l'écran il s'agit de les arrondir au demi-pixel. Cette option produit de bons résultats sur des formes très complexes lorsque des chemins "longs" comprennent beaucoup de coordonnées et que l'on peut simplifier les courbes.</li>
+</ul>
+
+<p>Exemple de chemin avec trop de précision :</p>
+
+<pre><code class="language-xml">&lt;path d="M24 18.55C26.2 17.45 27.5 16.15 28 14.55C28.6 12.65 27.8 10.55 25.8 8.34996C24.1 6.34996 22.3 5.64996 20.5 6.14996C19 6.54996 17.6 7.84996 16.3 9.84996C15.2 11.55 14.3 13.65 13.7 15.75C13.1 17.85 13 19.35 13.3 20.25C14.2 20.55 15.6 20.55 17.8 20.25C20.1 20.15 22.2 19.55 24 18.55ZM12 9.44996C13.1 7.24996 13.4 5.44996 12.8 3.94996C12.1 2.04996 10.3 0.849963 7.40002 0.249963C4.90002 -0.350037 3.00002 0.149963 1.90002 1.64996C1.00002 2.84996 0.500025 4.64996 0.700025 7.14996C0.800025 9.24996 1.30002 11.35 2.20002 13.55C3.00002 15.55 3.70003 16.85 4.50003 17.45C5.40003 17.25 6.60003 16.25 8.10003 14.75C9.90003 12.95 11.1 11.25 12 9.44996ZM25.6 33.75C28 34.15 29.8 33.85 31.1 32.85C32.6 31.65 33.2 29.55 32.9 26.55C32.7 23.95 31.6 22.45 29.9 21.75C28.4 21.25 26.6 21.45 24.3 22.35C22.4 23.15 20.5 24.25 18.8 25.65C17.1 27.05 16.1 28.15 15.9 29.15C16.5 29.85 17.6 30.75 19.5 31.75C21.6 32.85 23.6 33.55 25.6 33.75Z" fill="#ACC737"/&gt;
+</code></pre>
+
+<p>Le voici optimisé avec moins de précision sur les coordonnées, et un résultat visuel semblable :</p>
+
+<pre><code class="language-xml">&lt;path d="M24 18.6c2.2-1.2 3.5-2.5 4-4 .6-2-.2-4-2.2-6.3-1.7-2-3.5-2.7-5.3-2.2-1.5.4-2.9 1.7-4.2 3.7-1.1 1.8-2 3.8-2.6 6-.6 2-.7 3.6-.4 4.4.9.4 2.3.4 4.5 0a14 14 0 0 0 6.2-1.6ZM12 9.4c1.1-2.2 1.4-4 .8-5.5C12.1 2 10.3 1 7.4.2 4.9-.4 3 .2 1.9 1.6 1 2.8.5 4.6.7 7.1c.1 2.1.6 4.3 1.5 6.5.8 2 1.5 3.3 2.3 3.8.9-.1 2.1-1.1 3.6-2.6A20 20 0 0 0 12 9.3Zm13.6 24.4c2.4.4 4.2 0 5.5-1 1.5-1.1 2.1-3.2 1.8-6.2-.2-2.7-1.3-4.2-3-4.9-1.5-.4-3.3-.3-5.6.7-1.9.8-3.8 1.9-5.5 3.3-1.7 1.4-2.7 2.4-2.9 3.4.6.8 1.7 1.6 3.6 2.6 2.1 1.2 4.1 1.8 6.1 2Z" fill="#ACC737"/&gt;
+</code></pre>
+
+<ul>
+<li><strong>Supprimer les informations inutiles</strong> : commentaires <code>&lt;!-- --&gt;</code> dans le code source, métadonnées de l'éditeur d'image qui aime y laisser sa trace, et même éléments cachés (<code>hidden</code>) : tout ce qui ne se "voit" de toute façon pas en production, et ignoré par le navigateur.</li>
+<li><strong>Supprimer les informations XML</strong> : à l'origine SVG a été construit sur XML qui induit des contraintes : un doctype, des <em>namespaces</em> le cas échéant... si ces éléments sont absents les navigateurs s'en accomodent. Par exemple l'attribut <code>xmlns</code> n'est pas nécessaire si le code SVG est <i lang="en">inline</i> dans le code HTML.</li>
+<li><strong>Fusionner les informations, minifier les couleurs</strong> : notamment de style, les classes et valeurs ne sont pas toujours générées intelligemment, il s'agit alors de mutualiser les styles communs plutôt que de se reposer uniquement sur des attributs <code>style=""</code> (ex : 2 carrés verts auront les mêmes propriétés) pour gagner de la place. En revanche l'option <i lang="en">merge paths</i> peut empêcher de conserver tous les tracés individuels pour agir sur chacun : cela dépendra beaucoup des règles externes CSS et du code JavaScript qui pourrait interagir avec le SVG attendu. Si vous écrivez des propriétés de style qui doivent s'appliquer sur un élément en particulier, nommé par une classe, et que cette classe est retirée, cela n'aura plus d'effet.</li>
+<li><strong>Supprimer les éléments ou attributs SVG en excès</strong> : en plus du code inutile lorsqu'il s'agit d'éléments ou attributs vides, on constate souvent une imbrication de groupes (balise <code>&lt;g&gt;</code>) qui ne sont pas nécessaires au-delà de l'édition, il faut juste faire attention à préserver l'ordre de superposition des formes.</li>
+<li><strong>Appliquer les transformations</strong> : les coordonnées initiales d'une forme peuvent être complétées, modifiées et transformées à la volée par des propriétés d'échelle, de déplacement, de rotation, autant les appliquer directement dans le fichier sur ces mêmes coordonnées.</li>
+<li><strong>Remplacer des balises par d'autres</strong> : toute forme simple (cercle, carré, rectangle) existe en tant que balise SVG mais peut aussi être décrite par un chemin générique <code>&lt;path&gt;</code> avec des coordonnées minimales.</li>
+<li><strong>Minifier</strong> le code et/ou le remettre en forme (<i lang="en">Prettify</i>) : supprimer les espaces inutiles, joindre les lignes, ou les réindenter correctement, c'est toujours un compromis entre lisibilité humaine et gain de quelques octets côté réseau.</li>
+</ul>
+
+<p>Si vous examinez toutes les options listées par SVGOMG, vous imaginerez aisément tout ce qui peut être entrepris pour alléger une image SVG. Pour constater les effets avant/après sur le code source, consultez l'onglet <i lang="en">Markup</i> et activez/désactivez l'option <i lang="en">Show original</i>.</p>
+
+<p>Une opération toutefois devra nécessiter une vérification et intervention manuelle : si votre SVG contient des images bitmap (non vectorielles), ce qui est tout à fait possible pour des effets non reproductibles en vectoriel (cela se remarquera à son poids global lourd et à la présence de code en base64) alors il faudra étudier la possibilité de les remplacer par de vraies formes simplifiées.</p>
+
+<h2>TL;DR ?</h2>
+
+<p>Utilisez <a href="https://svgomg.net/">SVGOMG</a>.</p>
+<p><b><a href="https://www.alsacreations.com/astuce/lire/1925-Optimiser-le-poids-des-images-SVG.html">Publié par Alsacreations.com</a></b></p>]]></description>
+  	<category>Formats, encodage, XML</category>
+  	<comments>https://www.alsacreations.com/astuce/lire/1925-Optimiser-le-poids-des-images-SVG.html#commentaires</comments>
+  	<dc:date>2024-02-01T09:00:00+01:00</dc:date>
+  	<dc:creator>Rodolphe</dc:creator>
+  		</item>
+
+  
+	<item>
+  	<title>CSS :has() le sélecteur de parent, mais bien plus encore !</title>
+  	<link>https://www.alsacreations.com/article/lire/1924-css-has-selecteur-parent.html</link>
+  	<guid>https://www.alsacreations.com/article/lire/1924-css-has-selecteur-parent.html</guid>
+    <description><![CDATA[<p class="info">
+La pseudo-classe <code>:has()</code> réalise le fantasme historique de pouvoir enfin <strong>"cibler le parent" en CSS</strong>&hellip; mais elle fait bien plus que ça&#8239;!
+</p>
+
+<p><code>:has()</code> est une pseudo-classe CSS issue des spécifications <a href="https://drafts.csswg.org/selectors/#relational">"Selectors level 4"</a> où elle est décrite comme "sélecteur relationnel".</p>
+
+<p>Le sélecteur <code>:has()</code> cible un élément en relation avec la liste d'arguments qu'il contient au sein de ses parenthèses. Cela permet de cibler un parent ou ancêtre, mais également un frère précédent dans le DOM.</p>
+
+<p>Commençons justement par une énumération d'exemples de ce qu'est capable de réaliser <code>:has()</code>&hellip;</p>
+
+<h2>Quelques exemples simples</h2>
+
+<p>Je cible l'élément <code>&lt;a&gt;</code> à condition qu'il contienne un descendant <code>&lt;img&gt;</code>&#8239;:</p>
+
+<pre><code class="language-css">a:has(img) {
+}
+</code></pre>
+
+<p>Je cible l'élément <code>&lt;a&gt;</code> à condition qu'il contienne un enfant direct <code>&lt;img&gt;</code>&#8239;:</p>
+
+<pre><code class="language-css">a:has(&gt; img) {
+}
+</code></pre>
+
+<p>Je cible n'importe quel élément du DOM à condition qu'il contienne un descendant <code>&lt;img&gt;</code>&#8239;:</p>
+
+<pre><code class="language-css">:has(img) {
+}
+</code></pre>
+
+<p>Je cible l'élément <code>&lt;button&gt;</code> à condition qu'il contienne un descendant de classe <code>.icon</code> ou de classe <code>.text</code>&#8239;:</p>
+
+<pre><code class="language-css">button:has(.icon, .text) {
+}
+</code></pre>
+
+<p>Je masque l'élément <code>&lt;svg&gt;</code> s'il contient un descendant <code>&lt;symbol&gt;</code> ou <code>&lt;defs&gt;</code>&#8239;:</p>
+
+<pre><code class="language-css">svg:has(symbol, defs) {
+  display: none;
+}
+</code></pre>
+
+<p>Je cible l'élément de classe <code>.container</code> à condition qu'il contienne un enfant direct unique <code>&lt;img&gt;</code>&#8239;:</p>
+
+<pre><code class="language-css">.container:has(&gt; img:only-child) {
+}
+</code></pre>
+
+<p>Je cible l'élément de classe <code>.form-group</code> à condition qu'il contienne un élément <code>&lt;input&gt;</code> à l'état coché&#8239;:</p>
+
+<pre><code class="language-css">.form-group:has(input:checked) {
+}
+</code></pre>
+
+<p>Je cible l'élément  <code>&lt;form&gt;</code> à condition qu'il contienne un élément à l'état <code>:focus</code> (quasi identique <a href="https://codepen.io/una/pen/OJoRxmv">au sélecteur <code>:focus-within</code></a>)&#8239;:</p>
+
+<pre><code class="language-css">form:has(:focus) {
+}
+</code></pre>
+
+<p>Je cible l'élément <code>&lt;h1&gt;</code> à condition que son frère suivant soit un <code>&lt;p&gt;</code>&#8239;:</p>
+
+<pre><code class="language-css">h1:has(+ p) {
+}
+</code></pre>
+
+<p>Je cible l'élément <code>&lt;label&gt;</code> à condition que son frère suivant soit un <code>&lt;input&gt;</code>&#8239;:</p>
+
+<pre><code class="language-css">label:has(+ input) {
+}
+</code></pre>
+
+<h2>Compatibilité</h2>
+
+<p>La compatibilité de <code>:has()</code> a été placée au niveau de <a href="https://developer.mozilla.org/en-US/blog/baseline-evolution-on-mdn/" lang="en">Baseline 2023</a>, c'est à dire que l'ensemble des navigateurs supportent cette fonctionnalité depuis (décembre) 2023.</p>
+
+<p><img src="https://caniuse.bitsofco.de/image/css-has.webp" alt="support navigateurs du sélecteur :has(). Source: caniuse.com"></p>
+
+<p>Il est parfaitement possible de tester si un navigateur supporte <code>:has()</code> à l'aide de la règle <code>@supports()</code>&#8239;:</p>
+
+<pre><code class="language-css">@supports (selector(:has(*))) {
+  /* ici les styles si :has() est supporté */
+}
+
+@supports not (selector(:has(*))) {
+  /* ici les styles si :has() n'est pas supporté */
+}
+</code></pre>
+
+<h2>Spécificité</h2>
+
+<p>Bien qu'appartenant aux pseudo-classes, <code>:has()</code> ne compte pas dans le calcul de la <a href="https://developer.mozilla.org/fr/docs/Web/CSS/Specificity">spécificité</a> des sélecteurs CSS, en revanche son contenu est pris en compte&#8239;:</p>
+
+<pre><code class="language-css">div:has(img) {
+  /* spécificité (0,0,2) */
+  /* :has ne compte pas */
+  /* on compte les 2 éléments div et img */
+}
+
+div:has(img, #hero) {
+  /* spécificité (1,0,1) */
+  /* :has ne compte pas */
+  /* on compte le poids le plus fort dans la liste (ici l'id #hero) */
+}
+</code></pre>
+
+<h2>Combinaisons</h2>
+
+<p><code>:has()</code> peut être combiné avec d'autres sélecteurs tels que <code>:not()</code>, <code>:where()</code> ou <code>:is()</code>. Cependant il n'est pas autorisé d'imbriquer <code>:has()</code> au sein d'un autre <code>:has()</code> (en même temps qui voudrait faire ça&#8239;?).</p>
+
+<p>Voici quelques exemples&#8239;:</p>
+
+<ul>
+<li><code>p:has(:not(span))</code> : <code>p</code> qui contient tout descendant <em>sauf</em> un <code>span</code></li>
+<li><code>p:not(:has(span))</code> : <code>p</code> qui <em>ne contient pas</em> de descendant <code>span</code></li>
+<li><code>p:where(:has(span))</code> : <code>p</code> qui contient un descendant <code>span</code>. Fonctionnellement identique à <code>p:has(span)</code> mais avec une spécificité moindre (0,0,1)</li>
+<li><code>:where(p:has(span))</code> : <code>p</code> qui contient un descendant <code>span</code>. Fonctionnellement identique à <code>p:has(span)</code> mais avec une spécificité nulle (0,0,0)</li>
+</ul>
+
+<h2>Quelques cas d'usage utiles</h2>
+
+<p><code>:has()</code> est un sélecteur tout à fait révolutionnaire qui ouvre la voie vers de multiples nouvelles possibilités en CSS.</p>
+
+<p>Il est difficile de rassembler tous les cas d'usage utiles que cette pseudo-classe permet aujourd'hui de résoudre. Voici cependant une petite sélection parmi mes préférés&hellip;</p>
+
+<h3>Appliquer un effet sur la page si une modale est ouverte</h3>
+
+<p>Je souhaite cibler <code>body</code> et lui appliquer un effet de flou via <code>backdrop-filter</code>, uniquement s'il contient un élément ayant à la fois la classe <code>.modal</code> et <code>.is-opened</code>&#8239;:</p>
+
+<pre><code class="language-css">body:has(.modal.is-opened) {
+  backdrop-filter: blur(8px);
+}
+</code></pre>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1705488890-has-1.jpg" alt="" title="" data-img_id="3459"></p>
+
+<p><a class="demo" href="https://codepen.io/raphaelgoetter/pen/VwdZmGx">Démo sur Codepen</a></p>
+
+<p class="warning">
+Pour ce cas d'usage précis, il peut être pertinent d'envisage d'utiliser <code>&lt;dialog&gt;</code> qui apporte nativement ces fonctionnalités d'obscurcissement ou de flou de page.
+</p>
+
+<h3>Ajouter des gouttières conditionnellement</h3>
+
+<p>Je souhaite une gouttière pour espacer les éléments de ma "Card", mais uniquement si celle-ci possède une image&#8239;:</p>
+
+<pre><code class="language-css">.card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+.card:has(&gt;img) {
+  gap: 20px;
+}
+</code></pre>
+
+<p>Encore plus fort : une gouttière doit s'appliquer uniquement si le groupe de cards a exactement deux enfants&#8239;:</p>
+
+<pre><code class="language-css">.card-group:has(&gt; :nth-child(2):last-child) {
+  gap: 20px;
+}
+</code></pre>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1705489298-has-2.jpg" alt="" title="" data-img_id="3460"></p>
+
+<p><a class="demo" href="https://codepen.io/raphaelgoetter/pen/vYdVQPX">Démo sur Codepen</a></p>
+
+<h3>Décorer le parent d'une case à cocher au clic</h3>
+
+<p>Je veux une couleur de fond sur le parent du label et de la checkbox quand celle-ci est cochée&#8239;:</p>
+
+<pre><code class="language-css">.form-group:has(input:checked) {
+  background: #ddd;
+}
+</code></pre>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1705489364-has-3.png" alt="" title="" data-img_id="3461"></p>
+
+<p><a class="demo" href="https://codepen.io/raphaelgoetter/pen/MWXwpaJ">Démo sur Codepen</a></p>
+
+<h3>Adapter les styles au nombre d'enfants</h3>
+
+<p>Je souhaite adapter les styles et la taille des enfants selon leur nombre au sein de leur parent&#8239;:</p>
+
+<pre><code class="language-css">.parent {
+
+  &amp;:has(&gt; :nth-child(10)) { }
+  &amp;:has(&gt; :nth-child(20)) { }
+  &amp;:has(&gt; :nth-child(30)) { }
+
+}
+</code></pre>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1705489421-has-4.png" alt="" title="" data-img_id="3462"></p>
+
+<p><a class="demo" href="https://codepen.io/chriscoyier/pen/vYbPaxo">Démo sur Codepen</a></p>
+
+<h3>Modifier les variables de la page au clic sur une checkbox</h3>
+
+<p>À partir d'une case à cocher située n'importe où dans le DOM, je veux inverser les couleurs des variables de la page au moment où cette checkbox est cochée&#8239;:</p>
+
+<pre><code class="language-html">&lt;body&gt;
+  ...
+  n'importe où dans le DOM
+  ...
+  &lt;div&gt;
+    &lt;input type="checkbox" id="check" class="toggle"&gt;
+    &lt;label for="check"&gt;toggle light/dark&lt;/label&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+
+<pre><code class="language-css">body {
+  --bg-color: #eee;
+  --text-color: #222;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+body:has(.toggle:checked) {
+  --bg-color: #222;
+  --text-color: #eee;
+}
+</code></pre>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1705489467-has-5.png" alt="" title="" data-img_id="3463"></p>
+
+<p><a class="demo" href="https://codepen.io/raphaelgoetter/pen/GRzPXrd">Démo sur Codepen</a></p>
+
+<h3>Bénéficier de Container Queries sans connaître le parent</h3>
+
+<pre><code class="language-css">/* Je crée un Container Query sur le parent de .component (quel qu'il soit) */
+:has(&gt; .component) {
+  container-type: inline-size;
+}
+/* J'adapte les styles de .component selon la taille du parent */
+.component {
+  @container (width &gt; 500px) {
+    color: hotpink;
+  }
+}
+</code></pre>
+
+<p><a class="demo" href="https://codepen.io/raphaelgoetter/pen/GRGQJLe">Démo sur Codepen</a></p>
+
+<h2>Conclusion</h2>
+
+<p>La portée et la puissance du sélecteur <code>:has()</code> dépassent de loin toutes les autres façons historiques de cibler les éléments en CSS.</p>
+
+<blockquote>
+  <p>Grâce à :has() il est possible de cibler n'importe quel élément du DOM à partir de n'importe quel autre élément du DOM.</p>
+</blockquote>
+
+<p>On pourrait se poser des questions légitimes sur les performances d'un sélecteur permettant de parcourir tout le DOM dans tous les sens.</p>
+
+<p>Dans son <a href="https://webkit.org/blog/13096/css-has-pseudo-class/">article consacré à ce sélecteur</a>, Jen Simmons explique que les travaux sur <code>:has()</code> ont conduit à des spécifications dédiées aux performances et que les navigateurs ont été retravaillés pour s'adapter à ces spécifications.</p>
+
+<p>Les résultats sont excellents (traduction d'un extrait de son article)&#8239;:</p>
+
+<blockquote>
+  <p>Il est enfin possible d'implémenter un tel sélecteur avec des performances fantastiques, même en présence de grands arbres DOM et d'un grand nombre de sélecteurs <code>:has()</code>.</p>
+</blockquote>
+
+<h2>Ressources</h2>
+
+<ul>
+<li>Documentation MDN&#8239;: <a href="https://developer.mozilla.org/fr/docs/Web/CSS/:has">https://developer.mozilla.org/fr/docs/Web/CSS/:has</a></li>
+<li>Article de Jen Simmons (avec un paragraphe sur les performances)&#8239;: <a href="https://webkit.org/blog/13096/css-has-pseudo-class/">https://webkit.org/blog/13096/css-has-pseudo-class/</a></li>
+<li>Smashing Magazine : <a href="https://www.smashingmagazine.com/2023/01/level-up-css-skills-has-selector/">Level Up Your CSS Skills With The :has() Selector</a></li>
+<li>LogRocket : <a href="https://blog.logrocket.com/advanced-guide-css-has-selector/">The advanced guide to the CSS :has() selector</a></li>
+<li>LambdaTest : <a href="https://www.lambdatest.com/blog/css-has-selector/">Complete Guide to CSS :has() Selector</a></li>
+<li>Source de l'illustration principale : <a href="https://pixabay.com/fr/illustrations/ai-g%C3%A9n%C3%A9r%C3%A9-darth-vader-star-wars-7877747/">Pixabay : Ai généré, Darth vader, Star wars. Utilisation gratuite.</a></li>
+</ul>
+<p><b><a href="https://www.alsacreations.com/article/lire/1924-css-has-selecteur-parent.html">Publié par Alsacreations.com</a></b></p>]]></description>
+  	<category>CSS</category>
+  	<comments>https://www.alsacreations.com/article/lire/1924-css-has-selecteur-parent.html#commentaires</comments>
+  	<dc:date>2024-01-18T13:37:25+01:00</dc:date>
+  	<dc:creator>Raphael</dc:creator>
+  		</item>
+
+  
+	<item>
+  	<title>Mettre en surbrillance ligne et colonne au survol d&apos;une table</title>
+  	<link>https://www.alsacreations.com/astuce/lire/1923-Mettre-en-surbrillance-ligne-et-colonne-au-survol-d-une-table.html</link>
+  	<guid>https://www.alsacreations.com/astuce/lire/1923-Mettre-en-surbrillance-ligne-et-colonne-au-survol-d-une-table.html</guid>
+    <description><![CDATA[<p>Aujourd'hui, il nous est possible de faire énormément de choses avancés en CSS. Cependant quelque chose qui semble ± simple n'est pas toujours aussi simple que ce que l'on espère, voir pas du tout. Le projet sur lequel je travaille affiche énormément de table de données (<code>&lt;table&gt;</code>). Pour certaines d'entre elles, j'aimerais pouvoir mettre en surbrillance la ligne <strong>et</strong> la colonne de la cellule que je survole…</p>
+
+<p><img alt="Un bouton burger sous forme de 3 rectangles" src="https://www.alsacreations.com/xmedia/doc/original/1704408972-table-highlight-cross-axis.png" width="400"></p>
+
+<p>Il est évident qu'il existe de moches solutions avec Javascript (<a href="https://codepen.io/luttenegger/pen/vYgWmxz">hum hum</a>), mais il est aussi très simple de le faire avec CSS (<a href="https://codepen.io/Yordi/pen/dyQOMXE">codepen</a>).</p>
+
+<h2>Comment cibler une ligne de la table ?</h2>
+
+<p>Très simplement, en utilisant la pseudo-classe <strong>hover</strong> sur la ligne (<code>&lt;tr&gt;</code> <em>table-row</em>), on peut changer son <code>background-color</code>.</p>
+
+<pre><code class="language-css">tr:hover {
+  background: antiquewhite;
+}
+</code></pre>
+
+<h2>Comment cibler une colonne de la table ?</h2>
+
+<p>Un peu plus compliqué pour cette partie…</p>
+
+<p>En Javascript, il est plutôt facile de récupérer l'index de la colonne pour ensuite utiliser CSS et une pseudo-classe <code>:nth-child()</code>. Pour toutes les lignes, sélectionner la colonne numéro 4, et lui afficher un background différent.</p>
+
+<p>En CSS, on ne peut pas connaître son index (à l'exception de <em>first</em> et <em>last</em>), remonter la structure et ensuite réappliquer plus loin.
+Par contre, en combinant de simple propriétés comme <code>position</code>, <code>overflow</code> et un pseudo-élément <code>::before</code>, on pourrait créer <strong>l'illusion</strong> en s'étendant verticalement un peu plus loin que la cellule.</p>
+
+<pre><code class="language-css">td {
+  position: relative;
+
+  &amp;:hover::before {
+    content: "";
+    position: absolute;
+    inset: -100vh 0; /* https://developer.mozilla.org/fr/docs/Web/CSS/inset */
+    background: antiquewhite;
+    z-index: -1; /* On positione le pseudo-élément en arrière plan */
+  }
+}
+</code></pre>
+
+<p>Avec <code>inset: -100vh 0</code> (équivalent à <code>top: -100vh; right: 0; bottom: -100vh; left: 0;</code>), on va prendre la largeur de la cellule et s'étendre en hauteur.</p>
+
+<p>Maintenant, nous avons bien une surbrillance qui se fait sur les deux axes. Il y a cependant notre colonne qui s'étend un peu trop. En ajoutant un simple <code>overflow: hidden</code> sur notre table, on contiendra tout ça.</p>
+
+<p><a class="demo" href="https://codepen.io/Yordi/pen/dyQOMXE">Voir le résultat</a></p>
+<p><b><a href="https://www.alsacreations.com/astuce/lire/1923-Mettre-en-surbrillance-ligne-et-colonne-au-survol-d-une-table.html">Publié par Alsacreations.com</a></b></p>]]></description>
+  	<category>CSS</category>
+  	<comments>https://www.alsacreations.com/astuce/lire/1923-Mettre-en-surbrillance-ligne-et-colonne-au-survol-d-une-table.html#commentaires</comments>
+  	<dc:date>2024-01-05T23:18:26+01:00</dc:date>
+  	<dc:creator>Yordi</dc:creator>
+  		</item>
+
+  
+	<item>
+  	<title>Animer un bouton burger simple avec SVG et CSS</title>
+  	<link>https://www.alsacreations.com/tuto/lire/1921-Animer-un-bouton-burger-simple-avec-SVG-et-CSS.html</link>
+  	<guid>https://www.alsacreations.com/tuto/lire/1921-Animer-un-bouton-burger-simple-avec-SVG-et-CSS.html</guid>
+    <description><![CDATA[<p>Le format  <abbr title="Scalable Vector Graphics" lang="en">SVG</abbr> peut paraître parfois un peu intimidant, et l'associer à des transitions ou des animations CSS semble encore plus audacieux pour bon nombre de personnes.</p>
+
+<p>Cependant, dans certains cas, l'alchimie entre SVG et CSS est aussi bénéfique qu'extrêmement simple à mettre en oeuvre. Dans ce tutoriel, nous allons suivre étape par étape comment animer un bouton burger simple avec SVG et CSS.</p>
+
+<div style="text-align: center">
+  <video controls autoplay width="250">
+    <source src="https://www.alsacreations.com/xmedia/tuto/burger/09.mp4" type="video/mp4" >
+  </video>
+</div>
+
+<h3>Quels outils ?</h3>
+
+<p>La liste des outils nécessaires pour atteindre nos objectifs est particulièrement réduite puisqu'un <strong>simple <a href="https://code.visualstudio.com/">éditeur de code</a> fait le job</strong> (n'importe lequel fait l'affaire, Visual Studio Code étant mon choix personnel).</p>
+
+<p>Pour aller plus loin, et en guise de bonus, on peut également piocher&nbsp;:</p>
+
+<ul>
+<li>Un éditeur <a href="https://github.com/SVG-Edit/svgedit">SVG en ligne</a> (parce que ça peut toujours servir)</li>
+<li>Des recommendations concernant <a href="https://github.com/alsacreations/guidelines/blob/master/Guidelines-Accessibilite.md#images-svg-et-accessibilit%C3%A9">l'accessibilité des SVG</a> (au hasard les Guidelines Alsacréations)</li>
+<li>Un éditeur de <a href="https://cubic-bezier.com/">courbes de Bezier</a> (pour des animations originales)</li>
+</ul>
+
+<h3>SVG c'est quoi ?</h3>
+
+<p>En trois mots, voici comment résumer SVG :</p>
+
+<ul>
+<li>SVG est un format graphique vectoriel (composé de tracés et de courbes)</li>
+<li>Il est développé et maintenu depuis 1999 par le W3C (standard officiel, open source)</li>
+<li>Il est conçu en XML (compatible HTML) (on peut le créer et le lire avec un simple éditeur de texte)</li>
+</ul>
+
+<h3>1. Produire le burger bouton en SVG</h3>
+
+<p>Si l'on y regarde de plus près, une "icône Burger" c'est bêtement trois rectangles horizontaux espacés et avec des coins arrondis.</p>
+
+<p><img alt="Un bouton burger sous forme de 3 rectangles" src="https://www.alsacreations.com/xmedia/tuto/burger/01.png" width="200"></p>
+
+<p>Notre éditeur de code  préféré est amplement suffisant pour s'aquitter de la tâche de dessiner des rectangles&nbsp;: on va tout d'abord dessiner un élément SVG vide avec une fenêtre de "100 x 100". C'est une dimension purement indicative car tout est proportionnel et adaptable en SVG.</p>
+
+<pre><code class="language-xml">&lt;svg class="burger-icon" viewBox="0 0 100 100"&gt;
+&lt;/svg&gt;
+</code></pre>
+
+<pre><code class="language-css">.burger-icon {
+  width: 200px; height: 200px; /* taille du SVG */
+  border: 2px dotted #ddd; /* bordure = simple repère */
+}
+</code></pre>
+
+<p><img alt="Notre canevas vide" src="https://www.alsacreations.com/xmedia/tuto/burger/02.png" width="200"></p>
+
+<p>Le tracé de notre premier rectangle est un jeu d'enfant aussi&nbsp;: l'élément SVG <code>rect</code> est fait pour ça, attribuons-lui des coordonnées (<code>x=0</code> et <code>y=0</code>) ainsi qu'une largeur de "100" et une hauteur de "20".</p>
+
+<pre><code class="language-xml">&lt;svg class="burger-icon" viewBox="0 0 100 100"&gt;
+  &lt;rect x="0" y="0" width="100" height="20" /&gt;
+&lt;/svg&gt;
+</code></pre>
+
+<p><img alt="Notre premier rectangle" src="https://www.alsacreations.com/xmedia/tuto/burger/03.png" width="200"></p>
+
+<p>Vous aurez compris qu'à partir d'un premier rectangle, il n'est pas difficile de produire les deux suivants. <em>Et voilà !</em></p>
+
+<pre><code class="language-xml">&lt;svg class="burger-icon" viewBox="0 0 100 100"&gt;
+  &lt;rect x="0" y="0" width="100" height="20" /&gt;
+  &lt;rect x="0" y="40" width="100" height="20" /&gt;
+  &lt;rect x="0" y="80" width="100" height="20" /&gt;
+&lt;/svg&gt;
+</code></pre>
+
+<p><img alt="Nos 3 rectangles" src="https://www.alsacreations.com/xmedia/tuto/burger/04.png" width="200"></p>
+
+<p>Pour ce qui est des coins arrondis, là aussi SVG a tout prévu sous la forme de l'attribut <code>rx</code>, à qui une valeur de "5" semble tout à fait parfaite.</p>
+
+<pre><code class="language-xml">&lt;svg class="burger-icon" viewBox="0 0 100 100"&gt;
+  &lt;rect x="0" y="0" width="100" height="20" rx="5" /&gt;
+  &lt;rect x="0" y="40" width="100" height="20" rx="5" /&gt;
+  &lt;rect x="0" y="80" width="100" height="20" rx="5" /&gt;
+&lt;/svg&gt;
+</code></pre>
+
+<p><img alt="Nos 3 rectangles arrondis" src="https://www.alsacreations.com/xmedia/tuto/burger/05.png" width="200"></p>
+
+<p>Le résultat est bluffant et on se rend compte de la puissance insoupçonnée d'un éditeur de code. Plus sérieusement, ce n'était vraiment pas compliqué, non&nbsp;?</p>
+
+<p>Par contre, ce qui est vraiment dommage c'est de répéter les mêmes choses plusieurs fois&hellip;</p>
+
+<p>Mais justement, il se trouve que&hellip; la plupart des attributs SVG existent également sous forme de propriétés CSS&nbsp;! Voici par conséquent comment nous allons pouvoir améliorer notre code actuel&nbsp;:</p>
+
+<pre><code class="language-xml">&lt;svg class="burger-icon" viewBox="0 0 100 100"&gt;
+  &lt;rect class="rect-1" /&gt;
+  &lt;rect class="rect-2" /&gt;
+  &lt;rect class="rect-3" /&gt;
+&lt;/svg&gt;
+</code></pre>
+
+<pre><code class="language-css">rect {
+  x: 0;
+  rx: 5px;
+  width: 100px;
+  height: 20px;
+}
+.rect-1 {
+  y: 0;
+}
+.rect-2 {
+  y: 40px;
+}
+.rect-3 {
+  y: 80px;
+}
+</code></pre>
+
+<p>Autre avantage loin d'être anodin, ces propriétés CSS-SVG ont la bonne idée d'être animables : on peut par exemple effectuer une <code>transition</code> sur la propriété&hellip; <code>y</code>&nbsp;!</p>
+
+<pre><code class="language-css">rect {
+  ...
+  transition: y 1s;
+}
+.rect-1:hover {
+  y: 15px;
+}
+</code></pre>
+
+<div style="text-align: center">
+  <video controls autoplay width="250">
+    <source src="https://www.alsacreations.com/xmedia/tuto/burger/06.mp4" type="video/mp4" >
+  </video>
+</div>
+
+<h3>2. Préparer le SVG et le rendre accessible</h3>
+
+<p>Nous allons à présent nous atteler à transformer notre icône SVG en un véritable "bouton Burger", fonctionnel et accessible.</p>
+
+<p>Pour ce faire, on commence par placer le SVG dans un <code>&lt;button&gt;</code> qui sera l'élément interactif au clic / touch et qui déclenchera l'animation.</p>
+
+<pre><code class="language-xml">&lt;button class="burger-button"&gt;
+  &lt;svg class="burger-icon" viewBox="0 0 100 100"&gt;
+    &lt;rect class="rect-1" /&gt;
+    &lt;rect class="rect-2" /&gt;
+    &lt;rect class="rect-3" /&gt;
+  &lt;/svg&gt;
+&lt;/button&gt;
+</code></pre>
+
+<p>Notre icône SVG est considérée comme purement décorative, car c'est le bouton qui portera l'information. Nous veillons à lui appliquer les attributs suivants&nbsp;:</p>
+
+<ul>
+<li>Un attribut <code>aria-hidden="true"</code></li>
+<li>Un attribut <code>focusable="false"</code> pour éviter de naviguer au sein du SVG.</li>
+<li>Aucun élément <code>&lt;title&gt;</code> ni <code>&lt;desc&gt;</code> ni d'attribut <code>title</code>, <code>aria-label</code>, <code>aria-labelledby</code>, ni <code>role="img"</code></li>
+</ul>
+
+<pre><code class="language-xml">...
+  &lt;svg class="burger-icon" aria-hidden="true" focusable="false" viewBox="0 0 100 100"&gt;
+  &lt;/svg&gt;
+...
+</code></pre>
+
+<p>Le bouton, quant à lui, nécessite les éléments suivants&nbsp;:</p>
+
+<ul>
+<li>Un nom accessible (via <code>aria-label</code> ou un texte masqué à la ".sr-only")</li>
+<li>En option, et selon les cas de figure, un attribut <code>aria-controls</code> pour lier à la cible et un attribut <code>aria-expanded</code> pour signaler l'état du bouton. Dans notre cas, ce n'est pas nécessaire.</li>
+</ul>
+
+<pre><code class="language-xml">&lt;button class="burger-button" aria-label="Menu" data-expanded="false"&gt;
+ ...
+&lt;/button&gt;
+</code></pre>
+
+<p>Voici le script JavaScript destiné à gérer l'interaction et la mise à jour des attributs <code>data-</code>, et déclencher l'animation de l'icône&nbsp;:</p>
+
+<pre><code class="language-js">(function () {
+  function toggleNav() {
+    // Define targets
+    const button = document.querySelector('.burger-button');
+    const target = document.querySelector('#navigation');
+
+    button.addEventListener('click', () =&gt; {
+      const currentState = target.getAttribute("data-state");
+
+      if (!currentState || currentState === "closed") {
+        target.setAttribute("data-state", "opened");
+        button.setAttribute("data-expanded", "true");
+      } else {
+        target.setAttribute("data-state", "closed");
+        button.setAttribute("data-expanded", "false");
+      }
+
+    });
+  } // end toggleNav()
+
+  toggleNav();
+}());
+</code></pre>
+
+<h4><code>aria-expanded</code> ou non ?</h4>
+
+<p>L'utilisation de <code>aria-expanded</code> sur un bouton n'est pas systématique, dans le cas d'un menu tout dépend de comment celui-ci va s'ouvrir&nbsp;:</p>
+
+<ul>
+<li>S'il s'agit d'une modale par exemple (donc si tout le reste doit devenir <code>inert</code>), alors le bouton reste un bouton simple, pas d'<code>aria-expanded</code>.</li>
+<li>S'il s'agit d'un menu déroulant, alors oui il faudra un attribut <code>aria-expanded.</code>.</li>
+</ul>
+
+<h3>3. Les étapes de l'animation</h3>
+
+<p><img alt="Les 3 étapes prévues pour l'animation" src="https://www.alsacreations.com/xmedia/tuto/burger/group01.png"></p>
+
+<p class="info">
+Pour être très précis, nous n'allons pas employer une "animation" pour nos effets, mais une combinaison de trois "transitions", qui se révèleront amplement suffisantes pour notre besoin.
+</p>
+
+<p>Voici le scénario étape par étape qui doit se réaliser&nbsp;:</p>
+
+<ol>
+<li>L'action de clic ou de touch sur l'élément <code>button</code> doit déclencher une série de trois transitions;</li>
+<li>La transition 1 consiste en un déplacement vertical de <code>.rect-1</code> et <code>.rect-3</code> qui se rejoignent au centre du SVG;</li>
+<li>La transition 2 consiste à faire disparaître <code>.rect-2</code> qui traîne dans nos pattes. En terme de timing, cette transition doit se dérouler en même temps que la transition 1;</li>
+<li>La transition 3 se compose d'une rotation de 45 degrés de <code>.rect-1</code> et <code>.rect-3</code> et doit de déclencher juste après les transitions précédentes).</li>
+</ol>
+
+<h4>Transition 1 et 2 : "translate" et "opacity"</h4>
+
+<p>La propriété <code>transition</code>est appliquée sur l'élément à l'état initial (hors événement) afin d'assurer une transition au retour lorsque l'événement est quitté.</p>
+
+<pre><code class="language-css">/* transition sur la propriété y et opacity, durée 0.3s */
+rect {
+  transition: 
+    y 0.3s,
+    opacity 0.3s;
+}
+
+/* coordonnées y initiales */
+.rect-1 {
+  y: 0;
+}
+.rect-2 {
+  y: 40px;
+}
+.rect-3 {
+  y: 80px;
+}
+</code></pre>
+
+<p>Au clic, le bouton passe en <code>data-expanded "true"</code> et on déplace verticalement deux rectangles au centre et on masque le 3e rectangle central.</p>
+
+<pre><code class="language-css">[data-expanded="true"] .rect-1 {
+  y: 40px;
+}
+[data-expanded="true"] .rect-2 {
+  opacity: 0;
+}
+[data-expanded="true"] .rect-3 {
+  y: 40px;
+}
+</code></pre>
+
+<h4>Transition 3 : "rotate"</h4>
+
+<p>Aux deux transitions précédentes, on ajoute une transition sur la propriété <code>rotate</code> sans oublier de la faire débuter après un léger délai.</p>
+
+<pre><code class="language-css">/* on attend un delai de 0.3s avant de commencer rotate */
+rect {
+  transition: 
+    y 0.3s,
+    opacity 0.3s,
+    rotate 0.3s 0.3s;
+}
+</code></pre>
+
+<p>Au clic, les trois transitions se déclenchent.</p>
+
+<pre><code class="language-css">[data-expanded="true"] .rect-1 {
+  y: 40px;
+  rotate: 45deg;
+}
+[data-expanded="true"] .rect-2 {
+  opacity: 0;
+}
+[data-expanded="true"] .rect-3 {
+  y: 40px;
+  rotate: -45deg;
+}
+</code></pre>
+
+<div style="text-align: center">
+  <video controls autoplay width="250">
+    <source src="https://www.alsacreations.com/xmedia/tuto/burger/07.mp4" type="video/mp4" >
+  </video>
+</div>
+
+<p>⚠️ J'imagine que cela ne vous a pas échappé : tout se passe très bien à l'aller, mais malheureusement pas au retour. L'explication provient du fait que la transition se déroule dans le sens inverse au retour et que la rotation se déclenche trop tôt. Il va nous falloir une transition différente à l'aller et au retour et gérer des délais différents entre la transition et la rotation.</p>
+
+<pre><code class="language-css">/* transition au retour (quand on perd le clic) */
+/* on attend un delai de 0.3s avant de commencer y */
+rect {
+  transition: 
+    y 0.3s 0.3s,
+    opacity 0.3s,
+    rotate 0.3s;
+}
+</code></pre>
+
+<pre><code class="language-css">/* transition à l'aller (quand on clique) */
+/* on attend un delai de 0.3s avant de commencer rotate */
+[data-expanded="true"] rect {
+  transition: 
+    y 0.3s,
+    opacity 0.3s,
+    rotate 0.3s 0.3s;
+}
+</code></pre>
+
+<div style="text-align: center">
+  <video controls autoplay width="250">
+    <source src="https://www.alsacreations.com/xmedia/tuto/burger/08.mp4" type="video/mp4" >
+  </video>
+</div>
+
+<p>Grâce à cette adaptation subtile, notre effet fonctionne parfaitement à l'aller et au retour lors de l'interaction.</p>
+
+<p>Pour finir en beauté, le truc en plus consiste en une petite accélération sous forme de <code>cubic-bezier</code> pour un effet de "rebond".</p>
+
+<pre><code class="language-css">[data-expanded="true"] rect {
+  transition: 
+    y 0.3s,
+    opacity 0.3s,
+    rotate 0.3s 0.3s cubic-bezier(.55,-0.65,0,2.32);
+}
+</code></pre>
+
+<div style="text-align: center">
+  <video controls autoplay width="250">
+    <source src="https://www.alsacreations.com/xmedia/tuto/burger/09.mp4" type="video/mp4" >
+  </video>
+</div>
+
+<h2>CSS final</h2>
+
+<p>Voici les styles CSS complets de ce tutoriel.</p>
+
+<p>Notez qu'ils prennent en compte les préférences utilisateur grâce au media query <code>prefers-reduced-motion</code>&nbsp;: si la personne a choisi dans ses réglages système de réduire les animations, celles-ci ne seront tout simplement pas déclenchées.</p>
+
+<p>Pour voir le résultat et aller plus loin, une petite collection CodePen de boutons burger animés a été rassemblée à cette adresse&nbsp;: <a href="https://codepen.io/collection/VYqwJK">https://codepen.io/collection/VYqwJK</a></p>
+
+<pre><code class="language-css">.rect-1 {
+  y: 0;
+}
+.rect-2 {
+  y: 40px;
+}
+.rect-3 {
+  y: 80px;
+}
+
+[data-expanded="true"] .rect-1 {
+  y: 40px;
+  rotate: 45deg;
+}
+[data-expanded="true"] .rect-2 {
+  opacity: 0;
+}
+[data-expanded="true"] .rect-3 {
+  y: 40px;
+  rotate: -45deg;
+}
+
+/* transitions si acceptées */
+@media (prefers-reduced-motion: no-preference) {
+  rect {
+    transition: 
+      y 0.3s 0.3s,
+      opacity 0.3s,
+      rotate 0.3s;
+  }
+  [data-expanded="true"] rect {
+    transition: 
+      y 0.3s,
+      opacity 0.3s,
+      rotate 0.3s 0.3s cubic-bezier(.55,-0.65,0,2.32);
+  }
+}
+</code></pre>
+<p><b><a href="https://www.alsacreations.com/tuto/lire/1921-Animer-un-bouton-burger-simple-avec-SVG-et-CSS.html">Retrouvez l'intégralité de ce tutoriel en ligne sur Alsacreations.com</a></b></p>]]></description>
+  	<category>CSS</category>
+  	<comments>https://www.alsacreations.com/tuto/lire/1921-Animer-un-bouton-burger-simple-avec-SVG-et-CSS.html#commentaires</comments>
+  	<dc:date>2023-12-19T13:37:07+01:00</dc:date>
+  	<dc:creator>Raphael</dc:creator>
+  		</item>
+
+  
+	<item>
+  	<title>Les easter eggs sur le web</title>
+  	<link>https://www.alsacreations.com/actu/lire/1917-Les-easter-eggs-sur-le-web.html</link>
+  	<guid>https://www.alsacreations.com/actu/lire/1917-Les-easter-eggs-sur-le-web.html</guid>
+    <description><![CDATA[<p><em>Article rédigé suite à un stage d'observation dans l'équipe d'Alsacréations</em></p>
+
+<p>Lorsque l'on consulte un site web, nous pouvons tous voir le code source (avec <kbd>ctrl</kbd> + <kbd>U</kbd> » ou en faisant un clic droit puis <em>inspecter</em>).</p>
+
+<p>Quelques sites en profitent pour dissimuler des <i lang="en">easter eggs</i> le plus souvent sous la forme d'<a href="https://fr.wikipedia.org/wiki/Art_ASCII">art ASCII</a> ou de messages à demi-cachés, que ce soit en HTML, JavaScript, ou CSS. Ces messages sont soit des petits clins d'oeil à destination d'autres personnes curieuses ou pratiquant le développement web, soit intentionnels pour mentionner des liens vers des pages de recrutement, des avertissements ou des ressources variées.</p>
+
+<p>Voyons quelques exemples de différentes natures, en mettant de côté ceux qu'affichent les moteurs de recherche tels que Google avec des mots clés spécifiques (ex: cherchez "anagramme" ou "Askew").</p>
+
+<h2>HTML</h2>
+
+<p><a href="mozilla.org">Mozilla</a> a placé dans son code un "godzilla" crachant du feu sur le logo, assorti d'un message :</p>
+
+<blockquote>
+  <p>Bonjour, enchanté !
+  Intéressé d’avoir un impact direct sur des centaines de millions d’utilisateurs ? Rejoins Mozilla, et viens faire partie de la communauté qui aide à construire un meilleur avenir pour le web.
+  Visitez … pour en apprendre plus sur les emplois disponibles.
+  Visitez … pour plus de façons de s'impliquer et aider à supporter Mozilla</p>
+</blockquote>
+
+<pre><code class="language-text">             _.-~-.
+           7''  Q..\
+        _7         (_
+      _7  _/    _q.  /
+    _7 . ___  /VVvv-'_                                            .
+   7/ / /~- \_\\      '-._     .-'                      /       //
+  ./ ( /-~-/||'=.__  '::. '-~'' {             ___   /  //     ./{
+ V   V-~-~| ||   __''_   ':::.   ''~-~.___.-'' _/  // / {_   /  {  /
+  VV/-~-~-|/ \ .'__'. '.    '::                     _ _ _        ''.
+  / /~~~~||VVV/ /  \ )  \        _ __ ___   ___ ___(_) | | __ _   .::'
+ / (~-~-~\\.-' /    \'   \::::. | '_ ` _ \ / _ \_  / | | |/ _` | :::'
+/..\    /..\__/      '     '::: | | | | | | (_) / /| | | | (_| | ::'
+vVVv    vVVv                 ': |_| |_| |_|\___/___|_|_|_|\__,_| ''
+
+Hi there, nice to meet you!
+Interested in having a direct impact on hundreds of millions of users? Join
+Mozilla, and become part of a global community that’s helping to build a
+brighter future for the Web.
+
+Visit https://www.mozilla.org/careers to learn about our current job openings.
+Visit https://www.mozilla.org/contribute for more ways to get involved and
+help support Mozilla.
+</code></pre>
+
+<p>Sur la page d'accueil de <a href="https://www.amazon.fr">Amazon</a>, vous trouverez tout en bas de la page de code, un canard qui dit <em>Meow</em>. Sympa non ?</p>
+
+<pre><code class="language-text">       .__(.)&lt; (MEOW)
+        \___)   
+ ~~~~~~~~~~~~~~~~~~
+</code></pre>
+
+<p>Sur <a href="https://theoatmeal.com/">theoatmeal</a> se cache un gigantesque ptérodactyle, à vous de le trouver.</p>
+
+<p>Vous pourrez également trouver le logo de l’<a href="https://umich.edu/">Université du Michigan</a> dans leur code source :</p>
+
+<pre><code class="language-text">&lt;!--
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMM             MMMMMMMMMMMMMMMMM             MMMMMMMMM
+MMMMMMMM              MMMMMMMMMMMMMMM              MMMMMMMMM
+MMMMMMMM                MMMMMMMMMMM                MMMMMMMMM
+MMMMMMMM                 MMMMMMMMM                 MMMMMMMMM
+MMMMMMMM                  MMMMMMM                  MMMMMMMMM
+MMMMMMMMMMMM               MMMMM                MMMMMMMMMMMM
+MMMMMMMMMMMM                MMM                 MMMMMMMMMMMM
+MMMMMMMMMMMM                 V                  MMMMMMMMMMMM
+MMMMMMMMMMMM                                    MMMMMMMMMMMM
+MMMMMMMMMMMM         ^               ^          MMMMMMMMMMMM
+MMMMMMMMMMMM         MM             MM          MMMMMMMMMMMM
+MMMMMMMMMMMM         MMMM         MMMM          MMMMMMMMMMMM
+MMMMMMMMMMMM         MMMMM       MMMMM          MMMMMMMMMMMM
+MMMMMMMMMMMM         MMMMMM     MMMMMM          MMMMMMMMMMMM
+MMMMMMMM                MMMM   MMMM                MMMMMMMMM
+MMMMMMMM                MMMMMVMMMMM                MMMMMMMMM
+MMMMMMMM                MMMMMMMMMMM                MMMMMMMMM
+MMMMMMMM                MMMMMMMMMMM                MMMMMMMMM
+MMMMMMMM                MMMMMMMMMMM                MMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+--&gt;
+</code></pre>
+
+<p>Quelques marques comme KitKat ou Coca-Cola avaient aussi opté pour cet art caché, mais les ont supprimés depuis des refontes récentes.</p>
+
+<p>Si vous souhaitez vous aussi ajouter un <i lang="en">easter egg</i> tel quel dans votre code, il y a une manière très simple de le faire : utiliser les commentaires HTML entre <code>&lt;!--</code> et finissant par <code>--&gt;</code>. Tout ce qui est placé entre n'est pas interprété par le navigateur. Vous trouverez aussi de nombreux sites vous permettant de générer de l'art avec les caractères.</p>
+
+<h2>Code Konami</h2>
+
+<p>Le <a href="https://fr.wikipedia.org/wiki/Code_Konami">Code Konami</a> quant à lui correspond à une combinaison de touches successives, venant initialement d'un code de triche de jeu vidéo : « Haut Haut Bas Bas Gauche Droite Gauche Droite B A ». Vous pouvez essayer cette commande sur :</p>
+
+<ul>
+<li>Le site de <a href="https://www.ldlc.com/">Ldlc</a> : La page va se retourner</li>
+<li>La page du billet de 10 dollars de la <a href="https://www.banqueducanada.ca/billets/series-de-billets-de-banque/billets-commemoratifs/billet150/">Banque du Canada</a> : l'hymne national survient avec une pluie de billets</li>
+<li>La page 404 de <a href="https://discord.com/a">Discord</a> : Un jeu snake va se lancer</li>
+</ul>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1698488376-discord-snake.png" alt="Discord Snake" title="" data-img_id="3435"></p>
+
+<p>Un petit script <a href="https://github.com/georgemandis/konami-js">konami-js</a> vous premet de l'ajouter facilement.</p>
+
+<h2>robots.txt, humans.txt</h2>
+
+<p>Les fichiers <code>robots.txt</code> sont connus pour être placés à la racine d'un site pour interdire le référencement de certaines portions aux robots d'indexation. Ces derniers peuvent contenir des commentaires, donc de l'ascii art. Notez par exemple celui de <a href="https://alsacreations.com/robots.txt">alsacreations.com</a> ;)</p>
+
+<p>Plus récemment pensés, les fichiers <a href="https://humanstxt.org/FR">humans.txt</a> décrivent les personnes "humaines" ayant contribué à un projet et sont un espace totalement libre pour y dissimuler (aussi) des <i lang="en">easter eggs</i>. Par exemple :</p>
+
+<ul>
+<li>Celui de <a href="https://www.google.com/humans.txt">Google</a> basique mais efficace</li>
+<li>Celui de <a href="https://html5boilerplate.com/humans.txt">html5boilerplate.com</a></li>
+<li>Celui de <a href="https://discord.com/humans.txt">Discord</a> très artistique</li>
+</ul>
+
+<pre><code class="language-text">     ..-:\oo-.    .:oo/:-.
+    -oooooooooooooooooooooo.                            __                                                          ___
+   -oooooooooooooooooooooooo.           OOOOOOOOO:-.   `MM`     _.._        _.._        _.._     ____  _       _.   OOO.
+  -oooooooooooooooooooooooooo.          OOOOOOOOOOOo:        -/ooo-ooo.  -/OOOOOO/.  :/OOOOOO:.  OOOO.oOo: .:oOOOO-.OOO.
+ `ooooooo/--/oooooo:--/ooooooo          OOOO    `OOOO `OooI `ooo:.    ` /oOO/```-:..oOOO-``\OOO: OOOO/` ``.oOOO/```\OOO.
+ :oooooo-    :oooo-    :oooooo-         OOOO    .OOOo `OOOI  `-OOOOOOo.`OOOO.      -OOO:   .OOOo OOOO.    -OOOO`   /OOO.
+ ooooooo:-  -/oooo:-  -/oooooo/         OOOOooooOooo- `OOOI  ._   `]OO/ :OOOOoooOO.`OOOOOooOOOO- OOOO.    `/OOOOooOOOOO.
+ ooooooooo//oooooooo//ooooooooo         OOOOOOOOO:-`  `OOOI  `:OOoOO:-`  `-:OOOO:-`  `-:OOOO:-`  OOOO.     `-:OOO:-`OOO.
+ ooooooo/ooooooooooooo//oooooo/
+ `.:ooooo/``.------.`.\oooo/:.
+     `.-:`            .:-.`
+
+  https://discord.com/company
+</code></pre>
+
+<h2>Console</h2>
+
+<p>La console JavaScript du navigateur peut révéler des messages, une fois ouverte (par F12 ou Ctrl+Shift+I). C'est un outil typique à destination des développeuses et développeurs, on y retrouve non seulement des erreurs ;) mais aussi parfois des messages de bienvenue ou encore d'avertissement comme Discord qui est assez explicite :</p>
+
+<p><img src="https://www.alsacreations.com/xmedia/doc/original/1698488248-console-discord.png" alt="console sur discord.com" title="" data-img_id="3434"></p>
+
+<h2>À vous !</h2>
+
+<p>Prenez quelques instants pour ajouter à vos projets et sites ces petits messages cachés. Et précisez en commentaires si vous connaissez d'autres sites avec de telles astuces !</p>
+<p><b><a href="https://www.alsacreations.com/actu/lire/1917-Les-easter-eggs-sur-le-web.html">Publié par Alsacreations.com</a></b></p>]]></description>
+  	<category>HTML</category>
+  	<comments>https://www.alsacreations.com/actu/lire/1917-Les-easter-eggs-sur-le-web.html#commentaires</comments>
+  	<dc:date>2023-12-04T13:18:36+01:00</dc:date>
+  	<dc:creator>Elise_Hamm</dc:creator>
+  		</item>
+
+  
+</channel>
+</rss>
+
+<!--
+CPU : 0.0004
+MEM : 0.62MB
+-->
