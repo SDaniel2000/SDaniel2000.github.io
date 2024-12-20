@@ -20,11 +20,10 @@ async function initializeSearch() {
         // js-search keresőmotor inicializálása
         const search = new JsSearch.Search('url'); // Az "url" mezőt használjuk egyedi azonosítóként
         search.addIndex('content'); // A "content" mezőben keresünk
-        search.addIndex('file_name'); // A "file_name" mezőt is indexeljük
         search.addDocuments(data); // Az adatokat a keresőhöz adjuk
 
-        // Keresés eseménykezelője
-        document.getElementById('search-button').addEventListener('click', () => {
+        // Keresés eseménykezelője (dinamikus keresés gépelés közben)
+        document.getElementById('search-input').addEventListener('input', () => {
             const query = document.getElementById('search-input').value.trim();
             const results = search.search(query);
 
@@ -50,9 +49,12 @@ function displayResults(results, query) {
         const resultElement = document.createElement('div');
         resultElement.classList.add('result-item');
 
+        // Kiemelés csak a content mezőben található keresett szövegről
+        const highlightedText = highlightText(result.content, query);
+
         resultElement.innerHTML = `
             <h3>${result.file_name}</h3>
-            <p>${highlightText(result.content, query)}</p>
+            <p>${highlightedText}</p>
             <a href="${result.url}" target="_blank">Megnyitás</a>
         `;
 
