@@ -12,7 +12,7 @@ async function loadJSON() {
     }
 }
 
-// Kereső inicializálása és működése
+ // Kereső inicializálása és működése
 async function initializeSearch() {
     try {
         const data = await loadJSON();
