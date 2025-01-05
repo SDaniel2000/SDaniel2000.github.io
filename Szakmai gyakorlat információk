@@ -1,4 +1,5 @@
 A projektem célja az volt, hogy statikusra állított oldalakra egy keresőmotort kellet készítenem.
+A gyakorlat2 mappában, a httrack által letöltött oldal van, a megfelelő megjelenítés érdekében.
 Az első rész megoldásához httracket használtam, az ön által kijelölt forrásokból kiindulva. Ennek müködési elve, hogy egy adott weboldal kezdőoldaláról indulva, linkről linkre haladva egy statikus html másolatot 
 készít az adott oldal tartalmáról.
 Ez után a python kód kinyeri a HTML tartalmak lényeges részeit és JSON file-ba menti szöveges tartalmakat, a fájl nevét és URL-jét. A JSON struktúra a file_name, url, content-ből áll.
