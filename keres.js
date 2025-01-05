@@ -24,6 +24,7 @@ async function Search() {
         
         document.getElementById('search-input').addEventListener('input', () => {
             const query = document.getElementById('search-input').value.trim();
+            
             const results = search.search(query);
 
            
