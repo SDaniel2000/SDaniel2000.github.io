@@ -1,5 +1,0 @@
-# HTTrack Website Copier Cookie File
-# This file format is compatible with Netscape cookies
-fitfount.hu	TRUE	/	FALSE	1999999999	PHPSESSID	s2po0qrrr2oohobrubool096ri
-www.fitfount.hu	TRUE	/	FALSE	1999999999	SameSite	Lax
-
