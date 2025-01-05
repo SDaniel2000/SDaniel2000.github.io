@@ -1,4 +1,4 @@
-         // Adatok betöltése
+         // JSON file betöltése
 async function loadJSON() {
     try {
         const response = await fetch('output.json'); 
@@ -12,7 +12,7 @@ async function loadJSON() {
     }
 }
 
-
+//JsSearch inicializálása
 async function Search() {
     try {
         const data = await loadJSON();
@@ -24,7 +24,7 @@ async function Search() {
         
         document.getElementById('search-input').addEventListener('input', () => {
             const query = document.getElementById('search-input').value.trim();
-            
+
             const results = search.search(query);
 
            
@@ -38,7 +38,7 @@ async function Search() {
 
 
 
-
+//Eredmények megjelenítése
 function displayResults(results, query) {
     const resultsContainer = document.getElementById('result-container');
     resultsContainer.innerHTML = ''; 
@@ -66,7 +66,7 @@ function displayResults(results, query) {
 
 
 
-
+//A szöveg megjelenítése
 function part_Of_Text(text, query) {
     const regex = new RegExp(`(.{0,30}${query}.{0,30})`, 'gi');
     const match = text.match(regex);

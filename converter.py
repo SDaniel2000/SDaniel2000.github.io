@@ -6,17 +6,17 @@ def extract_text(html_content):
     
     soup = BeautifulSoup(html_content, "html.parser")
     
-   
+   #HTML tisztítása
     for script in soup(["script", "style", "nav", "footer", "header", "aside"]):
         script.extract()
     
-    text = soup.get_text(separator=" ", strip=True)
+    text = soup.get_text(separator=" ", strip=True)  #Szöveg kinyerése
     return text
 
 
 
 
-
+#a fileok URL-jei létrehozása
 def url(file_path, root_directory, base_url, website_name):
     
     relative_path = os.path.relpath(file_path, root_directory)
@@ -30,17 +30,14 @@ def url(file_path, root_directory, base_url, website_name):
 
 
 
-
+#JSON file alakítás
 def json_conv(directory, base_url):
-    
-
 
     json_data = []
 
-    
     website = os.path.basename(os.path.normpath(directory))
     
-    for root, dirs, files in os.walk(directory):
+    for root, dirs, files in os.walk(directory):            #Könyvtárak bejárása
         for file in files:
             if file.endswith(".html"):  
                 filepath = os.path.join(root, file)
@@ -52,7 +49,7 @@ def json_conv(directory, base_url):
                 file_url = url(filepath, directory, base_url, website)
 
                 json_data.append({
-                    "file_name": file,
+                    "file_name": file,                                  #Struktúra
                     "url": file_url,
                     "content": text_content
                 })
@@ -65,7 +62,7 @@ def json_conv(directory, base_url):
 
 
     print(f"JSON fájl létrehozva: {output_file}")
-    
+
 directory = "C:\My Web Sites\gyakorlat2"  # <--- A letöltött weboldal gyökérkönyvtára
 url = "https://sdaniel2000.github.io"  # <--- Az alap URL ahol a fájlok elérhetők, mivel github pages-t használtam.
 
