@@ -1,7 +1,7 @@
-// A JSON-adatok betöltése
+         // Adatok betöltése
 async function loadJSON() {
     try {
-        const response = await fetch('output.json'); // JSON fájl URL-je
+        const response = await fetch('output.json'); 
         if (!response.ok) {
             throw new Error('Nem sikerült betölteni a JSON-t.');
         }
@@ -12,22 +12,22 @@ async function loadJSON() {
     }
 }
 
-// Kereső inicializálása és működése
+
 async function initializeSearch() {
     try {
         const data = await loadJSON();
 
-        // js-search keresőmotor inicializálása
-        const search = new JsSearch.Search('url'); // Az "url" mezőt használjuk egyedi azonosítóként
-        search.addIndex('content'); // A "content" mezőben keresünk
-        search.addDocuments(data); // Az adatokat a keresőhöz adjuk
+        
+        const search = new JsSearch.Search('url'); 
+        search.addIndex('content'); 
+        search.addDocuments(data); 
 
-        // Keresés eseménykezelője (input esemény, ami a keresés dinamikus frissítését indítja)
+        
         document.getElementById('search-input').addEventListener('input', () => {
             const query = document.getElementById('search-input').value.trim();
             const results = search.search(query);
 
-            // Eredmények megjelenítése
+           
             displayResults(results, query);
         });
     } catch (error) {
@@ -35,10 +35,10 @@ async function initializeSearch() {
     }
 }
 
-// Eredmények megjelenítése
+
 function displayResults(results, query) {
     const resultsContainer = document.getElementById('results-container');
-    resultsContainer.innerHTML = ''; // Előző eredmények törlése
+    resultsContainer.innerHTML = ''; 
 
     if (results.length === 0) {
         resultsContainer.textContent = 'Nincs találat...';
@@ -49,7 +49,7 @@ function displayResults(results, query) {
         const resultElement = document.createElement('div');
         resultElement.classList.add('result-item');
 
-        // Kiemelés a content mezőben található keresett szövegről
+       
         const highlightedText = extractRelevantSnippet(result.content, query);
 
         resultElement.innerHTML = `
@@ -61,7 +61,7 @@ function displayResults(results, query) {
     });
 }
 
-// A szövegből a keresett részlet kiemelése és megjelenítése
+
 function extractRelevantSnippet(text, query) {
     const regex = new RegExp(`(.{0,30}${query}.{0,30})`, 'gi');
     const match = text.match(regex);
@@ -73,5 +73,5 @@ function extractRelevantSnippet(text, query) {
     return 'A keresett kifejezés nem található.';
 }
 
-// Futtatás induláskor
+
 initializeSearch();
