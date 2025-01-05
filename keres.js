@@ -41,7 +41,7 @@ function displayResults(results, query) {
     resultsContainer.innerHTML = ''; // Előző eredmények törlése
 
     if (results.length === 0) {
-        resultsContainer.textContent = 'Nincs találat.';
+        resultsContainer.textContent = 'Nincs találat...';
         return;
     }
 
