@@ -7,17 +7,16 @@ async function loadJSON() {
         }
         return await response.json();
     } catch (error) {
-        console.error('Hiba történt a JSON betöltésekor:', error);
+        console.error('Hiba', error);
         return [];
     }
 }
 
 
-async function initializeSearch() {
+async function Search() {
     try {
         const data = await loadJSON();
 
-        
         const search = new JsSearch.Search('url'); 
         search.addIndex('content'); 
         search.addDocuments(data); 
@@ -31,13 +30,16 @@ async function initializeSearch() {
             displayResults(results, query);
         });
     } catch (error) {
-        console.error('Hiba történt a kereső inicializálása közben:', error);
+        console.error('Hiba', error);
     }
 }
 
 
+
+
+
 function displayResults(results, query) {
-    const resultsContainer = document.getElementById('results-container');
+    const resultsContainer = document.getElementById('result-container');
     resultsContainer.innerHTML = ''; 
 
     if (results.length === 0) {
@@ -49,11 +51,10 @@ function displayResults(results, query) {
         const resultElement = document.createElement('div');
         resultElement.classList.add('result-item');
 
-       
-        const highlightedText = extractRelevantSnippet(result.content, query);
+        const highlightedText = part_Of_Text(result.content, query);
 
         resultElement.innerHTML = `
-            <h3><a href="${result.url}" target="_blank">${result.file_name}</a></h3> <!-- Kattintható link, ami a file_name-t mutatja -->
+            <h3><a href="${result.url}" target="_blank">${result.file_name}</a></h3>
             <p>${highlightedText}</p>
         `;
 
@@ -62,16 +63,17 @@ function displayResults(results, query) {
 }
 
 
-function extractRelevantSnippet(text, query) {
+
+
+
+function part_Of_Text(text, query) {
     const regex = new RegExp(`(.{0,30}${query}.{0,30})`, 'gi');
     const match = text.match(regex);
 
     if (match) {
         return match[0].replace(query, `<mark>${query}</mark>`);
     }
-
-    return 'A keresett kifejezés nem található.';
+    return 'A keresett szövegrész nem található.';
 }
 
-
-initializeSearch();
+Search();
