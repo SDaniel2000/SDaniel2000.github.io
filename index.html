@@ -3,86 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>6-Max Preflop Gyakorló</title>
+    <title>Póker Képzés</title>
     <style>
         body {
-            background-color: #2e7d32;
-            text-align: center;
             font-family: Arial, sans-serif;
-            color: white;
-        }
-        .table {
-            width: 600px;
-            height: 600px;
-            background-color: #166534;
-            border-radius: 50%;
-            margin: 50px auto;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-        }
-        .position {
-            position: absolute;
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-        #UTG { top: 20px; left: 250px; }
-        #MP  { top: 100px; left: 50px; }
-        #CO  { top: 250px; left: 20px; }
-        #BU  { bottom: 20px; left: 250px; }
-        #SB  { bottom: 100px; right: 50px; }
-        #BB  { top: 250px; right: 20px; }
-        
-        .info {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.5em;
             text-align: center;
+            margin-top: 50px;
+        }
+        #game-container {
+            margin-top: 20px;
+        }
+        .question {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        .card {
+            font-size: 1.2em;
+            padding: 10px;
+            margin: 5px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            display: inline-block;
         }
         .buttons {
             margin-top: 20px;
         }
-        .buttons button {
-            font-size: 1.2em;
-            margin: 10px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        .score {
+            margin-top: 20px;
+            font-size: 1.3em;
         }
-        .call { background-color: yellow; color: black; }
-        .fold { background-color: red; color: white; }
     </style>
 </head>
 <body>
-
-    <h1>6-Max Preflop Gyakorló</h1>
-    <p>Pontszám: <span id="score">0</span></p>
-
-    <div class="table">
-        <div class="position" id="UTG">UTG</div>
-        <div class="position" id="MP">MP</div>
-        <div class="position" id="CO">CO</div>
-        <div class="position" id="BU">BU</div>
-        <div class="position" id="SB">SB</div>
-        <div class="position" id="BB">BB</div>
-
-        <div class="info">
-            <p><strong>Villain:</strong> <span id="villain-pos">--</span></p>
-            <p><strong>Hero:</strong> <span id="hero-pos">--</span></p>
-            <p><strong>Hand:</strong> <span id="hand">--</span></p>
+    <h1>Póker Képzés</h1>
+    <div id="game-container">
+        <div class="question" id="question">
+            <p>Villain pozíció: <span id="villain-pos"></span></p>
+            <p>Hero pozíció: <span id="hero-pos"></span></p>
+            <p>Hero lapja: <span id="hand"></span></p>
+        </div>
+        <div class="buttons">
+            <button onclick="checkAnswer(true)">CALL</button>
+            <button onclick="checkAnswer(false)">FOLYAMATOS</button>
+        </div>
+        <div class="score">
+            <p>Pontszámod: <span id="score">0</span></p>
         </div>
     </div>
 
-    <div class="buttons">
-        <button class="call" onclick="playerAction('Call')">Call</button>
-        <button class="fold" onclick="playerAction('Fold')">Fold</button>
-    </div>
+    <script>
+        const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
+        const callRanges = {
+            "MP": {
+                "UTG": ["JJ", "TT", "99", "88", "AQo", "AJo", "AQs", "AJs", "KQs"],
+                "MP": ["TT", "99", "88", "77", "AQo", "ATo", "AQs", "A9s", "KQs", "KJs", "QJs"],
+                "CO": ["99", "66", "AQo", "ATo", "A9s", "A5s", "KQo", "KJo", "KTs", "QTs", "QTs+", "JTs"],
+                "BU": ["88", "55", "AJo", "A8o", "A5s", "A2s", "KQo", "KTs", "QTs", "JTs", "T9s"],
+                "SB": ["77", "22", "AJo", "A8o", "A5s", "A2s", "KTo", "K9s", "QTs", "J9s", "T8s"]
+            },
+            // A többi pozíciót is fel kell tölteni ugyanígy...
+        };
 
-    <script src="script.js"></script>
+        let score = 0;
+        let currentHand = '';
+        let villainPos = '';
+        let heroPos = '';
 
+        // Generálj egy véletlenszerű kezet
+        function generateRandomHand() {
+            const ranks = "23456789TJQKA";
+            return ranks[Math.floor(Math.random() * ranks.length)] + ranks[Math.floor(Math.random() * ranks.length)];
+        }
+
+        // Döntsük el, hogy a válasz helyes-e
+        function shouldCall(heroPos, villainPos, hand) {
+            return callRanges[heroPos] && callRanges[heroPos][villainPos] && callRanges[heroPos][villainPos].includes(hand);
+        }
+
+        // Új kérdés generálása
+        function generateNewQuestion() {
+            villainPos = positions[Math.floor(Math.random() * positions.length)];
+            heroPos = positions[Math.floor(Math.random() * positions.length)];
+            while (heroPos === "UTG") { // UTG nem lehet Hero
+                heroPos = positions[Math.floor(Math.random() * positions.length)];
+            }
+
+            currentHand = generateRandomHand();
+
+            document.getElementById("villain-pos").textContent = villainPos;
+            document.getElementById("hero-pos").textContent = heroPos;
+            document.getElementById("hand").textContent = currentHand;
+        }
+
+        // Ellenőrzés a válaszra
+        function checkAnswer(isCall) {
+            if (shouldCall(heroPos, villainPos, currentHand) === isCall) {
+                score++;
+                alert("✔️ Helyes válasz!");
+            } else {
+                alert("❌ Rossz válasz! A játék véget ért.");
+                score = 0;
+            }
+
+            document.getElementById("score").textContent = score;
+            generateNewQuestion();
+        }
+
+        // Kezdő kérdés generálás
+        generateNewQuestion();
+    </script>
 </body>
 </html>
