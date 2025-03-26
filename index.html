@@ -3,47 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Póker Képzés</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        #game-container {
-            margin-top: 20px;
-        }
-        .question {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-        }
-        .buttons {
-            margin-top: 20px;
-        }
-        .score {
-            margin-top: 20px;
-            font-size: 1.3em;
-        }
-    </style>
+    <title>6-Max Preflop Trainer</title>
 </head>
 <body>
-    <h1>Póker Képzés</h1>
-    <div id="game-container">
-        <div class="question">
-            <p>Villain pozíció: <span id="villain-pos"></span></p>
-            <p>Hero pozíció: <span id="hero-pos"></span></p>
-            <p>Hero lapja: <span id="hand"></span></p>
-        </div>
-        <div class="buttons">
-            <button onclick="checkAnswer(true)">CALL</button>
-            <button onclick="checkAnswer(false)">FOLD</button>
-        </div>
-        <div class="score">
-            <p>Pontszámod: <span id="score">0</span></p>
-        </div>
-    </div>
+
+    <h1>6-Max Preflop Trainer</h1>
+    <p id="question"></p>
+    <button onclick="checkAnswer(true)">Call</button>
+    <button onclick="checkAnswer(false)">Fold</button>
+    <p>Pontszám: <span id="score">0</span></p>
 
     <script>
+        
         const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
         const callRanges = {
             "MP": {
@@ -73,62 +44,51 @@
             }
         };
 
+       
         let score = 0;
-        let currentHand = '';
-        let villainPos = '';
-        let heroPos = '';
+        let villainPos, heroPos, currentHand;
+
+        function generateNewQuestion() {
+            villainPos = positions[Math.floor(Math.random() * (positions.length - 1))]; // BB nem emel
+            
+            // Hero csak későbbi pozícióból választhat
+            let villainIndex = positions.indexOf(villainPos);
+            let availablePositions = positions.slice(villainIndex + 1);
+            heroPos = availablePositions[Math.floor(Math.random() * availablePositions.length)];
+            
+            currentHand = generateRandomHand();
+            
+            document.getElementById("question").textContent =
+                `Villain (${villainPos}) emelt. Hero (${heroPos}) kapott lapja: ${currentHand}`;
+        }
 
         function generateRandomHand() {
             const ranks = "23456789TJQKA";
             return ranks[Math.floor(Math.random() * ranks.length)] + ranks[Math.floor(Math.random() * ranks.length)];
         }
 
-        function checkAnswer(isCall) {
-    let correctAnswer = shouldCall(heroPos, villainPos, currentHand);
-    
-    if (isCall === correctAnswer) {
-        score++;
-        alert("✔️ Helyes válasz!");
-        document.getElementById("score").textContent = score;
-        generateNewQuestion();
-    } else {
-        alert("❌ Rossz válasz! A játék véget ért.");
-        score = 0;
-        document.getElementById("score").textContent = score;
-        generateNewQuestion();
-    }
-
-
-        }
-
-        function generateNewQuestion() {
-            const villainIndex = Math.floor(Math.random() * (positions.length - 1)); 
-            villainPos = positions[villainIndex];
-
-            const heroCandidates = positions.slice(villainIndex + 1);
-            heroPos = heroCandidates[Math.floor(Math.random() * heroCandidates.length)];
-
-            currentHand = generateRandomHand();
-
-            document.getElementById("villain-pos").textContent = villainPos;
-            document.getElementById("hero-pos").textContent = heroPos;
-            document.getElementById("hand").textContent = currentHand;
+        function shouldCall(heroPos, villainPos, hand) {
+            return callRanges[heroPos]?.[villainPos]?.includes(hand) || false;
         }
 
         function checkAnswer(isCall) {
-            if (shouldCall(heroPos, villainPos, currentHand) === isCall) {
+            let correctAnswer = shouldCall(heroPos, villainPos, currentHand);
+
+            if (isCall === correctAnswer) {
                 score++;
                 alert("✔️ Helyes válasz!");
+                document.getElementById("score").textContent = score;
+                generateNewQuestion();
             } else {
                 alert("❌ Rossz válasz! A játék véget ért.");
                 score = 0;
+                document.getElementById("score").textContent = score;
+                generateNewQuestion();
             }
-
-            document.getElementById("score").textContent = score;
-            generateNewQuestion();
         }
 
-        generateNewQuestion();
+        generateNewQuestion(); // Első kérdés betöltése
     </script>
+
 </body>
 </html>
