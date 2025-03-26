@@ -1,4 +1,4 @@
-const positions = ["UTG", "MP", "CO", "BTN", "SB", "BB"];
+const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
 const hands = ["AA", "AKs", "AQo", "KQs", "JTs", "99", "88", "76s", "A5s", "QJo"];
 let score = 0;
 
@@ -8,7 +8,7 @@ const correctAnswers = {
     "UTG-MP-AKo": "Call",
     "UTG-MP-76s": "Fold",
     "MP-CO-JTs": "Call",
-    "CO-BTN-88": "Call",
+    "CO-BU-88": "Call",
     "SB-BB-QJo": "Fold",
 };
 

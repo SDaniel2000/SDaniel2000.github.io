@@ -13,19 +13,37 @@
         }
         .table {
             width: 600px;
-            height: 400px;
+            height: 600px;
             background-color: #166534;
             border-radius: 50%;
             margin: 50px auto;
+            position: relative;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
+        .position {
+            position: absolute;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        #UTG { top: 20px; left: 250px; }
+        #MP  { top: 100px; left: 50px; }
+        #CO  { top: 250px; left: 20px; }
+        #BU  { bottom: 20px; left: 250px; }
+        #SB  { bottom: 100px; right: 50px; }
+        #BB  { top: 250px; right: 20px; }
+        
         .info {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
             font-size: 1.5em;
-            margin-bottom: 20px;
+            text-align: center;
+        }
+        .buttons {
+            margin-top: 20px;
         }
         .buttons button {
             font-size: 1.2em;
@@ -45,15 +63,23 @@
     <p>Pontszám: <span id="score">0</span></p>
 
     <div class="table">
+        <div class="position" id="UTG">UTG</div>
+        <div class="position" id="MP">MP</div>
+        <div class="position" id="CO">CO</div>
+        <div class="position" id="BU">BU</div>
+        <div class="position" id="SB">SB</div>
+        <div class="position" id="BB">BB</div>
+
         <div class="info">
             <p><strong>Villain:</strong> <span id="villain-pos">--</span></p>
             <p><strong>Hero:</strong> <span id="hero-pos">--</span></p>
             <p><strong>Hand:</strong> <span id="hand">--</span></p>
         </div>
-        <div class="buttons">
-            <button class="call" onclick="playerAction('Call')">Call</button>
-            <button class="fold" onclick="playerAction('Fold')">Fold</button>
-        </div>
+    </div>
+
+    <div class="buttons">
+        <button class="call" onclick="playerAction('Call')">Call</button>
+        <button class="fold" onclick="playerAction('Fold')">Fold</button>
     </div>
 
     <script src="script.js"></script>
