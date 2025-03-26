@@ -83,8 +83,22 @@
             return ranks[Math.floor(Math.random() * ranks.length)] + ranks[Math.floor(Math.random() * ranks.length)];
         }
 
-        function shouldCall(heroPos, villainPos, hand) {
-            return callRanges[heroPos] && callRanges[heroPos][villainPos] && callRanges[heroPos][villainPos].includes(hand);
+        function checkAnswer(isCall) {
+    let correctAnswer = shouldCall(heroPos, villainPos, currentHand);
+    
+    if (isCall === correctAnswer) {
+        score++;
+        alert("✔️ Helyes válasz!");
+        document.getElementById("score").textContent = score;
+        generateNewQuestion();
+    } else {
+        alert("❌ Rossz válasz! A játék véget ért.");
+        score = 0;
+        document.getElementById("score").textContent = score;
+        generateNewQuestion();
+    }
+
+
         }
 
         function generateNewQuestion() {
