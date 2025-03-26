@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Póker Preflop Range Gyakorló</title>
+    <title>6-Max Preflop Gyakorló</title>
     <style>
         body {
             background-color: #2e7d32;
@@ -17,7 +17,6 @@
             background-color: #166534;
             border-radius: 50%;
             margin: 50px auto;
-            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -25,11 +24,8 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
         .info {
-            margin-bottom: 20px;
             font-size: 1.5em;
-        }
-        .buttons {
-            margin-top: 20px;
+            margin-bottom: 20px;
         }
         .buttons button {
             font-size: 1.2em;
@@ -39,14 +35,14 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        .fold { background-color: red; color: white; }
         .call { background-color: yellow; color: black; }
-        .three-bet { background-color: blue; color: white; }
+        .fold { background-color: red; color: white; }
     </style>
 </head>
 <body>
 
-    <h1>Póker Preflop Range Gyakorló</h1>
+    <h1>6-Max Preflop Gyakorló</h1>
+    <p>Pontszám: <span id="score">0</span></p>
 
     <div class="table">
         <div class="info">
@@ -55,33 +51,12 @@
             <p><strong>Hand:</strong> <span id="hand">--</span></p>
         </div>
         <div class="buttons">
-            <button class="fold" onclick="playerAction('Fold')">Fold</button>
             <button class="call" onclick="playerAction('Call')">Call</button>
-            <button class="three-bet" onclick="playerAction('3-Bet')">3-Bet</button>
+            <button class="fold" onclick="playerAction('Fold')">Fold</button>
         </div>
     </div>
 
-    <script>
-        const positions = ["UTG", "MP", "CO", "BTN", "SB", "BB"];
-        const hands = ["AA", "AKs", "AQo", "KQs", "JTs", "99", "88", "76s", "A5s", "QJo"];
-
-        function generateScenario() {
-            let villain = positions[Math.floor(Math.random() * positions.length)];
-            let hero = positions[Math.floor(Math.random() * positions.length)];
-            let hand = hands[Math.floor(Math.random() * hands.length)];
-            
-            document.getElementById("villain-pos").innerText = villain;
-            document.getElementById("hero-pos").innerText = hero;
-            document.getElementById("hand").innerText = hand;
-        }
-
-        function playerAction(action) {
-            alert(`Te döntésed: ${action}`);
-            generateScenario();
-        }
-
-        generateScenario(); // Indításkor generál egy helyzetet
-    </script>
+    <script src="script.js"></script>
 
 </body>
 </html>
