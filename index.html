@@ -115,16 +115,16 @@
 
         // Kérdés generálása
         function generateNewQuestion() {
-            villainPos = positions[Math.floor(Math.random() * (positions.length - 1))];
-            
-            let villainIndex = positions.indexOf(villainPos);
-            heroPos = positions[(villainIndex + Math.floor(Math.random() * (positions.length - 1))) % positions.length];
+    villainPos = positions[Math.floor(Math.random() * positions.length)];
+    
+    let availableHeroPositions = positions.filter(pos => pos !== villainPos);
+    heroPos = availableHeroPositions[Math.floor(Math.random() * availableHeroPositions.length)];
 
-            currentHand = generateRandomHand();
+    currentHand = generateRandomHand();
+    highlightPositions();
+    document.getElementById("question").textContent = `A villain pozíciója: ${villainPos}, Hero pozíciója: ${heroPos}, Hand: ${currentHand}`;
+}
 
-            highlightPositions();
-            document.getElementById("question").textContent = `A villain pozíciója: ${villainPos}, Hero pozíciója: ${heroPos}, Hand: ${currentHand}`;
-        }
 
         function generateRandomHand() {
     const strongHands = [
