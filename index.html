@@ -63,13 +63,26 @@
         }
 
         function generateRandomHand() {
-            const ranks = "23456789TJQKA";
-            const suits = ["s", "o"];
-            let rank1 = ranks[Math.floor(Math.random() * ranks.length)];
-            let rank2 = ranks[Math.floor(Math.random() * ranks.length)];
-            let suit = suits[Math.floor(Math.random() * suits.length)];
-            return rank1 + rank2 + suit;
-        }
+    const ranks = "23456789TJQKA";
+    const suits = ["s", "o"];
+    let rank1 = ranks[Math.floor(Math.random() * ranks.length)];
+    let rank2 = ranks[Math.floor(Math.random() * ranks.length)];
+    let suit1 = suits[Math.floor(Math.random() * suits.length)];
+    let suit2 = suits[Math.floor(Math.random() * suits.length)];
+    
+    // Az első és a második kártya összehasonlítása
+    let hand1 = rank1 + suit1;
+    let hand2 = rank2 + suit2;
+
+    // Ha a második kártya nagyobb, cseréljük meg
+    if (ranks.indexOf(rank1) < ranks.indexOf(rank2)) {
+        // Ha rank1 kisebb mint rank2, cseréljük őket
+        [hand1, hand2] = [hand2, hand1];
+    }
+    
+    return hand1 + " " + hand2; // A lapok egy stringben, nagyobb érték elöl
+}
+
 
         function checkAnswer(isCall) {
             let correctAnswer = callRanges[heroPos]?.[villainPos]?.includes(currentHand);
