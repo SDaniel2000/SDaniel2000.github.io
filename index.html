@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>6-Max Preflop Trainer</title>
+    <title>CallRange Trainer</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -58,12 +58,12 @@
     <p id="question"></p>
 
     <div id="pokerTable">
-        <div id="SB" class="positionCircle">SB</div>
-        <div id="BB" class="positionCircle">BB</div>
         <div id="UTG" class="positionCircle">UTG</div>
         <div id="MP" class="positionCircle">MP</div>
         <div id="CO" class="positionCircle">CO</div>
         <div id="BU" class="positionCircle">BU</div>
+        <div id="SB" class="positionCircle">SB</div>
+        <div id="BB" class="positionCircle">BB</div>
     </div>
 
     <button onclick="checkAnswer('call')">Call</button>
@@ -72,7 +72,7 @@
     <p>Pontszám: <span id="score">0</span></p>
 
     <script>
-        const positions = ["SB", "BB", "UTG", "MP", "CO", "BU"];
+        const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
         const callRanges = {
             "MP": {
                 "UTG": ["JJ", "TT", "99", "88", "AQo", "AJo", "AQs", "AJs", "KQs"]
@@ -107,7 +107,7 @@
             "CO": ["AA", "KK", "QQ", "JJ", "TT" ,"AKs", "AQs", "KQS", "AKo", "AQo"],
             "BU": ["AA", "KK", "QQ", "JJ", "TT", "99", "AKs", "AQs", "AJs", "ATs" ,"A9s" ,"KQs" ,"KJs" ,"KTs", "AKo" ,"AQo","AJo" ,"KQo"],
             "SB": ["AA", "KK", "QQ", "JJ", "TT", "99", "88", "AKs", "AQs", "AJs", "ATs" ,"A9s" ,"A8s" ,"A7s", "A6s", "A5s", "KQs", "KJs" ,"KTs", "K9s", "QJs", "QTs" ,"Q9s", "JTs" ,"AKo" ,"AQo", "AJo", "ATo", "KQo" ,"KJo", "QJo"],
-            "BB": ["AA", "KK", "QQ", "AKo", "AKs", "KK"]
+            "BB": ["AA", "KK", "QQ", "AKo", "AKs",]
         };
 
         let score = 0;
