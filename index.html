@@ -63,25 +63,32 @@
         }
 
         function generateRandomHand() {
-    const ranks = "23456789TJQKA";
-    const suits = ["s", "o"];
+    const ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"];
+    
+    // Véletlenszerűen választunk két rangot
     let rank1 = ranks[Math.floor(Math.random() * ranks.length)];
     let rank2 = ranks[Math.floor(Math.random() * ranks.length)];
-    let suit1 = suits[Math.floor(Math.random() * suits.length)];
-    let suit2 = suits[Math.floor(Math.random() * suits.length)];
-    
-    // Az első és a második kártya összehasonlítása
-    let hand1 = rank1 + suit1;
-    let hand2 = rank2 + suit2;
 
-    // Ha a második kártya nagyobb, cseréljük meg
+    // Véletlenszerűen választunk, hogy suited vagy offsuit legyen
+    let isSuited = Math.random() < 0.5;  // 50% eséllyel lesz suited vagy offsuit
+    let handType = isSuited ? "s" : "o";  // suited vagy offsuit
+    
+    // Ha a két lap rangja megegyezik, akkor újat választunk a második lapra
+    while (rank1 === rank2) {
+        rank2 = ranks[Math.floor(Math.random() * ranks.length)];
+    }
+
+    // A két rangot rendezzük úgy, hogy a nagyobbik legyen elöl
     if (ranks.indexOf(rank1) < ranks.indexOf(rank2)) {
-        // Ha rank1 kisebb mint rank2, cseréljük őket
-        [hand1, hand2] = [hand2, hand1];
+        let temp = rank1;
+        rank1 = rank2;
+        rank2 = temp;
     }
     
-    return hand1 + " " + hand2; // A lapok egy stringben, nagyobb érték elöl
+    // A kéz formátuma pl. "KQo" vagy "98s"
+    return rank1 + rank2 + handType; 
 }
+
 
 
         function checkAnswer(isCall) {
