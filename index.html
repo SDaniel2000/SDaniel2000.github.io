@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CallRange Trainer</title>
+    <title>6-Max Preflop Trainer</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -42,6 +42,8 @@
         .highlightedVillain {
             background-color: lightgreen;
         }
+
+        
 
         /* Pozíciók elhelyezése */
         #SB { top: 10px; left: 33%; }
@@ -120,8 +122,12 @@
     let villainIndex = positions.indexOf(villainPos);
     let availableHeroPositions = positions.slice(villainIndex + 1); // Csak a Villain utáni pozíciók
 
+    document.getElementById("villain-position").innerHTML = `🟡 <span class="villain">${villainPosition}</span>`;
+    document.getElementById("hero-hand").innerText = `Hero kéz: ${heroHand}`;
+
     // Ha nincs elérhető Hero pozíció (pl. Villain BB), akkor új kérdést generálunk
     if (availableHeroPositions.length === 0) {
+
         generateNewQuestion();
         return;
     }
