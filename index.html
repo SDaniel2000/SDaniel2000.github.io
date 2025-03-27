@@ -47,37 +47,32 @@
         let villainPos, heroPos, currentHand;
 
         function generateNewQuestion() {
-            villainPos = positions[Math.floor(Math.random() * (positions.length - 1))]; // BB nem emel
-            
-            // Hero csak későbbi pozícióból választhat
-            let villainIndex = positions.indexOf(villainPos);
-            let availablePositions = positions.slice(villainIndex + 1);
-            heroPos = availablePositions[Math.floor(Math.random() * availablePositions.length)];
-            
+            // Véletlenszerűen választunk egy hőst
+            heroPos = positions[Math.floor(Math.random() * (positions.length - 2)) + 2]; // Hero mindig későbbi pozícióban
+            // Villain pozíció kiválasztása a Hero pozíciótól felfelé
+            const villainPositions = positions.slice(0, positions.indexOf(heroPos));
+            villainPos = villainPositions[Math.floor(Math.random() * villainPositions.length)];
+
             currentHand = generateRandomHand();
+            
+            // Ellenőrizzük, hogy a hand benne van-e a választott pozíció call range-ében
+            const isCall = callRanges[heroPos]?.[villainPos]?.includes(currentHand);
             
             document.getElementById("question").textContent =
                 `Villain (${villainPos}) emelt. Hero (${heroPos}) kapott lapja: ${currentHand}`;
         }
 
         function generateRandomHand() {
-            const ranks = ["7", "8", "9", "T", "J", "Q", "K", "A"];
-            const suits = ["s", "o"]; // "s" = suited, "o" = off-suited
-            const hand = [];
-
-            // Két lapot generálunk
-            const firstCard = ranks[Math.floor(Math.random() * ranks.length)] + ranks[Math.floor(Math.random() * ranks.length)];
-            const secondCard = ranks[Math.floor(Math.random() * ranks.length)] + ranks[Math.floor(Math.random() * ranks.length)];
-
-            return firstCard + suits[Math.floor(Math.random() * suits.length)] + " " + secondCard + suits[Math.floor(Math.random() * suits.length)];
-        }
-
-        function shouldCall(heroPos, villainPos, hand) {
-            return callRanges[heroPos]?.[villainPos]?.includes(hand) || false;
+            const ranks = "23456789TJQKA";
+            const suits = ["s", "o"];
+            let rank1 = ranks[Math.floor(Math.random() * ranks.length)];
+            let rank2 = ranks[Math.floor(Math.random() * ranks.length)];
+            let suit = suits[Math.floor(Math.random() * suits.length)];
+            return rank1 + rank2 + suit;
         }
 
         function checkAnswer(isCall) {
-            let correctAnswer = shouldCall(heroPos, villainPos, currentHand);
+            let correctAnswer = callRanges[heroPos]?.[villainPos]?.includes(currentHand);
 
             if (isCall === correctAnswer) {
                 score++;
