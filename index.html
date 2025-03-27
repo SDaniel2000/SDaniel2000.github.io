@@ -113,11 +113,19 @@
         let score = 0;
         let villainPos, heroPos, currentHand;
 
-        // Kérdés generálása
         function generateNewQuestion() {
     villainPos = positions[Math.floor(Math.random() * positions.length)];
-    
-    let availableHeroPositions = positions.filter(pos => pos !== villainPos);
+
+    // Meghatározzuk a Villain utáni pozíciókat
+    let villainIndex = positions.indexOf(villainPos);
+    let availableHeroPositions = positions.slice(villainIndex + 1); // Csak a Villain utáni pozíciók
+
+    // Ha nincs elérhető Hero pozíció (pl. Villain BB), akkor új kérdést generálunk
+    if (availableHeroPositions.length === 0) {
+        generateNewQuestion();
+        return;
+    }
+
     heroPos = availableHeroPositions[Math.floor(Math.random() * availableHeroPositions.length)];
 
     currentHand = generateRandomHand();
@@ -126,11 +134,12 @@
 }
 
 
+
         function generateRandomHand() {
     const strongHands = [
         "AA", "KK", "QQ", "JJ", "TT", "99", "88", "77", "66", "55", "44", "33", "22","AKs", "AQs", "AJs", "ATs",
         "A2s", "A3s", "A4s", "A5s", "A6s", "A7s", "A8s", "A9s","KQs", "KJs", "KTs", "K8s", "K9s", "QJs", "QTs", "Q9s", 
-        "JTs", "J9s", "J8s", "J9s", "JTs", "T8s", "T9s", "98s", "87s", "76s", "65s", "97s", "T8s", "86s",
+        "JTs", "J9s", "J8s", "JTs", "T8s", "T9s", "98s", "87s", "76s", "65s", "97s", "T8s", "86s",
         "AJo", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "KQo", "KTo", "KJo", "K9o", 
         "AKo", "AQo","KQo", "K9o", "QJo","QTo", "Q9o","JTo", "J9o","J9o", "J8o",
     ];
