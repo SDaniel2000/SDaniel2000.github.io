@@ -66,40 +66,50 @@
         <div id="BU" class="positionCircle">BU</div>
     </div>
 
-    <button onclick="checkAnswer(true)">Call</button>
-    <button onclick="checkAnswer(false)">Fold</button>
+    <button onclick="checkAnswer('call')">Call</button>
+    <button onclick="checkAnswer('fold')">Fold</button>
+    <button onclick="checkAnswer('3-bet')">3-Bet</button>
     <p>Pontszám: <span id="score">0</span></p>
 
     <script>
         const positions = ["SB", "BB", "UTG", "MP", "CO", "BU"];
         const callRanges = {
-    "MP": {
-        "UTG": ["JJ", "TT", "99", "88", "AQo", "AJo", "AQs", "AJs", "KQs"]
-    },
-    "CO": {
-        "UTG": ["JJ", "TT", "99", "88", "AQo", "AJo", "AQs", "AJs", "KQs"],
-        "MP":  ["TT", "99", "88", "77", "AQo", "AJo", "ATo", "AQs", "AJs", "A10s", "A9s", "KQs", "KJs", "QJs"]
-    },
-    "BU": {
-        "UTG": ["TT", "99", "88", "77", "AQo", "AJo", "ATo", "AQs", "AJs", "ATs", "A9s", "KQs", "KJs", "QJs"],
-        "MP": ["99", "88", "77", "66", "AQo", "AJo", "ATo", "AJs", "ATs", "A9s", "KQo", "KJo", "KTs", "KQs", "QTs", "QJs"],
-        "CO": ["88", "77", "66", "55", "AJo", "ATo", "A9o", "A8o", "A9s", "A8s", "A7s", "A6s", "A5s", "KQo", "KJo", "KJs", "KTs", "KQs", "QTs", "QJs", "JTs", "T9s"]
-    },
-    "SB": {
-        "UTG": ["TT", "99", "88", "77", "AQo", "AJo", "ATo", "AQs", "AJs", "ATs", "A9s", "KQs", "KJs", "QJs"],
-        "MP": ["99", "88", "77", "66", "AQo", "AJo", "ATo", "AJs", "ATs", "A9s", "KQo", "KJo", "KTs", "KQs", "QTs", "QJs"],
-        "CO": ["88", "77", "66", "55", "AJo", "ATo", "A9o", "A8o", "A9s", "A8s", "A7s", "A6s", "A5s", "KQo", "KJo", "KJs", "KTs", "KQs", "QTs", "QJs", "JTs", "T9s"],
-        "BU": ["77", "66", "55", "44", "33", "22", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "A6s", "A5s", "A4s", "A3s", "A2s", "Kjo", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs","T8s", "T9s", "98s", "87s"]
-    },
-    "BB": {
-        "UTG": ["99", "88", "77", "66", "55", "44", "33","22", "AJo", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "A5s","A4s","A3s","A2s", "KQo", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s",],
-        "MP": ["88", "77", "66", "55", "44", "33","22","AJo", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o","A6s","A5s","A4s","A3s","A2s","KQo", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s", "87s"],
-        "CO": ["77", "66", "55", "44", "33","22","ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o","A6s","A5s","A4s","A3s","A2s", "KJo", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s", "87s"],
-        "BU": ["66", "55", "44", "33","22", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "A5s","A4s","A3s","A2s", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s", "87s", "76s"],
-        "SB": ["55", "44", "33","22", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "A5s","A4s","A3s","A2s", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s", "87s", "76s"]
-    }
-};
+            "MP": {
+                "UTG": ["JJ", "TT", "99", "88", "AQo", "AJo", "AQs", "AJs", "KQs"]
+            },
+            "CO": {
+                "UTG": ["JJ", "TT", "99", "88", "AQo", "AJo", "AQs", "AJs", "KQs"],
+                "MP":  ["TT", "99", "88", "77", "AQo", "AJo", "ATo", "AQs", "AJs", "A10s", "A9s", "KQs", "KJs", "QJs"]
+            },
+            "BU": {
+                "UTG": ["TT", "99", "88", "77", "AQo", "AJo", "ATo", "AQs", "AJs", "ATs", "A9s", "KQs", "KJs", "QJs"],
+                "MP": ["99", "88", "77", "66", "AQo", "AJo", "ATo", "AQs", "AJs", "ATs", "A9s", "KQo", "KJo", "KJs", "KTs", "KQs", "QTs", "QJs"],
+                "CO": ["88", "77", "66", "55", "AJo", "ATo", "A9o", "A8o", "A9s", "A8s", "A7s", "A6s", "A5s", "KQo", "KJo", "KJs", "KTs", "KQs", "QTs", "QJs", "JTs", "T9s"]
+            },
+            "SB": {
+                "UTG": ["TT", "99", "88", "77", "AQo", "AJo", "ATo", "AQs", "AJs", "ATs", "A9s", "KQs", "KJs", "QJs"],
+                "MP": ["99", "88", "77", "66", "AQo", "AJo", "ATo", "AJs", "ATs", "A9s", "KQo", "KJo", "KTs", "KQs", "QTs", "QJs"],
+                "CO": ["88", "77", "66", "55", "AJo", "ATo", "A9o", "A8o", "A9s", "A8s", "A7s", "A6s", "A5s", "KQo", "KJo", "KJs", "KTs", "KQs", "QTs", "QJs", "JTs", "T9s"],
+                "BU": ["77", "66", "55", "44", "33", "22", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "A6s", "A5s", "A4s", "A3s", "A2s", "Kjo", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "JTs", "T9s", "98s", "87s"]
+            },
+            "BB": {
+                "UTG": ["99", "88", "77", "66", "55", "44", "33","22", "AJo", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "A5s","A4s","A3s","A2s", "KQo", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s",],
+                "MP": ["88", "77", "66", "55", "44", "33","22","AJo", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A6s","A5s","A4s","A3s","A2s","KQo", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s", "87s"],
+                "CO": ["77", "66", "55", "44", "33","22","ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o","A6s","A5s","A4s","A3s","A2s", "KJo", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s", "87s"],
+                "BU": ["66", "55", "44", "33","22","ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "A5s","A4s","A3s","A2s", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s", "87s", "76s"],
+                "SB": ["55", "44", "33","22", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "A5s","A4s","A3s","A2s", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s", "87s", "76s"]
+            }
+        };
         
+        const threeBetRanges = {
+            "UTG": ["AA", "KK", "QQ", "AKs",],
+            "MP": ["AA", "KK", "QQ", "JJ", "AKs", "AQs" ,"AKo"],
+            "CO": ["AA", "KK", "QQ", "JJ", "TT" ,"AKs", "AQs", "KQS", "AKo", "AQo"],
+            "BU": ["AA", "KK", "QQ", "JJ", "TT", "99", "AKs", "AQs", "AJs", "ATs" ,"A9s" ,"KQs" ,"KJs" ,"KTs", "AKo" ,"AQo","AJo" ,"KQo"],
+            "SB": ["AA", "KK", "QQ", "JJ", "TT", "99", "88", "AKs", "AQs", "AJs", "ATs" ,"A9s" ,"A8s" ,"A7s", "A6s", "A5s", "KQs", "KJs" ,"KTs", "K9s", "QJs", "QTs" ,"Q9s", "JTs" ,"AKo" ,"AQo", "AJo", "ATo", "KQo" ,"KJo", "QJo"],
+            "BB": ["AA", "KK", "QQ", "AKo", "AKs", "KK"]
+        };
+
         let score = 0;
         let villainPos, heroPos, currentHand;
 
@@ -108,15 +118,12 @@
             villainPos = positions[Math.floor(Math.random() * (positions.length - 1))];
             
             let villainIndex = positions.indexOf(villainPos);
-            let availablePositions = positions.slice(villainIndex + 1);
-            heroPos = availablePositions[Math.floor(Math.random() * availablePositions.length)];
-            
+            heroPos = positions[(villainIndex + Math.floor(Math.random() * (positions.length - 1))) % positions.length];
+
             currentHand = generateRandomHand();
-            
-            document.getElementById("question").textContent =
-                `Villain (${villainPos}) emelt. Hero (${heroPos}) kapott lapja: ${currentHand}`;
-            
+
             highlightPositions();
+            document.getElementById("question").textContent = `A villain pozíciója: ${villainPos}, Hero pozíciója: ${heroPos}, Hand: ${currentHand}`;
         }
 
         function generateRandomHand() {
@@ -131,44 +138,36 @@
     // Véletlenszerűen választunk egy erős kezet a fenti listából
     return strongHands[Math.floor(Math.random() * strongHands.length)];
 }
-
-        // Pozíciók kiemelése
         function highlightPositions() {
-            // Minden pozíció alapértelmezés szerint nem kiemelt
-            document.querySelectorAll('.positionCircle').forEach(circle => {
-                circle.classList.remove('highlightedHero', 'highlightedVillain');
-            });
-
-            // Kiemeljük a Hero és Villain pozíciókat
-            document.getElementById(villainPos).classList.add('highlightedVillain');
-            document.getElementById(heroPos).classList.add('highlightedHero');
+            // Töröljük a kiemelt pozíciókat
+            document.querySelectorAll(".positionCircle").forEach(p => p.classList.remove("highlightedHero", "highlightedVillain"));
+            
+            // Kiemeljük a villain és hero pozíciókat
+            document.getElementById(heroPos).classList.add("highlightedHero");
+            document.getElementById(villainPos).classList.add("highlightedVillain");
         }
 
-        // Helyes válasz ellenőrzése
-        function checkAnswer(isCall) {
-            let correctAnswer = shouldCall(heroPos, villainPos, currentHand);
+        function checkAnswer(choice) {
+            const correctCall = callRanges[heroPos]?.[villainPos]?.includes(currentHand);
+            const correctThreeBet = threeBetRanges[heroPos]?.includes(currentHand);
+            const isCorrect = 
+                (choice === "call" && correctCall) || 
+                (choice === "fold" && !correctCall) || 
+                (choice === "3-bet" && correctThreeBet);
 
-            if (isCall === correctAnswer) {
+            if (isCorrect) {
                 score++;
-                alert("✔️ Helyes válasz!");
+                alert("Helyes válasz!");
             } else {
-                alert("❌ Rossz válasz! A játék véget ért.");
-                score = 0;  // Reset score after wrong answer
+                alert("Hibás válasz.");
             }
+
+            // Pontszám frissítése
             document.getElementById("score").textContent = score;
-            generateNewQuestion(); // Új kérdés generálása válasz után
+            generateNewQuestion();
         }
 
-        // Kéz range ellenőrzés
-        function shouldCall(heroPos, villainPos, hand) {
-            if (callRanges[heroPos] && callRanges[heroPos][villainPos] && callRanges[heroPos][villainPos].includes(hand)) {
-                return true;  // Call helyes
-            }
-            return false;  // Fold helyes
-        }
-
-        generateNewQuestion(); // Első kérdés betöltése
+        generateNewQuestion();
     </script>
-
 </body>
 </html>
