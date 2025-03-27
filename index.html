@@ -118,7 +118,7 @@
             villainPos = positions[Math.floor(Math.random() * (positions.length - 1))];
             
             let villainIndex = positions.indexOf(villainPos);
-            heroPos = availablePositions[Math.floor(Math.random() * availablePositions.length)];
+            heroPos = positions[(villainIndex + Math.floor(Math.random() * (positions.length - 1))) % positions.length];
 
             currentHand = generateRandomHand();
 
@@ -138,13 +138,16 @@
     // Véletlenszerűen választunk egy erős kezet a fenti listából
     return strongHands[Math.floor(Math.random() * strongHands.length)];
 }
+        // Pozíciók kiemelése
         function highlightPositions() {
-            // Töröljük a kiemelt pozíciókat
-            document.querySelectorAll(".positionCircle").forEach(p => p.classList.remove("highlightedHero", "highlightedVillain"));
-            
-            // Kiemeljük a villain és hero pozíciókat
-            document.getElementById(heroPos).classList.add("highlightedHero");
-            document.getElementById(villainPos).classList.add("highlightedVillain");
+            // Minden pozíció alapértelmezés szerint nem kiemelt
+            document.querySelectorAll('.positionCircle').forEach(circle => {
+                circle.classList.remove('highlightedHero', 'highlightedVillain');
+            });
+
+            // Kiemeljük a Hero és Villain pozíciókat
+            document.getElementById(villainPos).classList.add('highlightedVillain');
+            document.getElementById(heroPos).classList.add('highlightedHero');
         }
 
         function checkAnswer(choice) {
