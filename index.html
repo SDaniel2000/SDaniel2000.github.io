@@ -119,24 +119,18 @@
             highlightPositions();
         }
 
-        // Véletlenszerű kéz generálása
         function generateRandomHand() {
-            const ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"];
-            let rank1 = ranks[Math.floor(Math.random() * ranks.length)];
-            let rank2 = ranks[Math.floor(Math.random() * ranks.length)];
+    const strongHands = [
+        "AA", "KK", "QQ", "JJ", "TT", "99", "88", "77", "66", "55", "44", "33", "22","AKs", "AQs", "AJs", "ATs",
+        "A2s", "A3s", "A4s", "A5s", "A6s", "A7s", "A8s", "A9s","KQs", "KJs", "KTs", "K8s", "K9s", "QJs", "QTs", "Q9s", 
+        "JTs", "J9s", "J8s", "J9s", "JTs", "T8s", "T9s", "98s", "87s", "76s", "65s", "97s", "T8s", "86s",
+        "AJo", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "KQo", "KTo", "KJo", "K9o", 
+        "AKo", "AQo","KQo", "K9o", "QJo","QTo", "Q9o","JTo", "J9o","J9o", "J8o",
+    ];
 
-            while (rank1 === rank2) {
-                rank2 = ranks[Math.floor(Math.random() * ranks.length)];
-            }
-
-            if (ranks.indexOf(rank1) < ranks.indexOf(rank2)) {
-                let temp = rank1;
-                rank1 = rank2;
-                rank2 = temp;
-            }
-
-            return rank1 + rank2 + "o"; // vagy "s" az offsuit vagy suited kártyákhoz
-        }
+    // Véletlenszerűen választunk egy erős kezet a fenti listából
+    return strongHands[Math.floor(Math.random() * strongHands.length)];
+}
 
         // Pozíciók kiemelése
         function highlightPositions() {
