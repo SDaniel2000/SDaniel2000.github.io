@@ -118,7 +118,7 @@
             villainPos = positions[Math.floor(Math.random() * (positions.length - 1))];
             
             let villainIndex = positions.indexOf(villainPos);
-            heroPos = positions[(villainIndex + Math.floor(Math.random() * (positions.length - 1))) % positions.length];
+            heroPos = availablePositions[Math.floor(Math.random() * availablePositions.length)];
 
             currentHand = generateRandomHand();
 
