@@ -4,95 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>6-Max Preflop Trainer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        #pokerTable {
+            width: 500px;
+            height: 300px;
+            margin: 50px auto;
+            background-color: green;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .positionCircle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: white;
+            display: inline-block;
+            line-height: 50px;
+            position: absolute;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Kiemelt pozíciók */
+        .highlighted {
+            background-color: yellow;
+        }
+
+        /* Pozíciók elhelyezése */
+        #SB { bottom: 10px; left: 10px; }
+        #BB { bottom: 10px; right: 10px; }
+        #UTG { top: 10px; left: 10px; }
+        #MP { top: 10px; left: 50%; transform: translateX(-50%); }
+        #CO { top: 10px; right: 10px; }
+        #BU { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    </style>
 </head>
 <body>
 
     <h1>6-Max Preflop Trainer</h1>
     <p id="question"></p>
+
+    <div id="pokerTable">
+        <div id="UTG" class="positionCircle">UTG</div>
+        <div id="MP" class="positionCircle">MP</div>
+        <div id="CO" class="positionCircle">CO</div>
+        <div id="BU" class="positionCircle">BU</div>
+        <div id="SB" class="positionCircle">SB</div>
+        <div id="BB" class="positionCircle">BB</div>
+    </div>
+
     <button onclick="checkAnswer(true)">Call</button>
     <button onclick="checkAnswer(false)">Fold</button>
     <p>Pontszám: <span id="score">0</span></p>
 
     <script>
         const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
-        const callRanges = {
-            "MP": {
-                "UTG": ["JJ", "TT", "99", "88", "AQo", "AJo", "AQs", "AJs", "KQs"]
-            },
-            "CO": {
-                "UTG": ["JJ", "TT", "99", "88", "AQo", "AJo", "AQs", "AJs", "KQs"],
-                "MP":  ["TT", "99", "88", "77", "AQo", "AJo", "ATo", "AQs", "AJs", "A10s", "A9s", "KQs", "KJs", "QJs"]
-            },
-            "BU": {
-                "UTG": ["TT", "99", "88", "77", "AQo", "AJo", "ATo", "AQs", "AJs", "ATs", "A9s", "KQs", "KJs", "QJs"],
-                "MP": ["99", "88", "77", "66", "AQo", "AJo", "ATo", "AJs", "ATs", "A9s", "KQo", "KJo", "KTs", "KQs", "QTs", "QJs"],
-                "CO": ["88", "77", "66", "55", "AJo", "ATo", "A9o", "A8o", "A9s", "A8s", "A7s", "A6s", "A5s", "KQo", "KJo", "KJs", "KTs", "KQs", "QTs", "QJs", "JTs", "T9s"]
-            },
-            "SB": {
-                "UTG": ["TT", "99", "88", "77", "AQo", "AJo", "ATo", "AQs", "AJs", "ATs", "A9s", "KQs", "KJs", "QJs"],
-                "MP": ["99", "88", "77", "66", "AQo", "AJo", "ATo", "AJs", "ATs", "A9s", "KQo", "KJo", "KTs", "KQs", "QTs", "QJs"],
-                "CO": ["88", "77", "66", "55", "AJo", "ATo", "A9o", "A8o", "A9s", "A8s", "A7s", "A6s", "A5s", "KQo", "KJo", "KJs", "KTs", "KQs", "QTs", "QJs", "JTs", "T9s"],
-                "BU": ["77", "66", "55", "44", "33", "22", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "A6s", "A5s", "A4s", "A3s", "A2s", "Kjo", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs","T8s", "T9s", "98s", "87s"]
-            },
-            "BB": {
-                "UTG": ["99", "88", "77", "66", "55", "44", "33","22", "AJo", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "A5s","A4s","A3s","A2s", "KQo", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s",],
-                "MP": ["88", "77", "66", "55", "44", "33","22","AJo", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o","A6s","A5s","A4s","A3s","A2s","KQo", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s", "87s"],
-                "CO": ["77", "66", "55", "44", "33","22","ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o","A6s","A5s","A4s","A3s","A2s", "KJo", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s", "87s"],
-                "BU": ["66", "55", "44", "33","22", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "A5s","A4s","A3s","A2s", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s", "87s", "76s"],
-                "SB": ["55", "44", "33","22", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "A5s","A4s","A3s","A2s", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s", "87s", "76s"]
-            }
-        };
-
         let score = 0;
         let villainPos, heroPos, currentHand;
 
+        // Kérdés generálása
         function generateNewQuestion() {
-            // Véletlenszerűen választunk egy hőst
-            heroPos = positions[Math.floor(Math.random() * (positions.length - 2)) + 2]; // Hero mindig későbbi pozícióban
-            // Villain pozíció kiválasztása a Hero pozíciótól felfelé
-            const villainPositions = positions.slice(0, positions.indexOf(heroPos));
-            villainPos = villainPositions[Math.floor(Math.random() * villainPositions.length)];
-
-            currentHand = generateRandomHand();
+            villainPos = positions[Math.floor(Math.random() * (positions.length - 1))];
             
-            // Ellenőrizzük, hogy a hand benne van-e a választott pozíció call range-ében
-            const isCall = callRanges[heroPos]?.[villainPos]?.includes(currentHand);
+            let villainIndex = positions.indexOf(villainPos);
+            let availablePositions = positions.slice(villainIndex + 1);
+            heroPos = availablePositions[Math.floor(Math.random() * availablePositions.length)];
+            
+            currentHand = generateRandomHand();
             
             document.getElementById("question").textContent =
                 `Villain (${villainPos}) emelt. Hero (${heroPos}) kapott lapja: ${currentHand}`;
+            
+            highlightPositions();
         }
 
+        // Véletlenszerű kéz generálása
         function generateRandomHand() {
-    const ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"];
-    
-    // Véletlenszerűen választunk két rangot
-    let rank1 = ranks[Math.floor(Math.random() * ranks.length)];
-    let rank2 = ranks[Math.floor(Math.random() * ranks.length)];
+            const ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"];
+            let rank1 = ranks[Math.floor(Math.random() * ranks.length)];
+            let rank2 = ranks[Math.floor(Math.random() * ranks.length)];
 
-    // Véletlenszerűen választunk, hogy suited vagy offsuit legyen
-    let isSuited = Math.random() < 0.5;  // 50% eséllyel lesz suited vagy offsuit
-    let handType = isSuited ? "s" : "o";  // suited vagy offsuit
-    
-    // Ha a két lap rangja megegyezik, akkor újat választunk a második lapra
-    while (rank1 === rank2) {
-        rank2 = ranks[Math.floor(Math.random() * ranks.length)];
-    }
+            while (rank1 === rank2) {
+                rank2 = ranks[Math.floor(Math.random() * ranks.length)];
+            }
 
-    // A két rangot rendezzük úgy, hogy a nagyobbik legyen elöl
-    if (ranks.indexOf(rank1) < ranks.indexOf(rank2)) {
-        let temp = rank1;
-        rank1 = rank2;
-        rank2 = temp;
-    }
-    
-    // A kéz formátuma pl. "KQo" vagy "98s"
-    return rank1 + rank2 + handType; 
-}
+            if (ranks.indexOf(rank1) < ranks.indexOf(rank2)) {
+                let temp = rank1;
+                rank1 = rank2;
+                rank2 = temp;
+            }
 
+            return rank1 + rank2 + "o"; // vagy "s" az offsuit vagy suited kártyákhoz
+        }
 
+        // Pozíciók kiemelése
+        function highlightPositions() {
+            // Minden pozíció alapértelmezés szerint nem kiemelt
+            document.querySelectorAll('.positionCircle').forEach(circle => {
+                circle.classList.remove('highlighted');
+            });
 
+            // Kiemeljük a megfelelő pozíciókat
+            document.getElementById(villainPos).classList.add('highlighted');
+            document.getElementById(heroPos).classList.add('highlighted');
+        }
+
+        // Helyes válasz ellenőrzése
         function checkAnswer(isCall) {
-            let correctAnswer = callRanges[heroPos]?.[villainPos]?.includes(currentHand);
+            let correctAnswer = shouldCall(heroPos, villainPos, currentHand);
 
             if (isCall === correctAnswer) {
                 score++;
@@ -105,6 +132,11 @@
                 document.getElementById("score").textContent = score;
                 generateNewQuestion();
             }
+        }
+
+        // Kéz range ellenőrzés
+        function shouldCall(heroPos, villainPos, hand) {
+            return true; // Helyettesítsd a valódi logikával
         }
 
         generateNewQuestion(); // Első kérdés betöltése
