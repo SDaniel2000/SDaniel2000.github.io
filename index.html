@@ -14,7 +14,6 @@
     <p>Pontszám: <span id="score">0</span></p>
 
     <script>
-        
         const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
         const callRanges = {
             "MP": {
@@ -22,29 +21,28 @@
             },
             "CO": {
                 "UTG": ["JJ", "TT", "99", "88", "AQo", "AJo", "AQs", "AJs", "KQs"],
-                "MP": ["TT", "99", "88", "77", "AQo", "ATo", "AQs", "A9s", "KQs", "KJs", "QJs"]
+                "MP":  ["TT", "99", "88", "77", "AQo", "AJo", "ATo", "AQs", "AJs", "A10s", "A9s", "KQs", "KJs", "QJs"]
             },
             "BU": {
-                "UTG": ["TT", "99", "88", "77", "AQo", "ATo", "AQs", "A9s", "KQs", "KJs", "QJs"],
-                "MP": ["TT", "99", "88", "77", "AQo", "ATo", "AQs", "A9s", "KQs", "KJs", "QJs"],
-                "CO": ["88", "55", "AJo", "A8o", "A5s", "A2s", "KQo", "KJo", "KTs", "QTs", "JTs"]
+                "UTG": ["TT", "99", "88", "77", "AQo", "AJo", "ATo", "AQs", "AJs", "ATs", "A9s", "KQs", "KJs", "QJs"],
+                "MP": ["99", "88", "77", "66", "AQo", "AJo", "ATo", "AJs", "ATs", "A9s", "KQo", "KJo", "KTs", "KQs", "QTs", "QJs"],
+                "CO": ["88", "77", "66", "55", "AJo", "ATo", "A9o", "A8o", "A9s", "A8s", "A7s", "A6s", "A5s", "KQo", "KJo", "KJs", "KTs", "KQs", "QTs", "QJs", "JTs", "T9s"]
             },
             "SB": {
-                "UTG": ["TT", "99", "88", "77", "AQo", "ATo", "AQs", "A9s", "KQs", "KJs", "QJs"],
-                "MP": ["TT", "99", "88", "77", "AQo", "ATo", "AQs", "A9s", "KQs", "KJs", "QJs"],
-                "CO": ["88", "55", "AJo", "A8o", "A5s", "A2s", "KQo", "KJo", "KTs", "QTs", "JTs"],
-                "BU": ["77", "22", "AJo", "A8o", "A5s", "A2s", "KTo", "K9s", "QTs", "J9s", "T8s", "98s"]
+                "UTG": ["TT", "99", "88", "77", "AQo", "AJo", "ATo", "AQs", "AJs", "ATs", "A9s", "KQs", "KJs", "QJs"],
+                "MP": ["99", "88", "77", "66", "AQo", "AJo", "ATo", "AJs", "ATs", "A9s", "KQo", "KJo", "KTs", "KQs", "QTs", "QJs"],
+                "CO": ["88", "77", "66", "55", "AJo", "ATo", "A9o", "A8o", "A9s", "A8s", "A7s", "A6s", "A5s", "KQo", "KJo", "KJs", "KTs", "KQs", "QTs", "QJs", "JTs", "T9s"],
+                "BU": ["77", "66", "55", "44", "33", "22", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "A6s", "A5s", "A4s", "A3s", "A2s", "Kjo", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs","T8s", "T9s", "98s", "87s"]
             },
             "BB": {
-                "UTG": ["99", "88", "77", "66", "22", "AJo", "A2o", "A5s", "A2s", "KQo", "KTo", "K9s", "QTs", "J9s", "T8s", "98s"],
-                "MP": ["88", "22", "AJo", "A2o", "A6s", "A2s", "KTo", "K9s", "QTs", "J9s", "T8s", "98s", "87s"],
-                "CO": ["77", "22", "AJo", "A2o", "A6s", "A2s", "KTo", "K9s", "QTs", "J9s", "T8s", "98s", "87s"],
-                "BU": ["66", "22", "AJo", "A2o", "A5s", "A2s", "KTo", "K9s", "QTs", "J9s", "T8s", "98s", "87s", "76s"],
-                "SB": ["55", "22", "AJo", "A2o", "A5s", "A2s", "KTo", "K9s", "QTs", "J9s", "T8s", "98s", "87s", "76s"]
+                "UTG": ["99", "88", "77", "66", "55", "44", "33","22", "AJo", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "A5s","A4s","A3s","A2s", "KQo", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s",],
+                "MP": ["88", "77", "66", "55", "44", "33","22","AJo", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o","A6s","A5s","A4s","A3s","A2s","KQo", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s", "87s"],
+                "CO": ["77", "66", "55", "44", "33","22","ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o","A6s","A5s","A4s","A3s","A2s", "KJo", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s", "87s"],
+                "BU": ["66", "55", "44", "33","22", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "A5s","A4s","A3s","A2s", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s", "87s", "76s"],
+                "SB": ["55", "44", "33","22", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "A5s","A4s","A3s","A2s", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s", "87s", "76s"]
             }
         };
 
-       
         let score = 0;
         let villainPos, heroPos, currentHand;
 
@@ -63,8 +61,15 @@
         }
 
         function generateRandomHand() {
-            const ranks = "23456789TJQKA";
-            return ranks[Math.floor(Math.random() * ranks.length)] + ranks[Math.floor(Math.random() * ranks.length)];
+            const ranks = ["7", "8", "9", "T", "J", "Q", "K", "A"];
+            const suits = ["s", "o"]; // "s" = suited, "o" = off-suited
+            const hand = [];
+
+            // Két lapot generálunk
+            const firstCard = ranks[Math.floor(Math.random() * ranks.length)] + ranks[Math.floor(Math.random() * ranks.length)];
+            const secondCard = ranks[Math.floor(Math.random() * ranks.length)] + ranks[Math.floor(Math.random() * ranks.length)];
+
+            return firstCard + suits[Math.floor(Math.random() * suits.length)] + " " + secondCard + suits[Math.floor(Math.random() * suits.length)];
         }
 
         function shouldCall(heroPos, villainPos, hand) {
