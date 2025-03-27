@@ -168,8 +168,13 @@
 
         // Kéz range ellenőrzés
         function shouldCall(heroPos, villainPos, hand) {
-            return true; // Helyettesítsd a valódi logikával
-        }
+    // Ha a Hero pozíciója és a kéz megfelel a call range-nek, akkor igazat adunk vissza
+    if (callRanges[heroPos] && callRanges[heroPos][villainPos] && callRanges[heroPos][villainPos].includes(hand)) {
+        return true;  // Call helyes
+    }
+    return false;  // Fold helyes
+}
+
 
         generateNewQuestion(); // Első kérdés betöltése
     </script>
