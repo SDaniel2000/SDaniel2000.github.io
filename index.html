@@ -1,54 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poker Practice Game</title>
+    <title>6-Max Preflop Trainer</title>
     <style>
-        /* A játék dizájnja */
         body {
             font-family: Arial, sans-serif;
-            background-color: #2e3b4e;
-            color: white;
             text-align: center;
-            margin-top: 50px;
         }
-        #score {
-            font-size: 24px;
-            margin-bottom: 20px;
+
+        #pokerTable {
+            width: 600px;
+            height: 300px;
+            margin: 50px auto;
+            background-color: green;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
         }
-        #question {
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 32px;
-            font-size: 18px;
-            margin: 10px;
-            border: none;
+
+        .positionCircle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: white;
+            display: inline-block;
+            line-height: 50px;
+            position: absolute;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
             cursor: pointer;
         }
-        button:hover {
-            background-color: #45a049;
+
+        /* Kiemelt pozíciók */
+        .highlightedHero {
+            background-color: lightblue;
         }
+
+        .highlightedVillain {
+            background-color: lightgreen;
+        }
+
+        /* Pozíciók elhelyezése */
+        #SB { top: 10px; left: 33%; }
+        #BB { top: 10px; left: 66%; }
+        #UTG { top: 50%; right: 10px; transform: translateY(-50%); }
+        #MP { bottom: 10px; left: 33%; }
+        #CO { bottom: 10px; left: 66%; }
+        #BU { top: 50%; left: 10px; transform: translateY(-50%); }
     </style>
 </head>
 <body>
 
-    <div id="score">Pontszám: 0</div>
-    <div id="question">A kérdés itt jelenik meg.</div>
+    <h1>6-Max Preflop Trainer</h1>
+    <p id="question"></p>
+
+    <div id="pokerTable">
+        <div id="SB" class="positionCircle">SB</div>
+        <div id="BB" class="positionCircle">BB</div>
+        <div id="UTG" class="positionCircle">UTG</div>
+        <div id="MP" class="positionCircle">MP</div>
+        <div id="CO" class="positionCircle">CO</div>
+        <div id="BU" class="positionCircle">BU</div>
+    </div>
 
     <button onclick="checkAnswer('call')">Call</button>
     <button onclick="checkAnswer('fold')">Fold</button>
-    <button onclick="checkAnswer('3bet')">3-Bet</button>
+    <button onclick="checkAnswer('3bet')">3-bet</button>
+    <p>Pontszám: <span id="score">0</span></p>
 
     <script>
-        // Pozíciók
         const positions = ["SB", "BB", "UTG", "MP", "CO", "BU"];
-
-        // Call Range
         const callRanges = {
             "MP": {
                 "UTG": ["JJ", "TT", "99", "88", "AQo", "AJo", "AQs", "AJs", "KQs"]
@@ -88,9 +112,16 @@
         };
 
         let score = 0;
-        let heroPos, villainPos, currentHand;
+        let villainPos, heroPos, currentHand;
 
-        function generateRandomHand() {
+        // Kérdés generálása
+        function generateNewQuestion() {
+            villainPos = positions[Math.floor(Math.random() * (positions.length - 1))];
+            let villainIndex = positions.indexOf(villainPos);
+            let availablePositions = positions.slice(villainIndex + 1);
+            heroPos = availablePositions[Math.floor(Math.random() * availablePositions.length)];
+
+            function generateRandomHand() {
             const strongHands = [
                 "AA", "KK", "QQ", "JJ", "TT", "99", "88", "77", "66", "55", "44", "33", "22","AKs", "AQs", "AJs", "ATs",
                 "A2s", "A3s", "A4s", "A5s", "A6s", "A7s", "A8s", "A9s","KQs", "KJs", "KTs", "K8s", "K9s", "QJs", "QTs", "Q9s", 
@@ -102,55 +133,33 @@
             // Véletlenszerűen választunk egy erős kezet a fenti listából
             return strongHands[Math.floor(Math.random() * strongHands.length)];
         }
-        // Kérdés generálása
-        function generateNewQuestion() {
-            villainPos = positions[Math.floor(Math.random() * (positions.length - 1))];
-            let villainIndex = positions.indexOf(villainPos);
-            let availablePositions = positions.slice(villainIndex + 1);
-            heroPos = availablePositions[Math.floor(Math.random() * availablePositions.length)];
-            currentHand = generateRandomHand();
 
-            document.getElementById("question").textContent =
-                `Villain (${villainPos}) emelt. Hero (${heroPos}) kapott lapja: ${currentHand}`;
-
-            highlightPositions();
+            // Kérdés megjelenítése
+            document.getElementById("question").textContent = `${heroPos} pozícióban, milyen választ adsz a következő kézre: ${currentHand}, ha a Villain ${villainPos} pozícióban 3-betet tett?`;
         }
 
-        // Színezés a pozíciókhoz (UI)
-        function highlightPositions() {
-            // Ha szükséges, itt hozzáadhatod a UI frissítését
-        }
+        function checkAnswer(answer) {
+            let correct = false;
+            
+            if (answer === "3bet" && threeBetRanges[villainPos].includes(currentHand)) {
+                correct = true;
+            } else if (answer === "call" && callRanges[heroPos][villainPos].includes(currentHand)) {
+                correct = true;
+            } else if (answer === "fold" && !callRanges[heroPos][villainPos].includes(currentHand) && !threeBetRanges[villainPos].includes(currentHand)) {
+                correct = true;
+            }
 
-        // Helyes válasz ellenőrzése
-        function checkAnswer(action) {
-            let correctAnswer = determineCorrectAction(heroPos, villainPos, currentHand);
-
-            if (action === correctAnswer) {
+            if (correct) {
                 score++;
-                alert("✔️ Helyes válasz!");
             } else {
-                alert("❌ Rossz válasz! A játék véget ért.");
-                score = 0;  // Reset score after wrong answer
+                score = Math.max(0, score - 1);
             }
-            document.getElementById("score").textContent = "Pontszám: " + score;
-            generateNewQuestion(); // Új kérdés generálása válasz után
+
+            document.getElementById("score").textContent = score;
+            generateNewQuestion();
         }
 
-        // Az összes lehetséges válasz (call, fold, 3-bet)
-        function determineCorrectAction(heroPos, villainPos, hand) {
-            // Ha a kéz szerepel a call range-ben
-            if (callRanges[heroPos] && callRanges[heroPos][villainPos] && callRanges[heroPos][villainPos].includes(hand)) {
-                return 'call';  // Call helyes
-            }
-            // Ha a kéz szerepel a 3-bet range-ben
-            if (threeBetRanges[villainPos] && threeBetRanges[villainPos].includes(hand)) {
-                return '3bet';  // 3-Bet helyes
-            }
-            return 'fold';  // Egyébként fold
-        }
-
-        // Kezdeti kérdés generálása
-        generateNewQuestion();
+        generateNewQuestion();  // Első kérdés betöltése
     </script>
 </body>
 </html>
