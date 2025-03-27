@@ -11,11 +11,11 @@
         }
 
         #pokerTable {
-            width: 500px;
+            width: 600px;
             height: 300px;
             margin: 50px auto;
             background-color: green;
-            border-radius: 50% 50% 10% 10%; /* Kerekített sarkok */
+            border-radius: 20px;
             position: relative;
             overflow: hidden;
         }
@@ -35,17 +35,21 @@
         }
 
         /* Kiemelt pozíciók */
-        .highlighted {
-            background-color: yellow;
+        .highlightedHero {
+            background-color: lightblue;
+        }
+
+        .highlightedVillain {
+            background-color: lightgreen;
         }
 
         /* Pozíciók elhelyezése */
-        #SB { top: 10px; left: 10px; }
-        #BB { top: 10px; left: 70px; }
-        #UTG { top: 10px; right: 10px; }
-        #MP { bottom: 10px; left: 50%; transform: translateX(-50%); }
-        #CO { bottom: 10px; right: 10px; }
-        #BU { bottom: 10px; left: 10px; }
+        #SB { top: 10px; left: 50%; transform: translateX(-50%); }
+        #BB { top: 10px; right: 10px; }
+        #UTG { top: 50%; right: 10px; transform: translateY(-50%); }
+        #MP { bottom: 10px; right: 10px; }
+        #CO { bottom: 10px; left: 10px; }
+        #BU { top: 50%; left: 10px; transform: translateY(-50%); }
     </style>
 </head>
 <body>
@@ -137,12 +141,12 @@
         function highlightPositions() {
             // Minden pozíció alapértelmezés szerint nem kiemelt
             document.querySelectorAll('.positionCircle').forEach(circle => {
-                circle.classList.remove('highlighted');
+                circle.classList.remove('highlightedHero', 'highlightedVillain');
             });
 
-            // Kiemeljük a megfelelő pozíciókat
-            document.getElementById(villainPos).classList.add('highlighted');
-            document.getElementById(heroPos).classList.add('highlighted');
+            // Kiemeljük a Hero és Villain pozíciókat
+            document.getElementById(villainPos).classList.add('highlightedVillain');
+            document.getElementById(heroPos).classList.add('highlightedHero');
         }
 
         // Helyes válasz ellenőrzése
