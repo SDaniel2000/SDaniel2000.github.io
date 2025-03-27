@@ -66,10 +66,8 @@
         <div id="BU" class="positionCircle">BU</div>
     </div>
 
-    <button onclick="checkAnswer('call')">Call</button>
-    <button onclick="checkAnswer('fold')">Fold</button>
-    <button onclick="checkAnswer('3-bet')">3-Bet</button> <!-- Új 3-bet gomb -->
-
+    <button onclick="checkAnswer(true)">Call</button>
+    <button onclick="checkAnswer(false)">Fold</button>
     <p>Pontszám: <span id="score">0</span></p>
 
     <script>
@@ -101,15 +99,6 @@
         "SB": ["55", "44", "33","22", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "A5s","A4s","A3s","A2s", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s", "87s", "76s"]
     }
 };
-    // 3-Bet Range
-    const threeBetRanges = {
-            "UTG": ["AA", "KK", "QQ", "AKs",],
-            "MP": ["AA", "KK", "QQ", "JJ", "AKs", "AQs" ,"AKo"],
-            "CO": ["AA", "KK", "QQ", "JJ", "TT" ,"AKs", "AQs", "KQS", "AKo", "AQo"],
-            "BU": ["AA", "KK", "QQ", "JJ", "TT", "99", "AKs", "AQs", "AJs", "ATs" ,"A9s" ,"KQs" ,"KJs" ,"KTs", "AKo" ,"AQo","AJo" ,"KQo"],
-            "SB": ["AA", "KK", "QQ", "JJ", "TT", "99", "88", "AKs", "AQs", "AJs", "ATs" ,"A9s" ,"A8s" ,"A7s", "A6s", "A5s", "KQs", "KJs" ,"KTs", "K9s", "QJs" "QTs" "Q9s" "JTs" "AKo" "AQo", "AJo", "ATo", "KQo" "KJo" "QJo"],
-            "BB": ["AA", "KK", "QQ", "AKo", "AKs", "KK"]
-        };
         
         let score = 0;
         let villainPos, heroPos, currentHand;
@@ -156,34 +145,27 @@
         }
 
         // Helyes válasz ellenőrzése
-        function checkAnswer(action) {
-    let correctAnswer = getCorrectAnswer(heroPos, villainPos, currentHand);
+        function checkAnswer(isCall) {
+            let correctAnswer = shouldCall(heroPos, villainPos, currentHand);
 
-    if (action === correctAnswer) {
-        score++;
-        alert("✔️ Helyes válasz!");
-    } else {
-        alert("❌ Rossz válasz! A játék véget ért.");
-        score = 0;  // Reset score after wrong answer
-    }
-    document.getElementById("score").textContent = score;
-    generateNewQuestion(); // Új kérdés generálása válasz után
-}
+            if (isCall === correctAnswer) {
+                score++;
+                alert("✔️ Helyes válasz!");
+            } else {
+                alert("❌ Rossz válasz! A játék véget ért.");
+                score = 0;  // Reset score after wrong answer
+            }
+            document.getElementById("score").textContent = score;
+            generateNewQuestion(); // Új kérdés generálása válasz után
+        }
 
-
-function getCorrectAnswer(heroPos, villainPos, hand) {
-    if (callRanges[heroPos] && callRanges[heroPos][villainPos] && callRanges[heroPos][villainPos].includes(hand)) {
-        return 'call';  // Call helyes
-    }
-
-    // Itt jön a 3-bet ellenőrzés, a megfelelő 3-bet range szerint
-    if (threeBetRanges[heroPos] && threeBetRanges[heroPos][villainPos] && threeBetRanges[heroPos][villainPos].includes(hand)) {
-        return '3-bet';  // 3-bet helyes
-    }
-
-    return 'fold';  // Ha se Call, se 3-bet nem helyes, akkor Fold
-}
-
+        // Kéz range ellenőrzés
+        function shouldCall(heroPos, villainPos, hand) {
+            if (callRanges[heroPos] && callRanges[heroPos][villainPos] && callRanges[heroPos][villainPos].includes(hand)) {
+                return true;  // Call helyes
+            }
+            return false;  // Fold helyes
+        }
 
         generateNewQuestion(); // Első kérdés betöltése
     </script>
