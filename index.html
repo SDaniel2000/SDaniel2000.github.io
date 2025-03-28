@@ -25,14 +25,23 @@
             height: 50px;
             border-radius: 50%;
             background-color: white;
-            display: inline-block;
+            display: flex;
             line-height: 50px;
-            position: absolute;
+            position: relative;
             text-align: center;
             font-size: 14px;
             font-weight: bold;
             cursor: pointer;
+            justify-content: flex-start;
         }
+
+        .positionCircle .chip {
+    position: absolute; /* A zseton abszolút pozicionálása a konténeren belül */
+    left: 0; /* Balra igazítjuk */
+    top: 50%; /* Vertikálisan középre igazítjuk */
+    transform: translateY(-50%); /* Korrigáljuk, hogy pontosan középen legyen */
+    font-size: 18px; /* A zseton mérete */
+}
 
         /* Kiemelt pozíciók */
         .highlightedHero {
@@ -167,9 +176,18 @@
     document.getElementById(villainPos).classList.add('highlightedVillain');
     document.getElementById(heroPos).classList.add('highlightedHero');
 
-    // Hozzáadjuk a zsetont a Villain pozícióhoz
-    document.getElementById(villainPos).innerHTML = "🟡 " + villainPos;
+    // Hozzáadjuk a zsetont a Villain pozícióhoz, de úgy, hogy a név előtt jelenjen meg
+    const villainPosition = document.getElementById(villainPos);
+    villainPosition.innerHTML = `<span class="chip">🟡</span> ${villainPos}`;
+    
+    // Stílusok a chip pozicionálásához
+    const chip = villainPosition.querySelector('.chip');
+    chip.style.position = 'absolute';
+    chip.style.left = '0'; // A zseton balra igazítása a pozíció neve előtt
+    chip.style.top = '50%'; // Vertikálisan középre igazítja a zsetont
+    chip.style.transform = 'translateY(-50%)'; // Korrigálja a középre igazítást
 }
+
 
 
         
