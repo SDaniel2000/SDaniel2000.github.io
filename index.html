@@ -77,10 +77,10 @@
         const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
         const callRanges = {
             "MP": {
-                "UTG": ["JJ", "TT", "99", "88", "AQo", "AJo", "AQs", "AJs", "KQs"]
+                "UTG": [ "TT", "99", "88", "AQo", "AJo", "AQs", "AJs", "KQs"]
             },
             "CO": {
-                "UTG": ["JJ", "TT", "99", "88", "AQo", "AJo", "AQs", "AJs", "KQs"],
+                "UTG": [ "TT", "99", "88", "AQo", "AJo", "AQs", "AJs", "KQs"],
                 "MP":  ["TT", "99", "88", "77", "AQo", "AJo", "ATo", "AQs", "AJs", "A10s", "A9s", "KQs", "KJs", "QJs"]
             },
             "BU": {
@@ -176,14 +176,13 @@
 
         if (isCorrect) {
             score++;
-            document.getElementById("message").textContent = "Helyes válasz!";
+            alert("Helyes válasz!");
         } else {
-            score = 0;
-            document.getElementById("message").textContent = "Hibás válasz.";
+            alert("Hibás válasz.");
         }
 
         document.getElementById("score").textContent = score;
-        setTimeout(generateNewQuestion, 1000); // 1 másodperc után új kérdés
+        generateNewQuestion();
     }
 </script>
 
