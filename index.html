@@ -77,22 +77,22 @@
         const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
         const callRanges = {
             "MP": {
-                "UTG": [ "TT", "99", "88", "AQo", "AJo", "AQs", "AJs", "KQs"]
+                "UTG": [ "TT", "99", "88", "AQo", "AJo",  "AJs", "KQs"]
             },
             "CO": {
-                "UTG": [ "TT", "99", "88", "AQo", "AJo", "AQs", "AJs", "KQs"],
-                "MP":  ["TT", "99", "88", "77", "AQo", "AJo", "ATo", "AQs", "AJs", "A10s", "A9s", "KQs", "KJs", "QJs"]
+                "UTG": [  "99", "88",  "AJo", "AJs", "KQs"],
+                "MP":  [ "99", "88", "77", , "AJo", "ATo",  "AJs", "A10s", "A9s", "KQs", "KJs", "QJs"]
             },
             "BU": {
-                "UTG": ["TT", "99", "88", "77", "AQo", "AJo", "ATo", "AQs", "AJs", "ATs", "A9s", "KQs", "KJs", "QJs"],
-                "MP": ["99", "88", "77", "66", "AQo", "AJo", "ATo", "AQs", "AJs", "ATs", "A9s", "KQo", "KJo", "KJs", "KTs", "KQs", "QTs", "QJs"],
-                "CO": ["88", "77", "66", "55", "AJo", "ATo", "A9o", "A8o", "A9s", "A8s", "A7s", "A6s", "A5s", "KQo", "KJo", "KJs", "KTs", "KQs", "QTs", "QJs", "JTs", "T9s"]
+                "UTG": [  "88", "77",   "ATo",  ,   "QJs"],
+                "MP": [ "88", "77", "66",   "ATo",   "KJo",    "QTs", "QJs"],
+                "CO": ["88", "77", "66", "55", "ATo", "A9o", "A8o",  "A8s", "A7s", "A6s", "A5s", "KJo",    "QTs", "QJs", "JTs", "T9s"]
             },
             "SB": {
-                "UTG": ["TT", "99", "88", "77", "AQo", "AJo", "ATo", "AQs", "AJs", "ATs", "A9s", "KQs", "KJs", "QJs"],
-                "MP": ["99", "88", "77", "66", "AQo", "AJo", "ATo", "AJs", "ATs", "A9s", "KQo", "KJo", "KTs", "KQs", "QTs", "QJs"],
-                "CO": ["88", "77", "66", "55", "AJo", "ATo", "A9o", "A8o", "A9s", "A8s", "A7s", "A6s", "A5s", "KQo", "KJo", "KJs", "KTs", "KQs", "QTs", "QJs", "JTs", "T9s"],
-                "BU": ["77", "66", "55", "44", "33", "22", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "A6s", "A5s", "A4s", "A3s", "A2s", "Kjo", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "JTs", "T9s", "98s", "87s"]
+                "UTG": [   "77",    "QJs"],
+                "MP": [  "77", "66",     "QTs", "QJs"],
+                "CO": [ "77", "66", "55",   "A9o", "A8o", "QTs", "QJs", "JTs", "T9s"],
+                "BU": ["77", "66", "55", "44", "33", "22", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o",  "A4s", "A3s", "A2s", "Kjo", "KTo",   "T9s", "98s", "87s"]
             },
             "BB": {
                 "UTG": ["99", "88", "77", "66", "55", "44", "33","22", "AJo", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "A5s","A4s","A3s","A2s", "KQo", "KTo", "K9s", "KTs","KJs","KQs", "QTs", "QJs", "J9s", "JTs", "T8s", "T9s", "98s",],
