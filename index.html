@@ -58,6 +58,10 @@
 
     <h1>6-Max Preflop Trainer</h1>
     <p id="question"></p>
+    <p>Pontszám: <span id="score">0</span></p>
+    <p id="message"></p>
+
+
 
     <div id="pokerTable">
         <div id="UTG" class="positionCircle">UTG</div>
@@ -174,12 +178,15 @@
             (choice === "call" && correctCall) ||
             (choice === "fold" && correctFold);
 
-        if (isCorrect) {
-            score++;
-            alert("Helyes válasz!");
-        } else {
-            alert("Hibás válasz.");
-        }
+            if (isCorrect) {
+    score++;
+    document.getElementById("message").textContent = "Helyes válasz! ✅";
+    document.getElementById("message").style.color = "green";
+} else {
+    document.getElementById("message").textContent = "Hibás válasz. ❌";
+    document.getElementById("message").style.color = "red";
+}
+
 
         document.getElementById("score").textContent = score;
         generateNewQuestion();
