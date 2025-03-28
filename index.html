@@ -163,25 +163,29 @@
             document.getElementById(heroPos).classList.add('highlightedHero');
         }
 
-        function checkAnswer(choice) {
-            const correctCall = callRanges[heroPos]?.[villainPos]?.includes(currentHand);
-            const correctThreeBet = threeBetRanges[heroPos]?.includes(currentHand);
-            const isCorrect = 
-                (choice === "call" && correctCall) || 
-                (choice === "fold" && !correctCall) || 
-                (choice === "3-bet" && correctThreeBet);
+        
+    function checkAnswer(choice) {
+        const correctThreeBet = threeBetRanges[heroPos]?.includes(currentHand);
+        const correctCall = !correctThreeBet && callRanges[heroPos]?.[villainPos]?.includes(currentHand);
+        const correctFold = !correctThreeBet && !correctCall;
 
-            if (isCorrect) {
-                score++;
-                alert("Helyes válasz!");
-            } else {
-                alert("Hibás válasz.");
-            }
+        const isCorrect =
+            (choice === "3-bet" && correctThreeBet) ||
+            (choice === "call" && correctCall) ||
+            (choice === "fold" && correctFold);
 
-            // Pontszám frissítése
-            document.getElementById("score").textContent = score;
-            generateNewQuestion();
+        if (isCorrect) {
+            score++;
+            alert("Helyes válasz!");
+        } else {
+            alert("Hibás válasz.");
         }
+
+        document.getElementById("score").textContent = score;
+        generateNewQuestion();
+    }
+</script>
+
 
         generateNewQuestion();
     </script>
