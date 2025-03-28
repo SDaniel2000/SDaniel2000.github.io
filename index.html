@@ -75,7 +75,7 @@
     <button onclick="checkAnswer('call')">Call</button>
     <button onclick="checkAnswer('fold')">Fold</button>
     <button onclick="checkAnswer('3-bet')">3-Bet</button>
-    <p>Pontszám: <span id="score">0</span></p>
+    
 
     <script>
         const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
@@ -157,15 +157,20 @@
 }
         // Pozíciók kiemelése
         function highlightPositions() {
-            // Minden pozíció alapértelmezés szerint nem kiemelt
-            document.querySelectorAll('.positionCircle').forEach(circle => {
-                circle.classList.remove('highlightedHero', 'highlightedVillain');
-            });
+    // Minden pozíció alapértelmezés szerint nem kiemelt, és eltávolítjuk a zsetonokat
+    document.querySelectorAll('.positionCircle').forEach(circle => {
+        circle.classList.remove('highlightedHero', 'highlightedVillain');
+        circle.innerHTML = circle.id; // Visszaállítja az eredeti szöveget
+    });
 
-            // Kiemeljük a Hero és Villain pozíciókat
-            document.getElementById(villainPos).classList.add('highlightedVillain');
-            document.getElementById(heroPos).classList.add('highlightedHero');
-        }
+    // Kiemeljük a Hero és Villain pozíciókat
+    document.getElementById(villainPos).classList.add('highlightedVillain');
+    document.getElementById(heroPos).classList.add('highlightedHero');
+
+    // Hozzáadjuk a zsetont a Villain pozícióhoz
+    document.getElementById(villainPos).innerHTML = "🟡 " + villainPos;
+}
+
 
         
         function checkAnswer(choice) {
