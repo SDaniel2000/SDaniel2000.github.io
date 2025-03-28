@@ -164,7 +164,7 @@
         }
 
         
-    function checkAnswer(choice) {
+        function checkAnswer(choice) {
         const correctThreeBet = threeBetRanges[heroPos]?.includes(currentHand);
         const correctCall = !correctThreeBet && callRanges[heroPos]?.[villainPos]?.includes(currentHand);
         const correctFold = !correctThreeBet && !correctCall;
@@ -176,13 +176,14 @@
 
         if (isCorrect) {
             score++;
-            alert("Helyes válasz!");
+            document.getElementById("message").textContent = "Helyes válasz!";
         } else {
-            alert("Hibás válasz.");
+            score = 0;
+            document.getElementById("message").textContent = "Hibás válasz.";
         }
 
         document.getElementById("score").textContent = score;
-        generateNewQuestion();
+        setTimeout(generateNewQuestion, 1000); // 1 másodperc után új kérdés
     }
 </script>
 
