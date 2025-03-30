@@ -45,21 +45,25 @@
 
 
         .positionContainer {
-    position: absolute;
-    text-align: center;
+    position: relative; /* Ezzel biztosítjuk, hogy a benne lévő elemek ehhez igazodjanak */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .chip {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     background-color: gold;
     position: absolute;
-    top: -10px;
+    top: -20px; /* Lehet, hogy ezt finomítani kell */
     left: 50%;
     transform: translateX(-50%);
-    display: none; /* Alapból rejtett */
+    display: none; /* Alapból rejtve marad */
 }
+
 
         
 
@@ -210,12 +214,22 @@
         chip.style.display = "none"; // Az összes zsetont elrejtjük
     });
 
-    // Kiemeljük a Hero és Villain pozíciókat
-    document.getElementById(villainPos).querySelector('.positionCircle').classList.add('highlightedVillain');
-    document.getElementById(heroPos).querySelector('.positionCircle').classList.add('highlightedHero');
+    // Kiemeljük a Hero és Villain pozíciókat, ha léteznek
+    let villainElement = document.getElementById(villainPos);
+    let heroElement = document.getElementById(heroPos);
 
-    // Megjelenítjük a zsetont a Villain előtt
-    document.getElementById(villainPos).querySelector('.chip').style.display = "block";
+    if (villainElement) {
+        let villainCircle = villainElement.querySelector('.positionCircle');
+        let villainChip = villainElement.querySelector('.chip');
+
+        if (villainCircle) villainCircle.classList.add('highlightedVillain');
+        if (villainChip) villainChip.style.display = "block"; // Megjelenítjük a zsetont
+    }
+
+    if (heroElement) {
+        let heroCircle = heroElement.querySelector('.positionCircle');
+        if (heroCircle) heroCircle.classList.add('highlightedHero');
+    }
 }
 
 
