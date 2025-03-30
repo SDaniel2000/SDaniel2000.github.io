@@ -236,38 +236,30 @@
 
 
         
-function checkAnswer(choice) {
-    const correctThreeBet = threeBetRanges[heroPos]?.includes(currentHand);
-    const correctCall = !correctThreeBet && callRanges[heroPos]?.[villainPos]?.includes(currentHand);
-    const correctFold = !correctThreeBet && !correctCall;
+        function checkAnswer(choice) {
+        const correctThreeBet = threeBetRanges[heroPos]?.includes(currentHand);
+        const correctCall = !correctThreeBet && callRanges[heroPos]?.[villainPos]?.includes(currentHand);
+        const correctFold = !correctThreeBet && !correctCall;
 
-    const isCorrect =
-        (choice === "3-bet" && correctThreeBet) ||
-        (choice === "call" && correctCall) ||
-        (choice === "fold" && correctFold);
+        const isCorrect =
+            (choice === "3-bet" && correctThreeBet) ||
+            (choice === "call" && correctCall) ||
+            (choice === "fold" && correctFold);
 
-    if (isCorrect) {
-        score++;
-        document.getElementById("message").textContent = "Helyes válasz! ✅";
-        document.getElementById("message").style.color = "green";
-    } else {
-        score = 0; // A pontszám nullázása hibás válasz esetén
-        document.getElementById("message").textContent = "Hibás válasz. ❌ A pontszám nullázódott.";
-        document.getElementById("message").style.color = "red";
+            if (isCorrect) {
+    score++;
+    document.getElementById("message").textContent = "Helyes válasz! ✅";
+    document.getElementById("message").style.color = "green";
+} else {
+    document.getElementById("message").textContent = "Hibás válasz. ❌";
+    document.getElementById("message").style.color = "red";
 
-        // Elmentjük az elrontott választ
-        let wrongEntry = `Villain: ${villainPos}, Hero: ${heroPos}, Hand: ${currentHand}, Választott: ${choice}`;
-        wrongAnswersList.push(wrongEntry);
-        updateWrongAnswers();
-    }
-
-    // Frissítjük a pontszámot
-    document.getElementById("score").innerText = score;
-
-    // Generáljunk új kérdést
-    generateNewQuestion();
+            // Elmentjük az elrontott választ
+                let wrongEntry = `Villain: ${villainPos}, Hero: ${heroPos}, Hand: ${currentHand}, Választott: ${choice}`;
+                wrongAnswersList.push(wrongEntry);
+                updateWrongAnswers();
+    
 }
-
 
 
 
