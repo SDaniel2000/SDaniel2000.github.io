@@ -52,6 +52,11 @@
         #MP { bottom: 10px; left: 66%; }
         #CO { bottom: 10px; left: 33%; }
         #BU { top: 50%; left: 10px; transform: translateY(-50%); }
+        #wrongAnswers {
+            margin-top: 20px;
+            text-align: left;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
@@ -122,6 +127,7 @@
 
         let score = 0;
         let villainPos, heroPos, currentHand;
+        let wrongAnswersList = [];
 
         function generateNewQuestion() {
     villainPos = positions[Math.floor(Math.random() * positions.length)];
