@@ -20,6 +20,15 @@
             overflow: hidden;
         }
 
+        .chip {
+                     width: 15px;
+                    height: 15px;
+                    border-radius: 50%;
+                     background-color: yellow;
+                     position: absolute;
+                     z-index: 10; /* Gondoskodik arról, hogy a zseton mindig a pozíciók előtt legyen */
+                }
+
         .positionCircle {
             width: 50px;
             height: 50px;
@@ -32,6 +41,7 @@
             font-size: 14px;
             font-weight: bold;
             cursor: pointer;
+            z-index: 5; /* A pozíció nevei alacsonyabb szintűek legyenek a zsetonnál */
         }
 
         /* Kiemelt pozíciók */
@@ -164,22 +174,39 @@
 
     // Véletlenszerűen választunk egy erős kezet a fenti listából
     return strongHands[Math.floor(Math.random() * strongHands.length)];
-}
-        // Pozíciók kiemelése
-        function highlightPositions() {
-    // Minden pozíció alapértelmezés szerint nem kiemelt, és eltávolítjuk a zsetonokat
+    function highlightPositions() {
+    // Minden pozíció alapértelmezett állapotba állítása
     document.querySelectorAll('.positionCircle').forEach(circle => {
         circle.classList.remove('highlightedHero', 'highlightedVillain');
         circle.innerHTML = circle.id; // Visszaállítja az eredeti szöveget
+
+        // Ha van már zseton, eltávolítjuk
+        let existingChip = circle.querySelector('.chip');
+        if (existingChip) {
+            existingChip.remove();
+        }
     });
 
     // Kiemeljük a Hero és Villain pozíciókat
-    document.getElementById(villainPos).classList.add('highlightedVillain');
-    document.getElementById(heroPos).classList.add('highlightedHero');
+    let villainElement = document.getElementById(villainPos);
+    let heroElement = document.getElementById(heroPos);
 
-    // Hozzáadjuk a zsetont a Villain pozícióhoz
-    document.getElementById(villainPos).innerHTML = "🟡 " + villainPos;
+    villainElement.classList.add('highlightedVillain');
+    heroElement.classList.add('highlightedHero');
+
+    // Zseton létrehozása
+    let chip = document.createElement("div");
+    chip.classList.add("chip");
+
+    // A zseton pozicionálása a Villain előtt
+    let circleRect = villainElement.getBoundingClientRect();
+    chip.style.top = `${circleRect.top + window.scrollY - 10}px`; // 10px-t eltolunk felfelé
+    chip.style.left = `${circleRect.left + window.scrollX - 25}px`; // 25px-t eltolunk balra
+
+    // Zseton hozzáadása a Villain pozícióhoz
+    document.body.appendChild(chip);
 }
+
 
 
         
