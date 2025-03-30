@@ -76,6 +76,10 @@
     <button onclick="checkAnswer('fold')">Fold</button>
     <button onclick="checkAnswer('3-bet')">3-Bet</button>
     
+    <h2>Elrontott válaszok:</h2>
+    <ul id="wrongAnswers"></ul>
+
+
 
     <script>
         const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
@@ -88,9 +92,9 @@
                 "MP":  [ "99", "88", "77", , "AJo", "ATo",  "AJs", "A10s", "A9s", "KQs", "KJs", "QJs"]
             },
             "BU": {
-                "UTG": [  "88", "77",   "ATo",  ,   "QJs"],
+                "UTG": [  "88", "77",   "ATo", "QJs"],
                 "MP": [ "88", "77", "66",   "ATo",   "KJo",    "QTs", "QJs"],
-                "CO": ["88", "77", "66", "55", "ATo", "A9o", "A8o",  "A8s", "A7s", "A6s", "A5s", "KJo",    "QTs", "QJs", "JTs", "T9s"]
+                "CO": ["88", "77", "66", "55", "ATo", "A9o", "A8o",  "A8s", "A7s", "A6s", "A5s", "KJo",  "QTs", "QJs", "JTs", "T9s"]
             },
             "SB": {
                 "UTG": [   "77",    "QJs"],
@@ -190,13 +194,31 @@
 } else {
     document.getElementById("message").textContent = "Hibás válasz. ❌";
     document.getElementById("message").style.color = "red";
+
+            // Elmentjük az elrontott választ
+                let wrongEntry = `Villain: ${villainPos}, Hero: ${heroPos}, Hand: ${currentHand}, Választott: ${choice}`;
+                wrongAnswersList.push(wrongEntry);
+                updateWrongAnswers();
+    
 }
+
+
+
 
 
         document.getElementById("score").textContent = score;
         generateNewQuestion();
     }
 
+            function updateWrongAnswers() {
+            let wrongAnswersElement = document.getElementById("wrongAnswers");
+            wrongAnswersElement.innerHTML = "";
+            wrongAnswersList.forEach(entry => {
+                let li = document.createElement("li");
+                li.textContent = entry;
+                wrongAnswersElement.appendChild(li);
+            });
+        }
 
 
         generateNewQuestion();
