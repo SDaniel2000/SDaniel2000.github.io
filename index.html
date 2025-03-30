@@ -43,28 +43,6 @@
             background-color: lightgreen;
         }
 
-
-        .positionContainer {
-    position: relative; /* Ezzel biztosítjuk, hogy a benne lévő elemek ehhez igazodjanak */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.chip {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: gold;
-    position: absolute;
-    top: -20px; /* Lehet, hogy ezt finomítani kell */
-    left: 50%;
-    transform: translateX(-50%);
-    display: none; /* Alapból rejtve marad */
-}
-
-
         
 
         /* Pozíciók elhelyezése */
@@ -83,31 +61,6 @@
     <p>Pontszám: <span id="score">0</span></p>
     <p id="message"></p>
 
-    <div id="UTG" class="positionContainer">
-        <div class="chip"></div>
-        <div class="positionCircle">UTG</div>
-    </div>
-    <div id="MP" class="positionContainer">
-        <div class="chip"></div>
-        <div class="positionCircle">MP</div>
-    </div>
-    <div id="CO" class="positionContainer">
-        <div class="chip"></div>
-        <div class="positionCircle">CO</div>
-    </div>
-    <div id="BU" class="positionContainer">
-        <div class="chip"></div>
-        <div class="positionCircle">BU</div>
-    </div>
-    <div id="SB" class="positionContainer">
-        <div class="chip"></div>
-        <div class="positionCircle">SB</div>
-    </div>
-    <div id="BB" class="positionContainer">
-        <div class="chip"></div>
-        <div class="positionCircle">BB</div>
-    </div>
-    
 
 
     <div id="pokerTable">
@@ -118,7 +71,6 @@
         <div id="SB" class="positionCircle">SB</div>
         <div id="BB" class="positionCircle">BB</div>
     </div>
-
 
     <button onclick="checkAnswer('call')">Call</button>
     <button onclick="checkAnswer('fold')">Fold</button>
@@ -205,33 +157,19 @@
 }
         // Pozíciók kiemelése
         function highlightPositions() {
-    // Először töröljük az előző kiemeléseket
+    // Minden pozíció alapértelmezés szerint nem kiemelt, és eltávolítjuk a zsetonokat
     document.querySelectorAll('.positionCircle').forEach(circle => {
         circle.classList.remove('highlightedHero', 'highlightedVillain');
+        circle.innerHTML = circle.id; // Visszaállítja az eredeti szöveget
     });
 
-    document.querySelectorAll('.chip').forEach(chip => {
-        chip.style.display = "none"; // Az összes zsetont elrejtjük
-    });
+    // Kiemeljük a Hero és Villain pozíciókat
+    document.getElementById(villainPos).classList.add('highlightedVillain');
+    document.getElementById(heroPos).classList.add('highlightedHero');
 
-    // Kiemeljük a Hero és Villain pozíciókat, ha léteznek
-    let villainElement = document.getElementById(villainPos);
-    let heroElement = document.getElementById(heroPos);
-
-    if (villainElement) {
-        let villainCircle = villainElement.querySelector('.positionCircle');
-        let villainChip = villainElement.querySelector('.chip');
-
-        if (villainCircle) villainCircle.classList.add('highlightedVillain');
-        if (villainChip) villainChip.style.display = "block"; // Megjelenítjük a zsetont
-    }
-
-    if (heroElement) {
-        let heroCircle = heroElement.querySelector('.positionCircle');
-        if (heroCircle) heroCircle.classList.add('highlightedHero');
-    }
+    // Hozzáadjuk a zsetont a Villain pozícióhoz
+    document.getElementById(villainPos).innerHTML = "🟡 " + villainPos;
 }
-
 
 
         
