@@ -42,15 +42,15 @@
 }
 .villainChip {
     position: absolute;
-    top: -10px; /* Pozíció finomhangolása a kör fölé */
+    top: -30px; /* Pozíció finomhangolása a kör fölé */
     left: 50%;
     transform: translateX(-50%);
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     background-color: yellow;
-    outline-color: black;
     border-radius: 50%;
     display: none; /* Alapból rejtve */
+    border: 2px solid black; /* Fekete körvonal */
 }
 
 .highlightedVillain .villainChip {
@@ -71,7 +71,7 @@
 
 /* UTG esetén a zseton a bal oldalra kerül */
 #UTG.highlightedVillain .villainChip {
-    left: -15px;
+    left: -30px;
     top: 25px;
     transform: none;
 }
@@ -85,9 +85,7 @@
             background-color: #f4d03f;
             color: white;
         }
-        .highlightedVillain::before {
-    content: "🟡 ";
-}
+        
 
         /* Pozíciók elhelyezése */
         #SB { top: 10px; left: 33%; }
@@ -286,8 +284,10 @@
     document.getElementById("message").textContent = "Helyes válasz! ✅";
     document.getElementById("message").style.color = "green";
 } else {
+
     document.getElementById("message").textContent = "Hibás válasz. ❌";
     document.getElementById("message").style.color = "red";
+    score = 0;
 
             // Elmentjük az elrontott választ
                 let wrongEntry = `Villain: ${villainPos}, Hero: ${heroPos}, Hand: ${currentHand}, Választott: ${choice}`;
