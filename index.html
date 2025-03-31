@@ -50,6 +50,9 @@
             background-color: #f4d03f;
             color: white;
         }
+        .highlightedVillain::before {
+    content: "🟡 ";
+}
 
         /* Pozíciók elhelyezése */
         #SB { top: 10px; left: 33%; }
@@ -130,8 +133,9 @@
         <div id="BB" class="positionCircle">BB</div>
     </div>
 
-    <button onclick="checkAnswer('call')">Call</button>
+    
     <button onclick="checkAnswer('fold')">Fold</button>
+    <button onclick="checkAnswer('call')">Call</button>
     <button onclick="checkAnswer('3-bet')">3-Bet</button>
     
     <h2>Elrontott válaszok:</h2>
@@ -220,19 +224,16 @@
 }
         // Pozíciók kiemelése
         function highlightPositions() {
-    // Minden pozíció alapértelmezés szerint nem kiemelt, és eltávolítjuk a zsetonokat
+    // Minden pozíció alapértelmezés szerint nem kiemelt
     document.querySelectorAll('.positionCircle').forEach(circle => {
         circle.classList.remove('highlightedHero', 'highlightedVillain');
-        circle.innerHTML = circle.id; // Visszaállítja az eredeti szöveget
     });
 
-    // Kiemeljük a Hero és Villain pozíciókat
+    // Kiemeljük a Villain és Hero pozíciókat
     document.getElementById(villainPos).classList.add('highlightedVillain');
     document.getElementById(heroPos).classList.add('highlightedHero');
-
-    // Hozzáadjuk a zsetont a Villain pozícióhoz
-    document.getElementById(villainPos).innerHTML = "🟡 " + villainPos;
 }
+
 
 
         
