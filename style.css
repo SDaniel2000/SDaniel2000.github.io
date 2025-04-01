@@ -1,0 +1,153 @@
+
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        #pokerTable {
+            width: 600px;
+            height: 300px;
+            margin: 50px auto;
+            background-color: #4CAF50;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .positionCircle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    display: inline-block;
+    line-height: 60px;
+    position: absolute;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    
+}
+.villainChip {
+    position: absolute;
+    top: -30px; /* Pozíció finomhangolása a kör fölé */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 18px;
+    background-color: yellow;
+    border-radius: 50%;
+    display: none; /* Alapból rejtve */
+    border: 2px solid black; /* Fekete körvonal */
+}
+
+.highlightedVillain .villainChip {
+    display: block;
+}
+
+/* Felső pozícióknál a zseton alá kerül */
+#SB.highlightedVillain .villainChip,
+#BB.highlightedVillain .villainChip {
+    top: 70px; /* A pozíció méretét figyelembe véve */
+}
+/* BU esetén a zseton a jobb oldalra kerül */
+#BU.highlightedVillain .villainChip {
+    left: 75px;
+    top: 25px;
+    transform: none;
+}
+
+/* UTG esetén a zseton a bal oldalra kerül */
+#UTG.highlightedVillain .villainChip {
+    left: -30px;
+    top: 25px;
+    transform: none;
+}
+
+        .highlightedHero {
+            background-color: #76c7c0;
+            color: white;
+        }
+
+        .highlightedVillain {
+            background-color: #f4d03f;
+            color: white;
+        }
+        .foldText {
+    position: absolute;
+    top: -35px; 
+    color: rgb(65, 65, 65);
+    font-size: 13px;
+    
+
+}
+
+        
+
+        /* Pozíciók elhelyezése */
+        #SB { top: 10px; left: 33%; }
+        #BB { top: 10px; left: 66%; }
+        #UTG { top: 50%; right: 10px; transform: translateY(-50%); }
+        #MP { bottom: 10px; left: 66%; }
+        #CO { bottom: 10px; left: 33%; }
+        #BU { top: 50%; left: 10px; transform: translateY(-50%); }
+
+        #question {
+            font-size: 18px;
+            margin-top: 30px;
+            font-weight: bold;
+        }
+
+        #score {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        #message {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:active {
+            background-color: #388e3c;
+        }
+
+        #wrongAnswers {
+            margin-top: 20px;
+            text-align: left;
+            display: inline-block;
+            max-height: 200px;
+            overflow-y: scroll;
+        }
+
+        li {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+  
