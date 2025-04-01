@@ -128,7 +128,7 @@ const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
 
 
 
-        document.getElementById("score").textContent = score;
+        document.getElementById("score").textContent = "Pontsszámod:" + score;
         generateNewQuestion();
     }
 
