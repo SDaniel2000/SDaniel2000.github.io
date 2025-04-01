@@ -1,37 +1,38 @@
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
 
-        body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
+/* Pókerasztal */
+#pokerTable {
+    width: 600px;
+    height: 300px;
+    margin: 50px auto;
+    top: 44px;
+    background-color: #4CAF50;
+    border-radius: 20px;
+    border: 12px solid rgb(200, 160, 109);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
-        #pokerTable {
-            width: 600px;
-            height: 300px;
-            margin: 50px auto;
-            background-color: #4CAF50;
-            border-radius: 20px;
-            border-color: black;
-            border: 12px solid rgb(200, 160, 109);
-            position: relative;
-            top:52px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        #dealer {
-            position: absolute;
-            top: 58px; /* Az asztal tetejéhez közel */
-            left: 50%; /* Az asztal közepére igazítva */
-            transform: translateX(-50%); /* A bal oldali eltolás kiegyensúlyozása, hogy pontosan középen legyen */
-            width: 50px; /* Állítsd be a megfelelő képméretet */
-            height: 150px;
-            width: 150px;
-            z-index: 10; /* Biztosítja, hogy a dealer a pozíciók fölött legyen */
-        }
+/* Dealer */
+#dealer {
+    position: absolute;
+    top: 58px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: auto;
+    z-index: 10;
+}
 
-        .positionCircle {
+/* Pozíciók (6-max asztal) */
+.positionCircle {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -46,148 +47,158 @@
     transition: all 0.3s ease;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     cursor: pointer;
-    
 }
+
+/* Villain zseton */
 .villainChip {
     position: absolute;
-    top: -30px; /* Pozíció finomhangolása a kör fölé */
+    top: -30px;
     left: 50%;
     transform: translateX(-50%);
     width: 18px;
     height: 18px;
     background-color: yellow;
     border-radius: 50%;
-    display: none; /* Alapból rejtve */
-    border: 2px solid black; /* Fekete körvonal */
-
+    display: none;
+    border: 2px solid black;
 }
-
 
 .highlightedVillain .villainChip {
     display: block;
 }
 
-/* Felső pozícióknál a zseton alá kerül */
-#SB.highlightedVillain .villainChip,
-#BB.highlightedVillain .villainChip {
-    top: 70px; /* A pozíció méretét figyelembe véve */
-}
-/* BU esetén a zseton a jobb oldalra kerül */
-#BU.highlightedVillain .villainChip {
-    left: 75px;
-    top: 25px;
-    transform: none;
+/* Hero és Villain kiemelés */
+.highlightedHero {
+    background-color: #76c7c0;
+    color: white;
 }
 
-/* UTG esetén a zseton a bal oldalra kerül */
-#UTG.highlightedVillain .villainChip {
-    left: -30px;
-    top: 25px;
-    transform: none;
+.highlightedVillain {
+    background-color: #f4d03f;
+    color: white;
 }
 
-        .highlightedHero {
-            background-color: #76c7c0;
-            color: white;
-        }
-
-        .highlightedVillain {
-            background-color: #f4d03f;
-            color: white;
-        }
-        .foldText {
+/* "Fold", "Raise" szövegek */
+.foldText {
     position: absolute;
-    top: -35px; 
+    top: -35px;
     color: rgb(0, 0, 0);
     font-size: 11px;
 }
+
 .handText {
     position: absolute;
     font-size: 20px;
     font-weight: bold;
     color: #ffffff;
-    
-    
 }
 
-#MP .handText, #CO .handText {
-    top: -40px; /* A pozíció neve fölött */
+/* Pozíciók igazítása */
+#SB { top: 10px; left: 33%; }
+#BB { top: 10px; left: 66%; }
+#UTG { top: 50%; right: 10px; transform: translateY(-50%); }
+#MP { bottom: 10px; left: 66%; }
+#CO { bottom: 10px; left: 33%; }
+#BU { top: 50%; left: 10px; transform: translateY(-50%); }
+
+/* Pontszám (score) */
+#score {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: right;
+    margin-right: -320px;    
+}
+
+/* Üzenetek */
+#message {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+/* Gombok (Chipek) */
+button {
+    width: 100px;
+    height: 100px;
+    border: none;
+    background: url('Images/CHIPWIN.jpg') no-repeat center center;
+    background-size: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    margin: 15px;
+}
+
+.button span {
+    font-size: 13px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    text-shadow: 0px 1px 2px rgb(123, 121, 121);
+}
+
+button:active {
+    transform: scale(0.9);
+}
+
+/* Hibás válaszok listája */
+#wrongAnswers {
+    margin-top: 20px;
+    text-align: left;
+    display: inline-block;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+li {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* --------------------- */
+/* ---- MOBILRA ---- */
+/* --------------------- */
+
+@media (max-width: 900px) {
+    #pokerTable {
+        width: 90%;
+        height: auto;
+        border-radius: 15px;
+    }
+
+    #dealer {
+        width: 100px;
+        top: 40px;
+    }
+
+    .positionCircle {
+        width: 50px;
+        height: 50px;
+        font-size: 14px;
+        line-height: 50px;
+    }
+
+    .foldText {
+        font-size: 10px;
+    }
+
+    .handText {
+        font-size: 16px;
+    }
+
+    #score {
+        font-size: 20px;
+        margin-right: 0;
+    }
+
+    button {
+        width: 80px;
+        height: 80px;
+        margin: 10px;
+    }
+
+    .button span {
+        font-size: 12px;
+    }
 }
 
 
-#SB .handText, #BB .handText {
-    top: 40px; /* A pozíció neve alatt */
-}
-#BU .handText{
-    left: 75px;
-    top: 25px;
-    transform: none;
-}
-        
 
-        /* Pozíciók elhelyezése */
-        #SB { top: 10px; left: 33%; }
-        #BB { top: 10px; left: 66%; }
-        #UTG { top: 50%; right: 10px; transform: translateY(-50%); }
-        #MP { bottom: 10px; left: 66%; }
-        #CO { bottom: 10px; left: 33%; }
-        #BU { top: 50%; left: 10px; transform: translateY(-50%); }
-
-        #question {
-            font-size: 18px;
-            margin-top: 31px;
-            font-weight: bold;
-        }
-
-        #score {
-            font-size: 24px;
-            font-weight: bold;
-            text-align: right;
-            margin-right: -320px;    
-           
-        }
-
-        #message {
-            font-size: 20px;
-            font-weight: bold;
-            margin-top: 30px;
-            
-        }
-
-        button {
-            width: 100px; 
-            height: 100px;
-            border: none;
-            background: url('Images/CHIPWIN.jpg') no-repeat center center; 
-            background-size: cover; 
-            position: relative;
-            cursor: pointer;
-             top: 10px;
-            transition: transform 0.3s ease;
-            margin: 15px;
-        }
-        .button span {
-            font-size: 13px;  
-            font-weight: bold; 
-            color: rgb(0, 0, 0);  
-            text-shadow: 0px 1px 2px rgb(123, 121, 121); 
-        }
-    
-        button:active {
-            transform: scale(0.9); /* Kisebbítés aktív állapotban */
-        }
-
-        #wrongAnswers {
-            margin-top: 20px;
-            text-align: left;
-            display: inline-block;
-            max-height: 200px;
-            overflow-y: scroll;
-        }
-
-        li {
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-  
