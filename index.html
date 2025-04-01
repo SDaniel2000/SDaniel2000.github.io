@@ -8,13 +8,18 @@
     
 </head>
 <body>
-
+ 
     <h1>Call and 3-bet range Vs OpenRaise</h1>
-    <p id="question"></p>
-    <p>Pontszám: <span id="score">0</span></p>
-    <p id="message"></p>
 
+   
+ 
+    <img id="dealer" src="images/dealer2.png" alt="Dealer" />
 
+    <span id="score">0</span></p>
+   
+   
+   
+    
 
     <div id="pokerTable">
         <div id="UTG" class="positionCircle"><span class="villainChip"></span> UTG</div>
@@ -24,12 +29,25 @@
         <div id="SB" class="positionCircle"><span class="villainChip"></span> SB</div>
         <div id="BB" class="positionCircle"><span class="villainChip"></span> BB</div>
     </div>
+    <p id="message"></p>
+    
+    
+    
+   
 
     
-    <button onclick="checkAnswer('fold')">Fold</button>
-    <button onclick="checkAnswer('call')">Call</button>
-    <button onclick="checkAnswer('3-bet')">3-Bet</button>
     
+<button class="button" onclick="checkAnswer('fold')">
+    <span>Fold</span>
+</button>
+<button class="button" onclick="checkAnswer('call')">
+    <span>Call</span>
+</button>
+<button class="button" onclick="checkAnswer('3-bet')">
+    <span>3-Bet</span>
+</button>
+
+    <p id="question"></p>
     <h2>Elrontott válaszok:</h2>
     <ul id="wrongAnswers"></ul>
   

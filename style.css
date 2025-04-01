@@ -13,9 +13,22 @@
             margin: 50px auto;
             background-color: #4CAF50;
             border-radius: 20px;
+            border-color: black;
+            border: 12px solid rgb(200, 160, 109);
             position: relative;
+            top:52px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #dealer {
+            position: absolute;
+            top: 58px; /* Az asztal tetejéhez közel */
+            left: 50%; /* Az asztal közepére igazítva */
+            transform: translateX(-50%); /* A bal oldali eltolás kiegyensúlyozása, hogy pontosan középen legyen */
+            width: 50px; /* Állítsd be a megfelelő képméretet */
+            height: 150px;
+            width: 150px;
+            z-index: 10; /* Biztosítja, hogy a dealer a pozíciók fölött legyen */
         }
 
         .positionCircle {
@@ -31,7 +44,7 @@
     font-weight: bold;
     color: #333;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     cursor: pointer;
     
 }
@@ -46,7 +59,9 @@
     border-radius: 50%;
     display: none; /* Alapból rejtve */
     border: 2px solid black; /* Fekete körvonal */
+
 }
+
 
 .highlightedVillain .villainChip {
     display: block;
@@ -94,12 +109,12 @@
     
     
 }
-/* MP és CO pozíciókhoz a kéz a pozíció neve fölött jelenjen meg */
+
 #MP .handText, #CO .handText {
     top: -40px; /* A pozíció neve fölött */
 }
 
-/* SB és BB pozíciókhoz a kéz a pozíció neve alatt jelenjen meg */
+
 #SB .handText, #BB .handText {
     top: 40px; /* A pozíció neve alatt */
 }
@@ -127,33 +142,40 @@
         #score {
             font-size: 24px;
             font-weight: bold;
-            margin-top: 10px;
+            text-align: right;
+            margin-right: -320px; 
+          
+           
         }
 
         #message {
             font-size: 20px;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 30px;
+            
         }
 
         button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 25px;
-            font-size: 18px;
+            width: 100px; 
+            height: 100px;
             border: none;
-            border-radius: 5px;
+            background: url('Images/CHIPWIN.jpg') no-repeat center center; 
+            background-size: cover; 
+            position: relative;
             cursor: pointer;
-            margin: 10px;
-            transition: background-color 0.3s ease;
+             top: 10px;
+            transition: transform 0.3s ease;
+            margin: 15px;
         }
-
-        button:hover {
-            background-color: #45a049;
+        .button span {
+            font-size: 13px;  
+            font-weight: bold; 
+            color: rgb(0, 0, 0);  
+            text-shadow: 0px 1px 2px rgb(123, 121, 121); 
         }
-
+    
         button:active {
-            background-color: #388e3c;
+            transform: scale(0.9); /* Kisebbítés aktív állapotban */
         }
 
         #wrongAnswers {
