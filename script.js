@@ -40,6 +40,7 @@ const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
         let villainPos, heroPos, currentHand;
         let wrongAnswersList = [];
 
+        
         function generateNewQuestion() {
     villainPos = positions[Math.floor(Math.random() * positions.length)];
 
@@ -60,6 +61,7 @@ const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
     currentHand = generateRandomHand();
     highlightPositions();
     document.getElementById("question").textContent = `A villain pozíciója: ${villainPos}, Hero pozíciója: ${heroPos}, Hand: ${currentHand}`;
+
     showFoldAnimation();
 
     
@@ -137,8 +139,15 @@ const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
                 wrongAnswersElement.appendChild(li);
             });
         }
+        function clearHands() {
+            // Töröljük az összes pozícióhoz tartozó handText elemet
+            document.querySelectorAll('.handText').forEach(hand => {
+                hand.remove();
+            });
+        }
+        
         function showFoldAnimation() {
-            let delay = 280; // Fél másodperces lépések
+            let delay = 500; // Fél másodperces lépések
             let animationStopped = false; // Flag a leállításhoz
         
             let villainIndex = positions.indexOf(villainPos);
@@ -148,10 +157,9 @@ const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
             document.querySelectorAll('.positionCircle').forEach(circle => {
                 circle.classList.remove('highlightedHero', 'highlightedVillain');
             });
-
-            document.querySelectorAll('.handText').forEach(hand => {
-                hand.remove();
-            });
+        
+            // Töröljük az előző kézszövegeket
+            clearHands();
         
             // Ellenőrizzük az összes pozíciót
             positions.forEach((pos, index) => {
@@ -176,14 +184,14 @@ const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
                         // Kéz (Hand) megjelenítése a Hero pozíció fölött
                         let handText = document.createElement("div");
                         handText.classList.add("handText");
-                        handText.textContent = currentHand; // Itt adhatod meg a Hero kezét
+                        handText.textContent = heroHand; // Itt adhatod meg a Hero kezét
                         positionElement.appendChild(handText);
         
                         animationStopped = true; // Ha Hero-t megtaláljuk, leállítjuk az animációt
                     } 
                     // Ha nem Villian és nem Hero, akkor "fold" felirat
                     else {
-                        foldText.textContent = " 'Fold' ";
+                        foldText.textContent = "Fold";
                     }
         
                     // Csak akkor adjuk hozzá a foldText-et, ha nem állt le az animáció
@@ -198,6 +206,7 @@ const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
                 }, index * delay);
             });
         }
+        
         
         
         
