@@ -41,7 +41,9 @@ const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
         let wrongAnswersList = [];
 
         
-        function generateNewQuestion() {
+        function generateNewQuestion()
+         {
+            
     villainPos = positions[Math.floor(Math.random() * positions.length)];
 
     // Meghatározzuk a Villain utáni pozíciókat
@@ -60,7 +62,7 @@ const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
 
     currentHand = generateRandomHand();
     highlightPositions();
-    document.getElementById("question").textContent = `A villain pozíciója: ${villainPos}, Hero pozíciója: ${heroPos}, Hand: ${currentHand}`;
+   
 
     showFoldAnimation();
 
@@ -184,7 +186,7 @@ const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
                         // Kéz (Hand) megjelenítése a Hero pozíció fölött
                         let handText = document.createElement("div");
                         handText.classList.add("handText");
-                        handText.textContent = heroHand; // Itt adhatod meg a Hero kezét
+                        handText.textContent = currentHand; // Itt adhatod meg a Hero kezét
                         positionElement.appendChild(handText);
         
                         animationStopped = true; // Ha Hero-t megtaláljuk, leállítjuk az animációt
