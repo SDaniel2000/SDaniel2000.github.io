@@ -83,12 +83,31 @@
         .foldText {
     position: absolute;
     top: -35px; 
-    color: rgb(65, 65, 65);
-    font-size: 13px;
+    color: rgb(0, 0, 0);
+    font-size: 11px;
+}
+.handText {
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
     
-
+    
+}
+/* MP és CO pozíciókhoz a kéz a pozíció neve fölött jelenjen meg */
+#MP .handText, #CO .handText {
+    top: -40px; /* A pozíció neve fölött */
 }
 
+/* SB és BB pozíciókhoz a kéz a pozíció neve alatt jelenjen meg */
+#SB .handText, #BB .handText {
+    top: 40px; /* A pozíció neve alatt */
+}
+#BU .handText{
+    left: 75px;
+    top: 25px;
+    transform: none;
+}
         
 
         /* Pozíciók elhelyezése */

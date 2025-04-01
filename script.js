@@ -138,34 +138,77 @@ const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
             });
         }
         function showFoldAnimation() {
-    let delay = 500; // Fél másodperces lépések
+            let delay = 280; // Fél másodperces lépések
+            let animationStopped = false; // Flag a leállításhoz
+        
+            let villainIndex = positions.indexOf(villainPos);
+            let heroIndex = positions.indexOf(heroPos);
+        
+            // Minden pozíció alapértelmezetten nincs kijelölve
+            document.querySelectorAll('.positionCircle').forEach(circle => {
+                circle.classList.remove('highlightedHero', 'highlightedVillain');
+            });
 
-    let villainIndex = positions.indexOf(villainPos);
-    let heroIndex = positions.indexOf(heroPos);
+            document.querySelectorAll('.handText').forEach(hand => {
+                hand.remove();
+            });
+        
+            // Ellenőrizzük az összes pozíciót
+            positions.forEach((pos, index) => {
+                // Ha már megtaláltuk a Hero-t, állítsuk le az animációt
+                if (animationStopped) return;
+        
+                setTimeout(() => {
+                    let positionElement = document.getElementById(pos);
+                    let foldText = document.createElement("div");
+                    foldText.classList.add("foldText");
+        
+                    // Ha az aktuális pozíció Villian, akkor "raise" felirat jelenik meg, és kijelöljük
+                    if (pos === villainPos) {
+                        positionElement.classList.add('highlightedVillain');
+                        foldText.textContent = "Raise";
+                    } 
+                    // Ha az aktuális pozíció Hero, akkor kijelöljük és leállítjuk az animációt
+                    else if (pos === heroPos) {
+                        positionElement.classList.add('highlightedHero');
+                        foldText.textContent = "";  // Nem kell "fold" felirat
+        
+                        // Kéz (Hand) megjelenítése a Hero pozíció fölött
+                        let handText = document.createElement("div");
+                        handText.classList.add("handText");
+                        handText.textContent = currentHand; // Itt adhatod meg a Hero kezét
+                        positionElement.appendChild(handText);
+        
+                        animationStopped = true; // Ha Hero-t megtaláljuk, leállítjuk az animációt
+                    } 
+                    // Ha nem Villian és nem Hero, akkor "fold" felirat
+                    else {
+                        foldText.textContent = " 'Fold' ";
+                    }
+        
+                    // Csak akkor adjuk hozzá a foldText-et, ha nem állt le az animáció
+                    if (!animationStopped) {
+                        positionElement.appendChild(foldText);
+        
+                        // Fél másodperc után eltávolítjuk a feliratot
+                        setTimeout(() => {
+                            foldText.remove();
+                        }, 500);
+                    }
+                }, index * delay);
+            });
+        }
+        
+        
+        
+        
+        
+        
 
-    // UTG-től Hero előtti pozíciókig tart, de kihagyja a Villaint
-    let foldOrder = positions.filter((pos, index) => 
-        index < heroIndex && index !== villainIndex
-    );
-
-    foldOrder.forEach((pos, index) => {
-        setTimeout(() => {
-            let positionElement = document.getElementById(pos);
-
-            let foldText = document.createElement("div");
-            foldText.classList.add("foldText");
-            foldText.textContent = " 'Fold' ";
-            positionElement.appendChild(foldText);
-
-           
-
-            // Fél másodperc után eltávolítjuk
-            setTimeout(() => {
-                foldText.remove();
-            }, 500);
-        }, index * delay);
-    });
-}
+        
+        
+        
+        
 
 
 
