@@ -73,9 +73,9 @@ const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
 
         function generateRandomHand() {
     const strongHands = [
-        "AA", "KK", "QQ", "JJ", "TT", "99", "88", "77", "66", "55", "44", "33", "22","AKs", "AQs", "AJs", "ATs",
-        "A2s", "A3s", "A4s", "A5s", "A6s", "A7s", "A8s", "A9s","KQs", "KJs", "KTs", "K8s", "K9s", "QJs", "QTs", "Q9s", 
-        "JTs", "J9s", "J8s", "JTs", "T8s", "T9s", "98s", "87s", "76s", "65s", "97s", "T8s", "86s",
+        "AA", "KK", "QQ", "JJ", "TT", "99", "88", "77", "66", "55", "44", "33", "22","A♥️K♥️s", "A♥️Q♥️s", "A♥️J♥️s", "A♥️T♥️s",
+        "A♥️2♥️s", "A♥️3♥️s", "A♥️4♥️s", "A♥️5♥️s", "A♥️6♥️s", "A♥️7♥️s", "A♥️8♥️s", "A♥️9♥️s","K♥️Q♥️s", "K♥️J♥️s", "K♥️T♥️s", "K♥️8♥️s", "K♥️9♥️s", "Q♥️J♥️s", "Q♥️T♥️s", "Q♥️9♥️s", 
+        "J♥️T♥️s", "J♥️9♥️s", "J♥️8♥️s", "J♥️T♥️s", "T♥️8♥️s", "T♥️9♥️s", "9♥️8♥️s", "8♥️7♥️s", "7♥️6♥️s", "6♥️5♥️s", "9♥️7♥️s", "T♥️8♥️s", "8♥️6♥️s",
         "AJo", "ATo", "A9o", "A8o", "A7o","A6o","A5o","A4o","A3o","A2o", "KQo", "KTo", "KJo", "K9o", 
         "AKo", "AQo","KQo", "K9o", "QJo","QTo", "Q9o","JTo", "J9o","J9o", "J8o",
     ];
@@ -109,11 +109,11 @@ const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
 
             if (isCorrect) {
     score++;
-    document.getElementById("message").textContent = "Helyes válasz! ✅";
+    document.getElementById("message").textContent = "✅";
     document.getElementById("message").style.color = "green";
 } else {
 
-    document.getElementById("message").textContent = "Hibás válasz. ❌";
+    document.getElementById("message").textContent = "❌";
     document.getElementById("message").style.color = "red";
     score = 0;
 
@@ -123,12 +123,7 @@ const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
                 updateWrongAnswers();
     
 }
-
-
-
-
-
-        document.getElementById("score").textContent = "Pontsszámod:" + score;
+        document.getElementById("score").textContent = score;
         generateNewQuestion();
     }
 
@@ -149,7 +144,7 @@ const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
         }
         
         function showFoldAnimation() {
-            let delay = 500; // Fél másodperces lépések
+            let delay = 290; // Fél másodperces lépések
             let animationStopped = false; // Flag a leállításhoz
         
             let villainIndex = positions.indexOf(villainPos);
