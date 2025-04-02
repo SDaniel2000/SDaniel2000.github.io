@@ -7,8 +7,30 @@
             padding: 0;
         }
 
+        .page-header {
+            background: linear-gradient(145deg, #333333, #444444);
+            text-align: center;
+            top: 0;   
+        }
+        /* Fejléc szöveg */
+.page-header h1 {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 2px;
+    margin: 0;
+    padding: 16px;
+  }
+  
+  /* Hover animáció */
+  .page-header h1:hover {
+    color: #ffcc00; /* Eltérő szín hover hatásra */
+    cursor: pointer;
+  }
+
         #pokerTable {
-            width: 600px;
+            width: 615px;
             height: 300px;
             margin: 50px auto;
             background-color: #4CAF50;
@@ -166,7 +188,7 @@
             background-size: cover; 
             position: relative;
             cursor: pointer;
-             top: 10px;
+             top: 0px;
             transition: transform 0.3s ease;
             margin: 15px;
         }
