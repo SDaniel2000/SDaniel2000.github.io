@@ -67,6 +67,17 @@
                 width: 24%;
             }
         }
+        #hideDealerCheckbox {
+            margin: 10px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        #hideDealerCheckbox:checked ~ #dealer {
+            display: none;
+        }
+        
+        
 
         .positionCircle {
     width: 10%;
@@ -172,6 +183,7 @@
 }
 @media (max-width: 380px) {
     .handText {
+        
         font-size: 90%;
       
     }

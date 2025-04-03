@@ -1,3 +1,12 @@
+document.getElementById("hideDealerCheckbox").addEventListener("change", function() {
+    var dealer = document.getElementById("dealer");
+    if (this.checked) {
+        dealer.style.display = "none";
+    } else {
+        dealer.style.display = "block";
+    }
+});
+
 const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
         const callRanges = {
             "MP": {
