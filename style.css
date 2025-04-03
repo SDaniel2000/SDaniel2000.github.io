@@ -53,7 +53,7 @@
         }
         #dealer {
             position: absolute;
-            top: 58px; /* Az asztal tetejéhez közel */
+            top: 8%; /* Az asztal tetejéhez közel */
             left: 50%; /* Az asztal közepére igazítva */
             transform: translateX(-50%); /* A bal oldali eltolás kiegyensúlyozása, hogy pontosan középen legyen */
             height: 20.8%;
@@ -74,7 +74,7 @@
             cursor: pointer;
         }
         #hideDealerCheckbox:checked ~ #dealer {
-            visibility: hidden; /* Eltünteti, de nem változtatja meg a helyét */
+             visibility: hidden; /* Eltünteti, de nem változtatja meg a helyét */
         }
         
         
