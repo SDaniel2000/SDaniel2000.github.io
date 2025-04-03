@@ -30,9 +30,12 @@
   }
 
         #pokerTable {
-            width: 615px;
-            height: 300px;
+            width: 43vw;
+            max-width: 600px;
+            height: auto;
             margin: 50px auto;
+            aspect-ratio: 2/1;
+            display:block;
             background-color: #4CAF50;
             border-radius: 20px;
             border-color: black;
@@ -47,28 +50,39 @@
             top: 58px; /* Az asztal tetejéhez közel */
             left: 50%; /* Az asztal közepére igazítva */
             transform: translateX(-50%); /* A bal oldali eltolás kiegyensúlyozása, hogy pontosan középen legyen */
-            width: 50px; /* Állítsd be a megfelelő képméretet */
-            height: 150px;
+            width: 10vw; /* Állítsd be a megfelelő képméretet */
+            height: 9.75vw;
             width: 150px;
             z-index: 10; /* Biztosítja, hogy a dealer a pozíciók fölött legyen */
         }
+        @media (max-width: 600px) {
+            #dealer {
+                display: none;  /* Mobilon elrejtve */
+            }
+        }
 
         .positionCircle {
-    width: 60px;
-    height: 60px;
+    width: 4vw;
+    position: absolute;
+    height: 4vw;
+    
     border-radius: 50%;
     background-color: #ffffff;
     display: inline-block;
     line-height: 60px;
     position: absolute;
     text-align: center;
-    font-size: 16px;
+    font-size: 1vw;
     font-weight: bold;
     color: #333;
     transition: all 0.3s ease;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     cursor: pointer;
-    
+}
+@media (max-width: 10px) {
+    .position {
+        font-size: 1vw;
+    }
 }
 .villainChip {
     position: absolute;
@@ -181,8 +195,8 @@
         }
 
         button {
-            width: 100px; 
-            height: 100px;
+            width: 6vw; 
+            height: 6vw;
             border: none;
             background: url('Images/CHIPWIN.jpg') no-repeat center center; 
             background-size: cover; 
