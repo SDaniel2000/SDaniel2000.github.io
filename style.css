@@ -74,7 +74,7 @@
             cursor: pointer;
         }
         #hideDealerCheckbox:checked ~ #dealer {
-            display: none;
+            visibility: hidden; /* Eltünteti, de nem változtatja meg a helyét */
         }
         
         
