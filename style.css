@@ -56,14 +56,15 @@
             top: 58px; /* Az asztal tetejéhez közel */
             left: 50%; /* Az asztal közepére igazítva */
             transform: translateX(-50%); /* A bal oldali eltolás kiegyensúlyozása, hogy pontosan középen legyen */
-            width: 10vw; /* Állítsd be a megfelelő képméretet */
-            height: 9.75vw;
+            height: 20.8%;
             width: 150px;
             z-index: 10; /* Biztosítja, hogy a dealer a pozíciók fölött legyen */
         }
         @media (max-width: 600px) {
             #dealer {
-                display: none;  /* Mobilon elrejtve */
+                top: 15.4%;
+                height: 12%;
+                width: 24%;
             }
         }
 
@@ -116,14 +117,7 @@
           height: 23%;;
 }
 }
-@media (max-width: 1000px) {
-    #SB.highlightedVillain .villainChip,
-    #BB.highlightedVillain .villainChip  {
- 
-    top: 30%; /* A pozíció méretét figyelembe véve */
 
-    }
-    }
 
 .highlightedVillain .villainChip {
     display: block;
@@ -217,11 +211,11 @@
             text-align: right;
             margin-right: -20%;    
         }
-        @media (max-width: 380px) {
+        @media (max-width: 1000px) {
             #score {
                 font-size: 100%;
-                margin-right: 0%;
-              
+                margin-right: -3%;
+       
             }
             }
        
@@ -237,11 +231,10 @@
             margin-right: -20%;   
             
         }
-        @media (max-width: 380px) {
+        @media (max-width: 1000px) {
             #message {
-                font-size: 100%;
-             
-              
+                margin-right: -35%; 
+            
             }
             }
 
