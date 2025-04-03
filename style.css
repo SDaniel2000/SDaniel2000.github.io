@@ -30,7 +30,7 @@
   }
 
         #pokerTable {
-            width: 43vw;
+            width: 75%;
             max-width: 600px;
             height: auto;
             margin: 50px auto;
@@ -44,6 +44,12 @@
             top:-5px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 1000px) {
+            #poker-table {
+                width: 110%;  /* Mobilon szélesebb legyen */
+            }
         }
         #dealer {
             position: absolute;
@@ -62,9 +68,9 @@
         }
 
         .positionCircle {
-    width: 4vw;
+    width: 10%;
     position: absolute;
-    height: 4vw;
+    height:auto;
     
     border-radius: 50%;
     background-color: #ffffff;
@@ -79,23 +85,39 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     cursor: pointer;
 }
-@media (max-width: 10px) {
-    .position {
-        font-size: 1vw;
+@media (max-width: 380px) {
+    .positionCircle {
+        width: 15%;
+        height: 30%;
+        font-size: 60%;
+       
+    
     }
 }
 .villainChip {
     position: absolute;
-    top: -30px; /* Pozíció finomhangolása a kör fölé */
+    top: -70%; /* Pozíció finomhangolása a kör fölé */
     left: 50%;
     transform: translateX(-50%);
-    width: 18px;
-    height: 18px;
+    width: 30%;
+    height: 30%;;
     background-color: yellow;
     border-radius: 50%;
     display: none; /* Alapból rejtve */
     border: 2px solid black; /* Fekete körvonal */
 
+}
+@media (max-width: 380px) {
+    .villainChip {
+        width: 25%;
+        height: 25%;  
+        top: -30px;
+        top: -45%;
+    }
+#SB.highlightedVillain .villainChip,
+#BB.highlightedVillain .villainChip {
+    top: 20%; /* A pozíció méretét figyelembe véve */
+}
 }
 
 
@@ -135,17 +157,27 @@
     position: absolute;
     top: -35px; 
     color: rgb(0, 0, 0);
-    font-size: 11px;
-}
-.handText {
-    position: absolute;
-    font-size: 15px;
-    font-weight: bold;
-    color: #000000;
-    
-    
+    font-size: 100%;
 }
 
+@media (max-width: 380px) {
+    .foldText {
+        font-size: 65%;
+      
+    }
+    }
+.handText {
+    position: absolute;
+    font-size: 100%;
+    font-weight: bold;
+    color: #000000;
+}
+@media (max-width: 380px) {
+    .handText {
+        font-size: 100%;
+      
+    }
+    }
 #MP .handText, #CO .handText {
     top: -40px; /* A pozíció neve fölött */
 }
@@ -196,7 +228,8 @@
 
         button {
             width: 6vw; 
-            height: 6vw;
+            height: auto;
+            aspect-ratio: 1/1;
             border: none;
             background: url('Images/CHIPWIN.jpg') no-repeat center center; 
             background-size: cover; 
