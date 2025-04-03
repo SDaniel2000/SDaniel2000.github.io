@@ -85,11 +85,12 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     cursor: pointer;
 }
-@media (max-width: 380px) {
+@media (max-width: 1000px) {
     .positionCircle {
         width: 15%;
         height: 30%;
         font-size: 60%;
+        
        
     
     }
@@ -107,19 +108,22 @@
     border: 2px solid black; /* Fekete körvonal */
 
 }
-@media (max-width: 380px) {
+@media (max-width: 1000px) {
     .villainChip {
-        width: 25%;
-        height: 25%;  
-        top: -30px;
-        top: -45%;
-    }
-#SB.highlightedVillain .villainChip,
-#BB.highlightedVillain .villainChip {
-    top: 20%; /* A pozíció méretét figyelembe véve */
+         top: -40%;
+         left: 50%;
+         width: 23%;
+          height: 23%;;
 }
 }
+@media (max-width: 1000px) {
+    #SB.highlightedVillain .villainChip,
+    #BB.highlightedVillain .villainChip  {
+ 
+    top: 30%; /* A pozíció méretét figyelembe véve */
 
+    }
+    }
 
 .highlightedVillain .villainChip {
     display: block;
@@ -211,8 +215,16 @@
             font-size: 24px;
             font-weight: bold;
             text-align: right;
-            margin-right: -320px;    
+            margin-right: -20%;    
         }
+        @media (max-width: 380px) {
+            #score {
+                font-size: 100%;
+                margin-right: 0%;
+              
+            }
+            }
+       
         p {
             font-size: 20px;
             font-weight: bold;
@@ -222,12 +234,19 @@
             font-size: 20px;
             font-weight: bold;
             margin-top: 30px;
-            margin-right: -320px;   
+            margin-right: -20%;   
             
         }
+        @media (max-width: 380px) {
+            #message {
+                font-size: 100%;
+             
+              
+            }
+            }
 
         button {
-            width: 6vw; 
+            width: 6.5%; 
             height: auto;
             aspect-ratio: 1/1;
             border: none;
@@ -239,6 +258,16 @@
             transition: transform 0.3s ease;
             margin: 15px;
         }
+
+        @media (max-width: 1000px) {
+            .button {
+                width: 20%; 
+                height: auto;
+                aspect-ratio: 1/1;
+            
+            }
+            }
+            
         .button span {
             font-size: 13px;  
             font-weight: bold; 
