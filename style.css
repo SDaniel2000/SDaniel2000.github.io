@@ -53,10 +53,10 @@
         }
         #dealer {
             position: absolute;
-            top: 8%; /* Az asztal tetejéhez közel */
+            top: 8.2%; /* Az asztal tetejéhez közel */
             left: 50%; /* Az asztal közepére igazítva */
             transform: translateX(-50%); /* A bal oldali eltolás kiegyensúlyozása, hogy pontosan középen legyen */
-            height: 20.8%;
+            height: 20.6%;
             width: 150px;
             z-index: 10; /* Biztosítja, hogy a dealer a pozíciók fölött legyen */
         }
@@ -76,7 +76,37 @@
         #hideDealerCheckbox:checked ~ #dealer {
              visibility: hidden; /* Eltünteti, de nem változtatja meg a helyét */
         }
+        #positionStats {
+            margin-top: -23%;
+            margin-left: 3%;
+            margin-bottom: 5%;
+            background: rgba(0, 0, 0, 0.7); /* Sötét, átlátszó háttér */
+    color: white; /* Fehér szöveg */
+    padding: 15px; /* Kényelmes térköz */
+    border-radius: 10px; /* Lekerekített sarkok */
+    font-family: Arial, sans-serif; /* Modern betűtípus */
+    font-size: 16px;
+    width: 180px;
+    text-align: left;
+    border: 1px solid #000000; /* Arany szegély */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Finom árnyék */
+        }
         
+        #position-stats h3 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #ffd700; /* Arany cím */
+        }
+        
+        #position-stats ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        #position-stats li {
+            margin: 5px 0;
+        }
         
 
         .positionCircle {
@@ -240,7 +270,7 @@
             font-size: 20px;
             font-weight: bold;
             margin-top: 30px;
-            margin-right: -20%;   
+            margin-right: -21%;   
             
         }
         @media (max-width: 1000px) {

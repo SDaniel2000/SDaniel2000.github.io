@@ -114,38 +114,68 @@ const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
 }
 
 
+// Minden pozícióhoz létrehozunk egy objektumot
+let positionStats = {
+    SB: { correct: 0, total: 0 },
+    BB: { correct: 0, total: 0 },
+    UTG: { correct: 0, total: 0 },
+    MP: { correct: 0, total: 0 },
+    CO: { correct: 0, total: 0 },
+    BU: { correct: 0, total: 0 }
+};
+
+// Függvény a statisztika frissítésére
+function updateStats(position, isCorrect) {
+    if (!positionStats[position]) return;
+
+    positionStats[position].total++;  // Minden döntés növeli az összes döntés számát
+    if (isCorrect) {
+        positionStats[position].correct++;  // Ha helyes volt, ezt is növeljük
+    }
+
+    // Frissítjük az adott pozíció százalékos értékét
+    let percentage = (positionStats[position].correct / positionStats[position].total) * 100;
+    document.getElementById(position.toLowerCase() + "Stat").textContent = percentage.toFixed(1) + "%";
+}
+
+// Simuláció: Példa egy döntés frissítésére (Ezt hívd meg, amikor választás történik)
+function playerChoice(position, isCorrect) {
+    updateStats(position, isCorrect);
+}
 
 
         
-        function checkAnswer(choice) {
-        const correctThreeBet = threeBetRanges[heroPos]?.includes(currentHand);
-        const correctCall = !correctThreeBet && callRanges[heroPos]?.[villainPos]?.includes(currentHand);
-        const correctFold = !correctThreeBet && !correctCall;
+function checkAnswer(choice) {
+    const correctThreeBet = threeBetRanges[heroPos]?.includes(currentHand);
+    const correctCall = !correctThreeBet && callRanges[heroPos]?.[villainPos]?.includes(currentHand);
+    const correctFold = !correctThreeBet && !correctCall;
 
-        const isCorrect =
-            (choice === "3-bet" && correctThreeBet) ||
-            (choice === "call" && correctCall) ||
-            (choice === "fold" && correctFold);
+    let correctAnswer = "";
+    if (correctThreeBet) correctAnswer = "3-bet";
+    else if (correctCall) correctAnswer = "call";
+    else correctAnswer = "fold";
 
-            if (isCorrect) {
-    score++;
-    document.getElementById("message").textContent = "✅";
-    document.getElementById("message").style.color = "green";
-} else {
+    const isCorrect = choice === correctAnswer;
 
-    document.getElementById("message").textContent = "❌";
-    document.getElementById("message").style.color = "red";
-    score = 0;
+    if (isCorrect) {
+        score++;
+        document.getElementById("message").textContent = "✅";
+        document.getElementById("message").style.color = "green";
+    } else {
+        document.getElementById("message").innerHTML = `❌ <span style="font-size: 14px; color: gray;">Helyes válasz: ${correctAnswer}</span>`;
+        document.getElementById("message").style.color = "red";
+        score = 0;
 
-            // Elmentjük az elrontott választ
-                let wrongEntry = `Villain: ${villainPos}, Hero: ${heroPos}, Hand: ${currentHand}, Választott: ${choice}`;
-                wrongAnswersList.push(wrongEntry);
-                updateWrongAnswers();
-    
-}
-        document.getElementById("score").textContent = score;
-        generateNewQuestion();
+        // Elmentjük az elrontott választ
+        let wrongEntry = `Villain: ${villainPos}, Hero: ${heroPos}, Hand: ${currentHand}, Választott: ${choice}, Helyes: ${correctAnswer}`;
+        wrongAnswersList.push(wrongEntry);
+        updateWrongAnswers();
     }
+
+    document.getElementById("score").textContent = score;
+    updateStats(heroPos, isCorrect);
+    generateNewQuestion();
+}
 
             function updateWrongAnswers() {
             let wrongAnswersElement = document.getElementById("wrongAnswers");
