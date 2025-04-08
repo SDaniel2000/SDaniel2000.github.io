@@ -33,6 +33,9 @@
     </div>
     
     
+      
+      
+    
     <div id="positionStats">
         <h3>Pozíciók teljesítménye:</h3>
         <ul>
@@ -47,15 +50,22 @@
     
 
     
-<button class="button" onclick="checkAnswer('fold')">
+<button class="button2" onclick="checkAnswer('fold')">
     <span>Fold</span>
 </button>
-<button class="button" onclick="checkAnswer('call')">
+<button class="button2" onclick="checkAnswer('call')">
     <span>Call</span>
 </button>
-<button class="button" onclick="checkAnswer('3-bet')">
+<button class="button2" onclick="checkAnswer('3-bet')">
     <span>3-Bet</span>
 </button>
+
+<div id="potOddsSection" class="section-box">
+    <h2>🧮 Pot Odds Gyakorló</h2>
+    <div id="potOddsQuestion" class="question-box"></div>
+    <div id="potOddsResult" class="result-text"></div>
+  </div>
+
 
 
 
@@ -67,6 +77,8 @@
     <h2>Elrontott válaszok:</h2>
     <ul id="wrongAnswers"></ul>
 
+
+    <script src="equityData.js"></script>
    <script src="script.js"></script> 
 
 </body>

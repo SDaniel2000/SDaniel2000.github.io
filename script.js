@@ -144,6 +144,58 @@ function playerChoice(position, isCorrect) {
 }
 
 
+let currentPot = 0;
+let currentBet = 0;
+let currentOdds = 0;
+
+function generatePotOddsQuestion() {
+    const hands = Object.keys(equityData);
+    const randomHand = hands[Math.floor(Math.random() * hands.length)];
+    const equity = equityData[randomHand];
+
+    // Generálunk egy random pot méretet (pl. 20-100 BB között)
+    const potSize = Math.floor(Math.random() * 80) + 20;
+
+    // Generálunk egy random bet size-t (10%–100% pot között)
+    const betSize = Math.floor(Math.random() * potSize);
+
+    // Pot odds kiszámítása
+    const callAmount = betSize;
+    const totalPot = potSize + betSize;
+    const potOdds = callAmount / totalPot;
+
+    // Megéri-e megadni?
+    const shouldCall = equity > potOdds;
+
+    // Kérdés megjelenítése
+    document.getElementById("potOddsQuestion").innerHTML = `
+        <strong>Kéz:</strong> ${randomHand} <br>
+        <strong>Pot:</strong> ${potSize} BB <br>
+        <strong>Bet:</strong> ${betSize} BB <br>
+        <strong>Equity:</strong> ${Math.round(equity * 100)}% <br><br>
+        Mit teszel? (Pot odds alapján)
+        <br><br>
+        <button onclick="answerPotOdds(true, ${shouldCall})">Call</button>
+        <button onclick="answerPotOdds(false, ${shouldCall})">Fold</button>
+    `;
+}
+function answerPotOdds(playerChoseCall, shouldCall) {
+    const resultBox = document.getElementById("potOddsResult");
+
+    if (playerChoseCall === shouldCall) {
+        resultBox.innerHTML = "✅";
+       
+    } else {
+        resultBox.innerHTML = "❌ Hibás döntés!";
+        
+    }
+
+    generatePotOddsQuestion()
+}
+
+
+
+
         
 function checkAnswer(choice) {
     const correctThreeBet = threeBetRanges[heroPos]?.includes(currentHand);
@@ -252,6 +304,11 @@ function checkAnswer(choice) {
                     }
                 }, index * delay);
             });
+
+            window.onload = function () {
+                generateNewQuestion(); // meglévő funkciód
+                generatePotOddsQuestion(); // új pot odds kérdés
+              };
         }
         
         
