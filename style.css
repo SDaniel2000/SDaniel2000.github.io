@@ -7,53 +7,38 @@
             padding: 0;
         }
 
-        .page-header {
-            background: linear-gradient(145deg, #333333, #444444);
-            text-align: center;
-            top: 0;   
-        }
-        /* Fejléc szöveg */
-.page-header h1 {
-    font-size: 24px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #fff;
-    letter-spacing: 2px;
-    margin: 0;
-    padding: 16px;
-  }
-  
-  /* Hover animáció */
-  .page-header h1:hover {
-    color: #ffcc00; /* Eltérő szín hover hatásra */
-    cursor: pointer;
-  }
+        
+
+        /* POKERASZTAL-------------- */
 
         #pokerTable {
             width: 75%;
             max-width: 600px;
-            height: auto;
+            height: 300px;
             margin: 50px auto;
-            aspect-ratio: 2/1;
-            display:block;
             background-color: #4CAF50;
             border-radius: 20px;
-            border-color: black;
             border: 12px solid rgb(200, 160, 109);
             position: relative;
             margin-top: 3%;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;  /* Biztosítja, hogy ha nem férnek el, akkor alulra kerüljenek */
         }
 
 
         @media (max-width: 1000px) {
             #poker-table {
-                width: 110%;  /* Mobilon szélesebb legyen */
+                width: 110%;  
             }
         }
 
 
+
+            /* POTODDS GAME-------------- */
 
         .section-box {
             background-color: #1e1e2f;
@@ -89,47 +74,22 @@
         
        
         
+       /* POITION STATISZTIKA---------------------------------- */
         
-        
-        #dealer {
-            position: absolute;
-            top: 8.2%; /* Az asztal tetejéhez közel */
-            left: 50%; /* Az asztal közepére igazítva */
-            transform: translateX(-50%); /* A bal oldali eltolás kiegyensúlyozása, hogy pontosan középen legyen */
-            height: 20.7%;
-            width: 150px;
-            z-index: 10; /* Biztosítja, hogy a dealer a pozíciók fölött legyen */
-        }
-        @media (max-width: 600px) {
-            #dealer {
-                top: 15.4%;
-                height: 12%;
-                width: 24%;
-            }
-        }
-        #hideDealerCheckbox {
-            margin-top: 7%;
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-        }
-        #hideDealerCheckbox:checked ~ #dealer {
-             visibility: hidden; /* Eltünteti, de nem változtatja meg a helyét */
-        }
         #positionStats {
             margin-top: -20%;
             margin-left: 8%;
             margin-bottom: 5%;
             background-color: #1e1e2f;
-    color: white; /* Fehér szöveg */
-    padding: 15px; /* Kényelmes térköz */
-    border-radius: 10px; /* Lekerekített sarkok */
-    font-family: Arial, sans-serif; /* Modern betűtípus */
+    color: white; 
+    padding: 15px; 
+    border-radius: 10px; 
+    font-family: Arial, sans-serif; 
     font-size: 16px;
     width: 180px;
     text-align: left;
-    border: 1px solid #000000; /* Arany szegély */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Finom árnyék */
+    border: 1px solid #000000; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); 
         }
         
         #position-stats h3 {
@@ -321,14 +281,14 @@
             }
 
         button {
-            background-color: #3498db; /* Kék háttérszín */
-            color: white; /* Fehér szöveg */
-            font-size: 16px; /* Kényelmes betűméret */
-            padding: 12px 24px; /* Belső margó a gombon */
-            border: none; /* Nincs keret */
-            border-radius: 8px; /* Lekerekített sarkok */
-            cursor: pointer; /* Mutatja, hogy kattintható */
-            transition: all 0.3s ease; /* Zökkenőmentes animáció */
+            background-color: #3498db; 
+            color: white; 
+            font-size: 16px; 
+            padding: 12px 24px; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
         }
         
 
@@ -371,4 +331,65 @@
             line-height: 1.6;
         }
 
+
+
+
+
+
+       /* HEADER CSSS------------------- */
+        .page-header {
+            background: linear-gradient(145deg, #333333, #444444);
+            text-align: center;
+            top: 0;   
+        }
+        
+.page-header h1 {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 2px;
+    margin: 0;
+    padding: 16px;
+  }
   
+
+  .page-header h1:hover {
+    color: #ffcc00; 
+    cursor: pointer;
+  }
+
+
+
+
+   /* DEALER POSITION,SIZE-------------- */
+        
+   #dealer {
+    position: absolute;
+    top: 8.2%; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    height: 20.7%;
+    width: 150px;
+    z-index: 10; 
+}
+@media (max-width: 600px) {
+    #dealer {
+        top: 15.4%;
+        height: 12%;
+        width: 24%;
+    }
+}
+        
+        
+  /* DEALER ELREJTÉS */
+
+        #hideDealerCheckbox {
+            margin-top: 7%;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        #hideDealerCheckbox:checked ~ #dealer {
+             visibility: hidden; 
+        }

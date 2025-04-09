@@ -22,7 +22,7 @@
    
    
     
-
+    <div class="container">
     <div id="pokerTable">
         <div id="UTG" class="positionCircle"><span class="villainChip"></span> UTG</div>
         <div id="MP" class="positionCircle"><span class="villainChip"></span> MP</div>
@@ -31,8 +31,16 @@
         <div id="SB" class="positionCircle"><span class="villainChip"></span> SB</div>
         <div id="BB" class="positionCircle"><span class="villainChip"></span> BB</div>
     </div>
-    
-    
+    <button class="button2" onclick="checkAnswer('fold')">
+        <span>Fold</span>
+    </button>
+    <button class="button2" onclick="checkAnswer('call')">
+        <span>Call</span>
+    </button>
+    <button class="button2" onclick="checkAnswer('3-bet')">
+        <span>3-Bet</span>
+    </button>
+</div>
       
       
     
@@ -50,15 +58,8 @@
     
 
     
-<button class="button2" onclick="checkAnswer('fold')">
-    <span>Fold</span>
-</button>
-<button class="button2" onclick="checkAnswer('call')">
-    <span>Call</span>
-</button>
-<button class="button2" onclick="checkAnswer('3-bet')">
-    <span>3-Bet</span>
-</button>
+
+
 
 <div id="potOddsSection" class="section-box">
     <h2>🧮 Pot Odds Gyakorló</h2>
