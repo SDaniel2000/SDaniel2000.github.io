@@ -8,45 +8,11 @@ document.getElementById("hideDealerCheckbox").addEventListener("change", functio
 });
 
 const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
-        const callRanges = {
-            "MP": {
-                "UTG": [ "T♥️T♠️", "9♦️9♠️", "8♠️8♦️", "A♣️Q♣️", "A♥️J♣️",  "A♠️J♠️", "K♣️Q♣️"]
-            },
-            "CO": {
-                "UTG": [  "9♦️9♠️", "8♠️8♦️",  "A♥️J♣️", "A♠️J♠️", "K♣️Q♣️"],
-                "MP":  [ "9♦️9♠️", "8♠️8♦️", "7♠️7♥️", , "A♥️J♣️", "A♥️T♣️",  "A♠️J♠️", "A♥️T♥️", "A♦️9♦️", "K♣️Q♣️", "K♥️J♥️", "Q♣️J♣️"]
-            },
-            "BU": {
-                "UTG": [  "8♠️8♦️", "7♠️7♥️",   "A♥️T♣️", "Q♣️J♣️"],
-                "MP": [ "8♠️8♦️", "7♠️7♥️", "6♥️6♣️",   "A♥️T♣️",   "K♦️J♣️",    "Q♦️T♦️", "Q♣️J♣️"],
-                "CO": ["8♠️8♦️", "7♠️7♥️", "6♥️6♣️", "5♠️5♥️", "A♥️T♣️", "A♦️9♣️", "A♠️8♥️",  "A♥️8♥️", "A♥️7♥️", "A♥️6♥️", "A♥️5♥️", "K♦️J♣️",  "Q♦️T♦️", "Q♣️J♣️", "J♦️T♦️", "T♥️9♥️"]
-            },
-            "SB": {
-                "UTG": [   "7♠️7♥️",    "Q♣️J♣️"],
-                "MP": [  "7♠️7♥️", "6♥️6♣️",     "Q♦️T♦️", "Q♣️J♣️"],
-                "CO": [ "7♠️7♥️", "6♥️6♣️", "5♠️5♥️",   "A♦️9♣️", "A♠️8♥️", "Q♦️T♦️", "Q♣️J♣️", "J♦️T♦️", "T♥️9♥️"],
-                "BU": ["7♠️7♥️", "6♥️6♣️", "5♠️5♥️", "4♦️4♥️", "3♦️3♠️", "2♥️2♠️", "A♦️9♣️", "A♠️8♥️", "A♣️7♥️","A♥️6♠️","A♠️5♥️","A♠️4♦️","A♠️3♦️","A♣️2♦️",  "A♣️4♣️", "A♥️3♥️", "A♣️2♣️", "K♦️J♣️", "K♥️T♠️",   "T♥️9♥️", "9♣️8♣️", "8♥️7♥️"]
-            },
-            "BB": {
-                "UTG": ["9♦️9♠️", "8♠️8♦️", "7♠️7♥️", "6♥️6♣️", "5♠️5♥️", "4♦️4♥️", "3♦️3♠️","2♥️2♠️", "A♥️J♣️", "A♥️T♣️", "A♦️9♣️", "A♠️8♥️", "A♣️7♥️","A♥️6♠️","A♠️5♥️","A♠️4♦️","A♠️3♦️","A♣️2♦️", "A♥️5♥️","A♣️4♣️","A♥️3♥️","A♣️2♣️", "K♦️Q♠️", "K♥️T♠️", "K♥️9♥️", "K♦️T♦️","K♥️J♥️","K♣️Q♣️", "Q♦️T♦️", "Q♣️J♣️", "J♣️9♣️", "J♦️T♦️", "T♥️8♥️", "T♥️9♥️", "9♣️8♣️",],
-                "MP": ["8♠️8♦️", "7♠️7♥️", "6♥️6♣️", "5♠️5♥️", "4♦️4♥️", "3♦️3♠️","2♥️2♠️","A♥️J♣️", "A♥️T♣️", "A♦️9♣️", "A♠️8♥️", "A♣️7♥️","A♥️6♠️","A♠️5♥️","A♠️4♦️","A♠️3♦️","A♥️6♥️","A♥️5♥️","A♣️4♣️","A♥️3♥️","A♣️2♣️","K♦️Q♠️", "K♥️T♠️", "K♥️9♥️", "K♦️T♦️","K♥️J♥️","K♣️Q♣️", "Q♦️T♦️", "Q♣️J♣️", "J♣️9♣️", "J♦️T♦️", "T♥️8♥️", "T♥️9♥️", "9♣️8♣️", "8♥️7♥️"],
-                "CO": ["7♠️7♥️", "6♥️6♣️", "5♠️5♥️", "4♦️4♥️", "3♦️3♠️","2♥️2♠️","A♥️T♣️", "A♦️9♣️", "A♠️8♥️", "A♣️7♥️","A♥️6♠️","A♠️5♥️","A♠️4♦️","A♠️3♦️","A♣️2♦️","A♥️6♥️","A♥️5♥️","A♣️4♣️","A♥️3♥️","A♣️2♣️","K♦️Q♠️", "K♦️J♣️", "K♥️T♠️", "K♥️9♥️", "K♦️T♦️","K♥️J♥️","K♣️Q♣️", "Q♦️T♦️", "Q♣️J♣️", "J♣️9♣️", "J♦️T♦️", "T♥️8♥️", "T♥️9♥️", "9♣️8♣️", "8♥️7♥️"],
-                "BU": ["6♥️6♣️", "5♠️5♥️", "4♦️4♥️", "3♦️3♠️","2♥️2♠️","A♥️T♣️", "A♦️9♣️", "A♠️8♥️", "A♣️7♥️","A♥️6♠️","A♠️5♥️","A♠️4♦️","A♠️3♦️","A♣️2♦️", "A♥️5♥️","A♣️4♣️","A♥️3♥️","A♣️2♣️", "K♦️J♣️", "K♥️T♠️", "K♥️9♥️", "K♦️T♦️","K♥️J♥️","K♣️Q♣️", "Q♦️T♦️", "Q♣️J♣️", "J♣️9♣️", "J♦️T♦️", "T♥️8♥️", "T♥️9♥️", "9♣️8♣️", "8♥️7♥️", "7♥️6♥️"],
-                "SB": ["5♠️5♥️", "4♦️4♥️", "3♦️3♠️","2♥️2♠️", "A♥️T♣️", "A♦️9♣️", "A♠️8♥️", "A♣️7♥️","A♥️6♠️","A♠️5♥️","A♠️4♦️","A♠️3♦️","A♣️2♦️", "A♥️5♥️","A♣️4♣️","A♥️3♥️","A♣️2♣️", "K♥️T♠️", "K♥️9♥️", "K♦️T♦️","K♥️J♥️","K♣️Q♣️", "Q♦️T♦️", "Q♣️J♣️", "J♣️9♣️", "J♦️T♦️", "T♥️8♥️", "T♥️9♥️", "9♣️8♣️", "8♥️7♥️", "7♥️6♥️"]
-            }
-        };
         
-        const threeBetRanges = {
-            "UTG":["A♥️A♣️", "K♣️K♥️", "Q♠️Q♦️", "A♥️K♥️",],
-            "MP": ["A♥️A♣️", "K♣️K♥️", "Q♠️Q♦️", "J♦️J♥️", "A♥️K♥️", "A♣️Q♣️" ,],
-            "CO": ["A♥️A♣️", "K♣️K♥️", "Q♠️Q♦️", "J♦️J♥️", "T♥️T♠️" ,"A♥️K♥️", "A♣️Q♣️", "K♣️Q♣️", "A♠️K♥️", "A♦️Q♣️"],
-            "BU": ["A♥️A♣️", "K♣️K♥️", "Q♠️Q♦️", "J♦️J♥️", "T♥️T♠️", "9♦️9♠️", "A♥️K♥️", "A♣️Q♣️", "A♠️J♠️", "A♥️T♥️" ,"A♦️9♦️" ,"K♣️Q♣️" ,"K♥️J♥️" ,"K♦️T♦️", "A♠️K♥️" ,"A♣️Q♣️","A♥️J♣️" ,"K♦️Q♠️"],
-            "SB": ["A♥️A♣️", "K♣️K♥️", "Q♠️Q♦️", "J♦️J♥️", "T♥️T♠️", "9♦️9♠️", "8♠️8♦️", "A♥️K♥️", "A♣️Q♣️", "A♠️J♠️", "A♥️T♥️" ,"A♦️9♦️" ,"A♥️8♥️" ,"A♥️7♥️", "A♥️6♥️", "A♥️5♥️", "K♣️Q♣️", "K♥️J♥️" ,"K♦️T♦️", "K♥️9♥️", "Q♣️J♣️", "Q♦️T♦️" ,"Q♠️9♠️", "J♦️T♦️" ,"A♠️K♥️" ,"A♣️Q♣️", "A♥️J♣️", "A♥️T♣️", "K♦️Q♠️" ,"K♦️J♣️", "Q♣️J♠️"],
-            "BB": ["A♥️A♣️", "K♣️K♥️", "Q♠️Q♦️", "J♦️J♥️", "A♥️K♥️",]
-        };
-
+        
+        
         let score = 0;
-        let villainPos, heroPos, currentHand;
+        let villainPos, heroPos, currentHand, currentHand2;
         let wrongAnswersList = [];
 
         
@@ -79,30 +45,31 @@ const positions = ["UTG", "MP", "CO", "BU", "SB", "BB"];
 }
 
 
+function generateRandomHand() {
+    const ranks = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2'];
 
-        function generateRandomHand() {
-    const strongHands = [
-        "A♥️A♣️", "K♣️K♥️", "Q♠️Q♦️", "J♦️J♥️", "T♥️T♠️", "9♦️9♠️", "8♠️8♦️", "7♠️7♥️", "6♥️6♣️", "5♠️5♥️", "4♦️4♥️", "3♦️3♠️", "2♥️2♠️",
+    let rank1 = ranks[Math.floor(Math.random() * ranks.length)];
+    let rank2 = ranks[Math.floor(Math.random() * ranks.length)];
 
-        // SUITED HANDS
-        "A♥️K♥️","A♣️Q♣️","A♠️J♠️","A♥️T♥️",
-        "A♣️2♣️","A♥️3♥️","A♣️4♣️","A♥️5♥️","A♥️6♥️", "A♥️7♥️","A♥️8♥️","A♦️9♦️",
-        "K♣️Q♣️","K♥️J♥️", "K♦️T♦️","K♠️8♠️","K♥️9♥️","Q♣️J♣️","Q♦️T♦️", 
-        "Q♠️9♠️","J♣️9♣️","J♥️8♥️","J♦️T♦️","T♥️9♥️", "T♠️9♠️", "9♣️8♣️", 
-        "8♥️7♥️","7♥️6♥️","6♦️5♦️","9♥️7♥️","T♥️8♥️","8♣️6♣️",
+    // Ha pár
+    if (rank1 === rank2) {
+        return rank1 + rank2;
+    }
 
+    // Páron kívül eldöntjük hogy suited vagy offsuit
+    const suited = Math.random() < 0.5; // 50% eséllyel
+    const suffix = suited ? 's' : 'o';
 
+    // Magasabb kártya legyen elöl a szokásos formátum miatt
+    const sorted = [rank1, rank2].sort((a, b) => ranks.indexOf(a) - ranks.indexOf(b));
 
-        // OFF SHUITED HANDS
-        "A♠️K♥️", "A♠️Q♦️","A♥️J♣️", "A♥️T♣️", "A♦️9♣️", "A♠️8♥️", "A♣️7♥️", "A♥️6♠️", "A♠️5♥️", "A♠️4♦️", "A♠️3♦️", "A♣️2♦️",  
-         "K♥️T♠️", "K♦️J♣️", "K♦️9♠️", "A♠️K♥️", "A♦️Q♣️", 
-        "K♦️Q♠️", "K♥️9♣️", "Q♣️J♠️", "Q♦️T♥️",  
-        "Q♠️9♥️", "J♥️T♣️", "J♣️9♥️", "J♥️9♣️", "J♥️8♣️",
-    ];
-
-    // Véletlenszerűen választunk egy erős kezet a fenti listából
-    return strongHands[Math.floor(Math.random() * strongHands.length)];
+    return sorted[0] + sorted[1] + suffix;
 }
+
+
+
+
+
         // Pozíciók kiemelése
         function highlightPositions() {
     document.querySelectorAll('.positionCircle').forEach(circle => {
@@ -153,45 +120,59 @@ function generatePotOddsQuestion() {
     const randomHand = hands[Math.floor(Math.random() * hands.length)];
     const equity = equityData[randomHand];
 
-    // Generálunk egy random pot méretet (pl. 20-100 BB között)
     const potSize = Math.floor(Math.random() * 80) + 20;
-
-    // Generálunk egy random bet size-t (10%–100% pot között)
     const betSize = Math.floor(Math.random() * potSize);
 
-    // Pot odds kiszámítása
     const callAmount = betSize;
     const totalPot = potSize + betSize;
     const potOdds = callAmount / totalPot;
+    const potOddsPercent = (potOdds * 100).toFixed(1);
+    const equityPercent = (equity * 100).toFixed(1);
 
-    // Megéri-e megadni?
     const shouldCall = equity > potOdds;
 
-    // Kérdés megjelenítése
+    // Mentés későbbi megjelenítéshez
+    window.currentPotOddsData = {
+        hand: randomHand,
+        potSize,
+        betSize,
+        equityPercent,
+        potOddsPercent,
+        correctAction: shouldCall ? "Call" : "Fold"
+    };
+
     document.getElementById("potOddsQuestion").innerHTML = `
         <strong>Kéz:</strong> ${randomHand} <br>
         <strong>Pot:</strong> ${potSize} BB <br>
         <strong>Bet:</strong> ${betSize} BB <br>
-        <strong>Equity:</strong> ${Math.round(equity * 100)}% <br><br>
-        Mit teszel? (Pot odds alapján)
-        <br><br>
-        <button onclick="answerPotOdds(true, ${shouldCall})">Call</button>
-        <button onclick="answerPotOdds(false, ${shouldCall})">Fold</button>
+        <strong>Equity:</strong> ${equityPercent}% <br><br>
+        Mit teszel? (Pot odds alapján)<br><br>
+        <button onclick="answerPotOdds(true)">Call</button>
+        <button onclick="answerPotOdds(false)">Fold</button>
     `;
-}
-function answerPotOdds(playerChoseCall, shouldCall) {
-    const resultBox = document.getElementById("potOddsResult");
 
-    if (playerChoseCall === shouldCall) {
-        resultBox.innerHTML = "✅";
-       
-    } else {
-        resultBox.innerHTML = "❌ Hibás döntés!";
-        
-    }
-
-    generatePotOddsQuestion()
+    document.getElementById("potOddsResult").innerHTML = "";
 }
+
+function answerPotOdds(playerChoseCall) {
+    const data = window.currentPotOddsData;
+    const correctDecision = data.correctAction === "Call";
+
+    let icon = playerChoseCall === correctDecision ? "✅" : "❌ Hibás döntés!";
+
+    document.getElementById("potOddsResult").innerHTML = `
+        ${icon}<br><br>
+        Pot Odds: ${data.potOddsPercent}%<br>
+    `;
+
+    // Új kérdés 3 másodperc múlva
+    setTimeout(() => {
+        generatePotOddsQuestion();
+    }, 3000);
+}
+
+
+
 
 
 
@@ -305,26 +286,12 @@ function checkAnswer(choice) {
                 }, index * delay);
             });
 
-            window.onload = function () {
+           window.onload = function () {
                 generateNewQuestion(); // meglévő funkciód
                 generatePotOddsQuestion(); // új pot odds kérdés
               };
         }
         
-        
-        
-        
-        
-        
-        
-
-        
-        
-        
-        
-
-
-
-
+      
         generateNewQuestion();
     

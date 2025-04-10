@@ -9,6 +9,7 @@
 </head>
 <body>
     <header class="page-header">
+        
         <h1>Call and 3-bet range vs OpenRaise</h1>
       </header>
    
@@ -30,14 +31,16 @@
         <div id="BU" class="positionCircle"><span class="villainChip"></span> BU</div>
         <div id="SB" class="positionCircle"><span class="villainChip"></span> SB</div>
         <div id="BB" class="positionCircle"><span class="villainChip"></span> BB</div>
+
+
     </div>
-    <button class="button2" onclick="checkAnswer('fold')">
+    <button class="button" onclick="checkAnswer('fold')">
         <span>Fold</span>
     </button>
-    <button class="button2" onclick="checkAnswer('call')">
+    <button class="button" onclick="checkAnswer('call')">
         <span>Call</span>
     </button>
-    <button class="button2" onclick="checkAnswer('3-bet')">
+    <button class="button" onclick="checkAnswer('3-bet')">
         <span>3-Bet</span>
     </button>
 </div>
@@ -63,22 +66,33 @@
 
 <div id="potOddsSection" class="section-box">
     <h2>🧮 Pot Odds Gyakorló</h2>
-    <div id="potOddsQuestion" class="question-box"></div>
-    <div id="potOddsResult" class="result-text"></div>
+    <div id="potOddsQuestion"></div>
+    <div id="potOddsResult" style="margin-top: 15px; font-size: 16px; font-weight: bold;"></div>
   </div>
 
 
 
 
-<p>
-<label for="hideDealerCheckbox">Eltüntetés</label>
-<input type="checkbox" id="hideDealerCheckbox">
-</p>
 
+    
+
+
+
+  <div id="wrongAnswersBox">
     <h2>Elrontott válaszok:</h2>
     <ul id="wrongAnswers"></ul>
+</div>
+   
+
+<div id="HideDealer">
+<label for="hideDealerCheckbox">Eltüntetés</label>
+<input type="checkbox" id="hideDealerCheckbox">
+</div>
 
 
+    
+    <script src="threeBetRanges.js"></script>
+    <script src="callRanges.js"></script> 
     <script src="equityData.js"></script>
    <script src="script.js"></script> 
 
