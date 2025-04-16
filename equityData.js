@@ -102,3 +102,4 @@ const equityData = {
         "J♥️8♣️": 0.32,
 
 };
+

@@ -37,6 +37,20 @@ body {
 }
 
 
+#modeToggleBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#modeToggleBtn:hover {
+    background-color: #555;
+}
+
 
     /* POTODDS GAME-------------- */
 
@@ -280,8 +294,20 @@ p {
     }
     }
 
+
+    #buttonContainer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px; /* Eltartás a gombok között */
+        justify-content: center; /* Középre igazítás */
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+
     button {
         background-color: #3498db; 
+        padding: 10px 20px; /* Gomb méretének beállítása */
         color: white; 
         font-size: 16px; 
         padding: 12px 24px; 

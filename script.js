@@ -147,8 +147,7 @@ function generatePotOddsQuestion() {
         <strong>Bet:</strong> ${betSize} BB <br>
         <strong>Equity:</strong> ${equityPercent}% <br><br>
         Mit teszel? (Pot odds alapján)<br><br>
-        <button onclick="answerPotOdds(true)">Call</button>
-        <button onclick="answerPotOdds(false)">Fold</button>
+        
     `;
 
     document.getElementById("potOddsResult").innerHTML = "";
@@ -179,13 +178,22 @@ function answerPotOdds(playerChoseCall) {
 
         
 function checkAnswer(choice) {
-    const correctThreeBet = threeBetRanges[heroPos]?.includes(currentHand);
-    const correctCall = !correctThreeBet && callRanges[heroPos]?.[villainPos]?.includes(currentHand);
-    const correctFold = !correctThreeBet && !correctCall;
+
+    const isThreeBet = threebetranges[heroPos]?.[villainPos]?.includes(currentHand);
+    const isThreeBet25 = threebet25ranges[heroPos]?.[villainPos]?.includes(currentHand);
+    const isThreeBet50 = threebet50ranges[heroPos]?.[villainPos]?.includes(currentHand);
+    const isThreeBet75 = threebet75ranges[heroPos]?.[villainPos]?.includes(currentHand);
+
+    const isCall = !isThreeBet && !isThreeBet25 && !isThreeBet50 && !isThreeBet75 &&
+                   callRanges[heroPos]?.[villainPos]?.includes(currentHand);
+    const isFold = !isThreeBet && !isThreeBet25 && !isThreeBet50 && !isThreeBet75 && !isCall;
 
     let correctAnswer = "";
-    if (correctThreeBet) correctAnswer = "3-bet";
-    else if (correctCall) correctAnswer = "call";
+    if (isThreeBet) correctAnswer = "3bet";
+    else if (isThreeBet25) correctAnswer = "3bet25";
+    else if (isThreeBet50) correctAnswer = "3bet50";
+    else if (isThreeBet75) correctAnswer = "3bet75";
+    else if (isCall) correctAnswer = "call";
     else correctAnswer = "fold";
 
     const isCorrect = choice === correctAnswer;
@@ -209,6 +217,8 @@ function checkAnswer(choice) {
     updateStats(heroPos, isCorrect);
     generateNewQuestion();
 }
+
+
 
             function updateWrongAnswers() {
             let wrongAnswersElement = document.getElementById("wrongAnswers");
@@ -294,4 +304,6 @@ function checkAnswer(choice) {
         
       
         generateNewQuestion();
+
+
     

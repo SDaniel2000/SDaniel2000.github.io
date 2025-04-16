@@ -12,7 +12,10 @@
         
         <h1>Call and 3-bet range vs OpenRaise</h1>
       </header>
-   
+
+      
+      
+    
 
       
  
@@ -21,9 +24,13 @@
     <p>Pontszámod: <span id="score">0</span></p>
     <p id="message">😐</p>
    
+
+  
+  
+   
    
     
-    <div class="container">
+    
     <div id="pokerTable">
         <div id="UTG" class="positionCircle"><span class="villainChip"></span> UTG</div>
         <div id="MP" class="positionCircle"><span class="villainChip"></span> MP</div>
@@ -31,21 +38,48 @@
         <div id="BU" class="positionCircle"><span class="villainChip"></span> BU</div>
         <div id="SB" class="positionCircle"><span class="villainChip"></span> SB</div>
         <div id="BB" class="positionCircle"><span class="villainChip"></span> BB</div>
+</div>
 
 
-    </div>
+
+
+
+
+
+<div id="buttonContainer">
     <button class="button" onclick="checkAnswer('fold')">
         <span>Fold</span>
     </button>
     <button class="button" onclick="checkAnswer('call')">
         <span>Call</span>
     </button>
-    <button class="button" onclick="checkAnswer('3-bet')">
+    <button class="button" onclick="checkAnswer('3bet')">
         <span>3-Bet</span>
     </button>
-</div>
+    <button class="button" onclick="checkAnswer('3bet25')">
+        <span>3-Bet 25%</span>
+    </button>
+    <button class="button" onclick="checkAnswer('3bet50')">
+        <span>3-Bet 50%</span>
+    </button>
+    <button class="button" onclick="checkAnswer('3bet75')">
+        <span>3-Bet 75%</span>
+    </button>
+    </div>
+
+
+
+   
+    
+
+
+
+    
+    
       
+ 
       
+
     
     <div id="positionStats">
         <h3>Pozíciók teljesítménye:</h3>
@@ -60,14 +94,16 @@
     </div>
     
 
-    
 
 
 
 <div id="potOddsSection" class="section-box">
     <h2>🧮 Pot Odds Gyakorló</h2>
     <div id="potOddsQuestion"></div>
+    <button onclick="answerPotOdds(true)">Call</button>
+    <button onclick="answerPotOdds(false)">Fold</button>
     <div id="potOddsResult" style="margin-top: 15px; font-size: 16px; font-weight: bold;"></div>
+
   </div>
 
 
@@ -90,9 +126,16 @@
 </div>
 
 
-    
-    <script src="threeBetRanges.js"></script>
-    <script src="callRanges.js"></script> 
+
+
+
+
+  <script src="openraise.js"></script>
+<script src="Ranges/threebetranges.js"></script>
+<script src="Ranges/threebet25ranges.js"></script>
+<script src="Ranges/threebet50ranges.js"></script>
+<script src="Ranges/threebet75ranges.js"></script>
+    <script src="Ranges/callRanges.js"></script> 
     <script src="equityData.js"></script>
    <script src="script.js"></script> 
 
